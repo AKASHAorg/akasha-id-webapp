@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Grid, Smartphone, Settings, LogOut } from 'react-feather'
+import { Grid, Smartphone, User, LogOut } from 'react-feather'
 
 import { Avatar, Typography, Space } from '../../components'
 import { signout } from '../../actions'
@@ -37,8 +37,8 @@ class NavbarMin extends React.Component {
               <Smartphone opacity={0.8} width={24} />
               <p className='label' />
             </NavLink>
-            <NavLink to='/settings' className={styles.navElement} activeClassName={styles.active}>
-              <Settings opacity={0.8} width={24} />
+            <NavLink to='/profile' className={styles.navElement} activeClassName={styles.active}>
+              <User opacity={0.8} width={24} />
               <p className='label' />
             </NavLink>
           </div>

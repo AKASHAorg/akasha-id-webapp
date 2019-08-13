@@ -7,7 +7,7 @@ import DetectBrowser from 'detect-browser'
 import { withTranslation } from 'react-i18next'
 import * as common from 'masq-common'
 
-import { Login, Applications, Devices, Settings, Navbar, Loading } from './containers'
+import { Login, Applications, Devices, Profile, Navbar, Loading } from './containers'
 import { Notification } from './components'
 import { addDevice, setCurrentAppRequest, setLoading, setNotification } from './actions'
 import { AuthApp, PersistentStorageRequest, UnsupportedBrowser } from './modals'
@@ -33,9 +33,9 @@ const authenticatedRoutes = [
     main: Devices
   },
   {
-    path: '/settings',
+    path: '/profile',
     sidebar: Navbar,
-    main: Settings
+    main: Profile
   }
 ]
 

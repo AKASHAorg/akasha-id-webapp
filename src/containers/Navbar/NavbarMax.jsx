@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Grid, Smartphone, Settings, LogOut } from 'react-feather'
+import { Grid, Smartphone, User, LogOut } from 'react-feather'
 import { withTranslation } from 'react-i18next'
 
 import { Avatar, Space, Typography } from '../../components'
@@ -36,9 +36,9 @@ class NavbarMax extends React.Component {
             <Smartphone opacity={0.8} width={24} />
             <Typography type='label-nav'>{t('Devices')}</Typography>
           </NavLink>
-          <NavLink to='/settings' className={styles.navElement} activeClassName={styles.active}>
-            <Settings opacity={0.8} width={24} />
-            <Typography type='label-nav'>{t('Settings')}</Typography>
+          <NavLink to='/profile' className={styles.navElement} activeClassName={styles.active}>
+            <User opacity={0.8} width={24} />
+            <Typography type='label-nav'>{t('Profile')}</Typography>
           </NavLink>
         </div>
         <div className={styles.logout} onClick={signout}>

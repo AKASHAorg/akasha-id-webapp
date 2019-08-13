@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { NavLink, Redirect } from 'react-router-dom'
-import { Grid, Smartphone, Settings, ChevronDown } from 'react-feather'
+import { Grid, Smartphone, User, ChevronDown } from 'react-feather'
 import { withTranslation } from 'react-i18next'
 import { signout } from '../../actions'
 import { Typography, Dropdown, Avatar, Space } from '../../components'
@@ -54,8 +54,8 @@ class NavbarMobile extends React.Component {
               <Typography type='label-nav'>{t('Devices')}</Typography>
             </NavLink>
             <NavLink to='/settings' className={styles.navElement} activeClassName={styles.active}>
-              <Settings opacity={0.8} width={24} />
-              <Typography type='label-nav'>{t('Settings')}</Typography>
+              <User opacity={0.8} width={24} />
+              <Typography type='label-nav'>{t('Profile')}</Typography>
             </NavLink>
           </div>
         </div>

@@ -10,9 +10,9 @@ import { DeleteProfileDialog, PasswordEdit } from '../../modals'
 import { isName, isUsername } from '../../lib/validators'
 import { isUsernameAlreadyTaken, compressImage, MAX_IMAGE_SIZE } from '../../lib/utils'
 
-import styles from './Settings.module.scss'
+import styles from './Profile.module.scss'
 
-class Settings extends React.Component {
+class Profile extends React.Component {
   constructor (props) {
     super(props)
 
@@ -168,10 +168,10 @@ class Settings extends React.Component {
     const { t } = this.props
 
     return (
-      <div className={styles.Settings}>
+      <div className={styles.Profile}>
         <div className={styles.page}>
           <div>
-            <Typography type='title-page'>{t('My settings')}</Typography>
+            <Typography type='title-page'>{t('My profile')}</Typography>
             <Space size={30} />
             <div className={styles.content}>
               <div className={styles.avatar}>
@@ -211,7 +211,7 @@ class Settings extends React.Component {
                 <TextField
                   type='password'
                   defaultValue='password'
-                  label={t('Secret key')}
+                  label={t('Master password')}
                   button={t('Update')}
                   onClick={this.openPasswordEditModal}
                 />
@@ -258,12 +258,12 @@ const mapDispatchToProps = dispatch => ({
   removeProfile: () => dispatch(removeProfile())
 })
 
-Settings.propTypes = {
+Profile.propTypes = {
   user: PropTypes.object,
   updateUser: PropTypes.func,
   removeProfile: PropTypes.func,
   setNotification: PropTypes.func,
   t: PropTypes.func
 }
-const translatedSettings = withTranslation()(Settings)
-export default connect(mapStateToProps, mapDispatchToProps)(translatedSettings)
+const translatedProfile = withTranslation()(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(translatedProfile)
