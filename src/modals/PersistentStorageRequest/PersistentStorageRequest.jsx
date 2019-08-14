@@ -15,7 +15,7 @@ const PermanentStorageRequest = ({ onClose }) => {
           <Space size={32} />
           <Typography type='paragraph-modal'>
             {`${t('In order to store your data securely,')}
-          ${t('please authorize Masq to use the persistent storage of the browser.')}
+          ${t('please authorize this application to use the persistent storage of the browser.')}
           ${t('This notification will appear again if necessary.')}`}
           </Typography>
         </div>
