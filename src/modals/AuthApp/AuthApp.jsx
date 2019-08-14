@@ -135,7 +135,7 @@ class AuthApp extends React.Component {
       return (
         <div>
           <Typography type='paragraph-modal'>
-            {t(`This application asks access to Masq.`)}
+            {t(`This application requires access to store data locally.`)}
             {t(`If you are not the one who initiated this request, please refuse.`)}
           </Typography>
           <Space size={30} />
