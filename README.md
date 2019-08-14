@@ -1,9 +1,8 @@
 # Masq-app
 
-[![Build Status](https://travis-ci.org/QwantResearch/masq-app.svg?branch=master)](https://travis-ci.org/QwantResearch/masq-app)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-`Masq-app` is the web application that synchronizes and protects you data between your devices.
+`AKASHA.id` is the Web application that offers a user-centric identity management. This application was based on an intitial implementation called [Masq](https://github.com/QwantResearch/masq-app).
 
 ## Development
 
