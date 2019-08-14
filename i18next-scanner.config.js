@@ -5,7 +5,7 @@ module.exports = {
     '!**/node_modules/**'
   ],
   options: {
-    debug: true,
+    debug: false,
     removeUnusedKeys: true,
     func: {
       list: ['i18next.t', 'i18n.t', 't'],
