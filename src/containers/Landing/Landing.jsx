@@ -12,7 +12,6 @@ import { ReactComponent as HDD } from '../../assets/hard-disk.svg'
 import { ReactComponent as Devices } from '../../assets/devices.svg'
 import { ReactComponent as Shield } from '../../assets/shield.svg'
 import { ReactComponent as Windows } from '../../assets/windows-masq.svg'
-import { ReactComponent as Qwant } from '../../assets/qwant.svg'
 
 import { Button, Space, Typography } from '../../components'
 import { useWindowWidth } from '../../hooks'
@@ -53,9 +52,9 @@ const Landing = ({ onClick, children }) => {
       <div className={styles.section2}>
         <div className={styles.Box}>
           <div className={styles.text}>
-            <Typography type='title-landing'>{t('Respects your privacy')}</Typography>
+            <Typography type='title-landing'>{t('Respecting your privacy')}</Typography>
             <Typography type='paragraph-landing'>
-              {t('Masq allows you to store all your preferences while guaranteeing your privacy')}
+              {t('This application allows you to store all your preferences while guaranteeing your privacy')}
             </Typography>
           </div>
           <Box />
@@ -75,7 +74,7 @@ const Landing = ({ onClick, children }) => {
           <div className={styles.text}>
             <Typography type='title-landing'>{t('Real time synchronization between devices (coming soon)')}</Typography>
             <Typography type='paragraph-landing'>
-              {t('Soon you can synchronize your Masq profile between all your devices in real time without any Cloud!')}
+              {t('Soon you can synchronize your profile between all your devices in real time without any Cloud!')}
             </Typography>
           </div>
           <Devices />
@@ -86,7 +85,7 @@ const Landing = ({ onClick, children }) => {
 
         <div className={styles.title}>
           <Typography type='title-landing2'>
-            {t('Good practices of Masq for optimal use')}
+            {t('Good practices for optimal use')}
           </Typography>
         </div>
 
@@ -102,9 +101,9 @@ const Landing = ({ onClick, children }) => {
 
         <div className={styles.Windows}>
           <div className={styles.text}>
-            <Typography type='title-landing'>{t('Keep the Masq window in the background in order to allow data synchronization')}</Typography>
+            <Typography type='title-landing'>{t('Keep this application window in the background in order to allow data synchronization')}</Typography>
             <Typography type='paragraph-landing-dark'>
-              {t('To benefit from real time synchronization and always have up-to-date data, keep the Masq window opened in the background on all your devices')}
+              {t('To benefit from real time synchronization and always have up-to-date data, keep this application window opened in the background on all your devices')}
             </Typography>
           </div>
           <Windows />
@@ -112,21 +111,20 @@ const Landing = ({ onClick, children }) => {
       </div>
 
       <div className={styles.Footer}>
-        <Qwant />
         <div className={styles.links}>
-          <a href='https://github.com/QwantResearch/masq-app/' rel='noopener noreferrer' target='_blank'>
+          <a href='#' rel='noopener noreferrer' target='_blank'>
             <Typography type='footer'>GitHub</Typography>
           </a>
           <a href='mailto:masq.dev@qwant.com'>
             <Typography type='footer'>{t('Contact us')}</Typography>
           </a>
-          <a href='https://about.qwant.com/fr/legal/masq-by-qwant-vos-donnees-personnelles/' rel='noopener noreferrer' target='_blank'>
+          <a href='#' rel='noopener noreferrer' target='_blank'>
             <Typography type='footer'>{t('Your data')}</Typography>
           </a>
-          <a href='https://help.qwant.com' rel='noopener noreferrer' target='_blank'>
+          <a href='#' rel='noopener noreferrer' target='_blank'>
             <Typography type='footer'>F.A.Q.</Typography>
           </a>
-          <a href='https://betterweb.qwant.com' rel='noopener noreferrer' target='_blank'>
+          <a href='#' rel='noopener noreferrer' target='_blank'>
             <Typography type='footer'>Blog</Typography>
           </a>
         </div>

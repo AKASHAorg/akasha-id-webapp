@@ -7,7 +7,6 @@ import { Grid, Smartphone, User, LogOut } from 'react-feather'
 import { Avatar, Typography, Space } from '../../components'
 import { signout } from '../../actions'
 import { ReactComponent as Cubes } from '../../assets/cubes-sidebar-min.svg'
-import { ReactComponent as Logo } from '../../assets/logo-sidebar.svg'
 
 import styles from './NavbarMin.module.scss'
 
@@ -21,7 +20,6 @@ class NavbarMin extends React.Component {
       <div className={styles.Sidebar}>
         <div>
           <div className={styles.header}>
-            <Logo />
             <Space size={22} />
             <Avatar {...user} size={58} />
             <Space size={8} />

@@ -8,7 +8,6 @@ import { withTranslation } from 'react-i18next'
 import { Avatar, Space, Typography } from '../../components'
 import { signout } from '../../actions'
 import { ReactComponent as Cubes } from '../../assets/cubes-sidebar.svg'
-import { ReactComponent as Logo } from '../../assets/logo-sidebar.svg'
 
 import styles from './NavbarMax.module.scss'
 
@@ -21,9 +20,8 @@ class NavbarMax extends React.Component {
     return (
       <div className={styles.Sidebar}>
         <div className={styles.header}>
-          <Logo />
           <Space size={22} />
-          <Avatar {...user} size={54} />
+          <Avatar {...user} size={100} />
           <Space size={8} />
           <Typography type='username'>{user.username}</Typography>
         </div>

@@ -96,7 +96,7 @@ class App extends Component {
     }
 
     history.listen(location => {
-      const paths = ['/apps', '/devices', '/settings']
+      const paths = ['/apps', '/devices', '/profile']
       if (location.pathname !== this.state.prevPath &&
         paths.includes(location.pathname)) {
         this.setState({

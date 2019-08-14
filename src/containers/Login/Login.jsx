@@ -150,7 +150,7 @@ class Login extends Component {
     return (
       <div className={styles.usersSelection}>
         {qrcodeModal && <QRCodeModal onClose={this.closeQRCodeModal} />}
-        <Typography type='title'>{t('Who is it ?')}</Typography>
+        <Typography type='title'>{t('Select a profile')}</Typography>
         <Space size={34} />
         {/* { this.renderQRCodeModal() } */}
         <div className={styles.users}>
@@ -239,7 +239,7 @@ class Login extends Component {
       <div className={styles.Login}>
         <div className={styles.content}>
           <Space size={68} />
-          <Logo />
+          <h2>AKASHA.ID</h2>
           <Space size={82} />
           {selectedUser
             ? this.renderPassword()
