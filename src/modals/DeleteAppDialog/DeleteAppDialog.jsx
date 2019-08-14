@@ -13,7 +13,7 @@ const ConfirmDialog = ({ app, onConfirm, onCancel, onClose }) => {
         <Typography type='title-modal'>{`${t('Deletion of the application')} ${app.appId}`}</Typography>
         <Space size={32} />
         <Typography type='paragraph-modal'>
-          {`${t('You are at the point of deleting the application ')} "${app.appId}" ${t('from Masq with all the associated data.')}
+          {`${t('You are at the point of deleting the application ')} "${app.appId}" ${t('with all the associated data.')}
         ${t(' All the data will be lost.')}`}
         </Typography>
         <Space size={36} />
