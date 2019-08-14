@@ -70,10 +70,10 @@ class Apps extends PureComponent {
         />}
 
         <div className={styles.topSection}>
-          <Typography type='title-page'>{t('My applications')}</Typography>
+          <Typography type='title-page'>{t('Applications to which I am disclosing my identity')}</Typography>
         </div>
 
-        <Space size={16} />
+        <Space size={32} />
 
         {apps.length === 0 && (
           <React.Fragment>
@@ -95,8 +95,8 @@ class Apps extends PureComponent {
                     className={styles.trashIcon}
                     onClick={() => this.handleTrashClick(app)}
                   />
-                }
-                footer={<Link url={new URL(app.imageURL).origin + '/maps'} />}
+                }ß
+                footer={<Link url={app.appURL} />}
               />
             </div>
           ))}
