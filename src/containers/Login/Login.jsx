@@ -5,7 +5,6 @@ import { ChevronLeft } from 'react-feather'
 
 import { withTranslation } from 'react-i18next'
 import { signin, signup, fetchUsers, setCurrentAppRequest } from '../../actions'
-import { ReactComponent as Logo } from '../../assets/logo.svg'
 import { ReactComponent as Cubes } from '../../assets/cubes.svg'
 import { ReactComponent as PlusSquare } from '../../assets/plus-square.svg'
 import { Avatar, Button, TextField, Typography, Space } from '../../components'
@@ -239,7 +238,7 @@ class Login extends Component {
       <div className={styles.Login}>
         <div className={styles.content}>
           <Space size={68} />
-          <h2>AKASHA.ID</h2>
+          <h1>AKASHA.ID</h1>
           <Space size={82} />
           {selectedUser
             ? this.renderPassword()

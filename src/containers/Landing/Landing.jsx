@@ -32,7 +32,7 @@ const Landing = ({ onClick, children }) => {
         className={styles.section1}
         style={{ backgroundImage: `url(${width > MOBILE_WIDTH ? Head : HeadMobile})` }}
       >
-        <div className={styles.Logo}><Logo /></div>
+        <div className={styles.title}><h1>AKASHA.ID</h1></div>
         {/* {remoteWebRTCEnabled && <div className={styles.connectBtn}><Button width={185}>Connexion</Button></div>} */}
         <Space size={74} />
 
