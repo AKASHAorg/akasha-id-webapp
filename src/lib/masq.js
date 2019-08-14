@@ -180,7 +180,8 @@ class Masq {
     const isUsernameTaken = await isUsernameAlreadyTaken(profile.username)
     if (isUsernameTaken) { throw new MasqError(MasqError.USERNAME_ALREADY_TAKEN) }
 
-    const id = uuidv4()
+    const id = 'did:akasha:'+uuidv4()
+    debug(id, profile)
     const protectedMK = await genEncryptedMasterKeyAndNonce(profile.password)
 
     const { masterKey, nonce } = await decryptMasterKeyAndNonce(profile.password, protectedMK)
@@ -438,7 +439,7 @@ class Masq {
         try {
           if (app) {
             const privateProfile = await this.getProfile(this.profileId)
-            await this.sendAuthorized(peer, app.id, app.appDEK, privateProfile.username, privateProfile.image, app.appNonce)
+            await this.sendAuthorized(peer, app.id, app.appDEK, this.profileId, privateProfile.image, app.appNonce)
             const res = await this.receiveEndOfConnection(peer)
             resolve(res)
           } else {
@@ -460,8 +461,8 @@ class Masq {
     })
   }
 
-  async sendAuthorized (peer, userAppDbId, userAppDEK, username, profileImage, userAppNonce) {
-    const data = { msg: 'authorized', userAppDbId, userAppDEK, username, profileImage, userAppNonce }
+  async sendAuthorized (peer, userAppDbId, userAppDEK, did, profileImage, userAppNonce) {
+    const data = { msg: 'authorized', userAppDbId, userAppDEK, did, profileImage, userAppNonce }
     const encryptedMsg = await encrypt(this.key, data, 'base64')
     peer.send(JSON.stringify(encryptedMsg))
   }
@@ -475,8 +476,8 @@ class Masq {
           await this._closeUserAppConnection()
           resolve({ isConnected: true })
         } else if (json.msg === 'registerUserApp') {
-          const { name, description, imageURL } = json
-          this.app = { name, description, imageURL }
+          const { name, description, imageURL, appURL } = json
+          this.app = { name, description, imageURL, appURL }
           this.setState(STATES.USERAPP_INFO_RECEIVED)
           resolve({ isConnected: false, ...this.app })
         } else {
@@ -500,8 +501,8 @@ class Masq {
         const json = await decrypt(this.key, JSON.parse(data), 'base64')
 
         if (json.msg === 'registerUserApp') {
-          const { name, description, imageURL } = json
-          this.app = { name, description, imageURL }
+          const { name, description, imageURL, appURL } = json
+          this.app = { name, description, imageURL, appURL }
           this.setState(STATES.USERAPP_INFO_RECEIVED)
           resolve({ isConnected: false, ...this.app })
         } else {
@@ -561,11 +562,11 @@ class Masq {
     const dbKey = db.key.toString('hex')
     const userAppDbId = id
     const userAppDEK = appDEK
-    const username = privateProfile.username
+    const did = this.profileId
     const profileImage = privateProfile.image
     const userAppNonce = appNonce
 
-    const data = { msg: 'masqAccessGranted', key: dbKey, userAppDbId, userAppDEK, username, profileImage, userAppNonce }
+    const data = { msg: 'masqAccessGranted', key: dbKey, userAppDbId, userAppDEK, did, profileImage, userAppNonce }
     const encryptedMsg = await encrypt(this.key, data, 'base64')
     peer.send(JSON.stringify(encryptedMsg))
     await this.receiveRequestWriteAccess(peer, dbName)
