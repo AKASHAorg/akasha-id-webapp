@@ -1,0 +1,33 @@
+{
+  "name": "akasha-id-web-new",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@akashaproject/design-system": "https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-design-system.git#notification_component",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.1",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
