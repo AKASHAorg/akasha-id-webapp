@@ -6,17 +6,29 @@
     "@akashaproject/design-system": "https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-design-system.git#notification_component",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
     "react-scripts": "3.1.1",
-    "styled-components": "^4.3.2"
+    "redux": "^4.0.4",
+    "styled-components": "^4.3.2",
+    "typescript": "3.5.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tslint": "tslint --project tsconfig.json -c tslint.json --format verbose",
+    "tslint-fix": "tslint --project tsconfig.json -c tslint.json --fix --format verbose"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "lint-staged": {
+    "{src}/**/*.{ts,tsx}": [
+      "npm run tslint",
+      "prettier --write",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
@@ -29,5 +41,22 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.2",
+    "@types/redux": "^3.6.0",
+    "@types/styled-components": "^4.1.18",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0"
   }
 }

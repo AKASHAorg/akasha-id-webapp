@@ -21,8 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea/.gitignore
-/.idea/akasha-id-web.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/vcs.xml
