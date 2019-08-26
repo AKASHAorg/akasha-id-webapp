@@ -7,6 +7,8 @@ import { HideLogInModalAction } from '../actions/hide-log-in-modal'
 import { HideSignUpModalAction } from '../actions/hide-sign-up-modal'
 import { LogInAction } from '../actions/log-in'
 import { LogOutAction } from '../actions/log-out'
+import { RefreshProfileAction } from '../actions/refresh-profile'
+import { SetSignUpLinkAction } from '../actions/set-sign-up-link'
 import { ShowLogInModalAction } from '../actions/show-log-in-modal'
 import { ShowSignUpModalAction } from '../actions/show-sign-up-modal'
 import { SignUpAction } from '../actions/sign-up'
@@ -103,11 +105,12 @@ const showSignUpModal = (
 ): LandingState => {
   return {
     ...state,
-    signUpStep: 'login',
+    signUpStep: 'get-link',
     showSignUpModal: true,
     signUpModalErrorMessage: '',
     login: '',
     password: '',
+    signUpLink: null,
   }
 }
 
@@ -123,49 +126,9 @@ const hideSignUpModal = (
 }
 
 const signUp = (state: LandingState, action: SignUpAction, fullState: State): LandingState => {
-  if (state.signUpStep === 'login') {
-    if (state.login === '') {
-      return {
-        ...state,
-        signUpModalErrorMessage: 'Login cannot be empty',
-      }
-    }
-
-    const user = state.users.find(u => u.login === state.login)
-
-    if (user) {
-      return {
-        ...state,
-        signUpModalErrorMessage: 'User with same login already exists',
-      }
-    }
-
-    return {
-      ...state,
-      signUpStep: 'password',
-    }
-  }
-
-  if (state.password === '') {
-    return {
-      ...state,
-      signUpModalErrorMessage: 'Password cannot be empty',
-    }
-  }
-
   return {
     ...state,
-    users: [
-      ...state.users,
-      {
-        login: state.login,
-        firstName: '',
-        lastName: '',
-        password: state.password,
-      },
-    ],
-    loggedIn: true,
-    showSignUpModal: false,
+    signUpStep: 'send-claim',
   }
 }
 
@@ -185,6 +148,30 @@ const deleteProfile = (
     ...state,
     loggedIn: false,
     users: state.users.filter(user => user.login !== state.login),
+  }
+}
+
+const setSignUpLink = (
+  state: LandingState,
+  action: SetSignUpLinkAction,
+  fullState: State,
+): LandingState => {
+  return {
+    ...state,
+    signUpStep: 'enter-login',
+    signUpLink: action.link,
+  }
+}
+
+const refreshProfile = (
+  state: LandingState,
+  action: RefreshProfileAction,
+  fullState: State,
+): LandingState => {
+  return {
+    ...state,
+    signUpStep: 'refresh-profile',
+    signUpData: action.data,
   }
 }
 
@@ -223,6 +210,12 @@ const reducer = (
 
     case actions.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)
+
+    case actions.SET_SIGN_UP_LINK:
+      return setSignUpLink(state, action as SetSignUpLinkAction, fullState)
+
+    case actions.REFRESH_PROFILE:
+      return refreshProfile(state, action as RefreshProfileAction, fullState)
 
     default:
       return state

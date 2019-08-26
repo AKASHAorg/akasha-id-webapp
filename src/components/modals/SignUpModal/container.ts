@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
+import { Action } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 
 import changeLogin from '../../../actions/change-login'
-import changePassword from '../../../actions/change-password'
 import hideSignUpModal from '../../../actions/hide-sign-up-modal'
 import signUp from '../../../actions/sign-up'
 import { State } from '../../../states'
@@ -9,17 +10,16 @@ import SignUpModal from './SignUpModal'
 
 const enchance = connect(
   (state: State) => ({
-    isOpen: state.landing.showSignUpModal,
     step: state.landing.signUpStep,
     login: state.landing.login,
-    password: state.landing.password,
-    errorMessage: state.landing.signUpModalErrorMessage,
+    isOpen: state.landing.showSignUpModal,
+    signUpLink: state.landing.signUpLink,
+    signUpData: state.landing.signUpData,
   }),
-  dispatch => ({
-    onCancel: () => dispatch(hideSignUpModal()),
-    onChangeLogin: (login: string) => dispatch(changeLogin(login)),
-    onChangePassword: (password: string) => dispatch(changePassword(password)),
+  (dispatch: ThunkDispatch<State, void, Action>) => ({
+    onClose: () => dispatch(hideSignUpModal()),
     onOk: () => dispatch(signUp()),
+    onChangeLogin: (login: string) => dispatch(changeLogin(login)),
   }),
 )
 

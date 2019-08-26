@@ -23,16 +23,6 @@ const logIn = (state: ProfileState, action: LogInAction, fullState: State): Prof
 }
 
 const signUp = (state: ProfileState, action: SignUpAction, fullState: State): ProfileState => {
-  if (fullState.landing.signUpStep === 'password') {
-    return {
-      ...state,
-      login: fullState.landing.login,
-      firstName: '',
-      lastName: '',
-      password: fullState.landing.password,
-    }
-  }
-
   return state
 }
 

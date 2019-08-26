@@ -4,11 +4,14 @@
   "private": true,
   "dependencies": {
     "@akashaproject/design-system": "https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-design-system.git#notification_component",
+    "akasha-id-lib": "https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-id-lib.git#master",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2",
     "typescript": "3.5.3"
   },
@@ -48,6 +51,7 @@
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.2",
+    "@types/react-router-dom": "^4.3.5",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^4.1.18",
     "husky": "^3.0.4",

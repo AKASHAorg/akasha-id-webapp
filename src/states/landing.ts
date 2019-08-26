@@ -11,10 +11,12 @@ export interface LandingState {
   password: string
   logInModalErrorMessage: string
   signUpModalErrorMessage: string
-  signUpStep: 'login' | 'password'
+  signUpStep: 'get-link' | 'enter-login' | 'send-claim' | 'refresh-profile'
   showLogInModal: boolean
   showSignUpModal: boolean
   loggedIn: boolean
+  signUpLink: string | null
+  signUpData: any
 }
 
 const defaultLandingState: LandingState = {
@@ -36,10 +38,12 @@ const defaultLandingState: LandingState = {
   password: '',
   logInModalErrorMessage: '',
   signUpModalErrorMessage: '',
-  signUpStep: 'login',
+  signUpStep: 'get-link',
   showLogInModal: false,
   showSignUpModal: false,
   loggedIn: false,
+  signUpLink: null,
+  signUpData: null,
 }
 
 export { defaultLandingState }
