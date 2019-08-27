@@ -1,29 +1,30 @@
 import { Action } from 'redux'
 
-import { LogInAction } from '../actions/log-in'
+import { RequestProfileAction } from '../actions/request-profile'
 import { SignUpAction } from '../actions/sign-up'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultProfileState, ProfileState } from '../states/profile'
 
-const logIn = (state: ProfileState, action: LogInAction, fullState: State): ProfileState => {
-  const user = fullState.landing.users.find(u => u.login === fullState.landing.login)
-
-  if (user) {
-    return {
-      ...state,
-      login: fullState.landing.login,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      password: fullState.landing.password,
-    }
+const signUp = (state: ProfileState, action: SignUpAction, fullState: State): ProfileState => {
+  return {
+    ...state,
+    login: fullState.landing.login,
+    firstName: '',
+    lastName: '',
+    password: '',
   }
-
-  return state
 }
 
-const signUp = (state: ProfileState, action: SignUpAction, fullState: State): ProfileState => {
-  return state
+const requestProfile = (
+  state: ProfileState,
+  action: RequestProfileAction,
+  fullState: State,
+): ProfileState => {
+  return {
+    ...state,
+    profileData: action.data,
+  }
 }
 
 const reducer = (
@@ -32,11 +33,11 @@ const reducer = (
   fullState: State,
 ): ProfileState => {
   switch (action.type) {
-    case actions.LOG_IN:
-      return logIn(state, action as LogInAction, fullState)
-
     case actions.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
+
+    case actions.REQUEST_PROFILE:
+      return requestProfile(state, action as RequestProfileAction, fullState)
 
     default:
       return state

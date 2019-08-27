@@ -3,6 +3,7 @@ import lightTheme from '@akashaproject/design-system/dist/styles/themes/light-th
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { HashRouter } from 'react-router-dom'
 import { applyMiddleware, createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
@@ -15,7 +16,9 @@ const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 ReactDOM.render(
   <Provider store={store}>
     <AkashaThemeProvider theme={lightTheme}>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </AkashaThemeProvider>
   </Provider>,
   document.getElementById('root'),

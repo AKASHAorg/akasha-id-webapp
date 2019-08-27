@@ -1,4 +1,4 @@
-import { DIDclient, DIDwallet } from 'akasha-id-lib/src/index'
+import { DIDclient, DIDwallet, generateId } from 'akasha-id-lib/src/index'
 
 const appInfo = {
   name: 'AKASHA.world',
@@ -8,6 +8,6 @@ const appInfo = {
 }
 
 const client = new DIDclient(appInfo)
-const wallet = new DIDwallet()
+const wallet = new DIDwallet(generateId())
 
 export { client, wallet }

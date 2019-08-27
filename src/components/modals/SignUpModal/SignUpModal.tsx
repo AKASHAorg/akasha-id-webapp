@@ -3,11 +3,10 @@ import Modal from '@akashaproject/design-system/dist/components/Modal'
 import React from 'react'
 
 interface SignUpModalProps {
-  step: 'get-link' | 'enter-login' | 'send-claim' | 'refresh-profile'
+  step: 'get-link' | 'enter-login' | 'send-claim' | 'request-profile'
   login: string
   isOpen: boolean
   signUpLink: string | null
-  signUpData: any
   onClose: () => void
   onOk: () => void
   onChangeLogin: (login: string) => void
@@ -18,7 +17,6 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
   login,
   isOpen,
   signUpLink,
-  signUpData,
   onClose,
   onOk,
   onChangeLogin,
@@ -28,7 +26,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
       isOpen={isOpen}
       headerContent="Sign up"
       hideCancelButton={false}
-      hideOkButton={signUpLink === null}
+      hideOkButton={step !== 'enter-login'}
       onOk={onOk}
       onClose={onClose}
       closeTimeoutMS={0}
@@ -47,7 +45,6 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
         </>
       )}
       {step === 'send-claim' && <span>Sending claim...</span>}
-      {step === 'refresh-profile' && <span>{JSON.stringify(signUpData)}</span>}
     </Modal>
   )
 }

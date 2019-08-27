@@ -2,15 +2,15 @@ import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import showSignUpModal from '../../../actions/show-sign-up-modal'
-import { State } from '../../../states'
-import Landing from './Landing'
+import removeApp from '../../../../../actions/remove-app'
+import { State } from '../../../../../states'
+import App from './App'
 
 const enchance = connect(
   (state: State) => ({}),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onSignUp: () => dispatch(showSignUpModal()),
+    onRemoveApp: (id: string) => dispatch(removeApp(id)),
   }),
 )
 
-export default enchance(Landing)
+export default enchance(App)

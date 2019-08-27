@@ -11,19 +11,17 @@ declare module 'akasha-id-lib/src/index' {
   }
 
   class DIDwallet {
-    constructor(options = {})
-    public init()
+    constructor(id, options = {})
+    public init(refreshHandler: () => void)
     public did()
     public parseRegisterLink(str)
     public async handleRefresh(data)
-    public async listen()
+    public async listen(refreshHandler: () => void)
     public async registerApp(data)
-    public async sendClaim(req, attributes, allowed, cb?)
+    public async sendClaim(req, attributes, allowed)
     public newClaim(attributes)
-    public async storeClaim(token, key, attributes, cb)
-    public addApp(token, appInfo)
-    public removeApp(appToken)
-    public async listApps()
     public cleanUp(hub)
   }
+
+  function generateId(len?: number)
 }

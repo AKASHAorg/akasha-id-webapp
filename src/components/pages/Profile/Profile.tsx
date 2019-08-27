@@ -1,11 +1,9 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Input from '@akashaproject/design-system/dist/components/Input'
 import React, { useState } from 'react'
-import { Redirect } from 'react-router'
 import styled from 'styled-components'
 
 export interface ProfileProps {
-  loggedIn: boolean
   login: string
   firstName: string
   lastName: string
@@ -32,7 +30,6 @@ const StyledButton = styled(Button)`
 `
 
 const Landing: React.FC<ProfileProps> = ({
-  loggedIn,
   login,
   firstName,
   lastName,
@@ -48,8 +45,6 @@ const Landing: React.FC<ProfileProps> = ({
 
   return (
     <>
-      {!loggedIn && <Redirect to="/" />}
-      <h1>AKASHA.ID</h1>
       <Button buttonType="primary" onClick={onLogOut}>
         Log out
       </Button>

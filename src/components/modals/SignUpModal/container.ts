@@ -14,7 +14,6 @@ const enchance = connect(
     login: state.landing.login,
     isOpen: state.landing.showSignUpModal,
     signUpLink: state.landing.signUpLink,
-    signUpData: state.landing.signUpData,
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
     onClose: () => dispatch(hideSignUpModal()),
