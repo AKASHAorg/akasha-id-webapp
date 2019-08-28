@@ -3,12 +3,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 export interface AppProps extends React.Props<any> {
-  id: string
+  token: string
   name: string
   description: string
   icon: string
   url: string
-  onRemoveApp: (id: string) => void
+  onRemoveApp: (token: string) => void
 }
 
 const StyledRow = styled.li`
@@ -24,7 +24,14 @@ const StyledButton = styled(Button)`
   margin-left: 24px;
 `
 
-const App: React.FC<AppProps> = ({ id, name, description, icon, url, onRemoveApp }: AppProps) => {
+const App: React.FC<AppProps> = ({
+  token,
+  name,
+  description,
+  icon,
+  url,
+  onRemoveApp,
+}: AppProps) => {
   return (
     <StyledRow>
       <h3>
@@ -32,10 +39,11 @@ const App: React.FC<AppProps> = ({ id, name, description, icon, url, onRemoveApp
           <img src={icon} alt={name} />
         </a>
         {name}
-        <StyledButton onClick={() => onRemoveApp(id)} small={true} buttonType="alert">
+        <StyledButton onClick={() => onRemoveApp(token)} small={true} buttonType="alert">
           Delete app
         </StyledButton>
       </h3>
+      <p>Token: {token}</p>
       <p>{description}</p>
     </StyledRow>
   )

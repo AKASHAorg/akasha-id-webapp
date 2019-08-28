@@ -5,7 +5,18 @@ import { client } from '../did'
 import { State } from '../states'
 
 export interface RequestProfileAction extends Action<string> {
-  data: any
+  data: {
+    allowed: boolean
+    claim?: {
+      issuer: string
+      credentialSubject: {
+        id: string
+        login: string
+      }
+    }
+    token?: string
+    refreshEncKey?: string
+  }
 }
 
 const requestProfileActionCreator = (data: any): RequestProfileAction => ({

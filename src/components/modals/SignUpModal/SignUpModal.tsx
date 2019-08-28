@@ -3,10 +3,17 @@ import Modal from '@akashaproject/design-system/dist/components/Modal'
 import React from 'react'
 
 interface SignUpModalProps {
-  step: 'get-link' | 'enter-login' | 'send-claim' | 'request-profile'
+  step: 'register-app' | 'enter-login' | 'send-claim' | 'request-profile'
   login: string
   isOpen: boolean
-  signUpLink: string | null
+  name: string
+  description: string
+  icon: string
+  url: string
+  channel: string
+  appKey: string
+  nonce: number
+  token: string
   onClose: () => void
   onOk: () => void
   onChangeLogin: (login: string) => void
@@ -16,7 +23,14 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
   step,
   login,
   isOpen,
-  signUpLink,
+  name,
+  description,
+  icon,
+  url,
+  channel,
+  appKey,
+  nonce,
+  token,
   onClose,
   onOk,
   onChangeLogin,
@@ -34,9 +48,22 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
       ariaHideApp={false}
       okButtonContent="Accept"
     >
-      {step === 'get-link' && <span>Establishing connection...</span>}
+      {step === 'register-app' && <span>Establishing connection...</span>}
       {step === 'enter-login' && (
         <>
+          <h4>
+            Application
+            <a href={url}>
+              <img src={icon} />
+              {name}
+            </a>
+            requests access to profile elements.
+          </h4>
+          <p>{description}</p>
+          <p>Channel: {channel}</p>
+          <p>Key: {appKey}</p>
+          <p>Nonce: {nonce}</p>
+          <p>Token: {token}</p>
           <Input
             placeholder="Login"
             value={login}

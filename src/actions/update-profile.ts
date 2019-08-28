@@ -30,8 +30,10 @@ const updateProfile: ActionCreator<ThunkAction<Promise<any>, State, void, Action
   lastName,
   password,
 ) => async dispatch => {
-  const response = await client.requestProfile()
   dispatch(updateProfileActionCreator(login, firstName, lastName, password))
+  localStorage.setItem('firstName', firstName)
+  localStorage.setItem('lastName', lastName)
+  localStorage.setItem('password', password)
 }
 
 export default updateProfile

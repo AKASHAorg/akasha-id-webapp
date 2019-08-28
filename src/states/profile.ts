@@ -1,9 +1,10 @@
 export interface ProfileData {
-  allowed?: boolean
+  allowed: boolean
   claim?: {
-    issuer?: string
-    credentialSubject?: {
-      id?: string
+    issuer: string
+    credentialSubject: {
+      id: string
+      login: string
     }
   }
   token?: string
@@ -23,7 +24,7 @@ const defaultProfileState: ProfileState = {
   firstName: '',
   lastName: '',
   password: '',
-  profileData: {},
+  profileData: { allowed: false },
 }
 
 export { defaultProfileState }

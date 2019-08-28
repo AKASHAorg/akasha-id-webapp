@@ -12,7 +12,7 @@ declare module 'akasha-id-lib/src/index' {
 
   class DIDwallet {
     constructor(id, options = {})
-    public init(refreshHandler: () => void)
+    public init(refreshHandler: (data: { msg: any; token: string }) => void)
     public did()
     public parseRegisterLink(str)
     public async handleRefresh(data)
@@ -24,4 +24,9 @@ declare module 'akasha-id-lib/src/index' {
   }
 
   function generateId(len?: number)
+
+  const crypto = {
+    importKey(key: any): any {},
+    decrypt(key: any, msg: any, base: string): any {},
+  }
 }

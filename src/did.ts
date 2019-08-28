@@ -10,4 +10,8 @@ const appInfo = {
 const client = new DIDclient(appInfo)
 const wallet = new DIDwallet(generateId())
 
+const refreshHandler = async (data: { msg: any; token: string }) => {}
+
+wallet.init(refreshHandler)
+
 export { client, wallet }

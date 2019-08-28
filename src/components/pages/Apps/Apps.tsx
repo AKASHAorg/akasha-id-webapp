@@ -12,7 +12,7 @@ const Apps: React.FC<AppsProps> = ({ apps }: AppsProps) => {
     <>
       <ul>
         {apps.map(app => (
-          <App key={app.id} {...app} />
+          <App key={app.token} {...app} />
         ))}
       </ul>
     </>

@@ -4,8 +4,8 @@ import { ChangeLoginAction } from '../actions/change-login'
 import { DeleteProfileAction } from '../actions/delete-profile'
 import { HideSignUpModalAction } from '../actions/hide-sign-up-modal'
 import { LogOutAction } from '../actions/log-out'
+import { RegisterAppAction } from '../actions/register-app'
 import { RequestProfileAction } from '../actions/request-profile'
-import { SetSignUpLinkAction } from '../actions/set-sign-up-link'
 import { ShowSignUpModalAction } from '../actions/show-sign-up-modal'
 import { SignUpAction } from '../actions/sign-up'
 import * as actions from '../consts/actions'
@@ -32,12 +32,13 @@ const showSignUpModal = (
 ): LandingState => {
   return {
     ...state,
-    signUpStep: 'get-link',
+    signUpStep: 'register-app',
     showSignUpModal: true,
     signUpModalErrorMessage: '',
     login: '',
     password: '',
-    signUpLink: null,
+    appRequest: null,
+    signUpLink: action.link,
   }
 }
 
@@ -77,15 +78,15 @@ const deleteProfile = (
   }
 }
 
-const setSignUpLink = (
+const registerApp = (
   state: LandingState,
-  action: SetSignUpLinkAction,
+  action: RegisterAppAction,
   fullState: State,
 ): LandingState => {
   return {
     ...state,
     signUpStep: 'enter-login',
-    signUpLink: action.link,
+    appRequest: { ...action.appRequest },
   }
 }
 
@@ -97,7 +98,7 @@ const requestProfile = (
   return {
     ...state,
     showSignUpModal: false,
-    loggedIn: true,
+    loggedIn: action.data.allowed,
   }
 }
 
@@ -125,8 +126,8 @@ const reducer = (
     case actions.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)
 
-    case actions.SET_SIGN_UP_LINK:
-      return setSignUpLink(state, action as SetSignUpLinkAction, fullState)
+    case actions.REGISTER_APP:
+      return registerApp(state, action as RegisterAppAction, fullState)
 
     case actions.REQUEST_PROFILE:
       return requestProfile(state, action as RequestProfileAction, fullState)

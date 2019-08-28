@@ -19,10 +19,7 @@ const hideSignUpModal: ActionCreator<ThunkAction<Promise<any>, State, void, Acti
   const state = getState()
 
   if (state.landing.signUpStep === 'enter-login' || state.landing.signUpStep === 'send-claim') {
-    wallet.init(() => {})
-    const link = state.landing.signUpLink!.substring('http://localhost:3000/#/link/'.length)
-    const msg = await wallet.registerApp(link)
-    await wallet.sendClaim(msg, null, false)
+    await wallet.sendClaim(state.landing.appRequest, null, false)
   }
 }
 

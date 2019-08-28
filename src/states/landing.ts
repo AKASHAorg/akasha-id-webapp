@@ -5,16 +5,30 @@ export interface User {
   password: string
 }
 
+export interface AppRequest {
+  appInfo: {
+    name: string
+    description: string
+    icon: string
+    url: string
+  }
+  channel: string
+  key: string
+  nonce: number
+  token: string
+}
+
 export interface LandingState {
   login: string
   password: string
   logInModalErrorMessage: string
   signUpModalErrorMessage: string
-  signUpStep: 'get-link' | 'enter-login' | 'send-claim' | 'request-profile'
+  signUpStep: 'register-app' | 'enter-login' | 'send-claim' | 'request-profile'
   showLogInModal: boolean
   showSignUpModal: boolean
   loggedIn: boolean
   signUpLink: string | null
+  appRequest: AppRequest | null
 }
 
 const defaultLandingState: LandingState = {
@@ -22,11 +36,12 @@ const defaultLandingState: LandingState = {
   password: '',
   logInModalErrorMessage: '',
   signUpModalErrorMessage: '',
-  signUpStep: 'get-link',
+  signUpStep: 'register-app',
   showLogInModal: false,
   showSignUpModal: false,
   loggedIn: false,
   signUpLink: null,
+  appRequest: null,
 }
 
 export { defaultLandingState }

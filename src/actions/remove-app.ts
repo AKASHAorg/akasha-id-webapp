@@ -1,22 +1,23 @@
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { REMOVE_APP } from '../consts/actions'
-import { wallet } from '../did'
 import { State } from '../states'
 
 export interface RemoveAppAction extends Action<string> {
-  id: string
+  token: string
 }
 
-const removeAppActionCreator = (id: string): RemoveAppAction => ({
-  id,
+const removeAppActionCreator = (token: string): RemoveAppAction => ({
+  token,
   type: REMOVE_APP,
 })
 
 const loadApps: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = (
-  id: string,
+  token: string,
 ) => async (dispatch, getState) => {
-  dispatch(removeAppActionCreator(id))
+  dispatch(removeAppActionCreator(token))
+
+  localStorage.setItem('apps', JSON.stringify(getState().apps.apps))
 }
 
 export default loadApps

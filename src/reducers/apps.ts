@@ -1,5 +1,6 @@
 import { Action } from 'redux'
 
+import { AddAppAction } from '../actions/add-app'
 import { LoadAppsAction } from '../actions/load-apps'
 import { RemoveAppAction } from '../actions/remove-app'
 import * as actions from '../consts/actions'
@@ -9,17 +10,21 @@ import { AppsState, defaultAppsState } from '../states/apps'
 const loadApps = (state: AppsState, action: LoadAppsAction, fullState: State): AppsState => {
   return {
     ...state,
-    apps: Object.entries(action.apps).map(([id, app]) => ({
-      ...app,
-      id,
-    })),
+    apps: [...action.apps],
+  }
+}
+
+const addApp = (state: AppsState, action: AddAppAction, fullState: State): AppsState => {
+  return {
+    ...state,
+    apps: [...state.apps, { ...action }],
   }
 }
 
 const removeApp = (state: AppsState, action: RemoveAppAction, fullState: State): AppsState => {
   return {
     ...state,
-    apps: state.apps.filter(app => app.id !== action.id),
+    apps: state.apps.filter(app => app.token !== action.token),
   }
 }
 
@@ -31,6 +36,9 @@ const reducer = (
   switch (action.type) {
     case actions.LOAD_APPS:
       return loadApps(state, action as LoadAppsAction, fullState)
+
+    case actions.ADD_APP:
+      return addApp(state, action as AddAppAction, fullState)
 
     case actions.REMOVE_APP:
       return removeApp(state, action as RemoveAppAction, fullState)

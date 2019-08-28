@@ -1,5 +1,5 @@
 export interface App {
-  id: string
+  token: string
   name: string
   description: string
   icon: string
