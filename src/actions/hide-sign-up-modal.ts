@@ -1,26 +1,10 @@
-import { Action, ActionCreator } from 'redux'
-import { ThunkAction } from 'redux-thunk'
+import { Action } from 'redux'
 import { HIDE_SIGN_UP_MODAL } from '../consts/actions'
-import { wallet } from '../did'
-import { State } from '../states'
 
 export interface HideSignUpModalAction extends Action<string> {}
 
-const hideSignUpModalActionCreator = (): HideSignUpModalAction => ({
+const hideSignUpModal = (): HideSignUpModalAction => ({
   type: HIDE_SIGN_UP_MODAL,
 })
-
-const hideSignUpModal: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = () => async (
-  dispatch,
-  getState,
-) => {
-  dispatch(hideSignUpModalActionCreator())
-
-  const state = getState()
-
-  if (state.landing.signUpStep === 'enter-login' || state.landing.signUpStep === 'send-claim') {
-    await wallet.sendClaim(state.landing.appRequest, null, false)
-  }
-}
 
 export default hideSignUpModal

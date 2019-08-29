@@ -2,17 +2,15 @@ import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import showAddAppModal from '../../../actions/show-add-app-modal'
+import signOut from '../../../actions/sign-out'
 import { State } from '../../../states'
-import Apps from './Apps'
+import WithSidebar from './WithSidebar'
 
 const enchance = connect(
-  (state: State) => ({
-    apps: state.apps.apps,
-  }),
+  (state: State) => ({}),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onAddApp: () => dispatch(showAddAppModal()),
+    onSignOut: () => dispatch(signOut()),
   }),
 )
 
-export default enchance(Apps)
+export default enchance(WithSidebar)

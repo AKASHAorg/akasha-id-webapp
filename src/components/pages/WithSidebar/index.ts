@@ -1,1 +1,1 @@
-export { default as WithSidebar } from './WithSidebar'
+export { default as WithSidebar } from './container'

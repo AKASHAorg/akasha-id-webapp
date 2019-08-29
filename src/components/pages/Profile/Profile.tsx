@@ -3,19 +3,15 @@ import Input from '@akashaproject/design-system/dist/components/Input'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import WithLabel from '../../shared/WithLabel'
+
 export interface ProfileProps {
-  login: string
+  username: string
   firstName: string
   lastName: string
   password: string
-  onLogOut: () => void
   onDeleteProfile: () => void
-  onUpdateProfile: (
-    newLogin: string,
-    newFirstName: string,
-    newLastName: string,
-    newPassword: string,
-  ) => void
+  onUpdateProfile: (newFirstName: string, newLastName: string, newPassword: string) => void
 }
 
 const StyledRow = styled.div`
@@ -30,52 +26,47 @@ const StyledButton = styled(Button)`
 `
 
 const Landing: React.FC<ProfileProps> = ({
-  login,
+  username,
   firstName,
   lastName,
   password,
-  onLogOut,
   onDeleteProfile,
   onUpdateProfile,
 }: ProfileProps) => {
-  const [newLogin, changeLogin] = useState(login)
   const [newFirstName, changeFirstName] = useState(firstName)
   const [newLastName, changeLastName] = useState(lastName)
   const [newPassword, changePassword] = useState(password)
 
   return (
     <>
-      <Button buttonType="primary" onClick={onLogOut}>
-        Log out
-      </Button>
+      <StyledRow>{username}</StyledRow>
       <StyledRow>
-        <Input
-          placeholder="Login"
-          value={newLogin}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeLogin(e.target.value)}
-        />
+        <WithLabel label="First name" error="">
+          <Input
+            placeholder="First name"
+            value={newFirstName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeFirstName(e.target.value)}
+          />
+        </WithLabel>
       </StyledRow>
       <StyledRow>
-        <Input
-          placeholder="First name"
-          value={newFirstName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeFirstName(e.target.value)}
-        />
+        <WithLabel label="Last name" error="">
+          <Input
+            placeholder="Last name"
+            value={newLastName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeLastName(e.target.value)}
+          />
+        </WithLabel>
       </StyledRow>
       <StyledRow>
-        <Input
-          placeholder="Last name"
-          value={newLastName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeLastName(e.target.value)}
-        />
-      </StyledRow>
-      <StyledRow>
-        <Input
-          placeholder="Password"
-          type="password"
-          value={newPassword}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => changePassword(e.target.value)}
-        />
+        <WithLabel label="Password" error="">
+          <Input
+            placeholder="Password"
+            type="password"
+            value={newPassword}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => changePassword(e.target.value)}
+          />
+        </WithLabel>
       </StyledRow>
       <StyledRow>
         <StyledButton buttonType="alert" onClick={() => onDeleteProfile()}>
@@ -83,7 +74,7 @@ const Landing: React.FC<ProfileProps> = ({
         </StyledButton>
         <StyledButton
           buttonType="primary"
-          onClick={() => onUpdateProfile(newLogin, newFirstName, newLastName, newPassword)}
+          onClick={() => onUpdateProfile(newFirstName, newLastName, newPassword)}
         >
           Update profile
         </StyledButton>

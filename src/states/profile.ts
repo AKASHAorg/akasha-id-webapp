@@ -1,30 +1,23 @@
-export interface ProfileData {
-  allowed: boolean
-  claim?: {
-    issuer: string
-    credentialSubject: {
-      id: string
-      login: string
-    }
-  }
-  token?: string
-  refreshEncKey?: string
-}
-
 export interface ProfileState {
-  login: string
+  username: string
   firstName: string
   lastName: string
   password: string
-  profileData?: ProfileData
+  firstNameError: string
+  lastNameError: string
+  passwordError: string
+  signedIn: boolean
 }
 
 const defaultProfileState: ProfileState = {
-  login: '',
+  username: '',
   firstName: '',
   lastName: '',
   password: '',
-  profileData: { allowed: false },
+  firstNameError: '',
+  lastNameError: '',
+  passwordError: '',
+  signedIn: false,
 }
 
 export { defaultProfileState }

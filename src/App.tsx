@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route, RouteComponentProps, withRouter } from 'react-router-dom'
+import { AddAppModal } from './components/modals/AddAppModal'
+import { SignInModal } from './components/modals/SignInModal'
 import { SignUpModal } from './components/modals/SignUpModal'
 import { Apps } from './components/pages/Apps'
 import { Landing } from './components/pages/Landing'
@@ -9,26 +11,26 @@ import { WithSidebar } from './components/pages/WithSidebar'
 import { State } from './states'
 
 export interface ProfileProps extends RouteComponentProps {
-  loggedIn: boolean
+  signedIn: boolean
 }
 
 const enchance = connect(
-  (state: State): Pick<ProfileProps, 'loggedIn'> => ({
-    loggedIn: state.landing.loggedIn,
+  (state: State): Pick<ProfileProps, 'signedIn'> => ({
+    signedIn: state.profile.signedIn,
   }),
 )
 
-const App: React.FC<ProfileProps> = ({ loggedIn, location }) => {
+const App: React.FC<ProfileProps> = ({ signedIn, location }) => {
   return (
     <>
-      {!loggedIn && (
+      {!signedIn && (
         <>
           {location.pathname !== '/' && <Redirect to="/" />}
           <Route exact={true} path="/" component={Landing} />
         </>
       )}
 
-      {loggedIn && (
+      {signedIn && (
         <>
           {location.pathname === '/' && <Redirect to="/profile" />}
           <WithSidebar>
@@ -38,6 +40,8 @@ const App: React.FC<ProfileProps> = ({ loggedIn, location }) => {
         </>
       )}
       <SignUpModal />
+      <SignInModal />
+      <AddAppModal />
     </>
   )
 }

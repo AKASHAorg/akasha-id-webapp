@@ -1,7 +1,8 @@
 import { Action } from 'redux'
 
-import { LoadProfileAction } from '../actions/load-profile'
-import { RequestProfileAction } from '../actions/request-profile'
+import { DeleteProfileAction } from '../actions/delete-profile'
+import { SignInAction } from '../actions/sign-in'
+import { SignOutAction } from '../actions/sign-out'
 import { SignUpAction } from '../actions/sign-up'
 import { UpdateProfileAction } from '../actions/update-profile'
 import * as actions from '../consts/actions'
@@ -9,33 +10,47 @@ import { State } from '../states'
 import { defaultProfileState, ProfileState } from '../states/profile'
 
 const signUp = (state: ProfileState, action: SignUpAction, fullState: State): ProfileState => {
+  const error =
+    !fullState.landing.username ||
+    !fullState.landing.password ||
+    fullState.landing.users.find(user => user.username === fullState.landing.username)
+
+  if (error) {
+    return state
+  }
+
   return {
     ...state,
-    login: fullState.landing.login,
+    username: fullState.landing.username,
+    password: fullState.landing.password,
+    firstName: '',
+    lastName: '',
+    signedIn: true,
   }
 }
 
-const requestProfile = (
-  state: ProfileState,
-  action: RequestProfileAction,
-  fullState: State,
-): ProfileState => {
+const signIn = (state: ProfileState, action: SignInAction, fullState: State): ProfileState => {
+  const user = fullState.landing.users.find(u => u.username === state.username)
+  const error = !user || user!.password !== fullState.landing.password
+
+  if (error) {
+    return state
+  }
+
   return {
     ...state,
-    profileData: action.data,
+    username: fullState.landing.username,
+    password: user!.password,
+    firstName: user!.firstName,
+    lastName: user!.lastName,
+    signedIn: true,
   }
 }
 
-const loadProfile = (
-  state: ProfileState,
-  action: LoadProfileAction,
-  fullState: State,
-): ProfileState => {
+const signOut = (state: ProfileState, action: SignOutAction, fullState: State): ProfileState => {
   return {
     ...state,
-    firstName: action.firstName,
-    lastName: action.lastName,
-    password: action.password,
+    signedIn: false,
   }
 }
 
@@ -44,12 +59,29 @@ const updateProfile = (
   action: UpdateProfileAction,
   fullState: State,
 ): ProfileState => {
+  if (action.password === '') {
+    return {
+      ...state,
+      passwordError: 'Password cannot be empty',
+    }
+  }
+
   return {
     ...state,
-    login: action.login,
     firstName: action.firstName,
     lastName: action.lastName,
     password: action.password,
+  }
+}
+
+const deleteProfile = (
+  state: ProfileState,
+  action: DeleteProfileAction,
+  fullState: State,
+): ProfileState => {
+  return {
+    ...state,
+    signedIn: false,
   }
 }
 
@@ -62,14 +94,17 @@ const reducer = (
     case actions.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
 
-    case actions.REQUEST_PROFILE:
-      return requestProfile(state, action as RequestProfileAction, fullState)
+    case actions.SIGN_IN:
+      return signIn(state, action as SignInAction, fullState)
 
-    case actions.LOAD_PROFILE:
-      return loadProfile(state, action as LoadProfileAction, fullState)
+    case actions.SIGN_OUT:
+      return signOut(state, action as SignOutAction, fullState)
 
     case actions.UPDATE_PROFILE:
       return updateProfile(state, action as UpdateProfileAction, fullState)
+
+    case actions.DELETE_PROFILE:
+      return deleteProfile(state, action as DeleteProfileAction, fullState)
 
     default:
       return state

@@ -1,9 +1,10 @@
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { REGISTER_APP } from '../consts/actions'
-import { client, wallet } from '../did'
+import { wallet } from '../did'
 import { State } from '../states'
-import { AppRequest } from '../states/landing'
+import { AppRequest } from '../states/apps'
+import setAddAppModalStep from './set-add-app-modal-step'
 
 export interface RegisterAppAction extends Action<string> {
   appRequest: AppRequest
@@ -18,9 +19,10 @@ const registerApp: ActionCreator<ThunkAction<Promise<any>, State, void, Action>>
   dispatch,
   getState,
 ) => {
-  const link = getState().landing.signUpLink
+  const link = getState().apps.signUpLink
   const appRequest = await wallet.registerApp(link)
 
+  dispatch(setAddAppModalStep('register-app'))
   dispatch(registerAppActionCreator(appRequest))
 }
 

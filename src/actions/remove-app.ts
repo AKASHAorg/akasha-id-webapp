@@ -16,8 +16,6 @@ const loadApps: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = 
   token: string,
 ) => async (dispatch, getState) => {
   dispatch(removeAppActionCreator(token))
-
-  localStorage.setItem('apps', JSON.stringify(getState().apps.apps))
 }
 
 export default loadApps

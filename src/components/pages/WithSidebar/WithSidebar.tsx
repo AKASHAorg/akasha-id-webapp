@@ -1,3 +1,4 @@
+import Button from '@akashaproject/design-system/dist/components/Button'
 import Toolbar from '@akashaproject/design-system/dist/components/Toolbar'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
@@ -14,7 +15,14 @@ const ContentContainer = styled.div`
   margin-left: 200px;
 `
 
-const WithSidebar: React.FC<React.PropsWithChildren<any>> = ({ children }) => {
+interface WithSidebarProps {
+  onSignOut: () => void
+}
+
+const WithSidebar: React.FC<React.PropsWithChildren<WithSidebarProps>> = ({
+  onSignOut,
+  children,
+}) => {
   return (
     <>
       <ToolbarContainer>
@@ -24,14 +32,15 @@ const WithSidebar: React.FC<React.PropsWithChildren<any>> = ({ children }) => {
             <NavLink key="apps" to="/apps">
               Applications
             </NavLink>,
-            <NavLink key="devices" to="/devices">
-              Devices
-            </NavLink>,
             <NavLink key="profile" to="/profile">
               Profile
             </NavLink>,
           ]}
-          bottomIcons={[]}
+          bottomIcons={[
+            <Button key="sign-out" buttonType="alert" onClick={onSignOut}>
+              Sign out
+            </Button>,
+          ]}
           sidebarContentMap={[]}
         />
       </ToolbarContainer>

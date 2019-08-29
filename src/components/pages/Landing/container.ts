@@ -7,7 +7,9 @@ import { State } from '../../../states'
 import Landing from './Landing'
 
 const enchance = connect(
-  (state: State) => ({}),
+  (state: State) => ({
+    users: state.landing.users,
+  }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
     onSignUp: () => dispatch(showSignUpModal()),
   }),

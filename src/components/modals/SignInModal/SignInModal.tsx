@@ -3,49 +3,38 @@ import Modal from '@akashaproject/design-system/dist/components/Modal'
 import React from 'react'
 import WithLabel from '../../shared/WithLabel'
 
-interface SignUpModalProps {
+interface SignInModalProps {
   isOpen: boolean
   username: string
   password: string
-  usernameError: string
   passwordError: string
   onClose: () => void
   onOk: () => void
-  onChangeUserName: (login: string) => void
   onChangePassword: (login: string) => void
 }
 
-const SignUpModal: React.FC<SignUpModalProps> = ({
+const SignInModal: React.FC<SignInModalProps> = ({
   isOpen,
   username,
   password,
-  usernameError,
   passwordError,
   onClose,
   onOk,
-  onChangeUserName,
   onChangePassword,
 }) => {
   return (
     <Modal
       isOpen={isOpen}
-      headerContent="Sign up"
+      headerContent={`Sign in as ${username}`}
       onOk={onOk}
       onClose={onClose}
       closeTimeoutMS={0}
       cancelButtonContent="Cancel"
       ariaHideApp={false}
-      okButtonContent="Sign up"
+      okButtonContent="Sign in"
       hideCancelButton={false}
       hideOkButton={false}
     >
-      <WithLabel label="Username" error={usernameError}>
-        <Input
-          placeholder="Username"
-          value={username}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChangeUserName(e.target.value)}
-        />
-      </WithLabel>
       <WithLabel label="Password" error={passwordError}>
         <Input
           placeholder="Password"
@@ -58,4 +47,4 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
   )
 }
 
-export default SignUpModal
+export default SignInModal

@@ -3,23 +3,22 @@ import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
 import deleteProfile from '../../../actions/delete-profile'
-import logOut from '../../../actions/log-out'
+import signOut from '../../../actions/sign-out'
 import updateProfile from '../../../actions/update-profile'
 import { State } from '../../../states'
 import Profile from './Profile'
 
 const enchance = connect(
   (state: State) => ({
-    login: state.profile.login,
+    username: state.profile.username,
     firstName: state.profile.firstName,
     lastName: state.profile.lastName,
     password: state.profile.password,
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onLogOut: () => dispatch(logOut()),
     onDeleteProfile: () => dispatch(deleteProfile()),
-    onUpdateProfile: (login: string, firstName: string, lastName: string, password: string) =>
-      dispatch(updateProfile(login, firstName, lastName, password)),
+    onUpdateProfile: (firstName: string, lastName: string, password: string) =>
+      dispatch(updateProfile(firstName, lastName, password)),
   }),
 )
 

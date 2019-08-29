@@ -3,6 +3,7 @@ import { ThunkAction } from 'redux-thunk'
 import { REQUEST_PROFILE } from '../consts/actions'
 import { client } from '../did'
 import { State } from '../states'
+import setAddAppModalStep from './set-add-app-modal-step'
 
 export interface RequestProfileAction extends Action<string> {
   data: {
@@ -28,6 +29,8 @@ const requestProfile: ActionCreator<
   ThunkAction<Promise<any>, State, void, Action>
 > = () => async dispatch => {
   const response = await client.requestProfile()
+
+  dispatch(setAddAppModalStep('request-profile'))
   dispatch(requestProfileActionCreator(response))
 }
 
