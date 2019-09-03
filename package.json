@@ -11,6 +11,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
+    "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2",
     "typescript": "3.5.3"
@@ -54,6 +55,7 @@
     "@types/react-redux": "^7.1.2",
     "@types/react-router-dom": "^4.3.5",
     "@types/redux": "^3.6.0",
+    "@types/redux-form": "^8.1.5",
     "@types/styled-components": "^4.1.18",
     "husky": "^3.0.4",
     "lint-staged": "^9.2.3",
