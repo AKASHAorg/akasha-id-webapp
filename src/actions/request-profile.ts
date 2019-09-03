@@ -3,35 +3,26 @@ import { ThunkAction } from 'redux-thunk'
 import { REQUEST_PROFILE } from '../consts/actions'
 import { client } from '../did'
 import { State } from '../states'
+import { RequestProfileResponse } from '../types/apps'
+import hideAddAppModal from './hide-add-app-modal'
 import setAddAppModalStep from './set-add-app-modal-step'
 
-export interface RequestProfileAction extends Action<string> {
-  data: {
-    allowed: boolean
-    claim?: {
-      issuer: string
-      credentialSubject: {
-        id: string
-        login: string
-      }
-    }
-    token?: string
-    refreshEncKey?: string
-  }
-}
+export interface RequestProfileAction extends Action<string>, RequestProfileResponse {}
 
-const requestProfileActionCreator = (data: any): RequestProfileAction => ({
-  data,
+const requestProfileActionCreator = (data: RequestProfileResponse): RequestProfileAction => ({
+  ...data,
   type: REQUEST_PROFILE,
 })
 
-const requestProfile: ActionCreator<
-  ThunkAction<Promise<any>, State, void, Action>
-> = () => async dispatch => {
-  const response = await client.requestProfile()
+const requestProfile: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = () => async (
+  dispatch,
+  getState,
+) => {
+  const response: RequestProfileResponse = await client.requestProfile()
 
   dispatch(setAddAppModalStep('request-profile'))
   dispatch(requestProfileActionCreator(response))
+  dispatch(hideAddAppModal())
 }
 
 export default requestProfile

@@ -1,9 +1,7 @@
 import { Action } from 'redux'
 
-import { AddAppAction } from '../actions/add-app'
-import { ChangeShareFirstNameAction } from '../actions/change-share-first-name'
-import { ChangeShareLastNameAction } from '../actions/change-share-last-name'
 import { HideAddAppModalAction } from '../actions/hide-add-app-modal'
+import { LoadAppsAction } from '../actions/load-apps'
 import { RegisterAppAction } from '../actions/register-app'
 import { RemoveAppAction } from '../actions/remove-app'
 import { RequestProfileAction } from '../actions/request-profile'
@@ -12,6 +10,14 @@ import { ShowAddAppModalAction } from '../actions/show-add-app-modal'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AppsState, defaultAppsState } from '../states/apps'
+import { App } from '../types/apps'
+
+const loadApps = (state: AppsState, action: LoadAppsAction, fullState: State): AppsState => {
+  return {
+    ...state,
+    apps: { ...action.apps },
+  }
+}
 
 const showAddAppModal = (
   state: AppsState,
@@ -36,17 +42,12 @@ const hideAddAppModal = (
   }
 }
 
-const addApp = (state: AppsState, action: AddAppAction, fullState: State): AppsState => {
-  return {
-    ...state,
-    apps: [...state.apps, { ...action }],
-  }
-}
-
 const removeApp = (state: AppsState, action: RemoveAppAction, fullState: State): AppsState => {
+  const apps = { ...state.apps }
+  delete apps[action.token]
   return {
     ...state,
-    apps: state.apps.filter(app => app.token !== action.token),
+    apps,
   }
 }
 
@@ -73,31 +74,20 @@ const requestProfile = (
   action: RequestProfileAction,
   fullState: State,
 ): AppsState => {
-  return {
-    ...state,
-    showAddAppModal: false,
+  if (!action.allowed) {
+    return state
   }
-}
 
-const changeShareFirstName = (
-  state: AppsState,
-  action: ChangeShareFirstNameAction,
-  fullState: State,
-): AppsState => {
-  return {
-    ...state,
-    shareFirstName: action.value,
+  const app: App = {
+    name: state.appRequest!.appInfo.name,
+    description: state.appRequest!.appInfo.description,
+    icon: state.appRequest!.appInfo.icon,
+    url: state.appRequest!.appInfo.url,
+    //    claim: { ...action.claim! },
   }
-}
-
-const changeShareLastName = (
-  state: AppsState,
-  action: ChangeShareLastNameAction,
-  fullState: State,
-): AppsState => {
   return {
     ...state,
-    shareLastName: action.value,
+    apps: { ...state.apps, [action.token!]: app },
   }
 }
 
@@ -107,14 +97,14 @@ const reducer = (
   fullState: State,
 ): AppsState => {
   switch (action.type) {
+    case actions.LOAD_APPS:
+      return loadApps(state, action as LoadAppsAction, fullState)
+
     case actions.SHOW_ADD_APP_MODAL:
       return showAddAppModal(state, action as ShowAddAppModalAction, fullState)
 
     case actions.HIDE_ADD_APP_MODAL:
       return hideAddAppModal(state, action as HideAddAppModalAction, fullState)
-
-    case actions.ADD_APP:
-      return addApp(state, action as AddAppAction, fullState)
 
     case actions.REMOVE_APP:
       return removeApp(state, action as RemoveAppAction, fullState)
@@ -127,12 +117,6 @@ const reducer = (
 
     case actions.REQUEST_PROFILE:
       return requestProfile(state, action as RequestProfileAction, fullState)
-
-    case actions.CHANGE_SHARE_FIRST_NAME:
-      return changeShareFirstName(state, action as ChangeShareFirstNameAction, fullState)
-
-    case actions.CHANGE_SHARE_LAST_NAME:
-      return changeShareLastName(state, action as ChangeShareLastNameAction, fullState)
 
     default:
       return state

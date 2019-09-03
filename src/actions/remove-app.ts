@@ -1,6 +1,7 @@
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { REMOVE_APP } from '../consts/actions'
+import { wallet } from '../did'
 import { State } from '../states'
 
 export interface RemoveAppAction extends Action<string> {
@@ -12,10 +13,12 @@ const removeAppActionCreator = (token: string): RemoveAppAction => ({
   type: REMOVE_APP,
 })
 
-const loadApps: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = (
+const removeApp: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = (
   token: string,
 ) => async (dispatch, getState) => {
+  await wallet.removeApp(token)
+
   dispatch(removeAppActionCreator(token))
 }
 
-export default loadApps
+export default removeApp

@@ -1,17 +1,21 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import React, { useContext } from 'react'
-import { User } from '../../../states/landing'
-import { User as UserRow } from './components/User'
+import React, { useContext, useEffect } from 'react'
+import { Profile } from '../../../types/users'
+import { User } from './components/User'
 
 export interface LandingProps {
-  users: User[]
+  users: Profile[]
   onSignUp: () => void
+  loadUsers: () => void
 }
 
-const Landing: React.FC<LandingProps> = ({ users, onSignUp }: LandingProps) => {
+const Landing: React.FC<LandingProps> = ({ users, onSignUp, loadUsers }: LandingProps) => {
   const theme = useContext(AkashaThemeContext)
+  useEffect(() => {
+    loadUsers()
+  }, [loadUsers])
 
   return (
     <>
@@ -27,7 +31,7 @@ const Landing: React.FC<LandingProps> = ({ users, onSignUp }: LandingProps) => {
       </Button>
       <ul>
         {users.map(user => (
-          <UserRow key={user.username} {...user} />
+          <User key={user.id} userId={user.id} username={user.name} />
         ))}
       </ul>
     </>

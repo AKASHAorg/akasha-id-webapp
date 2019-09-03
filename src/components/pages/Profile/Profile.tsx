@@ -7,11 +7,11 @@ import WithLabel from '../../shared/WithLabel'
 
 export interface ProfileProps {
   username: string
-  firstName: string
-  lastName: string
   password: string
+  usernameError: string
+  passwordError: string
   onDeleteProfile: () => void
-  onUpdateProfile: (newFirstName: string, newLastName: string, newPassword: string) => void
+  onUpdateProfile: (newUsername: string, newPassword: string) => void
 }
 
 const StyledRow = styled.div`
@@ -25,41 +25,30 @@ const StyledButton = styled(Button)`
   }
 `
 
-const Landing: React.FC<ProfileProps> = ({
+const Profile: React.FC<ProfileProps> = ({
   username,
-  firstName,
-  lastName,
   password,
+  usernameError,
+  passwordError,
   onDeleteProfile,
   onUpdateProfile,
 }: ProfileProps) => {
-  const [newFirstName, changeFirstName] = useState(firstName)
-  const [newLastName, changeLastName] = useState(lastName)
+  const [newUsername, changeUsername] = useState(username)
   const [newPassword, changePassword] = useState(password)
 
   return (
     <>
-      <StyledRow>{username}</StyledRow>
       <StyledRow>
-        <WithLabel label="First name" error="">
+        <WithLabel label="First name" error={usernameError}>
           <Input
-            placeholder="First name"
-            value={newFirstName}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeFirstName(e.target.value)}
+            placeholder="Username"
+            value={newUsername}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeUsername(e.target.value)}
           />
         </WithLabel>
       </StyledRow>
       <StyledRow>
-        <WithLabel label="Last name" error="">
-          <Input
-            placeholder="Last name"
-            value={newLastName}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeLastName(e.target.value)}
-          />
-        </WithLabel>
-      </StyledRow>
-      <StyledRow>
-        <WithLabel label="Password" error="">
+        <WithLabel label="Password" error={passwordError}>
           <Input
             placeholder="Password"
             type="password"
@@ -74,7 +63,7 @@ const Landing: React.FC<ProfileProps> = ({
         </StyledButton>
         <StyledButton
           buttonType="primary"
-          onClick={() => onUpdateProfile(newFirstName, newLastName, newPassword)}
+          onClick={() => onUpdateProfile(newUsername, newPassword)}
         >
           Update profile
         </StyledButton>
@@ -83,4 +72,4 @@ const Landing: React.FC<ProfileProps> = ({
   )
 }
 
-export default Landing
+export default Profile

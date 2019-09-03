@@ -5,14 +5,27 @@ import { ChangeUsernameAction } from '../actions/change-username'
 import { DeleteProfileAction } from '../actions/delete-profile'
 import { HideSignInModalAction } from '../actions/hide-sign-in-modal'
 import { HideSignUpModalAction } from '../actions/hide-sign-up-modal'
+import { LoadUsersAction } from '../actions/load-users'
 import { ShowSignInModalAction } from '../actions/show-sign-in-modal'
 import { ShowSignUpModalAction } from '../actions/show-sign-up-modal'
 import { SignInAction } from '../actions/sign-in'
+import { SignInValidationAction } from '../actions/sign-in-validation'
 import { SignUpAction } from '../actions/sign-up'
-import { UpdateProfileAction } from '../actions/update-profile'
+import { SignUpValidationAction } from '../actions/sign-up-validation'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultLandingState, LandingState } from '../states/landing'
+
+const loadUsers = (
+  state: LandingState,
+  action: LoadUsersAction,
+  fullState: State,
+): LandingState => {
+  return {
+    ...state,
+    users: [...action.users],
+  }
+}
 
 const changeUsername = (
   state: LandingState,
@@ -64,7 +77,11 @@ const hideSignUpModal = (
   }
 }
 
-const signUp = (state: LandingState, action: SignUpAction, fullState: State): LandingState => {
+const signUpValidation = (
+  state: LandingState,
+  action: SignUpValidationAction,
+  fullState: State,
+): LandingState => {
   let error = false
   let usernameError = ''
   let passwordError = ''
@@ -72,11 +89,6 @@ const signUp = (state: LandingState, action: SignUpAction, fullState: State): La
   if (!state.username) {
     error = true
     usernameError = 'Username cannot be empty'
-  }
-
-  if (state.users.find(user => user.username === state.username)) {
-    error = true
-    usernameError = 'User is already registered'
   }
 
   if (!state.password) {
@@ -89,21 +101,27 @@ const signUp = (state: LandingState, action: SignUpAction, fullState: State): La
       ...state,
       usernameError,
       passwordError,
+      profileFormValid: false,
     }
   }
 
   return {
     ...state,
-    showSignUpModal: false,
-    users: [
-      ...state.users,
-      {
-        username: state.username,
-        firstName: '',
-        lastName: '',
-        password: state.password,
-      },
-    ],
+    profileFormValid: true,
+  }
+}
+
+const signUp = (state: LandingState, action: SignUpAction, fullState: State): LandingState => {
+  if (action.valid) {
+    return {
+      ...state,
+      showSignUpModal: false,
+    }
+  }
+
+  return {
+    ...state,
+    usernameError: 'Username already exists',
   }
 }
 
@@ -112,10 +130,12 @@ const showSignInModal = (
   action: ShowSignInModalAction,
   fullState: State,
 ): LandingState => {
+  const user = state.users.find(u => u.id === action.userId)
   return {
     ...state,
     showSignInModal: true,
-    username: action.username,
+    userId: action.userId,
+    username: user ? user.name : '',
     password: '',
     passwordError: '',
   }
@@ -132,56 +152,44 @@ const hideSignInModal = (
   }
 }
 
-const signIn = (state: LandingState, action: SignInAction, fullState: State): LandingState => {
+const signInValidation = (
+  state: LandingState,
+  action: SignInValidationAction,
+  fullState: State,
+): LandingState => {
   let error = false
   let passwordError = ''
-  const user = state.users.find(u => u.username === state.username)
 
-  if (!user) {
+  if (!state.password) {
     error = true
-  }
-
-  if (user!.password !== state.password) {
-    error = true
-    passwordError = 'Incorrect password'
+    passwordError = 'Password cannot be empty'
   }
 
   if (error) {
     return {
       ...state,
       passwordError,
+      profileFormValid: false,
     }
   }
 
   return {
     ...state,
-    showSignInModal: false,
+    profileFormValid: true,
   }
 }
 
-const updateProfile = (
-  state: LandingState,
-  action: UpdateProfileAction,
-  fullState: State,
-): LandingState => {
-  if (action.password === '') {
-    return state
+const signIn = (state: LandingState, action: SignInAction, fullState: State): LandingState => {
+  if (action.valid) {
+    return {
+      ...state,
+      showSignInModal: false,
+    }
   }
 
   return {
     ...state,
-    users: state.users.map(user => {
-      if (user.username !== fullState.profile.username) {
-        return user
-      }
-
-      return {
-        username: fullState.profile.username,
-        firstName: action.firstName,
-        lastName: action.lastName,
-        password: action.password,
-      }
-    }),
+    passwordError: 'Incorrect password',
   }
 }
 
@@ -192,7 +200,7 @@ const deleteProfile = (
 ): LandingState => {
   return {
     ...state,
-    users: state.users.filter(user => user.username !== fullState.profile.username),
+    users: state.users.filter(user => user.name !== fullState.profile.username),
   }
 }
 
@@ -202,6 +210,9 @@ const reducer = (
   fullState: State,
 ): LandingState => {
   switch (action.type) {
+    case actions.LOAD_USERS:
+      return loadUsers(state, action as LoadUsersAction, fullState)
+
     case actions.CHANGE_USERNAME:
       return changeUsername(state, action as ChangeUsernameAction, fullState)
 
@@ -214,6 +225,9 @@ const reducer = (
     case actions.HIDE_SIGN_UP_MODAL:
       return hideSignUpModal(state, action as HideSignUpModalAction, fullState)
 
+    case actions.SIGN_UP_VALIDATION:
+      return signUpValidation(state, action as SignUpValidationAction, fullState)
+
     case actions.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
 
@@ -223,11 +237,11 @@ const reducer = (
     case actions.HIDE_SIGN_IN_MODAL:
       return hideSignInModal(state, action as HideSignInModalAction, fullState)
 
+    case actions.SIGN_IN_VALIDATION:
+      return signInValidation(state, action as SignInValidationAction, fullState)
+
     case actions.SIGN_IN:
       return signIn(state, action as SignInAction, fullState)
-
-    case actions.UPDATE_PROFILE:
-      return updateProfile(state, action as UpdateProfileAction, fullState)
 
     case actions.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)

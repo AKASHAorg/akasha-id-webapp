@@ -2,10 +2,8 @@ import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import addApp from '../../../actions/add-app'
-import changeShareFirstName from '../../../actions/change-share-first-name'
-import changeShareLastName from '../../../actions/change-share-last-name'
-import hideAddAppModal from '../../../actions/hide-add-app-modal'
+import acceptApp from '../../../actions/accept-app'
+import declineApp from '../../../actions/decline-app'
 import { State } from '../../../states'
 import AddAppModal from './AddAppModal'
 
@@ -21,14 +19,11 @@ const enchance = connect(
     appKey: state.apps.appRequest ? state.apps.appRequest.key : '',
     nonce: state.apps.appRequest ? state.apps.appRequest.nonce : 0,
     token: state.apps.appRequest ? state.apps.appRequest.token : '',
-    shareFirstName: state.apps.shareFirstName,
-    shareLastName: state.apps.shareLastName,
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onClose: () => dispatch(hideAddAppModal()),
-    onOk: () => dispatch(addApp()),
-    onChangeShareFirstName: (value: boolean) => dispatch(changeShareFirstName(value)),
-    onChangeShareLastName: (value: boolean) => dispatch(changeShareLastName(value)),
+    onClose: () => dispatch(declineApp()),
+    onOk: (shareFirstName: boolean, shareLastName: boolean) =>
+      dispatch(acceptApp(shareFirstName, shareLastName)),
   }),
 )
 

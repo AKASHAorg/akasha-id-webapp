@@ -19,7 +19,7 @@ const enchance = connect(
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
     onClose: () => dispatch(hideSignUpModal()),
-    onOk: () => dispatch(signUp()),
+    onOk: async () => await dispatch(signUp()),
     onChangeUserName: (username: string) => dispatch(changeUsername(username)),
     onChangePassword: (password: string) => dispatch(changePassword(password)),
   }),

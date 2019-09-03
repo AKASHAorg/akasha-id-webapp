@@ -1,4 +1,4 @@
-import { DIDclient, DIDwallet, generateId } from 'akasha-id-lib/src/index'
+import { Client, Wallet } from 'akasha-id-lib/src/index'
 
 const appInfo = {
   name: 'AKASHA.world',
@@ -7,11 +7,11 @@ const appInfo = {
   url: 'https://app.akasha.world',
 }
 
-const client = new DIDclient(appInfo)
-const wallet = new DIDwallet(generateId())
+const client = new Client(appInfo)
+const wallet = new Wallet()
 
-const refreshHandler = async (data: { msg: any; token: string }) => {}
+const init = async () => {
+  await wallet.init()
+}
 
-wallet.init(refreshHandler)
-
-export { client, wallet }
+export { client, wallet, init }

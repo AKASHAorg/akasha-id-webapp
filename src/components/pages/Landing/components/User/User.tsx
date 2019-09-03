@@ -4,7 +4,8 @@ import styled from 'styled-components'
 
 interface UserProps {
   username: string
-  onSignIn: (username: string) => void
+  userId: string
+  onSignIn: (userId: string) => void
 }
 
 const UserRow = styled.li`
@@ -16,11 +17,11 @@ const StyledButton = styled(Button)`
   margin-left: 24px;
 `
 
-const User: React.FC<UserProps> = ({ username, onSignIn }) => {
+const User: React.FC<UserProps> = ({ username, userId, onSignIn }) => {
   return (
     <UserRow>
-      {username}
-      <StyledButton ghost={true} onClick={() => onSignIn(username)}>
+      {userId}: {username}
+      <StyledButton ghost={true} onClick={() => onSignIn(userId)}>
         Sign in
       </StyledButton>
     </UserRow>

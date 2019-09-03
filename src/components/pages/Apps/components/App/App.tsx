@@ -1,13 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import React from 'react'
 import styled from 'styled-components'
+import { App as AppType } from '../../../../../types/apps'
 
-export interface AppProps extends React.Props<any> {
+export interface AppProps extends React.Props<any>, AppType {
   token: string
-  name: string
-  description: string
-  icon: string
-  url: string
   onRemoveApp: (token: string) => void
 }
 
@@ -30,6 +27,7 @@ const App: React.FC<AppProps> = ({
   description,
   icon,
   url,
+  // claim,
   onRemoveApp,
 }: AppProps) => {
   return (
@@ -44,7 +42,7 @@ const App: React.FC<AppProps> = ({
         </StyledButton>
       </h3>
       <p>Token: {token}</p>
-      <p>{description}</p>
+      <p>Description: {description}</p>
     </StyledRow>
   )
 }

@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 import { SET_ADD_APP_MODAL_STEP } from '../consts/actions'
-import { AddAppModalStep } from '../states/apps'
+import { AddAppModalStep } from '../types/apps'
 
 export interface SetAddAppModalStepAction extends Action<string> {
   step: AddAppModalStep

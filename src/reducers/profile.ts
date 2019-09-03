@@ -10,39 +10,29 @@ import { State } from '../states'
 import { defaultProfileState, ProfileState } from '../states/profile'
 
 const signUp = (state: ProfileState, action: SignUpAction, fullState: State): ProfileState => {
-  const error =
-    !fullState.landing.username ||
-    !fullState.landing.password ||
-    fullState.landing.users.find(user => user.username === fullState.landing.username)
-
-  if (error) {
+  if (!action.valid) {
     return state
   }
 
   return {
     ...state,
+    userId: action.userId!,
     username: fullState.landing.username,
     password: fullState.landing.password,
-    firstName: '',
-    lastName: '',
     signedIn: true,
   }
 }
 
 const signIn = (state: ProfileState, action: SignInAction, fullState: State): ProfileState => {
-  const user = fullState.landing.users.find(u => u.username === state.username)
-  const error = !user || user!.password !== fullState.landing.password
-
-  if (error) {
+  if (!action.valid) {
     return state
   }
 
   return {
     ...state,
+    userId: fullState.landing.userId,
     username: fullState.landing.username,
-    password: user!.password,
-    firstName: user!.firstName,
-    lastName: user!.lastName,
+    password: fullState.landing!.password,
     signedIn: true,
   }
 }
@@ -50,6 +40,9 @@ const signIn = (state: ProfileState, action: SignInAction, fullState: State): Pr
 const signOut = (state: ProfileState, action: SignOutAction, fullState: State): ProfileState => {
   return {
     ...state,
+    userId: '',
+    username: '',
+    password: '',
     signedIn: false,
   }
 }
@@ -59,18 +52,36 @@ const updateProfile = (
   action: UpdateProfileAction,
   fullState: State,
 ): ProfileState => {
+  let usernameError = ''
+  let passwordError = ''
+  let error = false
+
+  if (action.username === '') {
+    usernameError = 'Username cannot be empty'
+    error = true
+  }
+
   if (action.password === '') {
+    passwordError = 'Password cannot be empty'
+    error = true
+  }
+
+  if (error) {
     return {
       ...state,
-      passwordError: 'Password cannot be empty',
+      usernameError,
+      passwordError,
+      profileFormValid: false,
     }
   }
 
   return {
     ...state,
-    firstName: action.firstName,
-    lastName: action.lastName,
+    username: action.username,
     password: action.password,
+    usernameError: '',
+    passwordError: '',
+    profileFormValid: true,
   }
 }
 

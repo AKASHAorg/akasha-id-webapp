@@ -2,11 +2,11 @@ import { Action } from 'redux'
 import { SHOW_SIGN_IN_MODAL } from '../consts/actions'
 
 export interface ShowSignInModalAction extends Action<string> {
-  username: string
+  userId: string
 }
 
-const showSignInModal = (username: string): ShowSignInModalAction => ({
-  username,
+const showSignInModal = (userId: string): ShowSignInModalAction => ({
+  userId,
   type: SHOW_SIGN_IN_MODAL,
 })
 

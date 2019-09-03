@@ -3,7 +3,7 @@ import { ThunkAction } from 'redux-thunk'
 import { REGISTER_APP } from '../consts/actions'
 import { wallet } from '../did'
 import { State } from '../states'
-import { AppRequest } from '../states/apps'
+import { AppRequest } from '../types/apps'
 import setAddAppModalStep from './set-add-app-modal-step'
 
 export interface RegisterAppAction extends Action<string> {
