@@ -1,24 +1,32 @@
 import { connect } from 'react-redux'
 import { Action } from 'redux'
+import { reduxForm, submit } from 'redux-form'
 import { ThunkDispatch } from 'redux-thunk'
 
 import deleteProfile from '../../../actions/delete-profile'
 import updateProfile from '../../../actions/update-profile'
 import { State } from '../../../states'
-import Profile from './Profile'
+import { ProfileFormData } from '../../../types/users'
+import Profile, { ProfileProps } from './Profile'
 
 const enchance = connect(
   (state: State) => ({
-    username: state.profile.username,
-    password: state.profile.password,
-    usernameError: state.profile.usernameError,
-    passwordError: state.profile.passwordError,
+    initialValues: {
+      name: state.profile.name,
+      password: state.profile.password,
+    },
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
     onDeleteProfile: () => dispatch(deleteProfile()),
-    onUpdateProfile: (username: string, password: string) =>
-      dispatch(updateProfile(username, password)),
+    onUpdateProfile: () => dispatch(submit('profile')),
   }),
 )
 
-export default enchance(Profile)
+const withForm = reduxForm<ProfileFormData, ProfileProps, string>({
+  form: 'profile',
+  onSubmit: (formData, dispatch) => {
+    dispatch(updateProfile(formData))
+  },
+})
+
+export default enchance(withForm(Profile))

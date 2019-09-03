@@ -17,7 +17,7 @@ const signUp = (state: ProfileState, action: SignUpAction, fullState: State): Pr
   return {
     ...state,
     userId: action.userId!,
-    username: fullState.landing.username,
+    name: fullState.landing.name,
     password: fullState.landing.password,
     signedIn: true,
   }
@@ -31,7 +31,7 @@ const signIn = (state: ProfileState, action: SignInAction, fullState: State): Pr
   return {
     ...state,
     userId: fullState.landing.userId,
-    username: fullState.landing.username,
+    name: fullState.landing.name,
     password: fullState.landing!.password,
     signedIn: true,
   }
@@ -41,7 +41,7 @@ const signOut = (state: ProfileState, action: SignOutAction, fullState: State): 
   return {
     ...state,
     userId: '',
-    username: '',
+    name: '',
     password: '',
     signedIn: false,
   }
@@ -52,36 +52,10 @@ const updateProfile = (
   action: UpdateProfileAction,
   fullState: State,
 ): ProfileState => {
-  let usernameError = ''
-  let passwordError = ''
-  let error = false
-
-  if (action.username === '') {
-    usernameError = 'Username cannot be empty'
-    error = true
-  }
-
-  if (action.password === '') {
-    passwordError = 'Password cannot be empty'
-    error = true
-  }
-
-  if (error) {
-    return {
-      ...state,
-      usernameError,
-      passwordError,
-      profileFormValid: false,
-    }
-  }
-
   return {
     ...state,
-    username: action.username,
+    name: action.name,
     password: action.password,
-    usernameError: '',
-    passwordError: '',
-    profileFormValid: true,
   }
 }
 

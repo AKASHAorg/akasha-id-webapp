@@ -22,8 +22,7 @@ const enchance = connect(
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
     onClose: () => dispatch(declineApp()),
-    onOk: (shareFirstName: boolean, shareLastName: boolean) =>
-      dispatch(acceptApp(shareFirstName, shareLastName)),
+    onOk: (shareUsername: boolean) => dispatch(acceptApp(shareUsername)),
   }),
 )
 

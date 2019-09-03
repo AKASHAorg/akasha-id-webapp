@@ -1,21 +1,15 @@
 export interface ProfileState {
   userId: string
-  username: string
+  name: string
   password: string
-  usernameError: string
-  passwordError: string
   signedIn: boolean
-  profileFormValid: boolean
 }
 
 const defaultProfileState: ProfileState = {
   userId: '',
-  username: '',
+  name: '',
   password: '',
-  usernameError: '',
-  passwordError: '',
   signedIn: false,
-  profileFormValid: false,
 }
 
 export { defaultProfileState }

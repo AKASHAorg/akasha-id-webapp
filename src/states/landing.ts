@@ -3,9 +3,9 @@ import { Profile } from '../types/users'
 export interface LandingState {
   users: Profile[]
   userId: string
-  username: string
+  name: string
   password: string
-  usernameError: string
+  nameError: string
   passwordError: string
   showSignInModal: boolean
   showSignUpModal: boolean
@@ -15,9 +15,9 @@ export interface LandingState {
 const defaultLandingState: LandingState = {
   users: [],
   userId: '',
-  username: '',
+  name: '',
   password: '',
-  usernameError: '',
+  nameError: '',
   passwordError: '',
   showSignInModal: false,
   showSignUpModal: false,

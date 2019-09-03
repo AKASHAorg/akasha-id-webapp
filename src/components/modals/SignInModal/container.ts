@@ -11,7 +11,7 @@ import SignInModal from './SignInModal'
 const enchance = connect(
   (state: State) => ({
     isOpen: state.landing.showSignInModal,
-    username: state.landing.username,
+    username: state.landing.name,
     password: state.landing.password,
     passwordError: state.landing.passwordError,
   }),

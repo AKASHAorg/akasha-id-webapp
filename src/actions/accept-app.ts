@@ -24,11 +24,12 @@ const acceptApp: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> =
 
   const attributes: any = {}
   if (shareUsername) {
-    attributes.username = state.profile.username
+    attributes.name = state.profile.name
   }
 
   dispatch(acceptAppActionCreator())
   await wallet.sendClaim(appRequest, attributes, true)
+  await wallet.addApp(appRequest.token, appRequest.appInfo)
 }
 
 export default acceptApp

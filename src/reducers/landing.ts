@@ -1,7 +1,7 @@
 import { Action } from 'redux'
 
+import { ChangeNameAction } from '../actions/change-name'
 import { ChangePasswordAction } from '../actions/change-password'
-import { ChangeUsernameAction } from '../actions/change-username'
 import { DeleteProfileAction } from '../actions/delete-profile'
 import { HideSignInModalAction } from '../actions/hide-sign-in-modal'
 import { HideSignUpModalAction } from '../actions/hide-sign-up-modal'
@@ -27,15 +27,15 @@ const loadUsers = (
   }
 }
 
-const changeUsername = (
+const changename = (
   state: LandingState,
-  action: ChangeUsernameAction,
+  action: ChangeNameAction,
   fullState: State,
 ): LandingState => {
   return {
     ...state,
-    username: action.username,
-    usernameError: '',
+    name: action.name,
+    nameError: '',
   }
 }
 
@@ -59,9 +59,9 @@ const showSignUpModal = (
   return {
     ...state,
     showSignUpModal: true,
-    username: '',
+    name: '',
     password: '',
-    usernameError: '',
+    nameError: '',
     passwordError: '',
   }
 }
@@ -83,12 +83,12 @@ const signUpValidation = (
   fullState: State,
 ): LandingState => {
   let error = false
-  let usernameError = ''
+  let nameError = ''
   let passwordError = ''
 
-  if (!state.username) {
+  if (!state.name) {
     error = true
-    usernameError = 'Username cannot be empty'
+    nameError = 'name cannot be empty'
   }
 
   if (!state.password) {
@@ -99,7 +99,7 @@ const signUpValidation = (
   if (error) {
     return {
       ...state,
-      usernameError,
+      nameError,
       passwordError,
       profileFormValid: false,
     }
@@ -121,7 +121,7 @@ const signUp = (state: LandingState, action: SignUpAction, fullState: State): La
 
   return {
     ...state,
-    usernameError: 'Username already exists',
+    nameError: 'name already exists',
   }
 }
 
@@ -135,7 +135,7 @@ const showSignInModal = (
     ...state,
     showSignInModal: true,
     userId: action.userId,
-    username: user ? user.name : '',
+    name: user ? user.name : '',
     password: '',
     passwordError: '',
   }
@@ -200,7 +200,7 @@ const deleteProfile = (
 ): LandingState => {
   return {
     ...state,
-    users: state.users.filter(user => user.name !== fullState.profile.username),
+    users: state.users.filter(user => user.name !== fullState.profile.name),
   }
 }
 
@@ -213,8 +213,8 @@ const reducer = (
     case actions.LOAD_USERS:
       return loadUsers(state, action as LoadUsersAction, fullState)
 
-    case actions.CHANGE_USERNAME:
-      return changeUsername(state, action as ChangeUsernameAction, fullState)
+    case actions.CHANGE_NAME:
+      return changename(state, action as ChangeNameAction, fullState)
 
     case actions.CHANGE_PASSWORD:
       return changePassword(state, action as ChangePasswordAction, fullState)

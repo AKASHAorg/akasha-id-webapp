@@ -1,13 +1,5 @@
 export interface Claim {
-  '@context': string[]
-  issuer: string
-  issuanceDate: string
-  credentialSubject: {
-    id: string
-    firstName?: string
-    lastName?: string
-  }
-  type: string[]
+  username?: string
 }
 
 export interface App {
@@ -16,7 +8,7 @@ export interface App {
   description: string
   icon: string
   url: string
-  // claim: Claim
+  claim?: Claim
 }
 
 export interface AppRequest {

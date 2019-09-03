@@ -15,7 +15,7 @@ interface SignInModalProps {
   nonce: number
   token: string
   onClose: () => void
-  onOk: (shareFirstName: boolean, shareLastName: boolean) => void
+  onOk: (shareUsername: boolean) => void
 }
 
 const SignInModal: React.FC<SignInModalProps> = ({
@@ -32,14 +32,13 @@ const SignInModal: React.FC<SignInModalProps> = ({
   onClose,
   onOk,
 }) => {
-  const [shareFirstName, changeShareFirstName] = useState(false)
-  const [shareLastName, changeShareLastName] = useState(false)
+  const [shareUsername, changeShareUsername] = useState(false)
 
   return (
     <Modal
       isOpen={isOpen}
       headerContent={`Add app`}
-      onOk={() => onOk(shareFirstName, shareLastName)}
+      onOk={() => onOk(shareUsername)}
       onClose={onClose}
       closeTimeoutMS={0}
       cancelButtonContent="Cancel"
@@ -69,16 +68,9 @@ const SignInModal: React.FC<SignInModalProps> = ({
         <p>Token: {token}</p>
       </>
       <Checkbox
-        label="Share first name"
-        checked={shareFirstName}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          changeShareFirstName(e.target.checked)
-        }
-      />
-      <Checkbox
-        label="Share last name"
-        checked={shareLastName}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeShareLastName(e.target.checked)}
+        label="Share username"
+        checked={shareUsername}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeShareUsername(e.target.checked)}
       />
     </Modal>
   )

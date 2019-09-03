@@ -27,7 +27,7 @@ const App: React.FC<AppProps> = ({
   description,
   icon,
   url,
-  // claim,
+  claim,
   onRemoveApp,
 }: AppProps) => {
   return (
@@ -43,6 +43,7 @@ const App: React.FC<AppProps> = ({
       </h3>
       <p>Token: {token}</p>
       <p>Description: {description}</p>
+      {claim && claim.username && <p>Username: {claim.username}</p>}
     </StyledRow>
   )
 }

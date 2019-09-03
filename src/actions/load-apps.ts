@@ -19,6 +19,11 @@ const loadApps: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = 
   getState,
 ) => {
   const apps: { [token: string]: App } = await wallet.apps()
+  for (const token in apps) {
+    if (apps.hasOwnProperty(token)) {
+      apps[token].claim = (await wallet.getClaim(token)).attributes
+    }
+  }
 
   dispatch(loadAppsActionCreator(apps))
 }

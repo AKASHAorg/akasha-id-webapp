@@ -83,7 +83,7 @@ const requestProfile = (
     description: state.appRequest!.appInfo.description,
     icon: state.appRequest!.appInfo.icon,
     url: state.appRequest!.appInfo.url,
-    //    claim: { ...action.claim! },
+    claim: { ...action.claim! },
   }
   return {
     ...state,

@@ -16,7 +16,7 @@ const deleteProfile: ActionCreator<ThunkAction<Promise<any>, State, void, Action
 ) => {
   const state = getState()
 
-  wallet.removeProfile(state.profile.userId)
+  await wallet.removeProfile(state.profile.userId)
 
   dispatch(deleteProfileActionCreator())
 }

@@ -25,9 +25,9 @@ const signUp: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = ()
   const state = getState()
 
   if (state.landing.profileFormValid) {
-    await wallet.signup(state.landing.username, state.landing.password)
+    const id = await wallet.signup(state.landing.name, state.landing.password)
 
-    dispatch(signUpActionCreator(true, wallet.id))
+    dispatch(signUpActionCreator(true, id))
   }
 }
 

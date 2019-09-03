@@ -2,7 +2,7 @@
 
 declare module 'akasha-id-lib/src/index' {
   class Client {
-    constructor(appInfo, options = {})
+    constructor(appInfo, config = {})
     public async registrationLink()
     public genNonce(min: number, max: number)
     public async requestProfile()
@@ -12,7 +12,7 @@ declare module 'akasha-id-lib/src/index' {
 
   class Wallet {
     public id: string
-    constructor(options = {})
+    constructor(config = {})
     public async init()
     public async signup(name, passphrase)
     public async login(userId, passphrase)
@@ -27,8 +27,10 @@ declare module 'akasha-id-lib/src/index' {
     public async listen(refreshHandler: () => void)
     public async registerApp(data)
     public async sendClaim(req, attributes, allowed)
-    public newClaim(attributes)
-    public storeClaim(token, key, attributes)
+    public prepareClaim(attributes)
+    public addClaim(token, key, attributes)
+    public async getClaim(token)
+    public removeClaim(token)
     public async addApp(token, appInfo)
     public async removeApp(appToken)
     public async apps()

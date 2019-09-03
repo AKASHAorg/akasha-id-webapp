@@ -7,8 +7,13 @@ const appInfo = {
   url: 'https://app.akasha.world',
 }
 
-const client = new Client(appInfo)
-const wallet = new Wallet()
+const config = {
+  hubUrls: ['http://localhost:8888'],
+  walletUrl: 'http://localhost:3000/#/link/',
+}
+
+const client = new Client(appInfo, config)
+const wallet = new Wallet(config)
 
 const init = async () => {
   await wallet.init()
