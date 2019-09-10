@@ -1,6 +1,7 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import React from 'react'
 import styled from 'styled-components'
+
 import { App as AppType } from '../../../../../types/apps'
 
 export interface AppProps extends React.Props<any>, AppType {
@@ -9,12 +10,14 @@ export interface AppProps extends React.Props<any>, AppType {
 }
 
 const StyledRow = styled.li`
+  width: calc(66px * 6 + 8px * 5);
   list-style: none;
-
-  :not(:first-child) {
-    border-top: 1px solid ${props => props.theme.colors.border};
-    padding: 8px;
-  }
+  box-sizing: border-box;
+  border: 1px solid ${props => props.theme.colors.border};
+  border-radius: ${props => props.theme.shapes.borderRadius};
+  padding: 8px;
+  margin-top: 24px;
+  margin-right: 24px;
 `
 
 const StyledButton = styled(Button)`
@@ -27,7 +30,6 @@ const App: React.FC<AppProps> = ({
   description,
   icon,
   url,
-  claim,
   onRemoveApp,
 }: AppProps) => {
   return (
@@ -41,9 +43,7 @@ const App: React.FC<AppProps> = ({
           Delete app
         </StyledButton>
       </h3>
-      <p>Token: {token}</p>
-      <p>Description: {description}</p>
-      {claim && claim.username && <p>Username: {claim.username}</p>}
+      <p>{description}</p>
     </StyledRow>
   )
 }

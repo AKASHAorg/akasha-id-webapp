@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import acceptApp from '../../../actions/accept-app'
 import declineApp from '../../../actions/decline-app'
 import { State } from '../../../states'
+import { AddAppFormData } from '../../../types/apps'
 import AddAppModal from './AddAppModal'
 
 const enchance = connect(
@@ -22,7 +23,7 @@ const enchance = connect(
   }),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
     onClose: () => dispatch(declineApp()),
-    onOk: (shareUsername: boolean) => dispatch(acceptApp(shareUsername)),
+    onOk: (formData: AddAppFormData) => dispatch(acceptApp(formData)),
   }),
 )
 

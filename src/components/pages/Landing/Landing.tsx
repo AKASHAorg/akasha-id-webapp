@@ -1,40 +1,41 @@
-import Button from '@akashaproject/design-system/dist/components/Button'
-import Icon from '@akashaproject/design-system/dist/components/Icon'
-import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import React, { useContext, useEffect } from 'react'
+import List from '@akashaproject/design-system/dist/components/List'
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { signIn, userIdParam } from '../../../consts/routes'
 import { Profile } from '../../../types/users'
-import { User } from './components/User'
+import { WithRedirect } from '../../shared/WithRedirect'
+import { Container } from '../shared/Container'
+import SignUpButton from './components/SignUpButton'
+import { StyledColumn, StyledRow } from './components/Styled'
 
 export interface LandingProps {
   users: Profile[]
-  onSignUp: () => void
-  loadUsers: () => void
 }
 
-const Landing: React.FC<LandingProps> = ({ users, onSignUp, loadUsers }: LandingProps) => {
-  const theme = useContext(AkashaThemeContext)
-  useEffect(() => {
-    loadUsers()
-  }, [loadUsers])
-
+const Landing: React.FC<LandingProps> = ({ users }) => {
   return (
-    <>
-      <h1>AKASHA.ID</h1>
-      <Button buttonType="primary" onClick={onSignUp}>
-        <Icon
-          type="plus"
-          width={theme.spacing.fontSize}
-          height={theme.spacing.fontSize}
-          color={theme.colors.white}
-        />
-        Sign up
-      </Button>
-      <ul>
-        {users.map(user => (
-          <User key={user.id} userId={user.id} username={user.name} />
-        ))}
-      </ul>
-    </>
+    <WithRedirect shouldBeSignedIn={false}>
+      <Container>
+        <StyledColumn size={5}>
+          <h1>Welcome to AKASHA.id</h1>
+          <p>A true self-sovereign identity provider</p>
+
+          <SignUpButton />
+
+          <p>Or sign in into already existing profile</p>
+
+          <List
+            dataSource={users}
+            renderItem={(user: Profile) => (
+              <StyledRow>
+                <Link to={signIn.replace(userIdParam, user.id)}>{user.name}</Link>
+              </StyledRow>
+            )}
+          />
+        </StyledColumn>
+      </Container>
+    </WithRedirect>
   )
 }
 

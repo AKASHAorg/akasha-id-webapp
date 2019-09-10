@@ -1,4 +1,5 @@
 import { Action } from 'redux'
+
 import { SET_ADD_APP_MODAL_STEP } from '../consts/actions'
 import { AddAppModalStep } from '../types/apps'
 

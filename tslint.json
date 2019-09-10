@@ -3,9 +3,7 @@
       "tslint-config-airbnb",
       "tslint:recommended",
       "tslint-react",
-      "tslint-config-prettier"
-    ],
-    "rulesDirectory": [
+      "tslint-config-prettier",
       "tslint-plugin-prettier"
     ],
     "rules": {

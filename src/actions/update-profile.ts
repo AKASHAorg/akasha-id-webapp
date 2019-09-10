@@ -1,5 +1,7 @@
+import { notify } from '@akashaproject/design-system/dist/components/Notification'
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
+
 import { UPDATE_PROFILE } from '../consts/actions'
 import { wallet } from '../did'
 import { State } from '../states'
@@ -15,10 +17,20 @@ const updateProfileActionCreator = (profileFormData: ProfileFormData): UpdatePro
 const updateProfile: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = (
   profileFormData: ProfileFormData,
 ) => async (dispatch, getState) => {
-  const state = getState()
-  wallet.updateProfileList(state.profile.userId, { name: profileFormData.name })
+  try {
+    const state = getState()
+    wallet.updateProfileList(state.profile.userId, { name: profileFormData.name })
 
-  dispatch(updateProfileActionCreator(profileFormData))
+    const data = { ...profileFormData }
+    delete data.name
+    wallet.updateProfile(data)
+
+    dispatch(updateProfileActionCreator(profileFormData))
+
+    notify('Profile has been updated')
+  } catch (e) {
+    notify(`An error occurred: ${e}`)
+  }
 }
 
 export default updateProfile

@@ -2,14 +2,14 @@ import { connect } from 'react-redux'
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
-import removeApp from '../../../../../actions/remove-app'
+import showRemoveAppModal from '../../../../../actions/show-remove-app-modal'
 import { State } from '../../../../../states'
 import App from './App'
 
 const enchance = connect(
   (state: State) => ({}),
   (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onRemoveApp: (id: string) => dispatch(removeApp(id)),
+    onRemoveApp: (token: string) => dispatch(showRemoveAppModal(token)),
   }),
 )
 

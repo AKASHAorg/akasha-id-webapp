@@ -1,6 +1,7 @@
 import { Action } from 'redux'
 
 import { DeleteProfileAction } from '../actions/delete-profile'
+import { LoadProfileAction } from '../actions/load-profile'
 import { SignInAction } from '../actions/sign-in'
 import { SignOutAction } from '../actions/sign-out'
 import { SignUpAction } from '../actions/sign-up'
@@ -16,9 +17,8 @@ const signUp = (state: ProfileState, action: SignUpAction, fullState: State): Pr
 
   return {
     ...state,
-    userId: action.userId!,
-    name: fullState.landing.name,
-    password: fullState.landing.password,
+    userId: action.profile!.id,
+    name: action.profile!.name,
     signedIn: true,
   }
 }
@@ -30,9 +30,8 @@ const signIn = (state: ProfileState, action: SignInAction, fullState: State): Pr
 
   return {
     ...state,
-    userId: fullState.landing.userId,
-    name: fullState.landing.name,
-    password: fullState.landing!.password,
+    userId: action.profile!.id,
+    name: action.profile!.name,
     signedIn: true,
   }
 }
@@ -42,8 +41,37 @@ const signOut = (state: ProfileState, action: SignOutAction, fullState: State): 
     ...state,
     userId: '',
     name: '',
-    password: '',
     signedIn: false,
+  }
+}
+
+const loadProfile = (
+  state: ProfileState,
+  action: LoadProfileAction,
+  fullState: State,
+): ProfileState => {
+  if (!action.profileData) {
+    return {
+      ...state,
+      addressLocality: '',
+      addressRegion: '',
+      postalCode: '',
+      streetAddress: '',
+      email: '',
+      photo: '',
+      image: '',
+      jobTitle: '',
+      givenName: '',
+      familyName: '',
+      birthDate: '',
+      telephone: '',
+      url: '',
+    }
+  }
+
+  return {
+    ...state,
+    ...action.profileData,
   }
 }
 
@@ -54,8 +82,20 @@ const updateProfile = (
 ): ProfileState => {
   return {
     ...state,
+    addressLocality: action.addressLocality,
+    addressRegion: action.addressRegion,
+    postalCode: action.postalCode,
+    streetAddress: action.streetAddress,
+    email: action.email,
+    photo: action.photo,
+    image: action.image,
+    jobTitle: action.jobTitle,
     name: action.name,
-    password: action.password,
+    givenName: action.givenName,
+    familyName: action.familyName,
+    birthDate: action.birthDate,
+    telephone: action.telephone,
+    url: action.url,
   }
 }
 
@@ -66,6 +106,8 @@ const deleteProfile = (
 ): ProfileState => {
   return {
     ...state,
+    userId: '',
+    name: '',
     signedIn: false,
   }
 }
@@ -84,6 +126,9 @@ const reducer = (
 
     case actions.SIGN_OUT:
       return signOut(state, action as SignOutAction, fullState)
+
+    case actions.LOAD_PROFILE:
+      return loadProfile(state, action as LoadProfileAction, fullState)
 
     case actions.UPDATE_PROFILE:
       return updateProfile(state, action as UpdateProfileAction, fullState)

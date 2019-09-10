@@ -1,5 +1,7 @@
+import { notify } from '@akashaproject/design-system/dist/components/Notification'
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
+
 import { DECLINE_APP } from '../consts/actions'
 import { wallet } from '../did'
 import { State } from '../states'
@@ -16,23 +18,27 @@ const declineApp: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> 
   dispatch,
   getState,
 ) => {
-  const state = getState()
-  const appRequest = state.apps.appRequest!
+  try {
+    const state = getState()
+    const appRequest = state.apps.appRequest!
 
-  if (state.apps.addAppStep === 'decline-app') {
-    return
+    if (state.apps.addAppStep === 'decline-app') {
+      return
+    }
+
+    if (state.apps.addAppStep !== 'register-app' && state.apps.addAppStep !== 'accept-app') {
+      dispatch(hideAddAppModal())
+
+      return
+    }
+
+    dispatch(setAddAppModalStep('decline-app'))
+
+    dispatch(declineAppActionCreator())
+    await wallet.sendClaim(appRequest, null, false)
+  } catch (e) {
+    notify(`An error occurred: ${e}`)
   }
-
-  if (state.apps.addAppStep !== 'register-app' && state.apps.addAppStep !== 'accept-app') {
-    dispatch(hideAddAppModal())
-
-    return
-  }
-
-  dispatch(setAddAppModalStep('decline-app'))
-
-  dispatch(declineAppActionCreator())
-  await wallet.sendClaim(appRequest, null, false)
 }
 
 export default declineApp

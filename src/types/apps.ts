@@ -1,5 +1,17 @@
 export interface Claim {
-  username?: string
+  addressLocality?: string
+  addressRegion?: string
+  postalCode?: string
+  streetAddress?: string
+  email?: string
+  photo?: string
+  image?: string
+  jobTitle?: string
+  givenName?: string
+  familyName?: string
+  birthDate?: string
+  telephone?: string
+  url?: string
 }
 
 export interface App {
@@ -38,3 +50,16 @@ export type AddAppModalStep =
   | 'accept-app'
   | 'decline-app'
   | 'request-profile'
+
+export interface AddAppFormData {
+  shareAddress: boolean
+  shareEmail: boolean
+  sharePhoto: boolean
+  shareImage: boolean
+  shareJobTitle: boolean
+  shareGivenName: boolean
+  shareFamilyName: boolean
+  shareBirthDate: boolean
+  shareTelephone: boolean
+  shareUrl: boolean
+}

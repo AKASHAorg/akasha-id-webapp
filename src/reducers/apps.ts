@@ -1,12 +1,14 @@
 import { Action } from 'redux'
 
 import { HideAddAppModalAction } from '../actions/hide-add-app-modal'
+import { HideRemoveAppModalAction } from '../actions/hide-remove-app-modal'
 import { LoadAppsAction } from '../actions/load-apps'
 import { RegisterAppAction } from '../actions/register-app'
 import { RemoveAppAction } from '../actions/remove-app'
 import { RequestProfileAction } from '../actions/request-profile'
 import { SetAddAppModalStepAction } from '../actions/set-add-app-modal-step'
 import { ShowAddAppModalAction } from '../actions/show-add-app-modal'
+import { ShowRemoveAppModalAction } from '../actions/show-remove-app-modal'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AppsState, defaultAppsState } from '../states/apps'
@@ -42,12 +44,44 @@ const hideAddAppModal = (
   }
 }
 
+const showRemoveAppModal = (
+  state: AppsState,
+  action: ShowRemoveAppModalAction,
+  fullState: State,
+): AppsState => {
+  const selectedApp = state.apps[action.token]
+  if (!selectedApp || !action.claim) {
+    return state
+  }
+
+  return {
+    ...state,
+    selectedApp,
+    selectedAppToken: action.token,
+    selectedAppClaim: action.claim,
+    showRemoveAppModal: true,
+  }
+}
+
+const hideRemoveAppModal = (
+  state: AppsState,
+  action: HideRemoveAppModalAction,
+  fullState: State,
+): AppsState => {
+  return {
+    ...state,
+    showRemoveAppModal: false,
+  }
+}
+
 const removeApp = (state: AppsState, action: RemoveAppAction, fullState: State): AppsState => {
   const apps = { ...state.apps }
-  delete apps[action.token]
+  delete apps[state.selectedAppToken]
+
   return {
     ...state,
     apps,
+    showRemoveAppModal: false,
   }
 }
 
@@ -105,6 +139,12 @@ const reducer = (
 
     case actions.HIDE_ADD_APP_MODAL:
       return hideAddAppModal(state, action as HideAddAppModalAction, fullState)
+
+    case actions.SHOW_REMOVE_APP_MODAL:
+      return showRemoveAppModal(state, action as ShowRemoveAppModalAction, fullState)
+
+    case actions.HIDE_REMOVE_APP_MODAL:
+      return hideRemoveAppModal(state, action as HideRemoveAppModalAction, fullState)
 
     case actions.REMOVE_APP:
       return removeApp(state, action as RemoveAppAction, fullState)

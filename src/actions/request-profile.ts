@@ -1,3 +1,4 @@
+import { notify } from '@akashaproject/design-system/dist/components/Notification'
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { REQUEST_PROFILE } from '../consts/actions'
@@ -18,11 +19,15 @@ const requestProfile: ActionCreator<ThunkAction<Promise<any>, State, void, Actio
   dispatch,
   getState,
 ) => {
-  const response: RequestProfileResponse = await client.requestProfile()
+  try {
+    const response: RequestProfileResponse = await client.requestProfile()
 
-  dispatch(setAddAppModalStep('request-profile'))
-  dispatch(requestProfileActionCreator(response))
-  dispatch(hideAddAppModal())
+    dispatch(setAddAppModalStep('request-profile'))
+    dispatch(requestProfileActionCreator(response))
+    dispatch(hideAddAppModal())
+  } catch (e) {
+    notify(`An error occurred: ${e}`)
+  }
 }
 
 export default requestProfile

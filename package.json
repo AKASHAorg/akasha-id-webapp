@@ -65,5 +65,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^4.0.0"
+  },
+  "jest": {
+    "transformIgnorePatterns": ["/node_modules/@akashaproject/.*"]
   }
 }

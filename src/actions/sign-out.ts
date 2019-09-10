@@ -1,5 +1,7 @@
+import { notify } from '@akashaproject/design-system/dist/components/Notification'
 import { Action, ActionCreator } from 'redux'
 import { ThunkAction } from 'redux-thunk'
+
 import { SIGN_OUT } from '../consts/actions'
 import { wallet } from '../did'
 import { State } from '../states'
@@ -14,8 +16,13 @@ const signOut: ActionCreator<ThunkAction<Promise<any>, State, void, Action>> = (
   dispatch,
   getState,
 ) => {
-  await wallet.logout()
-  dispatch(signOutActionCreator())
+  try {
+    await wallet.logout()
+
+    dispatch(signOutActionCreator())
+  } catch (e) {
+    notify(`An error occurred: ${e}`)
+  }
 }
 
 export default signOut
