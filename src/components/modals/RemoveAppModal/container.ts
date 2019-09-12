@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
-import { Action } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import { Action, Dispatch } from 'redux'
 
-import hideRemoveAppModal from '../../../actions/hide-remove-app-modal'
-import removeApp from '../../../actions/remove-app'
+import hideRemoveAppModal from '../../../actions/apps/hide-remove-app-modal'
+import startRemoveApp from '../../../actions/apps/start-remove-app'
 import { State } from '../../../states'
 import RemoveAppModal from './RemoveAppModal'
 
@@ -13,9 +12,9 @@ const enchance = connect(
     app: state.apps.selectedApp,
     claim: state.apps.selectedAppClaim,
   }),
-  (dispatch: ThunkDispatch<State, void, Action>) => ({
+  (dispatch: Dispatch<Action>) => ({
     onClose: () => dispatch(hideRemoveAppModal()),
-    onOk: () => dispatch(removeApp()),
+    onOk: () => dispatch(startRemoveApp()),
   }),
 )
 

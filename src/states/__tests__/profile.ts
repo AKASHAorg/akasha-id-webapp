@@ -23,6 +23,7 @@ describe('ProfileState', () => {
       url: '',
       password: '',
       signedIn: false,
+      showExportProfileModal: false,
     })
   })
 })

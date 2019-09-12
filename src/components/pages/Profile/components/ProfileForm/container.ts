@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
-import { Action } from 'redux'
+import { Action, Dispatch } from 'redux'
 import { reduxForm } from 'redux-form'
-import { ThunkDispatch } from 'redux-thunk'
 
-import deleteProfile from '../../../../../actions/delete-profile'
-import updateProfile from '../../../../../actions/update-profile'
+import startDeleteProfile from '../../../../../actions/profile/start-delete-profile'
+import startUpdateProfile from '../../../../../actions/profile/start-update-profile'
 import { State } from '../../../../../states'
 import { ProfileFormData } from '../../../../../types/users'
 import ProfileForm, { ProfileFormProps } from './ProfileForm'
@@ -28,8 +27,8 @@ const enchance = connect(
       url: state.profile.url,
     },
   }),
-  (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onDeleteProfile: () => dispatch(deleteProfile()),
+  (dispatch: Dispatch<Action>) => ({
+    onDeleteProfile: () => dispatch(startDeleteProfile()),
   }),
 )
 
@@ -37,7 +36,7 @@ const withForm = reduxForm<ProfileFormData, ProfileFormProps, string>({
   form: 'profile',
   enableReinitialize: true,
   onSubmit: (formData, dispatch) => {
-    dispatch(updateProfile(formData))
+    dispatch(startUpdateProfile(formData))
   },
 })
 

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 
 import styled from 'styled-components'
 import { App as AppType } from '../../../types/apps'
-import { WithRedirect } from '../../shared/WithRedirect'
 import { Column } from '../shared/Container'
 import { Sidebar } from '../shared/Sidebar'
 import { SidebarContainer } from '../shared/SidebarContainer'
@@ -32,20 +31,18 @@ const Apps: React.FC<AppsProps> = ({ apps, onAddApp, loadApps }) => {
   }, [loadApps])
 
   return (
-    <WithRedirect shouldBeSignedIn={true}>
-      <SidebarContainer sidebar={<Sidebar />}>
-        <Column size={14}>
-          <Button onClick={onAddApp} buttonType="primary">
-            Add app
-          </Button>
-          <StyledList>
-            {Object.entries(apps).map(([token, app]: [string, AppType]) => (
-              <App key={token} token={token} {...app} />
-            ))}
-          </StyledList>
-        </Column>
-      </SidebarContainer>
-    </WithRedirect>
+    <SidebarContainer sidebar={<Sidebar />}>
+      <Column size={14}>
+        <Button onClick={onAddApp} buttonType="primary">
+          Add app
+        </Button>
+        <StyledList>
+          {Object.entries(apps).map(([token, app]: [string, AppType]) => (
+            <App key={token} token={token} {...app} />
+          ))}
+        </StyledList>
+      </Column>
+    </SidebarContainer>
   )
 }
 

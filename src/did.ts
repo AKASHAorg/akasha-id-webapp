@@ -1,4 +1,5 @@
-import { Client, Wallet } from 'akasha-id-lib/src/index'
+import Client from 'akasha-id-client'
+import Wallet from 'akasha-id-wallet'
 
 const appInfo = {
   name: 'AKASHA.world',

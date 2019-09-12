@@ -1,37 +1,32 @@
 import { Action } from 'redux'
 
-import { DeleteProfileAction } from '../actions/delete-profile'
-import { LoadProfileAction } from '../actions/load-profile'
-import { SignInAction } from '../actions/sign-in'
-import { SignOutAction } from '../actions/sign-out'
-import { SignUpAction } from '../actions/sign-up'
-import { UpdateProfileAction } from '../actions/update-profile'
+import { SignInAction } from '../actions/landing/sign-in'
+import { SignUpAction } from '../actions/landing/sign-up'
+import { DeleteProfileAction } from '../actions/profile/delete-profile'
+import { HideExportProfileModalAction } from '../actions/profile/hide-export-profile-modal'
+import { SetExportProfileTextAction } from '../actions/profile/set-export-profile-text'
+import { SetProfileAction } from '../actions/profile/set-profile'
+import { ShowExportProfileModalAction } from '../actions/profile/show-export-profile-modal'
+import { SignOutAction } from '../actions/profile/sign-out'
+import { UpdateProfileAction } from '../actions/profile/update-profile'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultProfileState, ProfileState } from '../states/profile'
 
 const signUp = (state: ProfileState, action: SignUpAction, fullState: State): ProfileState => {
-  if (!action.valid) {
-    return state
-  }
-
   return {
     ...state,
-    userId: action.profile!.id,
-    name: action.profile!.name,
+    userId: action.profile.id,
+    name: action.profile.name,
     signedIn: true,
   }
 }
 
 const signIn = (state: ProfileState, action: SignInAction, fullState: State): ProfileState => {
-  if (!action.valid) {
-    return state
-  }
-
   return {
     ...state,
-    userId: action.profile!.id,
-    name: action.profile!.name,
+    userId: action.profile.id,
+    name: action.profile.name,
     signedIn: true,
   }
 }
@@ -45,9 +40,9 @@ const signOut = (state: ProfileState, action: SignOutAction, fullState: State): 
   }
 }
 
-const loadProfile = (
+const setProfile = (
   state: ProfileState,
-  action: LoadProfileAction,
+  action: SetProfileAction,
   fullState: State,
 ): ProfileState => {
   if (!action.profileData) {
@@ -112,29 +107,72 @@ const deleteProfile = (
   }
 }
 
+const showExportProfileModal = (
+  state: ProfileState,
+  action: ShowExportProfileModalAction,
+  fullState: State,
+): ProfileState => {
+  return {
+    ...state,
+    showExportProfileModal: true,
+  }
+}
+
+const hideExportProfileModal = (
+  state: ProfileState,
+  action: HideExportProfileModalAction,
+  fullState: State,
+): ProfileState => {
+  return {
+    ...state,
+    showExportProfileModal: false,
+    exportProfileText: '',
+  }
+}
+
+const setExportProfileText = (
+  state: ProfileState,
+  action: SetExportProfileTextAction,
+  fullState: State,
+): ProfileState => {
+  return {
+    ...state,
+    exportProfileText: action.profileText,
+  }
+}
+
 const reducer = (
   state: ProfileState = defaultProfileState,
   action: Action<string>,
   fullState: State,
 ): ProfileState => {
   switch (action.type) {
-    case actions.SIGN_UP:
+    case actions.landing.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
 
-    case actions.SIGN_IN:
+    case actions.landing.SIGN_IN:
       return signIn(state, action as SignInAction, fullState)
 
-    case actions.SIGN_OUT:
+    case actions.profile.SIGN_OUT:
       return signOut(state, action as SignOutAction, fullState)
 
-    case actions.LOAD_PROFILE:
-      return loadProfile(state, action as LoadProfileAction, fullState)
+    case actions.profile.SET_PROFILE:
+      return setProfile(state, action as SetProfileAction, fullState)
 
-    case actions.UPDATE_PROFILE:
+    case actions.profile.UPDATE_PROFILE:
       return updateProfile(state, action as UpdateProfileAction, fullState)
 
-    case actions.DELETE_PROFILE:
+    case actions.profile.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)
+
+    case actions.profile.SHOW_EXPORT_PROFILE_MODAL:
+      return showExportProfileModal(state, action as ShowExportProfileModalAction, fullState)
+
+    case actions.profile.HIDE_EXPORT_PROFILE_MODAL:
+      return hideExportProfileModal(state, action as HideExportProfileModalAction, fullState)
+
+    case actions.profile.SET_EXPORT_PROFILE_TEXT:
+      return setExportProfileText(state, action as SetExportProfileTextAction, fullState)
 
     default:
       return state

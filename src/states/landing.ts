@@ -2,7 +2,6 @@ import { Profile } from '../types/users'
 
 export interface LandingState {
   users: Profile[]
-  userId: string
   name: string
   password: string
   nameError: string
@@ -14,7 +13,6 @@ export interface LandingState {
 
 const defaultLandingState: LandingState = {
   users: [],
-  userId: '',
   name: '',
   password: '',
   nameError: '',

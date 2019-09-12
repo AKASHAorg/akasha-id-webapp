@@ -1,17 +1,16 @@
 import { Action } from 'redux'
 
-import { DeleteProfileAction } from '../actions/delete-profile'
-import { LoadUsersAction } from '../actions/load-users'
-import { SetUserIdAction } from '../actions/set-user-id'
-import { SignUpAction } from '../actions/sign-up'
-import { UpdateProfileAction } from '../actions/update-profile'
+import { SetPublicProfilesAction } from '../actions/landing/set-public-profiles'
+import { SignUpAction } from '../actions/landing/sign-up'
+import { DeleteProfileAction } from '../actions/profile/delete-profile'
+import { UpdateProfileAction } from '../actions/profile/update-profile'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultLandingState, LandingState } from '../states/landing'
 
-const loadUsers = (
+const setPublicProfiles = (
   state: LandingState,
-  action: LoadUsersAction,
+  action: SetPublicProfilesAction,
   fullState: State,
 ): LandingState => {
   return {
@@ -20,25 +19,10 @@ const loadUsers = (
   }
 }
 
-const setUserId = (
-  state: LandingState,
-  action: SetUserIdAction,
-  fullState: State,
-): LandingState => {
-  return {
-    ...state,
-    userId: action.userId,
-  }
-}
-
 const signUp = (state: LandingState, action: SignUpAction, fullState: State): LandingState => {
-  if (!action.valid) {
-    return state
-  }
-
   return {
     ...state,
-    users: [...state.users, { ...action.profile! }],
+    users: [...state.users, { ...action.profile }],
   }
 }
 
@@ -77,19 +61,16 @@ const reducer = (
   fullState: State,
 ): LandingState => {
   switch (action.type) {
-    case actions.LOAD_USERS:
-      return loadUsers(state, action as LoadUsersAction, fullState)
+    case actions.landing.SET_PUBLIC_PROFILES:
+      return setPublicProfiles(state, action as SetPublicProfilesAction, fullState)
 
-    case actions.SET_USER_ID:
-      return setUserId(state, action as SetUserIdAction, fullState)
-
-    case actions.SIGN_UP:
+    case actions.landing.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
 
-    case actions.UPDATE_PROFILE:
+    case actions.profile.UPDATE_PROFILE:
       return updateProfile(state, action as UpdateProfileAction, fullState)
 
-    case actions.DELETE_PROFILE:
+    case actions.profile.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)
 
     default:

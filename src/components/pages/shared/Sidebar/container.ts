@@ -1,15 +1,14 @@
 import { connect } from 'react-redux'
-import { Action } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import { Action, Dispatch } from 'redux'
 
-import signOut from '../../../../actions/sign-out'
+import startSignOut from '../../../../actions/profile/start-sign-out'
 import { State } from '../../../../states'
 import Sidebar from './Sidebar'
 
 const enchance = connect(
   (state: State) => ({}),
-  (dispatch: ThunkDispatch<State, void, Action>) => ({
-    onSignOut: () => dispatch(signOut()),
+  (dispatch: Dispatch<Action>) => ({
+    onSignOut: () => dispatch(startSignOut()),
   }),
 )
 

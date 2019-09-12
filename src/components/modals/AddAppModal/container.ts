@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
-import { Action } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import { Action, Dispatch } from 'redux'
 
-import acceptApp from '../../../actions/accept-app'
-import declineApp from '../../../actions/decline-app'
+import acceptApp from '../../../actions/apps/accept-app'
+import declineApp from '../../../actions/apps/decline-app'
 import { State } from '../../../states'
 import { AddAppFormData } from '../../../types/apps'
 import AddAppModal from './AddAppModal'
@@ -21,7 +20,7 @@ const enchance = connect(
     nonce: state.apps.appRequest ? state.apps.appRequest.nonce : 0,
     token: state.apps.appRequest ? state.apps.appRequest.token : '',
   }),
-  (dispatch: ThunkDispatch<State, void, Action>) => ({
+  (dispatch: Dispatch<Action>) => ({
     onClose: () => dispatch(declineApp()),
     onOk: (formData: AddAppFormData) => dispatch(acceptApp(formData)),
   }),

@@ -1,15 +1,15 @@
-import hideAddAppModal from '../../actions/hide-add-app-modal'
-import { loadAppsActionCreator } from '../../actions/load-apps'
-import { removeAppActionCreator } from '../../actions/remove-app'
-import setAddAppModalStep from '../../actions/set-add-app-modal-step'
-import { showAddAppModalActionCreator } from '../../actions/show-add-app-modal'
+import hideAddAppModal from '../../actions/apps/hide-add-app-modal'
+import removeApp from '../../actions/apps/remove-app'
+import setAddAppModalStep from '../../actions/apps/set-add-app-modal-step'
+import setApps from '../../actions/apps/set-apps'
+import showAddAppModal from '../../actions/apps/show-add-app-modal'
 import { defaultState } from '../../states'
 import { AppsState } from '../../states/apps'
 import { AddAppModalStep, App } from '../../types/apps'
 import appsReducer from '../apps'
 
 describe('AppsReducer', () => {
-  it('can load apps', () => {
+  it('can set apps', () => {
     const apps: { [key: string]: App } = {
       token: {
         name: 'App Name',
@@ -18,7 +18,7 @@ describe('AppsReducer', () => {
         description: 'Tets app',
       },
     }
-    const action = loadAppsActionCreator(apps)
+    const action = setApps(apps)
     const newState = appsReducer(defaultState.apps, action, defaultState)
 
     const expectedState: AppsState = {
@@ -30,14 +30,12 @@ describe('AppsReducer', () => {
   })
 
   it('can show add app modal', () => {
-    const link = 'http://localhost:3000/'
-    const action = showAddAppModalActionCreator(link)
+    const action = showAddAppModal()
     const newState = appsReducer(defaultState.apps, action, defaultState)
 
     const expectedState: AppsState = {
       ...defaultState.apps,
       showAddAppModal: true,
-      signUpLink: link,
     }
 
     expect(newState).toEqual(expectedState)
@@ -61,15 +59,16 @@ describe('AppsReducer', () => {
 
   it('can remove app', () => {
     const token = 'token'
-    const action = removeAppActionCreator(token)
+    const action = removeApp()
     const state: AppsState = {
       ...defaultState.apps,
+      selectedAppToken: token,
       apps: {
         [token]: {
           name: 'App Name',
           icon: 'http://localhost;//',
           url: 'http://localhost;//',
-          description: 'Tets app',
+          description: 'Test app',
         },
       },
     }
@@ -77,6 +76,7 @@ describe('AppsReducer', () => {
 
     const expectedState: AppsState = {
       ...defaultState.apps,
+      selectedAppToken: token,
       apps: {},
     }
 

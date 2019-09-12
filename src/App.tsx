@@ -2,46 +2,91 @@ import { Notification } from '@akashaproject/design-system/dist/components/Notif
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, RouteComponentProps, withRouter } from 'react-router-dom'
-import { Action } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import { Action, Dispatch } from 'redux'
 
-import loadUsersActionCreator from './actions/load-users'
+import fetchPublicProfilesActionCreator from './actions/landing/fetch-public-profiles'
 import { AddAppModal } from './components/modals/AddAppModal'
+import { ExportProfileModal } from './components/modals/ExportProfileModal'
 import { RemoveAppModal } from './components/modals/RemoveAppModal'
 import { Apps } from './components/pages/Apps'
 import { Landing } from './components/pages/Landing'
 import { Profile } from './components/pages/Profile'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
+import { WithRedirect } from './components/shared/WithRedirect'
 import * as routes from './consts/routes'
 import { State } from './states'
 
 export interface AppProps extends RouteComponentProps {
   signedIn: boolean
-  loadUsers: () => void
+  fetchPublicProfiles: () => void
 }
 
 const enchance = connect(
   (state: State): Pick<AppProps, 'signedIn'> => ({
     signedIn: state.profile.signedIn,
   }),
-  (dispatch: ThunkDispatch<State, void, Action>) => ({
-    loadUsers: () => dispatch(loadUsersActionCreator()),
+  (dispatch: Dispatch<Action>) => ({
+    fetchPublicProfiles: () => dispatch(fetchPublicProfilesActionCreator()),
   }),
 )
 
-const App: React.FC<AppProps> = ({ signedIn, loadUsers }: AppProps) => {
+const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) => {
   useEffect(() => {
-    loadUsers()
-  }, [loadUsers])
+    fetchPublicProfiles()
+  }, [fetchPublicProfiles])
 
   return (
     <>
-      <Route strict={true} exact={true} path={routes.signUp} component={SignUp} />
-      <Route strict={true} path={routes.signIn} component={SignIn} />
-      <Route strict={true} exact={true} path={routes.profile} component={Profile} />
-      <Route strict={true} exact={true} path={routes.apps} component={Apps} />
-      <Route exact={true} path={routes.landing} component={Landing} />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.signUp}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={false}>
+            <SignUp />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        path={routes.signIn}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={false}>
+            <SignIn />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.profile}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Profile />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.apps}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Apps />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        exact={true}
+        path={routes.landing}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={false}>
+            <Landing />
+          </WithRedirect>
+        )}
+      />
+
       <Notification
         position="bottom-left"
         autoClose={5000}
@@ -55,6 +100,7 @@ const App: React.FC<AppProps> = ({ signedIn, loadUsers }: AppProps) => {
       />
       <AddAppModal />
       <RemoveAppModal />
+      <ExportProfileModal />
     </>
   )
 }

@@ -16,6 +16,8 @@ export interface ProfileState {
   url: string
   password: string
   signedIn: boolean
+  showExportProfileModal: boolean
+  exportProfileText: string
 }
 
 const defaultProfileState: ProfileState = {
@@ -36,6 +38,8 @@ const defaultProfileState: ProfileState = {
   url: '',
   password: '',
   signedIn: false,
+  showExportProfileModal: false,
+  exportProfileText: '',
 }
 
 export { defaultProfileState }
