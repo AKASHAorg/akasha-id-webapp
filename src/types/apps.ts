@@ -30,6 +30,7 @@ export interface AppRequest {
     icon: string
     url: string
   }
+  attributes: string[]
   channel: string
   key: string
   nonce: number

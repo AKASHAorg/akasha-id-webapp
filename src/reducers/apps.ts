@@ -9,7 +9,6 @@ import { SetAddAppModalStepAction } from '../actions/apps/set-add-app-modal-step
 import { SetAppsAction } from '../actions/apps/set-apps'
 import { SetRemoveAppModalClaimAction } from '../actions/apps/set-remove-app-modal-claim'
 import { ShowAddAppModalAction } from '../actions/apps/show-add-app-modal'
-import { ShowRemoveAppModalAction } from '../actions/apps/show-remove-app-modal'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AppsState, defaultAppsState } from '../states/apps'
@@ -44,18 +43,6 @@ const hideAddAppModal = (
   }
 }
 
-const showRemoveAppModal = (
-  state: AppsState,
-  action: ShowRemoveAppModalAction,
-  fullState: State,
-): AppsState => {
-  return {
-    ...state,
-    selectedAppToken: action.token,
-    showRemoveAppModal: true,
-  }
-}
-
 const setRemoveAppModalClaim = (
   state: AppsState,
   action: SetRemoveAppModalClaimAction,
@@ -69,6 +56,7 @@ const setRemoveAppModalClaim = (
   return {
     ...state,
     selectedApp,
+    selectedAppToken: action.token,
     selectedAppClaim: action.claim,
     showRemoveAppModal: true,
   }
@@ -154,9 +142,6 @@ const reducer = (
 
     case actions.apps.HIDE_ADD_APP_MODAL:
       return hideAddAppModal(state, action as HideAddAppModalAction, fullState)
-
-    case actions.apps.SHOW_REMOVE_APP_MODAL:
-      return showRemoveAppModal(state, action as ShowRemoveAppModalAction, fullState)
 
     case actions.apps.SET_REMOVE_APP_MODAL_CLAIM:
       return setRemoveAppModalClaim(state, action as SetRemoveAppModalClaimAction, fullState)

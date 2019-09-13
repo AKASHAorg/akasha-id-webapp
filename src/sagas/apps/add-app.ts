@@ -13,7 +13,10 @@ import { AppRequest, RequestProfileResponse } from '../../types/apps'
 
 function* requestProfile() {
   try {
-    const response: RequestProfileResponse = yield call([client, client.requestProfile])
+    const response: RequestProfileResponse = yield call(
+      [client, client.requestProfile],
+      ['givenName', 'familyName'],
+    )
     yield put(setAddAppModalStep('request-profile'))
     yield put(hideAddAppModal())
     yield put(requestProfileActionCreator(response))
@@ -88,7 +91,7 @@ function* addAppImplementation() {
     yield fork(requestProfile)
 
     yield put(setAddAppModalStep('register-app'))
-    const appRequest = yield call([wallet, wallet.registerApp], trimmedLink)
+    const appRequest: AppRequest = yield call([wallet, wallet.registerApp], trimmedLink)
     yield put(setAddAppModalAppRequest(appRequest))
 
     const action: AcceptAppAction | DeclineAppAction = yield take([ACCEPT_APP, DECLINE_APP])

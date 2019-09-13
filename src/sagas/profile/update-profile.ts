@@ -6,6 +6,7 @@ import updateProfileActionCreator from '../../actions/profile/update-profile'
 import { START_UPDATE_PROFILE } from '../../consts/actions/profile'
 import { wallet } from '../../did'
 import { State } from '../../states'
+import { ProfileFormData } from '../../types/users'
 
 function* updateProfileImplementation(action: StartUpdateProfileAction) {
   try {
@@ -15,7 +16,7 @@ function* updateProfileImplementation(action: StartUpdateProfileAction) {
       name: action.profileFormData.name,
     })
 
-    const data = { ...action.profileFormData }
+    const data: ProfileFormData = { ...action.profileFormData }
     delete data.name
     yield call([wallet, wallet.updateProfile], data)
 

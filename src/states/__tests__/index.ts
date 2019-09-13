@@ -3,7 +3,7 @@ import { defaultAppsState } from '../apps'
 import { defaultLandingState } from '../landing'
 import { defaultProfileState } from '../profile'
 
-describe('AppsState', () => {
+describe('State', () => {
   it('can be created', () => {
     expect(defaultState as State).not.toBeNull()
     expect(defaultState).toEqual({

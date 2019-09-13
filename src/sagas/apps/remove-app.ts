@@ -32,13 +32,13 @@ function* fetchRemoveModalClaim(action: ShowRemoveAppModalAction) {
     const profile = yield call([wallet, wallet.profile])
     const claim = yield call([wallet, wallet.getClaim], action.token)
 
-    if (claim) {
+    if (profile && claim && claim.attributes) {
       claim.attributes.forEach((attr: string) => {
         claim[attr] = profile[attr]
       })
-
-      yield put(setRemoveAppModalClaim(action.token, claim))
     }
+
+    yield put(setRemoveAppModalClaim(action.token, claim))
 
     const modalAction: StartRemoveAppAction | HideRemoveAppModalAction = yield take([
       START_REMOVE_APP,

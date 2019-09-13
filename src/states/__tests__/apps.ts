@@ -8,9 +8,12 @@ describe('AppsState', () => {
     expect(defaultState).toEqual({
       apps: {},
       addAppStep: 'generate-link',
-      signUpLink: null,
       appRequest: null,
+      selectedApp: undefined,
+      selectedAppToken: '',
+      selectedAppClaim: undefined,
       showAddAppModal: false,
+      showRemoveAppModal: false,
     })
   })
 })

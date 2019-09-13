@@ -16,6 +16,7 @@ export interface AddAppModalProps {
   appKey: string
   nonce: number
   token: string
+  attributes: string[]
   onClose: () => void
   onOk: (formData: AddAppFormData) => void
 }
@@ -55,6 +56,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
   appKey,
   nonce,
   token,
+  attributes,
   onClose,
   onOk,
 }) => {
@@ -211,6 +213,8 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
               />
             </StyledCheckboxRow>
           </StyledCheckboxList>
+
+          <p>Required attributes: {attributes.join(', ')}</p>
         </StyledModalColumn>
       </StyledModalBody>
     </Modal>

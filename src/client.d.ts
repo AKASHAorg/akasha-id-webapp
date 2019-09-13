@@ -5,7 +5,7 @@ declare module 'akasha-id-client' {
     constructor(appInfo, config = {})
     public async registrationLink()
     public genNonce(min: number, max: number)
-    public async requestProfile()
+    public async requestProfile(attributes: string[])
     public async refreshProfile(claim)
     public getChannelFromDID(did)
     public cleanUp(hub)
