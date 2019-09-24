@@ -1,6 +1,7 @@
 import { Action } from 'redux'
 
 import { SetPublicProfilesAction } from '../actions/landing/set-public-profiles'
+import { SetRegisterAppLinkAction } from '../actions/landing/set-register-app-link'
 import { SignUpAction } from '../actions/landing/sign-up'
 import { DeleteProfileAction } from '../actions/profile/delete-profile'
 import { UpdateProfileAction } from '../actions/profile/update-profile'
@@ -55,6 +56,17 @@ const updateProfile = (
   }
 }
 
+const setRegisterAppLink = (
+  state: LandingState,
+  action: SetRegisterAppLinkAction,
+  fullState: State,
+): LandingState => {
+  return {
+    ...state,
+    registerAppLink: action.link,
+  }
+}
+
 const reducer = (
   state: LandingState = defaultLandingState,
   action: Action<string>,
@@ -72,6 +84,9 @@ const reducer = (
 
     case actions.profile.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)
+
+    case actions.landing.SET_REGISTER_APP_LINK:
+      return setRegisterAppLink(state, action as SetRegisterAppLinkAction, fullState)
 
     default:
       return state

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { HashRouter } from 'react-router-dom'
 import { applyMiddleware, createStore } from 'redux'
+import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 
 import App from './App'
@@ -15,7 +16,8 @@ import * as serviceWorker from './serviceWorker'
 
 init().then(() => {
   const sagaMiddleware = createSagaMiddleware()
-  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+  const logger = createLogger()
+  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger))
   sagaMiddleware.run(rootSaga)
 
   ReactDOM.render(

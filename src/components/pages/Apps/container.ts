@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { Action, Dispatch } from 'redux'
 
 import fetchApps from '../../../actions/apps/fetch-apps'
+import setRegisterAppLink from '../../../actions/landing/set-register-app-link'
 import { State } from '../../../states'
 import Apps from './Apps'
 
@@ -11,6 +12,7 @@ const enchance = connect(
   }),
   (dispatch: Dispatch<Action>) => ({
     loadApps: () => dispatch(fetchApps()),
+    setRegisterAppLink: (link: string) => dispatch(setRegisterAppLink(link)),
   }),
 )
 

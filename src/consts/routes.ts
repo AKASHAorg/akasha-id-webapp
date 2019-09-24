@@ -6,7 +6,7 @@ const signUp = '/sign-up/'
 const signIn = `/sign-in/${userIdParam}/`
 const profile = '/profile/'
 const apps = '/apps/'
-const registerApp = `/register-app/${appRequestLinkParam}/`
+const registerApp = `/register-app/${appRequestLinkParam}`
 const walletUrl = 'http://localhost:3000/#/register-app/'
 
 export {

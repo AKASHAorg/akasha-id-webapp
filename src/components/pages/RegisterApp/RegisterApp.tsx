@@ -11,21 +11,21 @@ export interface RegisterAppMatch {
 
 export interface RegisterAppProps extends RouteComponentProps<RegisterAppMatch> {
   addAppModalStep: AddAppModalStep
-  onMount: () => void
-  onUnmount: () => void
+  handleShowAddAppModal: () => void
+  handleFinishSendClaim: () => void
 }
 
 const RegisterApp: React.FC<RegisterAppProps> = ({
   addAppModalStep,
-  onMount,
-  onUnmount,
+  handleShowAddAppModal,
+  handleFinishSendClaim,
   match,
 }) => {
   // eslint-disable react-hooks/exhaustive-deps
   useEffect(() => {
-    onMount()
+    handleShowAddAppModal()
 
-    return onUnmount
+    return handleFinishSendClaim
   }, [match.params.apprequestlink])
   // eslint-enable react-hooks/exhaustive-deps
 

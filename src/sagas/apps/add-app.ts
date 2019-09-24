@@ -1,4 +1,5 @@
 import { notify } from '@akashaproject/design-system/dist/components/Notification'
+import WebCrypto from 'easy-web-crypto'
 import { call, cancel, fork, put, race, take, takeLatest } from 'redux-saga/effects'
 
 import { AcceptAppAction } from '../../actions/apps/accept-app'
@@ -90,13 +91,19 @@ function* declineApp(action: DeclineAppAction, appRequest: AppRequest) {
 
 function* addAppImplementation(action: ShowAddAppModalAction) {
   try {
+    const [loginChannel, b64Key, nonce] = JSON.parse(Buffer.from(action.link, 'base64').toString())
+    client.loginChannel = loginChannel
+    client.bootstrapKey = yield call(WebCrypto.importKey, Buffer.from(b64Key, 'base64'))
+    client.nonce = nonce
+    client.loginLink = action.link
+
     yield put(setAddAppModalStep('generate-link'))
     const requestProfileTask = yield fork(requestProfile)
 
     yield put(setAddAppModalStep('register-app'))
 
     const registerAppResult = yield race({
-      appRequest: call([wallet, wallet.registerApp], decodeURIComponent(action.link)),
+      appRequest: call([wallet, wallet.registerApp], action.link),
       cancelled: take(DECLINE_APP),
     })
 

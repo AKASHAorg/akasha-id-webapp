@@ -77,15 +77,7 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
           </WithRedirect>
         )}
       />
-      <Route
-        strict={true}
-        path={routes.registerApp}
-        render={() => (
-          <WithRedirect shouldBeSignedIn={true}>
-            <RegisterApp />
-          </WithRedirect>
-        )}
-      />
+      <Route strict={true} path={routes.registerApp} render={() => <RegisterApp />} />
       <Route
         exact={true}
         path={routes.landing}
