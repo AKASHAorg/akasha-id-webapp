@@ -43,8 +43,8 @@ function* signUpImplementation(action: StartSignUpAction) {
   }
 }
 
-function* signUp() {
+function* signUpSaga() {
   yield takeLatest(START_SIGN_UP, signUpImplementation)
 }
 
-export default signUp
+export default signUpSaga

@@ -16,8 +16,8 @@ function* exportProfileImplementation() {
   }
 }
 
-function* exportProfile() {
+function* exportProfileSaga() {
   yield takeLatest(SHOW_EXPORT_PROFILE_MODAL, exportProfileImplementation)
 }
 
-export default exportProfile
+export default exportProfileSaga

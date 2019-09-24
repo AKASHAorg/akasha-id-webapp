@@ -36,7 +36,7 @@ const StyledCheckboxRow = styled.li`
   }
 `
 
-const AddAppModal: React.FC<RemoveAppModalProps> = ({ isOpen, app, claim, onClose, onOk }) => {
+const RemoveAppModal: React.FC<RemoveAppModalProps> = ({ isOpen, app, claim, onClose, onOk }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -106,4 +106,4 @@ const AddAppModal: React.FC<RemoveAppModalProps> = ({ isOpen, app, claim, onClos
   )
 }
 
-export default AddAppModal
+export default RemoveAppModal

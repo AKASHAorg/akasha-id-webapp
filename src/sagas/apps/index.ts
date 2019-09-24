@@ -1,13 +1,13 @@
 import { spawn } from 'redux-saga/effects'
 
-import addApp from './add-app'
-import loadApps from './load-apps'
-import removeApp from './remove-app'
+import addAppSaga from './add-app'
+import loadAppsSaga from './load-apps'
+import removeAppSaga from './remove-app'
 
 function* appsSaga() {
-  yield spawn(loadApps)
-  yield spawn(addApp)
-  yield spawn(removeApp)
+  yield spawn(loadAppsSaga)
+  yield spawn(addAppSaga)
+  yield spawn(removeAppSaga)
 }
 
 export default appsSaga

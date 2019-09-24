@@ -29,8 +29,8 @@ function* updateProfileImplementation(action: StartUpdateProfileAction) {
   }
 }
 
-function* updateProfile() {
+function* updateProfileSaga() {
   yield takeLatest(START_UPDATE_PROFILE, updateProfileImplementation)
 }
 
-export default updateProfile
+export default updateProfileSaga

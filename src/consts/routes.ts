@@ -1,11 +1,22 @@
 const userIdParam = ':userid'
-const appRequestParam = ':apprequest'
+const appRequestLinkParam = ':apprequestlink'
 
 const landing = '/'
 const signUp = '/sign-up/'
 const signIn = `/sign-in/${userIdParam}/`
 const profile = '/profile/'
 const apps = '/apps/'
-const addApp = `/add-app/${appRequestParam}`
+const registerApp = `/register-app/${appRequestLinkParam}/`
+const walletUrl = 'http://localhost:3000/#/register-app/'
 
-export { userIdParam, appRequestParam, landing, signUp, signIn, profile, apps, addApp }
+export {
+  userIdParam,
+  appRequestLinkParam,
+  landing,
+  signUp,
+  signIn,
+  profile,
+  apps,
+  registerApp,
+  walletUrl,
+}

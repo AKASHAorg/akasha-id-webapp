@@ -17,8 +17,8 @@ function* fetchApps() {
   }
 }
 
-function* loadApps() {
+function* loadAppsSaga() {
   yield takeLatest(FETCH_APPS, fetchApps)
 }
 
-export default loadApps
+export default loadAppsSaga

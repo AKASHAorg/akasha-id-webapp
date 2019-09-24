@@ -15,8 +15,8 @@ function* signOutImplementation() {
   }
 }
 
-function* signOut() {
+function* signOutSaga() {
   yield takeLatest(START_SIGN_OUT, signOutImplementation)
 }
 
-export default signOut
+export default signOutSaga

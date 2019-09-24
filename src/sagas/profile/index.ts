@@ -1,19 +1,19 @@
 import { spawn } from 'redux-saga/effects'
 
-import deleteProfile from './delete-profile'
-import exportProfile from './export-profile'
-import loadProfile from './load-profile'
-import signOut from './sign-out'
-import updatePassword from './update-password'
-import updateProfile from './update-profile'
+import deleteProfileSaga from './delete-profile'
+import exportProfileSaga from './export-profile'
+import loadProfileSaga from './load-profile'
+import signOutSaga from './sign-out'
+import updatePasswordSaga from './update-password'
+import updateProfileSaga from './update-profile'
 
 function* profileSaga() {
-  yield spawn(loadProfile)
-  yield spawn(signOut)
-  yield spawn(deleteProfile)
-  yield spawn(updateProfile)
-  yield spawn(updatePassword)
-  yield spawn(exportProfile)
+  yield spawn(loadProfileSaga)
+  yield spawn(signOutSaga)
+  yield spawn(deleteProfileSaga)
+  yield spawn(updateProfileSaga)
+  yield spawn(updatePasswordSaga)
+  yield spawn(exportProfileSaga)
 }
 
 export default profileSaga

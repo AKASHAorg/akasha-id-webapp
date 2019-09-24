@@ -19,8 +19,8 @@ function* deleteProfileImplementation() {
   }
 }
 
-function* deleteProfile() {
+function* deleteProfileSaga() {
   yield takeLatest(START_DELETE_PROFILE, deleteProfileImplementation)
 }
 
-export default deleteProfile
+export default deleteProfileSaga

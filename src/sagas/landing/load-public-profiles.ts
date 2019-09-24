@@ -16,8 +16,8 @@ function* loadPublicProfilesImplementation() {
   }
 }
 
-function* loadPublicProfiles() {
+function* loadPublicProfilesSaga() {
   yield takeLatest(FETCH_PUBLIC_PROFILES, loadPublicProfilesImplementation)
 }
 
-export default loadPublicProfiles
+export default loadPublicProfilesSaga

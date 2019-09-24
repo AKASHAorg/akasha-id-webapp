@@ -2,14 +2,19 @@ import Modal from '@akashaproject/design-system/dist/components/Modal'
 import TextArea from '@akashaproject/design-system/dist/components/TextArea'
 import React from 'react'
 
-export interface AddAppModalProps {
+export interface ExportProfileModalProps {
   isOpen: boolean
   exportText: string
   onClose: () => void
   onOk: () => void
 }
 
-const AddAppModal: React.FC<AddAppModalProps> = ({ isOpen, exportText, onClose, onOk }) => {
+const ExportProfileModal: React.FC<ExportProfileModalProps> = ({
+  isOpen,
+  exportText,
+  onClose,
+  onOk,
+}) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -28,4 +33,4 @@ const AddAppModal: React.FC<AddAppModalProps> = ({ isOpen, exportText, onClose, 
   )
 }
 
-export default AddAppModal
+export default ExportProfileModal

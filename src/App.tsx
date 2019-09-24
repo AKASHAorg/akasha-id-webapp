@@ -5,12 +5,12 @@ import { Route, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Action, Dispatch } from 'redux'
 
 import fetchPublicProfilesActionCreator from './actions/landing/fetch-public-profiles'
-import { AddAppModal } from './components/modals/AddAppModal'
 import { ExportProfileModal } from './components/modals/ExportProfileModal'
 import { RemoveAppModal } from './components/modals/RemoveAppModal'
 import { Apps } from './components/pages/Apps'
 import { Landing } from './components/pages/Landing'
 import { Profile } from './components/pages/Profile'
+import { RegisterApp } from './components/pages/RegisterApp'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
 import { WithRedirect } from './components/shared/WithRedirect'
@@ -78,6 +78,15 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
         )}
       />
       <Route
+        strict={true}
+        path={routes.registerApp}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <RegisterApp />
+          </WithRedirect>
+        )}
+      />
+      <Route
         exact={true}
         path={routes.landing}
         render={() => (
@@ -98,7 +107,6 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
         draggable={false}
         pauseOnHover={false}
       />
-      <AddAppModal />
       <RemoveAppModal />
       <ExportProfileModal />
     </>

@@ -1,5 +1,5 @@
 import { notify } from '@akashaproject/design-system/dist/components/Notification'
-import { call, put, select, take, takeLatest } from 'redux-saga/effects'
+import { call, put, race, select, take, takeLatest } from 'redux-saga/effects'
 
 import { HideRemoveAppModalAction } from '../../actions/apps/hide-remove-app-modal'
 import removeAppActionCreator from '../../actions/apps/remove-app'
@@ -12,6 +12,19 @@ import {
   START_REMOVE_APP,
 } from '../../consts/actions/apps'
 import { wallet } from '../../did'
+
+function* fetchClaim(token: string) {
+  const profile = yield call([wallet, wallet.profile])
+  const claim = yield call([wallet, wallet.getClaim], token)
+
+  if (profile && claim && claim.attributes) {
+    claim.attributes.forEach((attr: string) => {
+      claim[attr] = profile[attr]
+    })
+  }
+
+  yield put(setRemoveAppModalClaim(token, claim))
+}
 
 function* removeAppImplementation() {
   const state = yield select()
@@ -27,25 +40,27 @@ function* removeAppImplementation() {
   notify('App has been removed')
 }
 
-function* fetchRemoveModalClaim(action: ShowRemoveAppModalAction) {
+function* removeApp(action: ShowRemoveAppModalAction) {
   try {
-    const profile = yield call([wallet, wallet.profile])
-    const claim = yield call([wallet, wallet.getClaim], action.token)
+    const fetchClaimResult = yield race({
+      claim: fetchClaim(action.token),
+      cancelled: take(HIDE_REMOVE_APP_MODAL),
+    })
 
-    if (profile && claim && claim.attributes) {
-      claim.attributes.forEach((attr: string) => {
-        claim[attr] = profile[attr]
-      })
+    if (fetchClaimResult.cancelled) {
+      return
     }
-
-    yield put(setRemoveAppModalClaim(action.token, claim))
 
     const modalAction: StartRemoveAppAction | HideRemoveAppModalAction = yield take([
       START_REMOVE_APP,
       HIDE_REMOVE_APP_MODAL,
     ])
+
     if (modalAction.type === START_REMOVE_APP) {
-      yield call(removeAppImplementation)
+      yield race({
+        removeApp: call(removeAppImplementation),
+        cancelled: take(HIDE_REMOVE_APP_MODAL),
+      })
     }
   } catch (e) {
     notify(`An error occurred: ${e}`)
@@ -53,8 +68,8 @@ function* fetchRemoveModalClaim(action: ShowRemoveAppModalAction) {
   }
 }
 
-function* removeApp() {
-  yield takeLatest(SHOW_REMOVE_APP_MODAL, fetchRemoveModalClaim)
+function* removeAppSaga() {
+  yield takeLatest(SHOW_REMOVE_APP_MODAL, removeApp)
 }
 
-export default removeApp
+export default removeAppSaga

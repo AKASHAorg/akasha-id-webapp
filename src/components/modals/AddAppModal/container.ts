@@ -9,8 +9,7 @@ import AddAppModal from './AddAppModal'
 
 const enchance = connect(
   (state: State) => ({
-    isOpen: state.apps.showAddAppModal,
-    step: state.apps.addAppStep,
+    step: state.apps.addAppModalStep,
     name:
       state.apps.appRequest && state.apps.appRequest.appInfo
         ? state.apps.appRequest.appInfo.name

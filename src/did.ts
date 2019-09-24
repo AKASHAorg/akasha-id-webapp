@@ -1,6 +1,8 @@
 import Client from 'akasha-id-client'
 import Wallet from 'akasha-id-wallet'
 
+import { walletUrl } from './consts/routes'
+
 const appInfo = {
   name: 'AKASHA.world',
   description: 'The super cool AKASHA World app!',
@@ -9,8 +11,8 @@ const appInfo = {
 }
 
 const config = {
+  walletUrl,
   hubUrls: ['http://localhost:8888'],
-  walletUrl: 'http://localhost:3000/#/link/',
 }
 
 const client = new Client(appInfo, config)

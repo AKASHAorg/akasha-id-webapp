@@ -1,11 +1,8 @@
-import hideAddAppModal from '../../actions/apps/hide-add-app-modal'
 import hideRemoveAppModal from '../../actions/apps/hide-remove-app-modal'
 import removeApp from '../../actions/apps/remove-app'
 import setAddAppModalStep from '../../actions/apps/set-add-app-modal-step'
 import setApps from '../../actions/apps/set-apps'
 import setRemoveAppModalClaim from '../../actions/apps/set-remove-app-modal-claim'
-import showAddAppModal from '../../actions/apps/show-add-app-modal'
-import showRemoveAppModal from '../../actions/apps/show-remove-app-modal'
 import { defaultState } from '../../states'
 import { AppsState } from '../../states/apps'
 import { AddAppModalStep, App, Claim } from '../../types/apps'
@@ -27,34 +24,6 @@ describe('AppsReducer', () => {
     const expectedState: AppsState = {
       ...defaultState.apps,
       apps,
-    }
-
-    expect(newState).toEqual(expectedState)
-  })
-
-  it('can show add app modal', () => {
-    const action = showAddAppModal()
-    const newState = appsReducer(defaultState.apps, action, defaultState)
-
-    const expectedState: AppsState = {
-      ...defaultState.apps,
-      showAddAppModal: true,
-    }
-
-    expect(newState).toEqual(expectedState)
-  })
-
-  it('can hide add app modal', () => {
-    const action = hideAddAppModal()
-    const state: AppsState = {
-      ...defaultState.apps,
-      showAddAppModal: true,
-    }
-    const newState = appsReducer(state, action, defaultState)
-
-    const expectedState: AppsState = {
-      ...defaultState.apps,
-      showAddAppModal: false,
     }
 
     expect(newState).toEqual(expectedState)
@@ -156,13 +125,13 @@ describe('AppsReducer', () => {
     const action = setAddAppModalStep(step)
     const state: AppsState = {
       ...defaultState.apps,
-      addAppStep: 'generate-link',
+      addAppModalStep: 'generate-link',
     }
     const newState = appsReducer(state, action, defaultState)
 
     const expectedState: AppsState = {
       ...defaultState.apps,
-      addAppStep: step,
+      addAppModalStep: step,
     }
 
     expect(newState).toEqual(expectedState)

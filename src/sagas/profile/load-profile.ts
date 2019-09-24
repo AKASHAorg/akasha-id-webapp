@@ -16,8 +16,8 @@ function* fetchProfile() {
   }
 }
 
-function* loadProfile() {
+function* loadProfileSaga() {
   yield takeLatest(FETCH_PROFILE, fetchProfile)
 }
 
-export default loadProfile
+export default loadProfileSaga

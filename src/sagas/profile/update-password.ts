@@ -20,8 +20,8 @@ function* updatePasswordImplementation(action: StartUpdatePasswordAction) {
   }
 }
 
-function* updatePassword() {
+function* updatePasswordSaga() {
   yield takeLatest(START_UPDATE_PASSWORD, updatePasswordImplementation)
 }
 
-export default updatePassword
+export default updatePasswordSaga

@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { AddAppFormData, AddAppModalStep } from '../../../types/apps'
 
 export interface AddAppModalProps {
-  isOpen: boolean
   step: AddAppModalStep
   name: string
   description: string
@@ -46,7 +45,6 @@ const StyledCheckboxRow = styled.li`
 `
 
 const AddAppModal: React.FC<AddAppModalProps> = ({
-  isOpen,
   step,
   name,
   description,
@@ -73,7 +71,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={true}
       headerContent={`The following application requests access to your profile`}
       onOk={() =>
         onOk({

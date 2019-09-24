@@ -46,11 +46,13 @@ export interface RequestProfileResponse {
 }
 
 export type AddAppModalStep =
+  | 'wait-request'
   | 'generate-link'
   | 'register-app'
   | 'accept-app'
   | 'decline-app'
   | 'request-profile'
+  | 'finish'
 
 export interface AddAppFormData {
   shareAddress: boolean

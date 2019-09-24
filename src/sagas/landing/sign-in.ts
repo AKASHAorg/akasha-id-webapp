@@ -22,8 +22,8 @@ function* signInImplementation(action: StartSignInAction) {
   }
 }
 
-function* signIn() {
+function* signInSaga() {
   yield takeLatest(START_SIGN_IN, signInImplementation)
 }
 
-export default signIn
+export default signInSaga
