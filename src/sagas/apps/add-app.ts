@@ -1,36 +1,17 @@
 import { notify } from '@akashaproject/design-system/dist/components/Notification'
-import WebCrypto from 'easy-web-crypto'
-import { call, cancel, fork, put, race, take, takeLatest } from 'redux-saga/effects'
+import { call, put, race, take, takeLatest } from 'redux-saga/effects'
 
 import { AcceptAppAction } from '../../actions/apps/accept-app'
 import { DeclineAppAction } from '../../actions/apps/decline-app'
-import requestProfileActionCreator from '../../actions/apps/request-profile'
 import setAddAppModalAppRequest from '../../actions/apps/set-add-app-modal-app-request'
 import setAddAppModalStep from '../../actions/apps/set-add-app-modal-step'
 import { ShowAddAppModalAction } from '../../actions/apps/show-add-app-modal'
 import { ACCEPT_APP, DECLINE_APP, SHOW_ADD_APP_MODAL } from '../../consts/actions/apps'
-import { client, wallet } from '../../did'
-import { AppRequest, RequestProfileResponse } from '../../types/apps'
+import { wallet } from '../../did'
+import { AppRequest } from '../../types/apps'
 
 function* finishAddApp() {
   yield put(setAddAppModalStep('finish'))
-}
-
-function* requestProfile() {
-  try {
-    const response: RequestProfileResponse = yield call(
-      [client, client.requestProfile],
-      ['givenName', 'familyName'],
-    )
-
-    yield put(setAddAppModalStep('request-profile'))
-    yield put(requestProfileActionCreator(response))
-  } catch (e) {
-    notify(`An error occurred during requesting profile: ${e}`)
-    console.error(e)
-  }
-
-  yield finishAddApp()
 }
 
 function* acceptApp(action: AcceptAppAction, appRequest: AppRequest) {
@@ -51,8 +32,8 @@ function* acceptApp(action: AcceptAppAction, appRequest: AppRequest) {
     attributes.push('photo')
   }
 
-  if (addAppFormData.shareImage) {
-    attributes.push('image')
+  if (addAppFormData.sharePicture) {
+    attributes.push('picture')
   }
 
   if (addAppFormData.shareJobTitle) {
@@ -91,15 +72,6 @@ function* declineApp(action: DeclineAppAction, appRequest: AppRequest) {
 
 function* addAppImplementation(action: ShowAddAppModalAction) {
   try {
-    const [loginChannel, b64Key, nonce] = JSON.parse(Buffer.from(action.link, 'base64').toString())
-    client.loginChannel = loginChannel
-    client.bootstrapKey = yield call(WebCrypto.importKey, Buffer.from(b64Key, 'base64'))
-    client.nonce = nonce
-    client.loginLink = action.link
-
-    yield put(setAddAppModalStep('generate-link'))
-    const requestProfileTask = yield fork(requestProfile)
-
     yield put(setAddAppModalStep('register-app'))
 
     const registerAppResult = yield race({
@@ -108,7 +80,6 @@ function* addAppImplementation(action: ShowAddAppModalAction) {
     })
 
     if (registerAppResult.cancelled) {
-      yield cancel(requestProfileTask)
       yield finishAddApp()
 
       return
@@ -137,15 +108,12 @@ function* addAppImplementation(action: ShowAddAppModalAction) {
       )
     }
 
-    const sendClaimResult = yield race({
+    yield race({
       sendClaim: sendClaimAction,
       cancelled: take(DECLINE_APP),
     })
 
-    if (sendClaimResult.cancelled) {
-      yield cancel(requestProfileTask)
-      yield finishAddApp()
-    }
+    yield finishAddApp()
   } catch (e) {
     notify(`An error occurred during adding app: ${e}`)
     console.error(e)

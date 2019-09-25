@@ -17,7 +17,7 @@ const enchance = connect(
       streetAddress: state.profile.streetAddress,
       email: state.profile.email,
       photo: state.profile.photo,
-      image: state.profile.image,
+      picture: state.profile.picture,
       jobTitle: state.profile.jobTitle,
       name: state.profile.name,
       givenName: state.profile.givenName,

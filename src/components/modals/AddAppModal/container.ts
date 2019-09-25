@@ -26,10 +26,7 @@ const enchance = connect(
       state.apps.appRequest && state.apps.appRequest.appInfo
         ? state.apps.appRequest.appInfo.url
         : '',
-    channel: state.apps.appRequest ? state.apps.appRequest.channel : '',
-    appKey: state.apps.appRequest ? state.apps.appRequest.key : '',
     nonce: state.apps.appRequest ? state.apps.appRequest.nonce : 0,
-    token: state.apps.appRequest ? state.apps.appRequest.token : '',
     attributes:
       state.apps.appRequest && state.apps.appRequest.attributes
         ? state.apps.appRequest.attributes

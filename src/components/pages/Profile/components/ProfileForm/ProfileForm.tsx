@@ -68,7 +68,13 @@ const ProfileForm: React.FC<
         />
         <Field name="email" label="E-mail" placeholder="E-mail" type="text" component={FormRow} />
         <Field name="photo" label="Photo" placeholder="Photo" type="text" component={FormRow} />
-        <Field name="image" label="Image" placeholder="Image" type="text" component={FormRow} />
+        <Field
+          name="picture"
+          label="Picture"
+          placeholder="Picture"
+          type="text"
+          component={FormRow}
+        />
         <Field
           name="jobTitle"
           label="Job title"

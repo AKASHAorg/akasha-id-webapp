@@ -11,10 +11,7 @@ export interface AddAppModalProps {
   description: string
   icon: string
   url: string
-  channel: string
-  appKey: string
   nonce: number
-  token: string
   attributes: string[]
   onClose: () => void
   onOk: (formData: AddAppFormData) => void
@@ -50,10 +47,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
   description,
   icon,
   url,
-  channel,
-  appKey,
   nonce,
-  token,
   attributes,
   onClose,
   onOk,
@@ -61,7 +55,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
   const [shareAddress, changeShareAddress] = useState(false)
   const [shareEmail, changeShareEmail] = useState(false)
   const [sharePhoto, changeSharePhoto] = useState(false)
-  const [shareImage, changeShareImage] = useState(false)
+  const [sharePicture, changeSharePicture] = useState(false)
   const [shareJobTitle, changeShareJobTitle] = useState(false)
   const [shareGivenName, changeShareGivenName] = useState(false)
   const [shareFamilyName, changeShareFamilyName] = useState(false)
@@ -78,7 +72,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
           shareAddress,
           shareEmail,
           sharePhoto,
-          shareImage,
+          sharePicture,
           shareJobTitle,
           shareGivenName,
           shareFamilyName,
@@ -143,10 +137,10 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 
             <StyledCheckboxRow>
               <Checkbox
-                label="Image"
-                checked={shareImage}
+                label="Picture"
+                checked={sharePicture}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareImage(e.target.checked)
+                  changeSharePicture(e.target.checked)
                 }
               />
             </StyledCheckboxRow>

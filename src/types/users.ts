@@ -20,7 +20,7 @@ export interface ProfileData {
   streetAddress: string
   email: string
   photo: string
-  image: string
+  picture: string
   jobTitle: string
   givenName: string
   familyName: string

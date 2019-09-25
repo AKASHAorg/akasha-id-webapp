@@ -80,7 +80,7 @@ const RemoveAppModal: React.FC<RemoveAppModalProps> = ({ isOpen, app, claim, onC
                 )}
                 {claim.email && <StyledCheckboxRow>E-mail: {claim.email}</StyledCheckboxRow>}
                 {claim.photo && <StyledCheckboxRow>Photo: {claim.photo}</StyledCheckboxRow>}
-                {claim.image && <StyledCheckboxRow>Image: {claim.image}</StyledCheckboxRow>}
+                {claim.picture && <StyledCheckboxRow>Picture: {claim.picture}</StyledCheckboxRow>}
                 {claim.jobTitle && (
                   <StyledCheckboxRow>Job title: {claim.jobTitle}</StyledCheckboxRow>
                 )}

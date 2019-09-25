@@ -4,9 +4,7 @@
   "private": true,
   "dependencies": {
     "@akashaproject/design-system": "git+https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-design-system.git#notification_component",
-    "akasha-id-client": "git+https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-id-client",
     "akasha-id-wallet": "git+https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-id-wallet",
-    "easy-web-crypto": "^1.0.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.0",

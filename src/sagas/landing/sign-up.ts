@@ -25,7 +25,7 @@ function* signUpImplementation(action: StartSignUpAction) {
         email: '',
         familyName: '',
         givenName: '',
-        image: '',
+        picture: '',
         jobTitle: '',
         photo: '',
         postalCode: '',

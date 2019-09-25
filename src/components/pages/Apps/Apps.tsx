@@ -1,9 +1,6 @@
-import Button from '@akashaproject/design-system/dist/components/Button'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
-import { walletUrl } from '../../../consts/routes'
-import { client } from '../../../did'
 import { App as AppType } from '../../../types/apps'
 import { Column } from '../shared/Container'
 import { Sidebar } from '../shared/Sidebar'
@@ -13,7 +10,6 @@ import { App } from './components/App'
 export interface AppsProps {
   apps: { [token: string]: AppType }
   loadApps: () => void
-  setRegisterAppLink: (link: string) => void
 }
 
 const StyledList = styled.ul`
@@ -27,24 +23,13 @@ const StyledList = styled.ul`
   flex-wrap: wrap;
 `
 
-const Apps: React.FC<AppsProps> = ({ apps, loadApps, setRegisterAppLink }) => {
+const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
   useEffect(() => {
     loadApps()
   }, [loadApps])
   return (
     <SidebarContainer sidebar={<Sidebar />}>
       <Column size={14}>
-        <Button
-          onClick={async () => {
-            const link: string = await client.registrationLink()
-            const trimmedLink = link.substr(walletUrl.length)
-
-            setRegisterAppLink(trimmedLink)
-          }}
-          buttonType="primary"
-        >
-          Add app
-        </Button>
         <StyledList>
           {Object.entries(apps).map(([token, app]: [string, AppType]) => (
             <App key={token} token={token} {...app} />

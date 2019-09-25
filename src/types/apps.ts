@@ -5,7 +5,7 @@ export interface Claim {
   streetAddress?: string
   email?: string
   photo?: string
-  image?: string
+  picture?: string
   jobTitle?: string
   givenName?: string
   familyName?: string
@@ -37,14 +37,6 @@ export interface AppRequest {
   token: string
 }
 
-export interface RequestProfileResponse {
-  allowed: boolean
-  claim?: Claim
-  nonce: number
-  token?: string
-  refreshEncKey?: string
-}
-
 export type AddAppModalStep =
   | 'wait-request'
   | 'generate-link'
@@ -58,7 +50,7 @@ export interface AddAppFormData {
   shareAddress: boolean
   shareEmail: boolean
   sharePhoto: boolean
-  shareImage: boolean
+  sharePicture: boolean
   shareJobTitle: boolean
   shareGivenName: boolean
   shareFamilyName: boolean

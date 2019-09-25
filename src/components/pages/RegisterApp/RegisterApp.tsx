@@ -26,7 +26,7 @@ const RegisterApp: React.FC<RegisterAppProps> = ({
     handleShowAddAppModal()
 
     return handleFinishSendClaim
-  }, [match.params.apprequestlink])
+  }, [match.params.apprequestlink, handleShowAddAppModal, handleFinishSendClaim])
   // eslint-enable react-hooks/exhaustive-deps
 
   return (

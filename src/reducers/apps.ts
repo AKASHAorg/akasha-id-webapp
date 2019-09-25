@@ -2,7 +2,6 @@ import { Action } from 'redux'
 
 import { HideRemoveAppModalAction } from '../actions/apps/hide-remove-app-modal'
 import { RemoveAppAction } from '../actions/apps/remove-app'
-import { RequestProfileAction } from '../actions/apps/request-profile'
 import { SetAddAppModalAppRequestAction } from '../actions/apps/set-add-app-modal-app-request'
 import { SetAddAppModalStepAction } from '../actions/apps/set-add-app-modal-step'
 import { SetAppsAction } from '../actions/apps/set-apps'
@@ -11,7 +10,6 @@ import { ShowRemoveAppModalAction } from '../actions/apps/show-remove-app-modal'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AppsState, defaultAppsState } from '../states/apps'
-import { App } from '../types/apps'
 
 const setApps = (state: AppsState, action: SetAppsAction, fullState: State): AppsState => {
   return {
@@ -96,28 +94,6 @@ const setAddAppModalAppRequest = (
   }
 }
 
-const requestProfile = (
-  state: AppsState,
-  action: RequestProfileAction,
-  fullState: State,
-): AppsState => {
-  if (!action.allowed) {
-    return state
-  }
-
-  const app: App = {
-    name: state.appRequest!.appInfo.name,
-    description: state.appRequest!.appInfo.description,
-    icon: state.appRequest!.appInfo.icon,
-    url: state.appRequest!.appInfo.url,
-    claim: { ...action.claim! },
-  }
-  return {
-    ...state,
-    apps: { ...state.apps, [action.token!]: app },
-  }
-}
-
 const reducer = (
   state: AppsState = defaultAppsState,
   action: Action<string>,
@@ -144,9 +120,6 @@ const reducer = (
 
     case actions.apps.SET_ADD_APP_MODAL_APP_REQUEST:
       return setAddAppModalAppRequest(state, action as SetAddAppModalAppRequestAction, fullState)
-
-    case actions.apps.REQUEST_PROFILE:
-      return requestProfile(state, action as RequestProfileAction, fullState)
 
     default:
       return state

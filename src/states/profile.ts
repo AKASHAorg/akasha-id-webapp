@@ -6,7 +6,7 @@ export interface ProfileState {
   streetAddress: string
   email: string
   photo: string
-  image: string
+  picture: string
   jobTitle: string
   name: string
   givenName: string
@@ -28,7 +28,7 @@ const defaultProfileState: ProfileState = {
   streetAddress: '',
   email: '',
   photo: '',
-  image: '',
+  picture: '',
   jobTitle: '',
   name: '',
   givenName: '',
