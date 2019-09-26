@@ -11,20 +11,7 @@ import ProfileForm, { ProfileFormProps } from './ProfileForm'
 const enchance = connect(
   (state: State) => ({
     initialValues: {
-      addressLocality: state.profile.addressLocality,
-      addressRegion: state.profile.addressRegion,
-      postalCode: state.profile.postalCode,
-      streetAddress: state.profile.streetAddress,
-      email: state.profile.email,
-      photo: state.profile.photo,
-      picture: state.profile.picture,
-      jobTitle: state.profile.jobTitle,
-      name: state.profile.name,
-      givenName: state.profile.givenName,
-      familyName: state.profile.familyName,
-      birthDate: state.profile.birthDate,
-      telephone: state.profile.telephone,
-      url: state.profile.url,
+      ...state.profile,
     },
   }),
   (dispatch: Dispatch<Action>) => ({

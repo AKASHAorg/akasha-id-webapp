@@ -14,10 +14,12 @@ export interface SignInFormData {
 }
 
 export interface ProfileData {
-  addressLocality: string
-  addressRegion: string
-  postalCode: string
-  streetAddress: string
+  address: {
+    addressLocality: string
+    addressRegion: string
+    postalCode: string
+    streetAddress: string
+  }
   email: string
   photo: string
   picture: string

@@ -1,31 +1,19 @@
-export interface ProfileState {
+import { ProfileFormData } from '../types/users'
+
+export interface ProfileState extends ProfileFormData {
   userId: string
-  addressLocality: string
-  addressRegion: string
-  postalCode: string
-  streetAddress: string
-  email: string
-  photo: string
-  picture: string
-  jobTitle: string
-  name: string
-  givenName: string
-  familyName: string
-  birthDate: string
-  telephone: string
-  url: string
-  password: string
   signedIn: boolean
   showExportProfileModal: boolean
   exportProfileText: string
 }
 
 const defaultProfileState: ProfileState = {
-  userId: '',
-  addressLocality: '',
-  addressRegion: '',
-  postalCode: '',
-  streetAddress: '',
+  address: {
+    addressLocality: '',
+    addressRegion: '',
+    postalCode: '',
+    streetAddress: '',
+  },
   email: '',
   photo: '',
   picture: '',
@@ -36,7 +24,7 @@ const defaultProfileState: ProfileState = {
   birthDate: '',
   telephone: '',
   url: '',
-  password: '',
+  userId: '',
   signedIn: false,
   showExportProfileModal: false,
   exportProfileText: '',

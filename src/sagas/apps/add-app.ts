@@ -17,48 +17,9 @@ function* finishAddApp() {
 function* acceptApp(action: AcceptAppAction, appRequest: AppRequest) {
   yield put(setAddAppModalStep('accept-app'))
 
-  const attributes: string[] = []
-  const addAppFormData = action.addAppFormData
-
-  if (addAppFormData.shareAddress) {
-    attributes.push('addressLocality', 'addressRegion', 'postalCode', 'streetAddress')
-  }
-
-  if (addAppFormData.shareEmail) {
-    attributes.push('email')
-  }
-
-  if (addAppFormData.sharePhoto) {
-    attributes.push('photo')
-  }
-
-  if (addAppFormData.sharePicture) {
-    attributes.push('picture')
-  }
-
-  if (addAppFormData.shareJobTitle) {
-    attributes.push('jobTitle')
-  }
-
-  if (addAppFormData.shareGivenName) {
-    attributes.push('givenName')
-  }
-
-  if (addAppFormData.shareFamilyName) {
-    attributes.push('familyName')
-  }
-
-  if (addAppFormData.shareBirthDate) {
-    attributes.push('birthDate')
-  }
-
-  if (addAppFormData.shareTelephone) {
-    attributes.push('telephone')
-  }
-
-  if (addAppFormData.shareUrl) {
-    attributes.push('url')
-  }
+  const attributes: string[] = Object.entries(action.addAppFormData)
+    .filter(([attribute, value]) => value)
+    .map(([attribute, value]) => attribute)
 
   yield call([wallet, wallet.addApp], appRequest.token, appRequest.appInfo)
   yield call([wallet, wallet.sendClaim], appRequest, attributes, true)

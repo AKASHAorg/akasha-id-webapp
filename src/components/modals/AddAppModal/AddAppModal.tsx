@@ -41,6 +41,19 @@ const StyledCheckboxRow = styled.li`
   }
 `
 
+const attributeLabelMap: { [key: string]: string } = {
+  address: 'Address',
+  email: 'E-mail',
+  photo: 'Photo',
+  picture: 'Picture',
+  jobTitle: 'Job title',
+  givenName: 'Given name',
+  familyName: 'Family name',
+  birthDate: 'Birth date',
+  telephone: 'Telephone',
+  url: 'URL',
+}
+
 const AddAppModal: React.FC<AddAppModalProps> = ({
   step,
   name,
@@ -52,35 +65,14 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
   onClose,
   onOk,
 }) => {
-  const [shareAddress, changeShareAddress] = useState(false)
-  const [shareEmail, changeShareEmail] = useState(false)
-  const [sharePhoto, changeSharePhoto] = useState(false)
-  const [sharePicture, changeSharePicture] = useState(false)
-  const [shareJobTitle, changeShareJobTitle] = useState(false)
-  const [shareGivenName, changeShareGivenName] = useState(false)
-  const [shareFamilyName, changeShareFamilyName] = useState(false)
-  const [shareBirthDate, changeShareBirthDate] = useState(false)
-  const [shareTelephone, changeShareTelephone] = useState(false)
-  const [shareUrl, changeShareUrl] = useState(false)
+  const initialState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
+  const [state, changeState] = useState(initialState)
 
   return (
     <Modal
       isOpen={true}
       headerContent={`The following application requests access to your profile`}
-      onOk={() =>
-        onOk({
-          shareAddress,
-          shareEmail,
-          sharePhoto,
-          sharePicture,
-          shareJobTitle,
-          shareGivenName,
-          shareFamilyName,
-          shareBirthDate,
-          shareTelephone,
-          shareUrl,
-        })
-      }
+      onOk={() => onOk(state as AddAppFormData)}
       onClose={onClose}
       closeTimeoutMS={0}
       cancelButtonContent="Cancel"
@@ -104,109 +96,20 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
         </StyledModalColumn>
         <StyledModalColumn>
           <p>Select profile attributes to share with AKASHA.world</p>
+
           <StyledCheckboxList>
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Address"
-                checked={shareAddress}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareAddress(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="E-mail"
-                checked={shareEmail}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareEmail(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Photo"
-                checked={sharePhoto}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeSharePhoto(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Picture"
-                checked={sharePicture}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeSharePicture(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Job title"
-                checked={shareJobTitle}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareJobTitle(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Given name"
-                checked={shareGivenName}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareGivenName(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Family name"
-                checked={shareFamilyName}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareFamilyName(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Birth date"
-                checked={shareBirthDate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareBirthDate(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="Telephone"
-                checked={shareTelephone}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareTelephone(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
-
-            <StyledCheckboxRow>
-              <Checkbox
-                label="URL"
-                checked={shareUrl}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  changeShareUrl(e.target.checked)
-                }
-              />
-            </StyledCheckboxRow>
+            {attributes.map(attribute => (
+              <StyledCheckboxRow key={attribute}>
+                <Checkbox
+                  label={attributeLabelMap[attribute]}
+                  checked={state[attribute]}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    changeState({ ...state, [attribute]: e.target.checked })
+                  }
+                />
+              </StyledCheckboxRow>
+            ))}
           </StyledCheckboxList>
-
-          <p>Required attributes: {attributes.join(', ')}</p>
         </StyledModalColumn>
       </StyledModalBody>
     </Modal>

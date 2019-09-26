@@ -39,28 +39,28 @@ const ProfileForm: React.FC<
     <>
       <form onSubmit={handleSubmit}>
         <Field
-          name="addressLocality"
+          name="address.addressLocality"
           label="Address locality"
           placeholder="Address locality"
           type="text"
           component={FormRow}
         />
         <Field
-          name="addressRegion"
+          name="address.addressRegion"
           label="Address region"
           placeholder="Address region"
           type="text"
           component={FormRow}
         />
         <Field
-          name="postalCode"
+          name="address.postalCode"
           label="Postal code"
           placeholder="Postal code"
           type="text"
           component={FormRow}
         />
         <Field
-          name="streetAddress"
+          name="address.streetAddress"
           label="Street address"
           placeholder="Street address"
           type="text"

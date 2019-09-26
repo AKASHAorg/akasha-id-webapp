@@ -66,17 +66,20 @@ const RemoveAppModal: React.FC<RemoveAppModalProps> = ({ isOpen, app, claim, onC
             <p>Select profile attributes to share with AKASHA.world</p>
             {claim && (
               <StyledCheckboxList>
-                {claim.addressLocality && (
-                  <StyledCheckboxRow>Address locality: {claim.addressLocality}</StyledCheckboxRow>
-                )}
-                {claim.addressRegion && (
-                  <StyledCheckboxRow>Address region: {claim.addressRegion}</StyledCheckboxRow>
-                )}
-                {claim.postalCode && (
-                  <StyledCheckboxRow>Postal code: {claim.postalCode}</StyledCheckboxRow>
-                )}
-                {claim.streetAddress && (
-                  <StyledCheckboxRow>Street address: {claim.streetAddress}</StyledCheckboxRow>
+                {claim.address && (
+                  <>
+                    <h4>Address</h4>
+                    <StyledCheckboxRow>
+                      Address locality: {claim.address.addressLocality}
+                    </StyledCheckboxRow>
+                    <StyledCheckboxRow>
+                      Address region: {claim.address.addressRegion}
+                    </StyledCheckboxRow>
+                    <StyledCheckboxRow>Postal code: {claim.address.postalCode}</StyledCheckboxRow>
+                    <StyledCheckboxRow>
+                      Street address: {claim.address.streetAddress}
+                    </StyledCheckboxRow>
+                  </>
                 )}
                 {claim.email && <StyledCheckboxRow>E-mail: {claim.email}</StyledCheckboxRow>}
                 {claim.photo && <StyledCheckboxRow>Photo: {claim.photo}</StyledCheckboxRow>}

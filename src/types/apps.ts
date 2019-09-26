@@ -1,18 +1,6 @@
-export interface Claim {
-  addressLocality?: string
-  addressRegion?: string
-  postalCode?: string
-  streetAddress?: string
-  email?: string
-  photo?: string
-  picture?: string
-  jobTitle?: string
-  givenName?: string
-  familyName?: string
-  birthDate?: string
-  telephone?: string
-  url?: string
-}
+import { ProfileData } from './users'
+
+export interface Claim extends Partial<ProfileData> {}
 
 export interface App {
   // token: string
@@ -39,22 +27,11 @@ export interface AppRequest {
 
 export type AddAppModalStep =
   | 'wait-request'
-  | 'generate-link'
   | 'register-app'
   | 'accept-app'
   | 'decline-app'
-  | 'request-profile'
   | 'finish'
 
-export interface AddAppFormData {
-  shareAddress: boolean
-  shareEmail: boolean
-  sharePhoto: boolean
-  sharePicture: boolean
-  shareJobTitle: boolean
-  shareGivenName: boolean
-  shareFamilyName: boolean
-  shareBirthDate: boolean
-  shareTelephone: boolean
-  shareUrl: boolean
+export type AddAppFormData = {
+  [K in keyof ProfileData]: boolean
 }

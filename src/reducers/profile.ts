@@ -48,10 +48,12 @@ const setProfile = (
   if (!action.profileData) {
     return {
       ...state,
-      addressLocality: '',
-      addressRegion: '',
-      postalCode: '',
-      streetAddress: '',
+      address: {
+        addressLocality: '',
+        addressRegion: '',
+        postalCode: '',
+        streetAddress: '',
+      },
       email: '',
       photo: '',
       picture: '',
@@ -77,10 +79,7 @@ const updateProfile = (
 ): ProfileState => {
   return {
     ...state,
-    addressLocality: action.addressLocality,
-    addressRegion: action.addressRegion,
-    postalCode: action.postalCode,
-    streetAddress: action.streetAddress,
+    address: { ...action.address },
     email: action.email,
     photo: action.photo,
     picture: action.picture,

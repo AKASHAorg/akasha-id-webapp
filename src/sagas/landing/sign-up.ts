@@ -19,8 +19,12 @@ function* signUpImplementation(action: StartSignUpAction) {
 
     if (profile !== undefined) {
       const data: Omit<ProfileFormData, 'name'> = {
-        addressLocality: '',
-        addressRegion: '',
+        address: {
+          addressLocality: '',
+          addressRegion: '',
+          postalCode: '',
+          streetAddress: '',
+        },
         birthDate: '',
         email: '',
         familyName: '',
@@ -28,8 +32,6 @@ function* signUpImplementation(action: StartSignUpAction) {
         picture: '',
         jobTitle: '',
         photo: '',
-        postalCode: '',
-        streetAddress: '',
         telephone: '',
         url: '',
       }
