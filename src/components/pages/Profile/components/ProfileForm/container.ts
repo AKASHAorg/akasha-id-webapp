@@ -5,11 +5,12 @@ import { reduxForm } from 'redux-form'
 import startDeleteProfile from '../../../../../actions/profile/start-delete-profile'
 import startUpdateProfile from '../../../../../actions/profile/start-update-profile'
 import { State } from '../../../../../states'
-import { ProfileFormData } from '../../../../../types/users'
+import { ProfileData } from '../../../../../types/users'
 import ProfileForm, { ProfileFormProps } from './ProfileForm'
 
 const enchance = connect(
   (state: State) => ({
+    name: state.account.name,
     initialValues: {
       ...state.profile,
     },
@@ -19,7 +20,7 @@ const enchance = connect(
   }),
 )
 
-const withForm = reduxForm<ProfileFormData, ProfileFormProps, string>({
+const withForm = reduxForm<ProfileData, ProfileFormProps, string>({
   form: 'profile',
   enableReinitialize: true,
   onSubmit: (formData, dispatch) => {

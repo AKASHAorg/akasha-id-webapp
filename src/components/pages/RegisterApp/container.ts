@@ -12,7 +12,7 @@ import RegisterAppWrapper from './RegisterAppWrapper'
 const enchance = connect(
   (state: State) => {
     return {
-      signedIn: state.profile.signedIn,
+      signedIn: state.account.signedIn,
       addAppModalStep: state.apps.addAppModalStep,
     }
   },

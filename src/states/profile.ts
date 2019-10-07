@@ -1,8 +1,6 @@
-import { ProfileFormData } from '../types/users'
+import { ProfileData } from '../types/users'
 
-export interface ProfileState extends ProfileFormData {
-  userId: string
-  signedIn: boolean
+export interface ProfileState extends ProfileData {
   showExportProfileModal: boolean
   exportProfileText: string
 }
@@ -18,16 +16,14 @@ const defaultProfileState: ProfileState = {
   photo: '',
   picture: '',
   jobTitle: '',
-  name: '',
   givenName: '',
   familyName: '',
   birthDate: '',
   telephone: '',
   url: '',
-  userId: '',
-  signedIn: false,
   showExportProfileModal: false,
   exportProfileText: '',
+  about: '',
 }
 
 export { defaultProfileState }

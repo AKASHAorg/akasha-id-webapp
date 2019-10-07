@@ -6,7 +6,7 @@ import WithRedirect, { WithRedirectProps } from './WithRedirect'
 
 const enchance = connect(
   (state: State): Pick<WithRedirectProps, 'signedIn' | 'registerAppLink'> => ({
-    signedIn: state.profile.signedIn,
+    signedIn: state.account.signedIn,
     registerAppLink: state.landing.registerAppLink,
   }),
   (dispatch: Dispatch) => ({

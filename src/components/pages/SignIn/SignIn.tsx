@@ -27,7 +27,7 @@ const SignIn: React.FC<SignInProps & InjectedFormProps<SignInFormData, SignInPro
     <Container>
       <StyledColumn size={5}>
         <form onSubmit={handleSubmit}>
-          <h1>Welcome to AKASHA.id</h1>
+          <h1>Welcome to AKASHA ID</h1>
           <p>
             You are signing in as <strong>{username}</strong>
           </p>

@@ -1,17 +1,33 @@
 import React from 'react'
-import StyledColumnContainer from './StyledColumnContainer'
-import StyledContainer from './StyledContainer'
-import StyledSidebarContainer from './StyledSidebarContainer'
+import { NavLink } from 'react-router-dom'
+
+import * as routes from '../../../../consts/routes'
+import { Container } from '../Container'
+import { Sidebar } from './components/Sidebar'
+import {
+  StyledContentContainer,
+  StyledContentWrapper,
+  StyledSidebarContainer,
+  StyledTopBar,
+} from './StyledSidebarContainer'
 
 interface SidebarContainerProps extends React.PropsWithChildren<any> {
-  sidebar: React.ReactNode
+  name: string
 }
 
-const SidebarContainer: React.FC<SidebarContainerProps> = ({ sidebar, children }) => (
-  <StyledContainer>
-    <StyledSidebarContainer>{sidebar}</StyledSidebarContainer>
-    <StyledColumnContainer>{children}</StyledColumnContainer>
-  </StyledContainer>
+const SidebarContainer: React.FC<SidebarContainerProps> = ({ name, children }) => (
+  <Container>
+    <StyledSidebarContainer>
+      <Sidebar />
+    </StyledSidebarContainer>
+
+    <StyledContentContainer>
+      <StyledTopBar>
+        <NavLink to={routes.account}>{name}</NavLink>
+      </StyledTopBar>
+      <StyledContentWrapper>{children}</StyledContentWrapper>
+    </StyledContentContainer>
+  </Container>
 )
 
 export default SidebarContainer

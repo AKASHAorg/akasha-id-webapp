@@ -1,9 +1,34 @@
 import Checkbox from '@akashaproject/design-system/dist/components/Checkbox'
+import Icon from '@akashaproject/design-system/dist/components/Icon'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
+import { DocumentText } from 'grommet-icons'
+import React, { useContext, useState } from 'react'
+import { css } from 'styled-components'
 
+import Button from '@akashaproject/design-system/dist/components/Button'
 import { AddAppFormData, AddAppModalStep } from '../../../types/apps'
+import { Column } from '../../pages/shared/Container'
+import {
+  Attribute,
+  AttributesHeader,
+  AttributesList,
+  ButtonContainer,
+  ContentContainer,
+  ContentHeader,
+  Description,
+  Divider,
+  FooterContainer,
+  Header,
+  HeaderContainer,
+  ImageContainer,
+  Link,
+  Name,
+  NameContainer,
+  Nonce,
+  Notification,
+  Subheader,
+} from './StyledAddAppModal'
 
 export interface AddAppModalProps {
   step: AddAppModalStep
@@ -16,30 +41,6 @@ export interface AddAppModalProps {
   onClose: () => void
   onOk: (formData: AddAppFormData) => void
 }
-
-const StyledModalBody = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-`
-
-const StyledModalColumn = styled.div`
-  width: 50%;
-  box-sizing: border-box;
-`
-
-const StyledCheckboxList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-`
-
-const StyledCheckboxRow = styled.li`
-  :not(:last-child) {
-    margin-bottom: 8px;
-  }
-`
 
 const attributeLabelMap: { [key: string]: string } = {
   address: 'Address',
@@ -67,6 +68,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 }) => {
   const initialState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
   const [state, changeState] = useState(initialState)
+  const theme = useContext(AkashaThemeContext)
 
   return (
     <Modal
@@ -80,38 +82,91 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
       okButtonContent="Allow app"
       hideCancelButton={false}
       hideOkButton={step !== 'register-app'}
+      extendHeader={() =>
+        css`
+          display: none;
+        `
+      }
+      extendFooter={() =>
+        css`
+          display: none;
+        `
+      }
+      extendBody={() =>
+        css`
+          padding: 0;
+        `
+      }
+      extend={props => css`
+        box-shadow: none;
+        border-color: ${props.theme.colors.border};
+      `}
     >
-      <StyledModalBody>
-        <StyledModalColumn>
-          <p>
-            <img src={icon} alt={name} />
-          </p>
-          <h3>{name}</h3>
-          <p>
-            <a href={url}>{url}</a>
-          </p>
-          <p>{description}</p>
-          <p>Please make sure AKASHA.world display the same security code:</p>
-          <h3>{nonce}</h3>
-        </StyledModalColumn>
-        <StyledModalColumn>
-          <p>Select profile attributes to share with AKASHA.world</p>
+      <Column size={6}>
+        <HeaderContainer>
+          <Header>{name} requests access to your profile information</Header>
+          <Subheader>Please confirm the information below</Subheader>
+        </HeaderContainer>
+        <Divider />
+        <ContentContainer>
+          <Column size={3}>
+            <NameContainer>
+              <ImageContainer>
+                <img src={icon} alt={name} />
+              </ImageContainer>
+              <Name>{name}</Name>
+            </NameContainer>
 
-          <StyledCheckboxList>
-            {attributes.map(attribute => (
-              <StyledCheckboxRow key={attribute}>
-                <Checkbox
-                  label={attributeLabelMap[attribute]}
-                  checked={state[attribute]}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    changeState({ ...state, [attribute]: e.target.checked })
-                  }
-                />
-              </StyledCheckboxRow>
-            ))}
-          </StyledCheckboxList>
-        </StyledModalColumn>
-      </StyledModalBody>
+            <ContentHeader>
+              <Icon type="linkEntry" color={theme.colors.dark} width="16px" height="16px" />
+              <div>Link</div>
+            </ContentHeader>
+
+            <Link>
+              <a href={url}>{url}</a>
+            </Link>
+
+            <ContentHeader>
+              <DocumentText color="dark-1" size="16px" />
+              <div>About</div>
+            </ContentHeader>
+
+            <Description>{description}</Description>
+          </Column>
+          <Column size={3}>
+            <AttributesHeader>Select profile attributes to share:</AttributesHeader>
+            <AttributesList>
+              {attributes.map(attribute => (
+                <Attribute key={attribute}>
+                  <Checkbox
+                    label={attributeLabelMap[attribute]}
+                    checked={state[attribute]}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      changeState({ ...state, [attribute]: e.target.checked })
+                    }
+                  />
+                </Attribute>
+              ))}
+            </AttributesList>
+          </Column>
+        </ContentContainer>
+        <Divider />
+        <FooterContainer>
+          <Column size={3}>
+            <Notification>
+              Please make sure that {name} displays the same security code: <Nonce>{nonce}</Nonce>
+            </Notification>
+          </Column>
+          <ButtonContainer>
+            <Button buttonType="primary" ghost={true} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button buttonType="primary" onClick={() => onOk(state as AddAppFormData)}>
+              Authorize
+            </Button>
+          </ButtonContainer>
+        </FooterContainer>
+      </Column>
     </Modal>
   )
 }

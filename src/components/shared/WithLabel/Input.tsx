@@ -16,9 +16,10 @@ const InputWithLabel = ({
   input,
   type,
   meta: { touched, error },
+  ...props
 }: InputWithLabelProps) => (
-  <WithLabel label={label} error={error}>
-    <Input {...input} type={type} placeholder={placeholder} />
+  <WithLabel label={label} error={touched ? error : ''}>
+    <Input {...input} type={type} placeholder={placeholder} {...props} />
   </WithLabel>
 )
 

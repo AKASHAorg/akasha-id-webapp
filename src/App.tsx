@@ -6,7 +6,8 @@ import { Action, Dispatch } from 'redux'
 
 import fetchPublicProfilesActionCreator from './actions/landing/fetch-public-profiles'
 import { ExportProfileModal } from './components/modals/ExportProfileModal'
-import { RemoveAppModal } from './components/modals/RemoveAppModal'
+import { Account } from './components/pages/Account'
+import { AppDetails } from './components/pages/AppDetails'
 import { Apps } from './components/pages/Apps'
 import { Landing } from './components/pages/Landing'
 import { Profile } from './components/pages/Profile'
@@ -24,7 +25,7 @@ export interface AppProps extends RouteComponentProps {
 
 const enchance = connect(
   (state: State): Pick<AppProps, 'signedIn'> => ({
-    signedIn: state.profile.signedIn,
+    signedIn: state.account.signedIn,
   }),
   (dispatch: Dispatch<Action>) => ({
     fetchPublicProfiles: () => dispatch(fetchPublicProfilesActionCreator()),
@@ -77,6 +78,25 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
           </WithRedirect>
         )}
       />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.account}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Account />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        path={routes.appDetails}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <AppDetails />
+          </WithRedirect>
+        )}
+      />
       <Route strict={true} path={routes.registerApp} render={() => <RegisterApp />} />
       <Route
         exact={true}
@@ -99,7 +119,6 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
         draggable={false}
         pauseOnHover={false}
       />
-      <RemoveAppModal />
       <ExportProfileModal />
     </>
   )

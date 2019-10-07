@@ -1,5 +1,4 @@
 import { AkashaThemeProvider } from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import lightTheme from '@akashaproject/design-system/dist/styles/themes/light-theme'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -13,6 +12,9 @@ import { init } from './did'
 import rootReducer from './reducers'
 import rootSaga from './sagas'
 import * as serviceWorker from './serviceWorker'
+import theme from './theme'
+
+import './style.css'
 
 init().then(() => {
   const sagaMiddleware = createSagaMiddleware()
@@ -22,7 +24,7 @@ init().then(() => {
 
   ReactDOM.render(
     <Provider store={store}>
-      <AkashaThemeProvider theme={lightTheme}>
+      <AkashaThemeProvider theme={theme}>
         <HashRouter>
           <App />
         </HashRouter>

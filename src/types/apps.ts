@@ -1,6 +1,8 @@
 import { ProfileData } from './users'
 
-export interface Claim extends Partial<ProfileData> {}
+export interface Claim extends Partial<ProfileData> {
+  attributes: string[]
+}
 
 export interface App {
   // token: string
@@ -8,7 +10,6 @@ export interface App {
   description: string
   icon: string
   url: string
-  claim?: Claim
 }
 
 export interface AppRequest {
