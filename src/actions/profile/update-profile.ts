@@ -1,12 +1,12 @@
 import { Action } from 'redux'
 
 import { UPDATE_PROFILE } from '../../consts/actions/profile'
-import { ProfileFormData } from '../../types/users'
+import { ProfileData } from '../../types/users'
 
-export interface UpdateProfileAction extends Action<string>, ProfileFormData {}
+export interface UpdateProfileAction extends Action<string>, ProfileData {}
 
-const updateProfile = (profileFormData: ProfileFormData): UpdateProfileAction => ({
-  ...profileFormData,
+const updateProfile = (profileData: ProfileData): UpdateProfileAction => ({
+  ...profileData,
   type: UPDATE_PROFILE,
 })
 

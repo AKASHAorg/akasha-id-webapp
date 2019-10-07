@@ -1,0 +1,39 @@
+html, body {
+  background: #fafafa;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "SF UI Text Regular";
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: -0.08px;
+  line-height: 18px;
+  font-weight: normal;
+  src: url(./fonts/SFUIText-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF UI Text Semibold';
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: -0.08px;
+  line-height: 18px;
+  font-weight: 600;
+  src: url(./fonts/SFUIText-Semibold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'SF UI Display Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./fonts/SFUIDisplay-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'HK Grotesk Medium';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./fonts/HKGrotesk-Medium.woff) format('woff');
+}

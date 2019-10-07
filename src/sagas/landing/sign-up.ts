@@ -5,7 +5,7 @@ import signUpActionCreator from '../../actions/landing/sign-up'
 import { StartSignUpAction } from '../../actions/landing/start-sign-up'
 import { START_SIGN_UP } from '../../consts/actions/landing'
 import { wallet } from '../../did'
-import { Profile, ProfileFormData } from '../../types/users'
+import { Profile, ProfileData } from '../../types/users'
 
 function* signUpImplementation(action: StartSignUpAction) {
   try {
@@ -18,7 +18,7 @@ function* signUpImplementation(action: StartSignUpAction) {
     const profile: Profile | undefined = publicProfiles.find(u => u.id === userId)
 
     if (profile !== undefined) {
-      const data: Omit<ProfileFormData, 'name'> = {
+      const data: ProfileData = {
         address: {
           addressLocality: '',
           addressRegion: '',
@@ -34,6 +34,7 @@ function* signUpImplementation(action: StartSignUpAction) {
         photo: '',
         telephone: '',
         url: '',
+        about: '',
       }
       yield call([wallet, wallet.updateProfile], data)
 

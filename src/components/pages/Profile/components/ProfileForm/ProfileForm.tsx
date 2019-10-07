@@ -1,134 +1,110 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import React from 'react'
 import { Field, InjectedFormProps } from 'redux-form'
-import styled from 'styled-components'
 
-import { ProfileFormData } from '../../../../../types/users'
-import isRequired from '../../../../../validators/is-required'
-import { Input } from '../../../../shared/WithLabel'
-import { InputWithLabelProps } from '../../../../shared/WithLabel/Input'
+import { ProfileData } from '../../../../../types/users'
+import { Input, Textarea } from '../../../../shared/WithLabel'
+import { ImageField } from './components/ImageField'
+import {
+  AboutContainer,
+  AboutFootnote,
+  ButtonContainer,
+  DateContainer,
+  DateDivider,
+  DeleteContainer,
+  DeleteHeader,
+  DeleteText,
+  DeleteTextContainer,
+  Divider,
+  ImageContainer,
+  NameContainer,
+  PhotoContainer,
+  PictureContainer,
+  StyledButton,
+  UserNameHeader,
+} from './StyledProfileForm'
 
 export interface ProfileFormProps {
+  name: string
   onDeleteProfile: () => void
 }
 
-const StyledRow = styled.div`
-  width: 300px;
-`
-
-const StyledButton = styled(Button)`
-  :not(:last-child) {
-    margin-right: 8px;
-  }
-`
-
-const FormRow = (props: InputWithLabelProps) => {
-  return (
-    <StyledRow>
-      <Input {...props} />
-    </StyledRow>
-  )
-}
-
-const nameIsRequired = isRequired('Name cannot be empty')
-
 const ProfileForm: React.FC<
-  ProfileFormProps & InjectedFormProps<ProfileFormData, ProfileFormProps, string>
-> = ({ handleSubmit, onDeleteProfile }) => {
+  ProfileFormProps & InjectedFormProps<ProfileData, ProfileFormProps, string>
+> = ({ name, handleSubmit, onDeleteProfile, reset }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Field
-          name="address.addressLocality"
-          label="Address locality"
-          placeholder="Address locality"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="address.addressRegion"
-          label="Address region"
-          placeholder="Address region"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="address.postalCode"
-          label="Postal code"
-          placeholder="Postal code"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="address.streetAddress"
-          label="Street address"
-          placeholder="Street address"
-          type="text"
-          component={FormRow}
-        />
-        <Field name="email" label="E-mail" placeholder="E-mail" type="text" component={FormRow} />
-        <Field name="photo" label="Photo" placeholder="Photo" type="text" component={FormRow} />
-        <Field
-          name="picture"
-          label="Picture"
-          placeholder="Picture"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="jobTitle"
-          label="Job title"
-          placeholder="Job title"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="name"
-          label="Name"
-          placeholder="Name"
-          type="text"
-          component={FormRow}
-          validate={nameIsRequired}
-        />
-        <Field
-          name="givenName"
-          label="Given name"
-          placeholder="Given name"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="familyName"
-          label="Family name"
-          placeholder="Family name"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="birthDate"
-          label="Birth date"
-          placeholder="Birth date"
-          type="text"
-          component={FormRow}
-        />
-        <Field
-          name="telephone"
-          label="Telephone"
-          placeholder="Telephone"
-          type="text"
-          component={FormRow}
-        />
-        <Field name="url" label="Url" placeholder="Url" type="text" component={FormRow} />
-      </form>
-      <StyledRow>
-        <StyledButton buttonType="alert" onClick={onDeleteProfile}>
-          Delete profile
-        </StyledButton>
+        <UserNameHeader>{name}</UserNameHeader>
+        <DateContainer>
+          Created on 22 July 2019
+          <DateDivider>&bull;</DateDivider>
+          Last update 8 September 2019
+        </DateContainer>
 
-        <StyledButton buttonType="primary" onClick={handleSubmit}>
-          Update profile
-        </StyledButton>
-      </StyledRow>
+        <ImageContainer>
+          <Field name="photo" label="Avatar" component={ImageField} container={PhotoContainer} />
+          <div />
+          <Field
+            name="picture"
+            label="Cover image"
+            component={ImageField}
+            container={PictureContainer}
+          />
+        </ImageContainer>
+
+        <NameContainer>
+          <Field
+            name="givenName"
+            label="Name"
+            placeholder="Type your name"
+            component={Input}
+            validate={() => undefined}
+          />
+          <div />
+          <Field
+            name="email"
+            label="Email"
+            placeholder="email@email.com"
+            component={Input}
+            validate={() => undefined}
+          />
+        </NameContainer>
+
+        <AboutContainer>
+          <Field
+            name="about"
+            label="About me"
+            component={Textarea}
+            validate={() => undefined}
+            resize="none"
+            maxLength={120}
+          />
+          <AboutFootnote>The About section could have max. 120 characters.</AboutFootnote>
+        </AboutContainer>
+
+        <ButtonContainer>
+          <StyledButton ghost={true} buttonType="primary" onClick={reset}>
+            Cancel
+          </StyledButton>
+          <StyledButton buttonType="primary" onClick={handleSubmit}>
+            Create ID
+          </StyledButton>
+        </ButtonContainer>
+      </form>
+
+      <Divider />
+
+      <DeleteContainer>
+        <DeleteTextContainer>
+          <DeleteHeader>Delete Profile</DeleteHeader>
+          <DeleteText>Once you delete your profile, there is no going back.</DeleteText>
+          <DeleteText>Please be certain.</DeleteText>
+        </DeleteTextContainer>
+        <Button buttonType="primary" onClick={onDeleteProfile}>
+          Delete Profile
+        </Button>
+      </DeleteContainer>
     </>
   )
 }

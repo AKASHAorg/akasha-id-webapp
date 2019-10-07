@@ -1,49 +1,43 @@
-import Button from '@akashaproject/design-system/dist/components/Button'
-import React from 'react'
-import styled from 'styled-components'
+import Icon from '@akashaproject/design-system/dist/components/Icon'
+import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
+import React, { useContext } from 'react'
 
+import * as routes from '../../../../../consts/routes'
 import { App as AppType } from '../../../../../types/apps'
+import {
+  StyledDate,
+  StyledHeader,
+  StyledImageContainer,
+  StyledLink,
+  StyledRow,
+  StyledStatus,
+  StyledSubheaderContainer,
+  StyledTextContainer,
+} from './StyledApp'
 
 export interface AppProps extends React.Props<any>, AppType {
   token: string
-  onRemoveApp: (token: string) => void
 }
 
-const StyledRow = styled.li`
-  width: calc(66px * 6 + 8px * 5);
-  list-style: none;
-  box-sizing: border-box;
-  border: 1px solid ${props => props.theme.colors.border};
-  border-radius: ${props => props.theme.shapes.borderRadius};
-  padding: 8px;
-  margin-top: 24px;
-  margin-right: 24px;
-`
+const App: React.FC<AppProps> = ({ token, name, icon }: AppProps) => {
+  const theme = useContext(AkashaThemeContext)
 
-const StyledButton = styled(Button)`
-  margin-left: 24px;
-`
-
-const App: React.FC<AppProps> = ({
-  token,
-  name,
-  description,
-  icon,
-  url,
-  onRemoveApp,
-}: AppProps) => {
   return (
     <StyledRow>
-      <h3>
-        <a href={url}>
-          <img src={icon} alt={name} />
-        </a>
-        {name}
-        <StyledButton onClick={() => onRemoveApp(token)} small={true} buttonType="alert">
-          Delete app
-        </StyledButton>
-      </h3>
-      <p>{description}</p>
+      <StyledImageContainer>
+        <img src={icon} alt={name} />
+      </StyledImageContainer>
+      <StyledTextContainer>
+        <StyledHeader>{name}</StyledHeader>
+        <StyledSubheaderContainer>
+          <StyledStatus>Active</StyledStatus>
+          <StyledDate>Profile requested on 20 July 2019</StyledDate>
+        </StyledSubheaderContainer>
+      </StyledTextContainer>
+      <StyledLink to={routes.appDetails.replace(routes.tokenParam, token)}>
+        <div>See detail</div>
+        <Icon type="arrowRight" color={theme.colors.dark} width="16px" height="16px" />
+      </StyledLink>
     </StyledRow>
   )
 }

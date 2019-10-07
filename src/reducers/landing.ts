@@ -1,10 +1,10 @@
 import { Action } from 'redux'
 
+import { UpdateAccountAction } from '../actions/account/update-account'
 import { SetPublicProfilesAction } from '../actions/landing/set-public-profiles'
 import { SetRegisterAppLinkAction } from '../actions/landing/set-register-app-link'
 import { SignUpAction } from '../actions/landing/sign-up'
 import { DeleteProfileAction } from '../actions/profile/delete-profile'
-import { UpdateProfileAction } from '../actions/profile/update-profile'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultLandingState, LandingState } from '../states/landing'
@@ -34,19 +34,19 @@ const deleteProfile = (
 ): LandingState => {
   return {
     ...state,
-    users: state.users.filter(user => user.id !== fullState.profile.userId),
+    users: state.users.filter(user => user.id !== fullState.account.userId),
   }
 }
 
-const updateProfile = (
+const updateAccount = (
   state: LandingState,
-  action: UpdateProfileAction,
+  action: UpdateAccountAction,
   fullState: State,
 ): LandingState => {
   return {
     ...state,
     users: state.users.map(user =>
-      user.id === fullState.profile.userId
+      user.id === fullState.account.userId
         ? {
             ...user,
             name: action.name,
@@ -79,8 +79,8 @@ const reducer = (
     case actions.landing.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
 
-    case actions.profile.UPDATE_PROFILE:
-      return updateProfile(state, action as UpdateProfileAction, fullState)
+    case actions.account.UPDATE_ACCOUNT:
+      return updateAccount(state, action as UpdateAccountAction, fullState)
 
     case actions.profile.DELETE_PROFILE:
       return deleteProfile(state, action as DeleteProfileAction, fullState)

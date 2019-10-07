@@ -9,7 +9,7 @@ import { State } from '../../states'
 function* deleteProfileImplementation() {
   try {
     const state: State = yield select()
-    yield call([wallet, wallet.removeProfile], state.profile.userId)
+    yield call([wallet, wallet.removeProfile], state.account.userId)
     yield put(deleteProfileActionCreator())
 
     notify('Profile has been deleted')

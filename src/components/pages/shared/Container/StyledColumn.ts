@@ -5,10 +5,10 @@ export interface ColumnProps {
 }
 
 const StyledColumn = styled.div<ColumnProps>`
-  width: calc(66px * ${props => props.size} + 8px * ${props => props.size - 1});
+  width: calc(91px * ${props => props.size} + 32px * ${props => props.size - 1});
 
   :not(:last-child) {
-    margin-right: 8px;
+    margin-right: 32px;
   }
 `
 

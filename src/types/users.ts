@@ -29,10 +29,7 @@ export interface ProfileData {
   birthDate: string
   telephone: string
   url: string
-}
-
-export interface ProfileFormData extends ProfileData {
-  name: string
+  about: string
 }
 
 export interface PasswordFormData {

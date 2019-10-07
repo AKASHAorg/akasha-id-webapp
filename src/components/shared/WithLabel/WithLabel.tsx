@@ -7,11 +7,6 @@ interface WithLabelProps {
 }
 
 const Label = styled.div`
-  margin-top: 8px;
-  margin-bottom: 8px;
-`
-
-const LabelRow = styled.div`
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -21,10 +16,16 @@ const LabelRow = styled.div`
 const LabelText = styled.span`
   text-transform: uppercase;
   color: ${props => props.theme.colors.darkGrey};
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.12px;
 `
 
 const ErrorText = styled.span`
   color: ${props => props.theme.colors.red};
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.12px;
 `
 
 const WithLabel: React.FC<React.PropsWithChildren<WithLabelProps>> = ({
@@ -33,13 +34,13 @@ const WithLabel: React.FC<React.PropsWithChildren<WithLabelProps>> = ({
   children,
 }) => {
   return (
-    <Label>
-      <LabelRow>
+    <div>
+      <Label>
         <LabelText>{label}</LabelText>
         <ErrorText>{error}</ErrorText>
-      </LabelRow>
+      </Label>
       <div>{children}</div>
-    </Label>
+    </div>
   )
 }
 
