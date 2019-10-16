@@ -5,28 +5,67 @@ const StyledRow = styled.li`
   background: ${props => props.theme.colors.white};
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid ${props => props.theme.colors.border};
-  border-radius: 1px;
-  padding: 24px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  border: 1px solid #edf0f5;
 
-  :not(:last-child) {
-    margin-bottom: 16px;
+  @media (max-width: 1443px) {
+    border-radius: 8px;
+
+    :not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  @media (min-width: 1444px) {
+    border-radius: 1px;
+
+    :not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+`
+
+const StyledLink = styled(NavLink)<NavLinkProps>`
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media (max-width: 1443px) {
+    padding: 10px 16px 12px 16px;
+  }
+
+  @media (min-width: 1444px) {
+    padding: 24px;
   }
 `
 
 const StyledImageContainer = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
   background: #f0f0f0;
   overflow: hidden;
+  box-sizing: border-box;
 
-  > img {
+  @media (max-width: 1443px) {
+    border: 1px solid rgba(19, 37, 64, 0.1);
+    width: 41px;
+    height: 41px;
+    border-radius: 4px;
+
+    > img {
+      width: 41px;
+      height: 41px;
+    }
+  }
+
+  @media (min-width: 1444px) {
     width: 40px;
     height: 40px;
+    border-radius: 20px;
+
+    > img {
+      width: 40px;
+      height: 40px;
+    }
   }
 `
 
@@ -36,11 +75,24 @@ const StyledTextContainer = styled.div`
 `
 
 const StyledHeader = styled.h4`
-  line-height: 20px;
-  font-weight: 600;
-  letter-spacing: -0.08px;
-  margin: 0 0 2px 0;
-  font-family: 'SF UI Text Semibold';
+  color: #132540;
+
+  @media (max-width: 1443px) {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'HK Grotesk Medium';
+  }
+
+  @media (min-width: 1444px) {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: -0.08px;
+    margin: 0 0 2px 0;
+    font-family: 'SF UI Text Semibold';
+  }
 `
 
 const StyledSubheaderContainer = styled.div`
@@ -57,6 +109,11 @@ const StyledStatus = styled.div`
   height: 20px;
   box-sizing: border-box;
   text-transform: uppercase;
+  color: ${props => props.theme.colors.darkGrey};
+
+  @media (max-width: 1443px) {
+    display: none;
+  }
 `
 
 const StyledDate = styled.div`
@@ -66,17 +123,31 @@ const StyledDate = styled.div`
   color: ${props => props.theme.colors.grey};
   padding: 2px 0;
   margin-left: 4px;
+
+  @media (max-width: 1443px) {
+    display: none;
+  }
 `
 
-const StyledLink = styled(NavLink)<NavLinkProps>`
-  border: 0;
+const StyledDescription = styled.div`
+  line-height: 18px;
+  font-size: 13px;
+  color: #949eb3;
+  font-weight: 500;
+  font-family: 'HK Grotesk Medium';
+
+  @media (min-width: 1444px) {
+    display: none;
+  }
+`
+
+const StyledArrow = styled.div`
   color: ${props => props.theme.colors.dark};
   line-height: 20px;
   letter-spacing: -0.08px;
   height: 20px;
   padding: 0;
   outline: 0;
-  margin-top: 15px;
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -86,6 +157,10 @@ const StyledLink = styled(NavLink)<NavLinkProps>`
   > svg {
     margin-left: 8px;
     margin-bottom: 2px;
+  }
+
+  @media (max-width: 1443px) {
+    display: none;
   }
 `
 
@@ -98,4 +173,6 @@ export {
   StyledStatus,
   StyledDate,
   StyledLink,
+  StyledArrow,
+  StyledDescription,
 }

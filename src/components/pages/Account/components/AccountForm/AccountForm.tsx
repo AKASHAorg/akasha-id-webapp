@@ -5,7 +5,7 @@ import { Field, InjectedFormProps } from 'redux-form'
 import { AccountFormData } from '../../../../../types/account'
 import isRequired from '../../../../../validators/is-required'
 import { Input } from '../../../../shared/WithLabel'
-import { AccountHeader, ButtonContainer, FieldContainer } from './StyledAccountForm'
+import { AccountHeader, ButtonContainer, FieldContainer, PasswordHeader } from './StyledAccountForm'
 
 const nameIsRequired = isRequired('Username cannot be empty')
 const passwordIsRequired = isRequired('Password cannot be empty')
@@ -15,7 +15,7 @@ const passwordConfirmationIsRequired = (value: string, values: { newPassword: st
 const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <AccountHeader>Account Settings</AccountHeader>
+      <AccountHeader>Account Information</AccountHeader>
       <FieldContainer>
         <Field
           name="name"
@@ -25,6 +25,8 @@ const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ han
           validate={nameIsRequired}
         />
       </FieldContainer>
+
+      <PasswordHeader>Change Password</PasswordHeader>
 
       <FieldContainer>
         <Field

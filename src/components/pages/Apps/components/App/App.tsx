@@ -5,7 +5,9 @@ import React, { useContext } from 'react'
 import * as routes from '../../../../../consts/routes'
 import { App as AppType } from '../../../../../types/apps'
 import {
+  StyledArrow,
   StyledDate,
+  StyledDescription,
   StyledHeader,
   StyledImageContainer,
   StyledLink,
@@ -19,24 +21,30 @@ export interface AppProps extends React.Props<any>, AppType {
   token: string
 }
 
-const App: React.FC<AppProps> = ({ token, name, icon }: AppProps) => {
+const App: React.FC<AppProps> = ({ token, name, description, icon }: AppProps) => {
   const theme = useContext(AkashaThemeContext)
 
   return (
     <StyledRow>
-      <StyledImageContainer>
-        <img src={icon} alt={name} />
-      </StyledImageContainer>
-      <StyledTextContainer>
-        <StyledHeader>{name}</StyledHeader>
-        <StyledSubheaderContainer>
-          <StyledStatus>Active</StyledStatus>
-          <StyledDate>Profile requested on 20 July 2019</StyledDate>
-        </StyledSubheaderContainer>
-      </StyledTextContainer>
       <StyledLink to={routes.appDetails.replace(routes.tokenParam, token)}>
-        <div>See detail</div>
-        <Icon type="arrowRight" color={theme.colors.dark} width="16px" height="16px" />
+        <StyledImageContainer>
+          <img src={icon} alt={name} />
+        </StyledImageContainer>
+
+        <StyledTextContainer>
+          <StyledHeader>{name}</StyledHeader>
+
+          <StyledSubheaderContainer>
+            <StyledStatus>Active</StyledStatus>
+            <StyledDate>Profile requested on 20 July 2019</StyledDate>
+            <StyledDescription>{description}</StyledDescription>
+          </StyledSubheaderContainer>
+        </StyledTextContainer>
+
+        <StyledArrow>
+          <div>See detail</div>
+          <Icon type="arrowRight" color={theme.colors.dark} width="16px" height="16px" />
+        </StyledArrow>
       </StyledLink>
     </StyledRow>
   )

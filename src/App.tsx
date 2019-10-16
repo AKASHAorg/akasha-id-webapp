@@ -11,7 +11,10 @@ import { AppDetails } from './components/pages/AppDetails'
 import { Apps } from './components/pages/Apps'
 import { Landing } from './components/pages/Landing'
 import { Profile } from './components/pages/Profile'
+import { Profiles } from './components/pages/Profiles'
 import { RegisterApp } from './components/pages/RegisterApp'
+import { Search } from './components/pages/Search'
+import { Settings } from './components/pages/Settings'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
 import { WithRedirect } from './components/shared/WithRedirect'
@@ -61,6 +64,16 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       <Route
         strict={true}
         exact={true}
+        path={routes.profiles}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Profiles />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
         path={routes.profile}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
@@ -94,6 +107,26 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
             <AppDetails />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.search}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Search />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.settings}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Settings />
           </WithRedirect>
         )}
       />

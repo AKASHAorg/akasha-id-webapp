@@ -1,7 +1,7 @@
-import { AddAppModalStep, App, AppRequest, Claim } from '../types/apps'
+import { AddAppModalStep, App, AppRequest, AppsList, Claim } from '../types/apps'
 
 export interface AppsState {
-  apps: { [token: string]: App }
+  apps: AppsList
   addAppModalStep: AddAppModalStep
   appRequest: AppRequest | null
   selectedApp?: App

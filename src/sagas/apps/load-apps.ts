@@ -4,11 +4,11 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import setApps from '../../actions/apps/set-apps'
 import { FETCH_APPS } from '../../consts/actions/apps'
 import { wallet } from '../../did'
-import { App } from '../../types/apps'
+import { AppsList } from '../../types/apps'
 
 function* fetchApps() {
   try {
-    const apps: { [token: string]: App } = yield call([wallet, wallet.apps])
+    const apps: AppsList = yield call([wallet, wallet.apps])
 
     yield put(setApps(apps))
   } catch (e) {

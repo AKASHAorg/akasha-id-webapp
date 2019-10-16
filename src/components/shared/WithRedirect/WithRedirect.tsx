@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import { appRequestLinkParam, landing, profile, registerApp } from '../../../consts/routes'
+import { appRequestLinkParam, landing, profiles, registerApp } from '../../../consts/routes'
 
 export interface WithRedirectProps {
   signedIn: boolean
@@ -31,7 +31,7 @@ const WithRedirect: React.FC<React.PropsWithChildren<WithRedirectProps>> = ({
     return <Redirect to={landing} />
   }
 
-  return <Redirect to={profile} />
+  return <Redirect to={profiles} />
 }
 
 export default WithRedirect

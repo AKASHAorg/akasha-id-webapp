@@ -5,12 +5,12 @@ const theme: DefaultTheme = {
   ...lightTheme,
   colors: {
     ...lightTheme.colors,
-    blue: '#2E3747',
-    darkBlue: '#2E3747',
+    blue: '#4E71FF',
+    darkBlue: '#4E71FF',
   },
   shapes: {
     ...lightTheme.shapes,
-    fontFamily: '"SF UI Text Regular", Arial, sans-serif',
+    fontFamily: '"HK Grotesk Medium"',
   },
   spacing: {
     ...lightTheme.spacing,
@@ -20,20 +20,20 @@ const theme: DefaultTheme = {
       ...lightTheme.spacing.components,
       input: {
         borderSize: '1px',
-        fontSize: '13px',
+        fontSize: '15px',
         iconPadding: '0px',
-        lineHeight: '18px',
-        padding: '7px 12.55px',
+        lineHeight: '20px',
+        padding: '10px 12.55px',
       },
       button: {
         borderWidth: '2px',
         fontSize: {
-          normal: '13px',
+          normal: '15px',
           small: '13px',
         },
         padding: {
-          normal: '7px 10px',
-          small: '7px 10px',
+          normal: '8px 16px 10px 16px',
+          small: '4px 8px',
         },
       },
     },

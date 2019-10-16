@@ -4,6 +4,7 @@ import { AppDetailsState, defaultAppDetailsState } from './app-details'
 import { AppsState, defaultAppsState } from './apps'
 import { defaultLandingState, LandingState } from './landing'
 import { defaultProfileState, ProfileState } from './profile'
+import { defaultSearchState, SearchState } from './search'
 
 export interface State {
   form: FormStateMap | undefined
@@ -12,6 +13,7 @@ export interface State {
   apps: AppsState
   account: AccountState
   appDetails: AppDetailsState
+  search: SearchState
 }
 
 const defaultState: State = {
@@ -21,6 +23,7 @@ const defaultState: State = {
   apps: defaultAppsState,
   account: defaultAccountState,
   appDetails: defaultAppDetailsState,
+  search: defaultSearchState,
 }
 
 export { defaultState }

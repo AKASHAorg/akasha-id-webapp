@@ -6,15 +6,27 @@ const StyledSidebarContainer = styled.div`
   height: 100vh;
   position: fixed;
   border-right: 1px solid #f2f2f2;
+
+  @media (max-width: 1443px) {
+    display: none;
+  }
 `
 
 const StyledContentContainer = styled.div`
-  margin-left: calc(2 * 91px + 2 * 32px);
-  width: calc(1444px - 2 * 91px - 2 * 32px);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+
+  @media (max-width: 1443px) {
+    width: 100vw;
+    margin-left: 0;
+  }
+
+  @media (min-width: 1444px) {
+    margin-left: calc(2 * 91px + 2 * 32px);
+    width: calc(1444px - 2 * 91px - 2 * 32px);
+  }
 `
 
 const StyledTopBar = styled.div`
@@ -35,14 +47,25 @@ const StyledTopBar = styled.div`
       color: ${props => props.theme.colors.dark};
     }
   }
+
+  @media (max-width: 1443px) {
+    display: none;
+  }
 `
 
 const StyledContentWrapper = styled.div`
-  margin-top: 48px;
-  margin-left: calc(2 * 91px + 2 * 32px);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+
+  @media (max-width: 1443px) {
+    margin: 0;
+  }
+
+  @media (min-width: 1444px) {
+    margin-top: 48px;
+    margin-left: calc(2 * 91px + 2 * 32px);
+  }
 `
 
 export { StyledSidebarContainer, StyledContentContainer, StyledTopBar, StyledContentWrapper }

@@ -15,10 +15,10 @@ const Label = styled.div`
 
 const LabelText = styled.span`
   text-transform: uppercase;
-  color: ${props => props.theme.colors.darkGrey};
-  font-size: 10px;
-  line-height: 12px;
-  letter-spacing: 0.12px;
+  color: #132540;
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 500;
 `
 
 const ErrorText = styled.span`
