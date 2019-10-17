@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const MobileTopContainer = styled.div`
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 56px;
   display: flex;
   background: #fff;
@@ -70,12 +70,6 @@ const SearchHeader = styled.h4`
   }
 `
 
-const StyledList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`
-
 export {
   MobileTopContainer,
   MobileSearchLabel,
@@ -83,5 +77,4 @@ export {
   MobileSearchClose,
   PageContainer,
   SearchHeader,
-  StyledList,
 }

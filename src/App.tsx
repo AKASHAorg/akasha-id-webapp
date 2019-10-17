@@ -9,8 +9,10 @@ import { ExportProfileModal } from './components/modals/ExportProfileModal'
 import { Account } from './components/pages/Account'
 import { AppDetails } from './components/pages/AppDetails'
 import { Apps } from './components/pages/Apps'
+import { DeleteProfile } from './components/pages/DeleteProfile'
+import { EditProfile } from './components/pages/EditProfile'
 import { Landing } from './components/pages/Landing'
-import { Profile } from './components/pages/Profile'
+import { ProfileDetails } from './components/pages/ProfileDetails'
 import { Profiles } from './components/pages/Profiles'
 import { RegisterApp } from './components/pages/RegisterApp'
 import { Search } from './components/pages/Search'
@@ -74,10 +76,30 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       <Route
         strict={true}
         exact={true}
-        path={routes.profile}
+        path={routes.profileDetails}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
-            <Profile />
+            <ProfileDetails />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.editProfile}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <EditProfile />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.deleteProfile}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <DeleteProfile />
           </WithRedirect>
         )}
       />

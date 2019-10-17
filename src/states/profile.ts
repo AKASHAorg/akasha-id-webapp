@@ -24,6 +24,7 @@ const defaultProfileState: ProfileState = {
   showExportProfileModal: false,
   exportProfileText: '',
   about: '',
+  location: '',
 }
 
 export { defaultProfileState }

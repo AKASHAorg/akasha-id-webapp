@@ -3,15 +3,7 @@ import AkashaThemeContext from '@akashaproject/design-system/dist/providers/Them
 import React, { useContext } from 'react'
 
 import * as routes from '../../../consts/routes'
-import {
-  Avatar,
-  AvatarLink,
-  SearchLink,
-  TopContainer,
-  TopHeader,
-  TopHeaderGrey,
-  TopSpace,
-} from './Styled'
+import { MenuLink, SearchLink, TopContainer, TopHeader, TopHeaderGrey, TopSpace } from './Styled'
 
 const MobileTopContainer: React.FC<{}> = () => {
   const theme = useContext(AkashaThemeContext)
@@ -26,12 +18,12 @@ const MobileTopContainer: React.FC<{}> = () => {
       <TopSpace />
 
       <SearchLink to={routes.search}>
-        <Icon type="search" width="20px" height="20px" color={theme.colors.blue} />
+        <Icon type="search" width="20px" height="20px" color={theme.colors.dark} />
       </SearchLink>
 
-      <AvatarLink to={routes.settings}>
-        <Avatar>johny.doe</Avatar>
-      </AvatarLink>
+      <MenuLink to={routes.settings}>
+        <Icon type="menu" width="20px" height="20px" color={theme.colors.dark} />
+      </MenuLink>
     </TopContainer>
   )
 }

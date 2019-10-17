@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 
 import Button from '@akashaproject/design-system/dist/components/Button'
-import { App as AppType, AppsList } from '../../../types/apps'
+import { Apps as AppsType } from '../../../types/apps'
+import { AppsList } from '../../shared/AppsList'
 import { MobileBottomContainer } from '../../shared/MobileBottomContainer'
 import { MobileTopContainer } from '../../shared/MobileTopContainer'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
-import { App } from './components/App'
 import {
   AppsHeader,
   MobileAppsHeader,
@@ -16,11 +16,10 @@ import {
   NoAppsLogo,
   NoAppsSubheader,
   PageContainer,
-  StyledAppsList,
 } from './StyledApps'
 
 export interface AppsProps {
-  apps: AppsList
+  apps: AppsType
   loadApps: () => void
 }
 
@@ -28,6 +27,7 @@ const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
   useEffect(() => {
     loadApps()
   }, [loadApps])
+
   return (
     <SidebarContainer>
       <MobileTopContainer />
@@ -53,13 +53,7 @@ const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
             </NoAppsContainer>
           )}
 
-          {Object.entries(apps).length > 0 && (
-            <StyledAppsList>
-              {Object.entries(apps).map(([token, app]: [string, AppType]) => (
-                <App key={token} token={token} {...app} />
-              ))}
-            </StyledAppsList>
-          )}
+          {Object.entries(apps).length > 0 && <AppsList apps={apps} />}
         </PageContainer>
       </Column>
 

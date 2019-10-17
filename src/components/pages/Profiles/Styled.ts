@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { ProfilesList } from '../../shared/ProfilesList'
+
 const ProfilesHeader = styled.h3`
   line-height: 21px;
   font-size: 16px;
@@ -23,7 +25,6 @@ const MobileProfilesHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
 
   @media (min-width: 1444px) {
     display: none;
@@ -40,7 +41,6 @@ const MobileProfilesHeader = styled.h3`
 
 const NoProfilesContainer = styled.div`
   margin-top: 88px;
-  margin-bottom: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +76,10 @@ const NoProfilesSubheader = styled.div`
   text-align: center;
 `
 
+const StyledProfilesList = styled(ProfilesList)`
+  margin: 20px 0 0 0;
+`
+
 export {
   ProfilesHeader,
   PageContainer,
@@ -85,4 +89,5 @@ export {
   NoProfilesLogo,
   NoProfilesHeader,
   NoProfilesSubheader,
+  StyledProfilesList,
 }

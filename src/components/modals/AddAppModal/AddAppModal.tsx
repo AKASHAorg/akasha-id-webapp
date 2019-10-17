@@ -1,3 +1,4 @@
+import Button from '@akashaproject/design-system/dist/components/Button'
 import Checkbox from '@akashaproject/design-system/dist/components/Checkbox'
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
@@ -6,7 +7,6 @@ import { DocumentText } from 'grommet-icons'
 import React, { useContext, useState } from 'react'
 import { css } from 'styled-components'
 
-import Button from '@akashaproject/design-system/dist/components/Button'
 import { AddAppFormData, AddAppModalStep } from '../../../types/apps'
 import { Column } from '../../pages/shared/Container'
 import {

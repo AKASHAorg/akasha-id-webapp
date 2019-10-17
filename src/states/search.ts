@@ -1,8 +1,8 @@
-import { AppsList } from '../types/apps'
+import { Apps } from '../types/apps'
 
 export interface SearchState {
   searchText: string
-  apps: AppsList
+  apps: Apps
 }
 
 const defaultSearchState: SearchState = {

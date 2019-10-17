@@ -1,13 +1,13 @@
 import { Action } from 'redux'
 
 import { SET_APPS } from '../../consts/actions/apps'
-import { AppsList } from '../../types/apps'
+import { Apps } from '../../types/apps'
 
 export interface SetAppsAction extends Action<string> {
-  apps: AppsList
+  apps: Apps
 }
 
-const setApps = (apps: AppsList): SetAppsAction => ({
+const setApps = (apps: Apps): SetAppsAction => ({
   apps,
   type: SET_APPS,
 })

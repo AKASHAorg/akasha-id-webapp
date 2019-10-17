@@ -35,6 +35,7 @@ function* signUpImplementation(action: StartSignUpAction) {
         telephone: '',
         url: '',
         about: '',
+        location: '',
       }
       yield call([wallet, wallet.updateProfile], data)
 

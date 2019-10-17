@@ -1,15 +1,5 @@
 import styled from 'styled-components'
 
-const StyledAppsList = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  list-style: none;
-`
-
 const AppsHeader = styled.h3`
   line-height: 21px;
   font-size: 16px;
@@ -87,7 +77,6 @@ const NoAppsSubheader = styled.div`
 `
 
 export {
-  StyledAppsList,
   AppsHeader,
   PageContainer,
   MobileAppsHeaderContainer,

@@ -4,12 +4,12 @@ import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import { ProfileForm } from './components/ProfileForm'
 
-export interface ProfileProps {
+export interface EditProfileProps {
   userId: string
   loadProfile: () => void
 }
 
-const Profile: React.FC<ProfileProps> = ({ userId, loadProfile }) => {
+const Profile: React.FC<EditProfileProps> = ({ userId, loadProfile }) => {
   useEffect(() => {
     loadProfile()
   }, [loadProfile, userId])

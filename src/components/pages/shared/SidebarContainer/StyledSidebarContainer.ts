@@ -19,7 +19,7 @@ const StyledContentContainer = styled.div`
   justify-content: flex-start;
 
   @media (max-width: 1443px) {
-    width: 100vw;
+    width: 100%;
     margin-left: 0;
   }
 
@@ -60,6 +60,7 @@ const StyledContentWrapper = styled.div`
 
   @media (max-width: 1443px) {
     margin: 0;
+    width: 100%;
   }
 
   @media (min-width: 1444px) {

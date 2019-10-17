@@ -8,7 +8,7 @@ export interface ColumnProps {
 
 const StyledColumn = styled.div<ColumnProps>`
   @media (max-width: 1443px) {
-    width: 100vw;
+    width: 100%;
 
     ${props => {
       if (props.hideMobile) {

@@ -2,7 +2,7 @@ import { Link, LinkProps } from 'react-router-dom'
 import styled from 'styled-components'
 
 const TopContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 56px;
   display: flex;
   background: #fff;

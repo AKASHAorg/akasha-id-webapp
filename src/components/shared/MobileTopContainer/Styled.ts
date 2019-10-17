@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const TopContainer = styled.div`
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 52px;
   display: flex;
   background: #fff;
@@ -42,27 +42,9 @@ const SearchLink = styled(NavLink)<NavLinkProps>`
   height: 20px;
 `
 
-const AvatarLink = styled(NavLink)<NavLinkProps>`
-  line-height: 18px;
-  letter-spacing: 0.07px;
-  font-size: 13px;
-  color: #132540;
-  font-family: 'HK Grotesk Medium';
-  text-decoration: none;
-
-  :visited,
-  :hover {
-    color: #132540;
-  }
-`
-
-const Avatar = styled.div`
+const MenuLink = styled(NavLink)<NavLinkProps>`
   margin-left: 16px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  border: 1px solid #edf0f5;
-  box-sizing: border-box;
-  padding: 4px 12px 6px;
+  height: 20px;
 `
 
-export { TopContainer, TopHeader, TopHeaderGrey, TopSpace, SearchLink, AvatarLink, Avatar }
+export { TopContainer, TopHeader, TopHeaderGrey, TopSpace, SearchLink, MenuLink }

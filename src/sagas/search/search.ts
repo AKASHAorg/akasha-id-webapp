@@ -4,13 +4,13 @@ import { SearchAction } from '../../actions/search/search'
 import setSearchResult from '../../actions/search/set-search-result'
 import { SEARCH } from '../../consts/actions/search'
 import { wallet } from '../../did'
-import { AppsList } from '../../types/apps'
+import { Apps } from '../../types/apps'
 
 function* searchImplementation(searchAction: SearchAction) {
   try {
-    const apps: AppsList = yield call([wallet, wallet.apps])
+    const apps: Apps = yield call([wallet, wallet.apps])
 
-    const filteredApps: AppsList = Object.fromEntries(
+    const filteredApps: Apps = Object.fromEntries(
       Object.entries(apps).filter(([token, app]) => app.name.match(searchAction.searchText)),
     )
 

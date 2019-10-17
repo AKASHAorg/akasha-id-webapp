@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const MobileTopContainer = styled.div`
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 56px;
   display: flex;
   background: #fff;
@@ -43,7 +43,7 @@ const TopContainerLabel = styled.div`
 
 const PageContainer = styled.div`
   @media (max-width: 1443px) {
-    width: 100vw;
+    width: 100%;
     padding: 88px 24px 24px 24px;
     box-sizing: border-box;
   }

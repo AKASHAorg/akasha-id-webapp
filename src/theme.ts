@@ -36,6 +36,20 @@ const theme: DefaultTheme = {
           small: '4px 8px',
         },
       },
+      popover: {
+        borderWidth: '1px',
+        width: 'auto',
+        searchPopover: {
+          padding: '4px',
+          maxHeight: '100px',
+          iconSize: '18px',
+          iconGap: '8px',
+        },
+        actionPopover: {
+          padding: '16px',
+          buttonGap: '8px',
+        },
+      },
     },
   },
 }

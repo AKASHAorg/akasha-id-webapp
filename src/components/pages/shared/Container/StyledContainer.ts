@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const StyledContainer = styled.div`
   @media (max-width: 1443px) {
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

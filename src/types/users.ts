@@ -30,6 +30,7 @@ export interface ProfileData {
   telephone: string
   url: string
   about: string
+  location: string
 }
 
 export interface PasswordFormData {

@@ -6,7 +6,9 @@ const landing = '/'
 const signUp = '/sign-up/'
 const signIn = `/sign-in/${userIdParam}/`
 const profiles = '/profiles/'
-const profile = '/profile/'
+const profileDetails = '/profile-details/'
+const editProfile = '/edit-profile/'
+const deleteProfile = '/delete-profile/'
 const apps = '/apps/'
 const account = '/account/'
 const registerApp = `/register-app/${appRequestLinkParam}`
@@ -23,7 +25,9 @@ export {
   signUp,
   signIn,
   profiles,
-  profile,
+  profileDetails,
+  editProfile,
+  deleteProfile,
   apps,
   account,
   registerApp,

@@ -70,7 +70,7 @@ const StyledImageContainer = styled.div`
 `
 
 const StyledTextContainer = styled.div`
-  margin-left: 8px;
+  margin-left: 11.5px;
   flex-grow: 1;
 `
 
@@ -141,29 +141,6 @@ const StyledDescription = styled.div`
   }
 `
 
-const StyledArrow = styled.div`
-  color: ${props => props.theme.colors.dark};
-  line-height: 20px;
-  letter-spacing: -0.08px;
-  height: 20px;
-  padding: 0;
-  outline: 0;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  > svg {
-    margin-left: 8px;
-    margin-bottom: 2px;
-  }
-
-  @media (max-width: 1443px) {
-    display: none;
-  }
-`
-
 export {
   StyledRow,
   StyledImageContainer,
@@ -173,6 +150,5 @@ export {
   StyledStatus,
   StyledDate,
   StyledLink,
-  StyledArrow,
   StyledDescription,
 }

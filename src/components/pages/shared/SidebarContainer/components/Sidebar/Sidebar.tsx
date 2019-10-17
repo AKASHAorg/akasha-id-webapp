@@ -20,7 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSignOut }) => {
         <Logo>akasha.id</Logo>
         <MenuList>
           <MenuItem>
-            <NavLink to={routes.profile}>
+            <NavLink to={routes.editProfile}>
               <Icon type="profileOverview" color={theme.colors.grey} width="18px" height="20px" />
               <div>Profile</div>
             </NavLink>

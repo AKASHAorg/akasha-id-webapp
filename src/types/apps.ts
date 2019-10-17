@@ -4,7 +4,7 @@ export interface Claim extends Partial<ProfileData> {
   attributes: string[]
 }
 
-export interface AppsList {
+export interface Apps {
   [key: string]: App
 }
 

@@ -3,10 +3,10 @@ import AkashaThemeContext from '@akashaproject/design-system/dist/providers/Them
 import React, { ChangeEvent, useContext } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
-import { AppsList } from '../../../types/apps'
+import { Apps } from '../../../types/apps'
+import { AppsList } from '../../shared/AppsList'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
-import { App } from './components/App'
 import {
   MobileSearchClose,
   MobileSearchInput,
@@ -14,11 +14,10 @@ import {
   MobileTopContainer,
   PageContainer,
   SearchHeader,
-  StyledList,
 } from './StyledSearch'
 
 export interface SearchProps extends RouteComponentProps<any> {
-  apps: AppsList
+  apps: Apps
   searchText: string
   search: (text: string) => void
 }
@@ -46,11 +45,7 @@ const Search: React.FC<SearchProps> = ({ apps, searchText, history, search }) =>
         <PageContainer>
           <SearchHeader>0 Persona</SearchHeader>
           <SearchHeader>{Object.keys(apps).length} applications</SearchHeader>
-          <StyledList>
-            {Object.entries(apps).map(([token, app]) => (
-              <App key={token} token={token} {...app} />
-            ))}
-          </StyledList>
+          <AppsList apps={apps} />
         </PageContainer>
       </Column>
     </SidebarContainer>
