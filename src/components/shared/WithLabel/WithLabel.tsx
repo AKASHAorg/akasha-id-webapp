@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { fonts } from '../../../styles'
+
 interface WithLabelProps {
   label: string
   error: string
@@ -14,11 +16,7 @@ const Label = styled.div`
 `
 
 const LabelText = styled.span`
-  text-transform: uppercase;
-  color: #132540;
-  font-size: 11px;
-  line-height: 13px;
-  font-weight: 500;
+  ${fonts.textLabel}
 `
 
 const ErrorText = styled.span`

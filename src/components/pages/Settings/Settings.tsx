@@ -2,38 +2,32 @@ import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { Download } from 'grommet-icons'
 import React, { useContext } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import * as routes from '../../../consts/routes'
+import { MobileTopBarWithArrowCancelButton } from '../../shared/MobileTopBarWithArrowCancelButton'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import {
-  BackButton,
   Credits,
   MenuLink,
   MenuList,
   MenuRow,
   PageContainer,
   SignOutButton,
-  TopContainer,
   Version,
 } from './StyledSettings'
 
-export interface SideMenuProps extends RouteComponentProps<any> {
+export interface SideMenuProps {
   onSignOut: () => void
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({ onSignOut, history }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ onSignOut }) => {
   const theme = useContext(AkashaThemeContext)
 
   return (
     <SidebarContainer>
       <Column size={6}>
-        <TopContainer>
-          <BackButton onClick={history.goBack}>
-            <Icon type="back" width="20px" height="20px" color={theme.colors.dark} />
-          </BackButton>
-        </TopContainer>
+        <MobileTopBarWithArrowCancelButton />
 
         <PageContainer>
           <MenuList>
@@ -79,4 +73,4 @@ const SideMenu: React.FC<SideMenuProps> = ({ onSignOut, history }) => {
   )
 }
 
-export default withRouter(SideMenu)
+export default SideMenu

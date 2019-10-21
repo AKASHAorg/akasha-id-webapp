@@ -1,24 +1,6 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const MobileTopContainer = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 56px;
-  display: flex;
-  background: #fff;
-  box-shadow: 0 1px 0 0 rgba(46, 55, 71, 0.1);
-  align-items: center;
-  justify-content: flex-start;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: 18px 12px 16px;
-  z-index: 10;
-
-  @media (min-width: 1444px) {
-    display: none;
-  }
-`
+import { screen } from '../../../styles'
 
 const MobileSearchLabel = styled.label`
   display: flex;
@@ -50,9 +32,9 @@ const MobileSearchClose = styled.button`
 `
 
 const PageContainer = styled.div`
-  @media (max-width: 1443px) {
+  ${screen.onMobile(css`
     margin: 88px 24px 24px 24px;
-  }
+  `)}
 `
 
 const SearchHeader = styled.h4`
@@ -70,11 +52,4 @@ const SearchHeader = styled.h4`
   }
 `
 
-export {
-  MobileTopContainer,
-  MobileSearchLabel,
-  MobileSearchInput,
-  MobileSearchClose,
-  PageContainer,
-  SearchHeader,
-}
+export { MobileSearchLabel, MobileSearchInput, MobileSearchClose, PageContainer, SearchHeader }

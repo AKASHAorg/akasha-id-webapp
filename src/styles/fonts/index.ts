@@ -1,0 +1,8 @@
+export { default as greyText } from './grey-text'
+export { default as greyTextBig } from './grey-text-big'
+export { default as text } from './text'
+export { default as textBold } from './text-bold'
+export { default as textSmall } from './text-small'
+export { default as textLabel } from './text-label'
+export { default as textHeader } from './text-header'
+export { default as greyTextLabel } from './grey-text-label'

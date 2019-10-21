@@ -1,24 +1,7 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const MobileTopContainer = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 52px;
-  display: flex;
-  padding: 16px;
-  background: #fff;
-  box-shadow: 0 1px 0 0 #edf0f5, 0 4px 16px 0 rgba(83, 98, 124, 0.06);
-  align-items: center;
-  justify-content: flex-start;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  z-index: 10;
-
-  @media (min-width: 1444px) {
-    display: none;
-  }
-`
+import { borders, fonts, screen } from '../../../styles'
+import { MobilePageContainer } from '../../shared/MobilePageContainer'
 
 const BackButton = styled.button`
   width: 20px;
@@ -29,13 +12,10 @@ const BackButton = styled.button`
 `
 
 const TopContainerLabel = styled.div`
+  ${fonts.textBold}
+
   flex-grow: 1;
-  color: #132540;
-  font-family: 'HK Grotesk Medium';
-  font-size: 15px;
-  line-height: 22px;
   letter-spacing: -0.25px;
-  font-weight: 600;
   text-align: center;
 `
 
@@ -110,49 +90,36 @@ const PhotoButton = styled.button`
   outline: none;
 `
 
-const FormContainer = styled.div`
-  @media (max-width: 1443px) {
-    width: 100%;
-    padding: 24px 16px 32px 16px;
-    box-sizing: border-box;
-  }
+const FormContainer = styled(MobilePageContainer)`
+  ${screen.onMobile(css`
+    padding-top: 24px;
+  `)}
 `
 
 const NameHeader = styled.h3`
+  ${fonts.textHeader}
+
   margin: 0;
-  color: #132540;
-  font-family: 'HK Grotesk Medium';
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 28px;
 `
 
 const About = styled.div`
-  font-family: 'HK Grotesk Medium';
-  color: #949eb3;
-  font-size: 15px;
-  line-height: 22px;
+  ${fonts.greyTextBig}
 `
 
 const HeaderDivider = styled.div`
-  border-top: 1px solid #edf0f5;
-  height: 0;
-  width: 100%;
-  margin: 24px 0;
+  ${borders.dividerHorizontal('24px', '24px')}
 `
 
 const FormData = styled.ul`
   list-style: none;
-  margin: 0;
+  margin: 0 0 24px 0;
   padding: 0;
 `
 
 const FormDataRow = styled.li`
+  ${fonts.text}
+
   padding: 0;
-  color: #132540;
-  font-size: 15px;
-  line-height: 22px;
-  font-family: 'HK Grotesk Medium';
 
   :not(:last-child) {
     margin-bottom: 20px;
@@ -160,12 +127,9 @@ const FormDataRow = styled.li`
 `
 
 const FormDataRowHeader = styled.h5`
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 13px;
-  color: #949eb3;
+  ${fonts.greyTextLabel}
+
   margin: 0 0 2px 0;
-  text-transform: uppercase;
 `
 
 const AppsContainer = styled.div`
@@ -183,16 +147,41 @@ export interface AppsHeaderProps {
 }
 
 const AppsHeader = styled.h4<AppsHeaderProps>`
-  margin: 0 0 0 ${props => (props.withApps ? '20px' : '12px')};
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 13px;
-  font-family: 'HK Grotesk Medium';
-  color: #132540;
+  ${fonts.textLabel}
+
+  margin: 0 0 ${props => (props.withApps ? '20px' : '12px')} 0;
+`
+
+const AppsAddAppText = styled.div`
+  ${fonts.greyText}
+
+  margin-bottom: 8px;
+`
+
+const DeleteDivider = styled.div`
+  ${borders.dividerHorizontal('32px', '32px')}
+`
+
+const DeleteHeader = styled.h4`
+  ${fonts.textLabel}
+
+  margin: 0 0 12px 0;
+`
+
+const DeleteText = styled.div`
+  ${fonts.greyText}
+
+  margin-bottom: 8px;
+`
+
+const AppsList = styled.ul`
+  padding: 0;
+  list-style: none;
+  margin-bottom: 20px;
+  width: 100%;
 `
 
 export {
-  MobileTopContainer,
   BackButton,
   TopContainerLabel,
   ImagesContainer,
@@ -209,4 +198,9 @@ export {
   FormDataRowHeader,
   AppsContainer,
   AppsHeader,
+  AppsAddAppText,
+  DeleteDivider,
+  DeleteHeader,
+  DeleteText,
+  AppsList,
 }

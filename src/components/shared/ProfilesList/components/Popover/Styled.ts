@@ -1,6 +1,8 @@
 import { Link, LinkProps } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { fonts } from '../../../../../styles'
+
 const PopoverContent = styled.div`
   padding: 10px 12px 12px 12px;
 `
@@ -26,13 +28,10 @@ const PopoverMenuRow = styled.li`
 `
 
 const PopoverLink = styled(Link)<LinkProps>`
+  ${fonts.textSmall}
+
   display: flex;
   align-items: center;
-  color: #132540;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 18px;
-  font-family: 'HK Grotesk Medium';
   text-decoration: none;
 
   :visited,

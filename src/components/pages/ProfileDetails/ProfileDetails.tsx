@@ -6,20 +6,26 @@ import { NavLink, RouteComponentProps, withRouter } from 'react-router-dom'
 
 import * as routes from '../../../consts/routes'
 import { Apps } from '../../../types/apps'
+import { MobileTopBarContainer } from '../../shared/MobileTopBarContainer'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
+import { App } from './components/App'
 import {
   About,
+  AppsAddAppText,
   AppsContainer,
   AppsHeader,
+  AppsList,
   BackButton,
+  DeleteDivider,
+  DeleteHeader,
+  DeleteText,
   FormContainer,
   FormData,
   FormDataRow,
   FormDataRowHeader,
   HeaderDivider,
   ImagesContainer,
-  MobileTopContainer,
   NameHeader,
   PhotoButton,
   PhotoContainer,
@@ -67,7 +73,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
   return (
     <SidebarContainer>
       <Column size={6}>
-        <MobileTopContainer>
+        <MobileTopBarContainer>
           <BackButton onClick={history.goBack}>
             <Icon type="back" width="20px" height="20px" color={theme.colors.dark} />
           </BackButton>
@@ -75,7 +81,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
           <NavLink to={routes.editProfile}>
             <Icon type="edit" width="20px" height="20px" color={theme.colors.dark} />
           </NavLink>
-        </MobileTopContainer>
+        </MobileTopBarContainer>
 
         <ImagesContainer>
           <PictureContainer>
@@ -115,18 +121,26 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
               {appsCount > 0 && `Persona used in ${appsCount} applications`}
             </AppsHeader>
 
-            <div>Add a new third party application</div>
+            {appsCount > 0 && (
+              <AppsList>
+                {Object.entries(apps).map(([appId, app]) => (
+                  <App key={appId} id={appId} {...app} />
+                ))}
+              </AppsList>
+            )}
+
+            <AppsAddAppText>Add a new third party application</AppsAddAppText>
             <Button fullWidth={true} buttonType="primary" onClick={() => {}}>
               Scan QR code
             </Button>
           </AppsContainer>
 
-          <div />
+          <DeleteDivider />
 
-          <h4>Delete persona</h4>
-          <div>This will revoke access to the third-party app</div>
+          <DeleteHeader>Delete persona</DeleteHeader>
+          <DeleteText>This will revoke access to the third-party app</DeleteText>
 
-          <Button buttonType="alert" onClick={() => {}}>
+          <Button buttonType="alert" onClick={() => history.push(routes.deleteProfile)}>
             Delete Persona
           </Button>
         </FormContainer>

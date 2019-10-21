@@ -1,6 +1,8 @@
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { borders, fonts, screen } from '../../../styles'
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,16 +11,14 @@ const PageContainer = styled.div`
 `
 
 const IconContainer = styled.div`
+  ${screen.onlyMobile}
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   margin-top: 8px;
   margin-bottom: 32px;
-
-  @media (min-width: 1444px) {
-    display: none;
-  }
 `
 
 const IconLabel = styled.div`
@@ -49,23 +49,19 @@ const LogoWithUsers = styled.div`
 `
 
 const Header = styled.h1`
+  ${fonts.textHeader}
+
   margin-top: 32px;
   margin-bottom: 4px;
-  color: #132540;
-  font-family: 'HK Grotesk Medium';
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 600;
   text-align: center;
 `
 
 const PaleText = styled.p`
-  color: #949eb3;
-  font-family: 'HK Grotesk Medium';
-  font-size: 15px;
-  line-height: 22px;
+  ${fonts.greyTextBig}
+
   margin: 0;
   text-align: center;
+  width: 270px;
 `
 
 export interface DotProps {
@@ -108,9 +104,7 @@ const DividerText = styled.div`
 `
 
 const DividerBorder = styled.div`
-  border-top: 1px solid #edf0f5;
-  flex-grow: 1;
-  height: 0px;
+  ${borders.dividerHorizontal('0', '0')}
 `
 
 const SignInButtonContainer = styled.div`

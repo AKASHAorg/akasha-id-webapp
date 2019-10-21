@@ -1,40 +1,28 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
-import Icon from '@akashaproject/design-system/dist/components/Icon'
-import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import React, { useContext } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
+import React from 'react'
 
+import { MobileTopBarWithArrowCancelButton } from '../../shared/MobileTopBarWithArrowCancelButton'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import { AccountForm } from './components/AccountForm'
 import {
-  BackButton,
   DeleteContainer,
   DeleteHeader,
   DeleteText,
-  MobileTopContainer,
-  PageContainer,
-  TopContainerLabel,
+  StyledMobilePageContainer,
 } from './StyledAccount'
 
-export interface AccountProps extends RouteComponentProps<any> {
+export interface AccountProps {
   onDeleteProfile: () => void
 }
 
-const Account: React.FC<AccountProps> = ({ history, onDeleteProfile }) => {
-  const theme = useContext(AkashaThemeContext)
-
+const Account: React.FC<AccountProps> = ({ onDeleteProfile }) => {
   return (
     <SidebarContainer>
       <Column size={3}>
-        <MobileTopContainer>
-          <BackButton onClick={history.goBack}>
-            <Icon type="back" width="20px" height="20px" color={theme.colors.dark} />
-          </BackButton>
-          <TopContainerLabel>Account</TopContainerLabel>
-        </MobileTopContainer>
+        <MobileTopBarWithArrowCancelButton>Account</MobileTopBarWithArrowCancelButton>
 
-        <PageContainer>
+        <StyledMobilePageContainer>
           <AccountForm />
 
           <DeleteContainer>
@@ -44,10 +32,10 @@ const Account: React.FC<AccountProps> = ({ history, onDeleteProfile }) => {
               Delete Profile
             </Button>
           </DeleteContainer>
-        </PageContainer>
+        </StyledMobilePageContainer>
       </Column>
     </SidebarContainer>
   )
 }
 
-export default withRouter(Account)
+export default Account

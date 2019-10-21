@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
 
+import { MobileTopBarWithArrowCancelButton } from '../../shared/MobileTopBarWithArrowCancelButton'
 import { Column } from '../shared/Container'
+import { DesktopProfileForm } from '../shared/DesktopProfileForm'
+import { MobileProfileForm } from '../shared/MobileProfileForm'
 import { SidebarContainer } from '../shared/SidebarContainer'
-import { ProfileForm } from './components/ProfileForm'
 
 export interface EditProfileProps {
   userId: string
   loadProfile: () => void
 }
 
-const Profile: React.FC<EditProfileProps> = ({ userId, loadProfile }) => {
+const EditProfile: React.FC<EditProfileProps> = ({ userId, loadProfile }) => {
   useEffect(() => {
     loadProfile()
   }, [loadProfile, userId])
@@ -17,10 +19,13 @@ const Profile: React.FC<EditProfileProps> = ({ userId, loadProfile }) => {
   return (
     <SidebarContainer>
       <Column size={6}>
-        <ProfileForm />
+        <MobileTopBarWithArrowCancelButton>Edit Persona</MobileTopBarWithArrowCancelButton>
+
+        <DesktopProfileForm />
+        <MobileProfileForm edit={true} />
       </Column>
     </SidebarContainer>
   )
 }
 
-export default Profile
+export default EditProfile

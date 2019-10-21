@@ -75,7 +75,7 @@ const Landing: React.FC<LandingProps> = ({ users }) => {
               <>
                 <Header>Something Amazing</Header>
                 <PaleText>
-                  Here will say somethin relevant about AKASHA ID and how it works.
+                  Here will say something relevant about what the app does and it works.
                 </PaleText>
 
                 <DotContainer>

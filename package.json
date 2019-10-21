@@ -6,6 +6,7 @@
     "@akashaproject/design-system": "git+https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-design-system.git#notification_component",
     "@trendmicro/react-popover": "^0.4.0",
     "akasha-id-wallet": "git+https://254d43649b9e5320546a5d92fff31892d41b0c0b@github.com/AkashaProject/akasha-id-wallet.git",
+    "grommet": "^2.7.9",
     "grommet-icons": "^4.3.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",

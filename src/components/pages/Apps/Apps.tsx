@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 import Button from '@akashaproject/design-system/dist/components/Button'
 import { Apps as AppsType } from '../../../types/apps'
 import { AppsList } from '../../shared/AppsList'
-import { MobileBottomContainer } from '../../shared/MobileBottomContainer'
-import { MobileTopContainer } from '../../shared/MobileTopContainer'
+import { MobileBottomBar } from '../../shared/MobileBottomBar'
+import { MobileTopBar } from '../../shared/MobileTopBar'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import {
@@ -30,7 +30,7 @@ const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
 
   return (
     <SidebarContainer>
-      <MobileTopContainer />
+      <MobileTopBar />
 
       <Column size={6}>
         <PageContainer>
@@ -57,7 +57,7 @@ const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
         </PageContainer>
       </Column>
 
-      <MobileBottomContainer />
+      <MobileBottomBar />
     </SidebarContainer>
   )
 }

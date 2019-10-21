@@ -1,53 +1,48 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+import { fonts, screen } from '../../../styles'
+import { MobilePageContainer } from '../../shared/MobilePageContainer'
 
 const AppsHeader = styled.h3`
+  ${screen.onlyDesktop}
+
   line-height: 21px;
   font-size: 16px;
   letter-spacing: 0.15px;
   margin: 0 0 16px 0;
   font-family: 'SF UI Display Regular';
-
-  @media (max-width: 1443px) {
-    display: none;
-  }
 `
 
-const PageContainer = styled.div`
-  @media (max-width: 1443px) {
-    margin: 72px 16px 72px 16px;
-  }
+const StyledMobilePageContainer = styled(MobilePageContainer)`
+  ${screen.onMobile(css`
+    padding-bottom: 76px;
+  `)}
 `
 
 const MobileAppsHeaderContainer = styled.div`
+  ${screen.onlyMobile}
+
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-
-  @media (min-width: 1444px) {
-    display: none;
-  }
 `
 
 const MobileAppsHeader = styled.h3`
-  font-family: 'HK Grotesk Medium';
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
+  ${fonts.textHeader}
+
   margin: 0;
 `
 
 const NoAppsContainer = styled.div`
+  ${screen.onlyMobile}
+
   margin-top: 88px;
   margin-bottom: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media (min-width: 1444px) {
-    display: none;
-  }
 `
 
 const NoAppsLogo = styled.div`
@@ -58,27 +53,22 @@ const NoAppsLogo = styled.div`
 `
 
 const NoAppsHeader = styled.h3`
-  color: #132540;
-  font-family: 'HK Grotesk Medium';
-  font-size: 15px;
-  line-height: 22px;
-  font-weight: 600;
+  ${fonts.textBold}
+
   margin-top: 24px;
   margin-bottom: 2px;
 `
 
 const NoAppsSubheader = styled.div`
+  ${fonts.greyText}
+
   width: 284px;
-  font-family: 'HK Grotesk Medium';
-  color: #949eb3;
-  font-size: 13px;
-  line-height: 18px;
   text-align: center;
 `
 
 export {
   AppsHeader,
-  PageContainer,
+  StyledMobilePageContainer as PageContainer,
   MobileAppsHeaderContainer,
   MobileAppsHeader,
   NoAppsContainer,

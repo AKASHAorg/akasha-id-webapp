@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
+import { fonts } from '../../../../styles'
+
 const PaleText = styled.p`
-  color: #949eb3;
-  font-family: ${props => props.theme.shapes.fontFamily};
-  font-size: 15px;
-  line-height: 22px;
+  ${fonts.greyTextBig}
+
   margin: 0;
 `
 

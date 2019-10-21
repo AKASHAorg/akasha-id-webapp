@@ -1,5 +1,5 @@
+import removeApp from '../../actions/app-details/remove-app'
 import hideRemoveAppModal from '../../actions/apps/hide-remove-app-modal'
-import removeApp from '../../actions/apps/remove-app'
 import setAddAppModalStep from '../../actions/apps/set-add-app-modal-step'
 import setApps from '../../actions/apps/set-apps'
 import setRemoveAppModalClaim from '../../actions/apps/set-remove-app-modal-claim'

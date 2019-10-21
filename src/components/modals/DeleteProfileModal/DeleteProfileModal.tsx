@@ -5,11 +5,9 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { css } from 'styled-components'
 
 import { Apps } from '../../../types/apps'
+import { AppImage } from '../../shared/AppImage'
+import { RowTextContainer } from '../../shared/RowTextContainer'
 import {
-  AppDate,
-  AppHeader,
-  AppIconContainer,
-  AppTextContainer,
   ModalAppsList,
   ModalAppsRow,
   ModalButtonContainer,
@@ -78,13 +76,8 @@ const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
         <ModalAppsList>
           {Object.entries(apps).map(([appId, app]) => (
             <ModalAppsRow key={appId}>
-              <AppIconContainer>
-                <img src={app.icon} alt={app.name} />
-              </AppIconContainer>
-              <AppTextContainer>
-                <AppHeader>{app.name}</AppHeader>
-                <AppDate>Last requested 2 days ago</AppDate>
-              </AppTextContainer>
+              <AppImage icon={app.icon} name={app.name} />
+              <RowTextContainer header={app.name} subheader="Last requested 2 days ago" />
             </ModalAppsRow>
           ))}
         </ModalAppsList>

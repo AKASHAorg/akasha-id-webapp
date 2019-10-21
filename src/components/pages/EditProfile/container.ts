@@ -3,7 +3,7 @@ import { Action, Dispatch } from 'redux'
 
 import fetchProfile from '../../../actions/profile/fetch-profile'
 import { State } from '../../../states'
-import Profile from './EditProfile'
+import EditProfile from './EditProfile'
 
 const enchance = connect(
   (state: State) => ({
@@ -14,4 +14,4 @@ const enchance = connect(
   }),
 )
 
-export default enchance(Profile)
+export default enchance(EditProfile)

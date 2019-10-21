@@ -5,13 +5,13 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import { Apps } from '../../../types/apps'
 import { AppsList } from '../../shared/AppsList'
+import { MobileTopBarContainer } from '../../shared/MobileTopBarContainer'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import {
   MobileSearchClose,
   MobileSearchInput,
   MobileSearchLabel,
-  MobileTopContainer,
   PageContainer,
   SearchHeader,
 } from './StyledSearch'
@@ -28,7 +28,7 @@ const Search: React.FC<SearchProps> = ({ apps, searchText, history, search }) =>
   return (
     <SidebarContainer>
       <Column size={6}>
-        <MobileTopContainer>
+        <MobileTopBarContainer>
           <MobileSearchLabel>
             <Icon type="search" width="20px" height="20px" color={theme.colors.dark} />
             <MobileSearchInput
@@ -40,7 +40,7 @@ const Search: React.FC<SearchProps> = ({ apps, searchText, history, search }) =>
           <MobileSearchClose onClick={history.goBack}>
             <Icon type="close" width="21px" height="21px" color={theme.colors.dark} />
           </MobileSearchClose>
-        </MobileTopContainer>
+        </MobileTopBarContainer>
 
         <PageContainer>
           <SearchHeader>0 Persona</SearchHeader>

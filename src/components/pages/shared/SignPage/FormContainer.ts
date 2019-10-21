@@ -1,12 +1,14 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+import { screen } from '../../../../styles'
 
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 1443px) {
+  ${screen.onMobile(css`
     min-height: calc(100vh - 48px);
-  }
+  `)}
 `
 
 export default FormContainer

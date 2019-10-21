@@ -1,34 +1,13 @@
 import { Link, LinkProps } from 'react-router-dom'
 import styled from 'styled-components'
 
-const TopContainer = styled.div`
-  width: 100%;
-  height: 56px;
-  display: flex;
-  background: #fff;
-  box-shadow: 0 1px 0 0 rgba(46, 55, 71, 0.1);
-  opacity: 0.99;
-  align-items: center;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  padding: 18px 16px;
-`
-
-const BackButton = styled.button`
-  width: 21px;
-  height: 21px;
-  padding: 0;
-  background: transparent;
-  border: none;
-`
-
 const PageContainer = styled.div`
   min-height: calc(100vh - 56px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 68px 16px 16px 16px;
 `
 
 const MenuList = styled.ul`
@@ -106,14 +85,4 @@ const Credits = styled.div`
   margin-bottom: 20px;
 `
 
-export {
-  TopContainer,
-  BackButton,
-  PageContainer,
-  MenuList,
-  MenuRow,
-  MenuLink,
-  SignOutButton,
-  Version,
-  Credits,
-}
+export { PageContainer, MenuList, MenuRow, MenuLink, SignOutButton, Version, Credits }

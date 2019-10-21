@@ -17,9 +17,9 @@ const enchance = connect(
     }
   },
   (dispatch: Dispatch<Action>, props: RouteComponentProps<RegisterAppMatch>) => ({
-    handleSetRegisterAppLink: (link: string) => dispatch(setRegisterAppLink(link)),
-    handleShowAddAppModal: () => dispatch(showAddAppModal(props.match.params.apprequestlink)),
-    handleFinishSendClaim: () => dispatch(setAddAppModalStep('wait-request')),
+    setRegisterAppLink: (link: string) => dispatch(setRegisterAppLink(link)),
+    showAddAppModal: () => dispatch(showAddAppModal(props.match.params.apprequestlink)),
+    finishSendClaim: () => dispatch(setAddAppModalStep('wait-request')),
   }),
 )
 

@@ -1,6 +1,8 @@
 import { Link, LinkProps } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { borders, fonts } from '../../../../../styles'
+
 const ProfileRow = styled.li`
   background: ${props => props.theme.colors.white};
   width: 100%;
@@ -54,21 +56,15 @@ const ProfileTextContainer = styled.div`
 `
 
 const ProfileHeader = styled.h4`
+  ${fonts.textBold}
+
   margin: 0;
-  font-family: 'HK Grotesk Medium';
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 22px;
-  color: #132540;
 `
 
 const ProfileSubheader = styled.div`
+  ${fonts.greyText}
+
   margin: 0;
-  font-family: 'HK Grotesk Medium';
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 18px;
-  color: #949eb3;
 `
 
 const ProfileMenuButton = styled.button`
@@ -81,20 +77,11 @@ const ProfileMenuButton = styled.button`
 `
 
 const ProfileDivider = styled.div`
-  flex-grow: 1;
-  border-top: 1px solid #edf0f5;
-  width: 100%;
-  margin-top: 12px;
-  margin-bottom: 10px;
+  ${borders.dividerHorizontal('12px', '10px')}
 `
 
 const ProfileAppLabel = styled.div`
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 13px;
-  color: #132540;
-  font-family: 'HK Grotesk Medium';
-  text-transform: uppercase;
+  ${fonts.textSmall}
 `
 
 const ProfileAppContainer = styled.div`

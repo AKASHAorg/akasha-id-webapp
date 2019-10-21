@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
+import { fonts } from '../../../../../styles'
+
 const StyledSignInButton = styled.button`
+  ${fonts.text}
+
   width: 100%;
   padding-top: 8px;
   padding-bottom: 10px;
-  color: #132540;
-  font-size: 15px;
-  line-height: 22px;
   background: #ffffff;
   border-radius: 4px;
   box-shadow: 0 4px 16px 0 rgba(83, 98, 124, 0.06);

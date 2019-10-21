@@ -2,8 +2,8 @@ import Button from '@akashaproject/design-system/dist/components/Button'
 import React, { useEffect } from 'react'
 
 import { Apps } from '../../../types/apps'
-import { MobileBottomContainer } from '../../shared/MobileBottomContainer'
-import { MobileTopContainer } from '../../shared/MobileTopContainer'
+import { MobileBottomBar } from '../../shared/MobileBottomBar'
+import { MobileTopBar } from '../../shared/MobileTopBar'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import {
@@ -39,7 +39,7 @@ const Profiles: React.FC<ProfilesProps> = ({ apps, name, photo, about, loadProfi
 
   return (
     <SidebarContainer>
-      <MobileTopContainer />
+      <MobileTopBar />
 
       <Column size={6}>
         <PageContainer>
@@ -74,7 +74,7 @@ const Profiles: React.FC<ProfilesProps> = ({ apps, name, photo, about, loadProfi
         </PageContainer>
       </Column>
 
-      <MobileBottomContainer />
+      <MobileBottomBar />
     </SidebarContainer>
   )
 }
