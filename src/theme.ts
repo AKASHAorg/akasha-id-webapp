@@ -5,12 +5,13 @@ const theme: DefaultTheme = {
   ...lightTheme,
   colors: {
     ...lightTheme.colors,
+    red: '#FF6F6F',
     blue: '#4E71FF',
     darkBlue: '#4E71FF',
   },
   shapes: {
     ...lightTheme.shapes,
-    fontFamily: '"HK Grotesk Medium"',
+    fontFamily: '"HK Grotesk Regular"',
   },
   spacing: {
     ...lightTheme.spacing,

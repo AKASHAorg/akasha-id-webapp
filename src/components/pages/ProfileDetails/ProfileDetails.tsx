@@ -1,6 +1,7 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
+import { Camera } from 'grommet-icons'
 import React, { useContext, useEffect } from 'react'
 import { NavLink, RouteComponentProps, withRouter } from 'react-router-dom'
 
@@ -75,7 +76,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
       <Column size={6}>
         <MobileTopBarContainer>
           <BackButton onClick={history.goBack}>
-            <Icon type="back" width="20px" height="20px" color={theme.colors.dark} />
+            <Icon type="arrowLeft" width="20px" height="20px" color={theme.colors.dark} />
           </BackButton>
           <TopContainerLabel>{name}</TopContainerLabel>
           <NavLink to={routes.editProfile}>
@@ -92,8 +93,12 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
             <img src={photo} alt={givenName} />
           </PhotoContainer>
 
-          <PictureButton>Change Cover</PictureButton>
-          <PhotoButton>q</PhotoButton>
+          <PictureButton>
+            <Camera size="16px" color={theme.colors.white} /> Change Cover
+          </PictureButton>
+          <PhotoButton>
+            <Camera size="16px" color={theme.colors.white} />
+          </PhotoButton>
         </ImagesContainer>
 
         <FormContainer>
@@ -103,15 +108,15 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
           <FormData>
             <FormDataRow>
               <FormDataRowHeader>Email</FormDataRowHeader>
-              <span>Email {email}</span>
+              <span>{email}</span>
             </FormDataRow>
             <FormDataRow>
               <FormDataRowHeader>Phone number</FormDataRowHeader>
-              <span>Telephone {telephone}</span>
+              <span>{telephone}</span>
             </FormDataRow>
             <FormDataRow>
               <FormDataRowHeader>Location</FormDataRowHeader>
-              <span>Address {address}</span>
+              <span>{address}</span>
             </FormDataRow>
           </FormData>
 

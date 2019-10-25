@@ -56,6 +56,12 @@ const PictureButton = styled.button`
   right: 22px;
   border: none;
   outline: none;
+
+  > svg {
+    position: relative;
+    top: 3px;
+    left: -2px;
+  }
 `
 
 const PhotoContainer = styled.div`
@@ -88,6 +94,12 @@ const PhotoButton = styled.button`
   bottom: 0;
   left: 108px;
   outline: none;
+
+  > svg {
+    position: relative;
+    top: -2px;
+    left: -0.5px;
+  }
 `
 
 const FormContainer = styled(MobilePageContainer)`
@@ -133,12 +145,8 @@ const FormDataRowHeader = styled.h5`
 `
 
 const AppsContainer = styled.div`
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #edf0f5;
-  background: ${props => props.theme.colors.white};
-  box-shadow: 0 4px 16px 0 rgba(83, 98, 124, 0.06);
-  box-sizing: border-box;
+  ${borders.whiteBlock('12px 16px', true)}
+
   width: 100%;
 `
 

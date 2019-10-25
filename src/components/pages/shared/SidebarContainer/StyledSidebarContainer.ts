@@ -5,7 +5,7 @@ import { screen } from '../../../../styles'
 const StyledSidebarContainer = styled.div`
   ${screen.onlyDesktop}
 
-  background: #ffffff;
+  background: ${props => props.theme.colors.white};
   width: calc(2 * 91px + 2 * 32px);
   height: 100vh;
   position: fixed;

@@ -5,7 +5,7 @@ const greyText = css`
   font-size: 13px;
   font-weight: 500;
   line-height: 18px;
-  font-family: 'HK Grotesk Medium';
+  font-family: 'HK Grotesk Regular';
 `
 
 export default greyText

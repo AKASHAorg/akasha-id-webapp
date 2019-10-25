@@ -5,7 +5,7 @@ const greyTextBig = css`
   font-size: 15px;
   font-weight: 500;
   line-height: 22px;
-  font-family: 'HK Grotesk Medium';
+  font-family: 'HK Grotesk Semibold';
 `
 
 export default greyTextBig

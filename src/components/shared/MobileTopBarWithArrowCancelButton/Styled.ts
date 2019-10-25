@@ -11,6 +11,7 @@ const BackButton = styled.button`
   background: transparent;
   border: none;
   position: absolute;
+  outline: none;
 `
 
 const Label = styled.div`

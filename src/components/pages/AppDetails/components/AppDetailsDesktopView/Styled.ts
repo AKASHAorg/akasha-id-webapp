@@ -1,6 +1,12 @@
 import Button, { ButtonProps } from '@akashaproject/design-system/dist/components/Button'
 import styled from 'styled-components'
 
+import { screen } from '../../../../../styles'
+
+const DesktopContainer = styled.div`
+  ${screen.onlyDesktop}
+`
+
 const HeaderContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -158,6 +164,7 @@ const RemoveButton = styled(Button)<ButtonProps>`
 `
 
 export {
+  DesktopContainer,
   HeaderContainer,
   ImageContainer,
   NameContainer,

@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
-
 import Button from '@akashaproject/design-system/dist/components/Button'
+import Icon from '@akashaproject/design-system/dist/components/Icon'
+import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
+import React, { useContext, useEffect } from 'react'
+
 import { Apps as AppsType } from '../../../types/apps'
 import { AppsList } from '../../shared/AppsList'
 import { MobileBottomBar } from '../../shared/MobileBottomBar'
@@ -24,6 +26,7 @@ export interface AppsProps {
 }
 
 const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
+  const theme = useContext(AkashaThemeContext)
   useEffect(() => {
     loadApps()
   }, [loadApps])
@@ -39,6 +42,7 @@ const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
           <MobileAppsHeaderContainer>
             <MobileAppsHeader>Applications</MobileAppsHeader>
             <Button buttonType="primary" small={true} onClick={() => {}}>
+              <Icon type="plus" color={theme.colors.white} width="13px" height="13px" />
               Scan QR code
             </Button>
           </MobileAppsHeaderContainer>

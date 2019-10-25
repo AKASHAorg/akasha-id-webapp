@@ -1,14 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Link = styled(NavLink)`
-  color: ${props => props.theme.colors.blue};
-  text-decoration: none;
+import { fonts } from '../../../../styles'
 
-  :visited,
-  :hover {
-    color: ${props => props.theme.colors.blue};
-  }
+const Link = styled(NavLink)`
+  ${fonts.blueText}
 `
 
 export default Link

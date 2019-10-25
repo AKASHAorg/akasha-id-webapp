@@ -11,7 +11,7 @@ const BottomHeader = styled.div`
   width: 100%;
   height: 60px;
   display: flex;
-  background: #fff;
+  background: ${props => props.theme.colors.white};
   bottom: 0;
   left: 0;
   box-shadow: 0 -1px 0 0 #edf0f5, 0 -4px 16px 0 rgba(83, 98, 124, 0.06);
@@ -24,7 +24,7 @@ const PageLink = styled(NavLink)<NavLinkProps>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: ${props => props.theme.colors.white};
 
   color: #b6bfd1;
   text-decoration: none;

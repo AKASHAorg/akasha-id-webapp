@@ -1,6 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
-import React, { useEffect } from 'react'
+import Icon from '@akashaproject/design-system/dist/components/Icon'
+import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
+import React, { useContext, useEffect } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
 
+import * as routes from '../../../consts/routes'
 import { Apps } from '../../../types/apps'
 import { MobileBottomBar } from '../../shared/MobileBottomBar'
 import { MobileTopBar } from '../../shared/MobileTopBar'
@@ -18,7 +22,7 @@ import {
   StyledProfilesList,
 } from './Styled'
 
-export interface ProfilesProps {
+export interface ProfilesProps extends RouteComponentProps {
   apps: Apps
   name: string
   photo: string
@@ -27,7 +31,16 @@ export interface ProfilesProps {
   loadApps: () => void
 }
 
-const Profiles: React.FC<ProfilesProps> = ({ apps, name, photo, about, loadProfile, loadApps }) => {
+const Profiles: React.FC<ProfilesProps> = ({
+  apps,
+  name,
+  photo,
+  about,
+  loadProfile,
+  loadApps,
+  history,
+}) => {
+  const theme = useContext(AkashaThemeContext)
   const profiles = [`${name}1`, `${name}2`, `${name}3`]
 
   useEffect(() => {
@@ -47,7 +60,12 @@ const Profiles: React.FC<ProfilesProps> = ({ apps, name, photo, about, loadProfi
 
           <MobileProfilesHeaderContainer>
             <MobileProfilesHeader>My Personas</MobileProfilesHeader>
-            <Button buttonType="primary" small={true} onClick={() => {}}>
+            <Button
+              buttonType="primary"
+              small={true}
+              onClick={() => history.push(routes.createProfile)}
+            >
+              <Icon type="plus" color={theme.colors.white} width="13px" height="13px" />
               New Persona
             </Button>
           </MobileProfilesHeaderContainer>
@@ -79,4 +97,4 @@ const Profiles: React.FC<ProfilesProps> = ({ apps, name, photo, about, loadProfi
   )
 }
 
-export default Profiles
+export default withRouter(Profiles)

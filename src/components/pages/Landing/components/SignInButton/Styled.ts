@@ -8,7 +8,7 @@ const StyledSignInButton = styled.button`
   width: 100%;
   padding-top: 8px;
   padding-bottom: 10px;
-  background: #ffffff;
+  background: ${props => props.theme.colors.white};
   border-radius: 4px;
   box-shadow: 0 4px 16px 0 rgba(83, 98, 124, 0.06);
   border: 1px solid #edf0f5;

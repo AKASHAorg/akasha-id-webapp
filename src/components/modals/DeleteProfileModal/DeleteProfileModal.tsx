@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { css } from 'styled-components'
 
+import { borders } from '../../../styles/index'
 import { Apps } from '../../../types/apps'
 import { AppImage } from '../../shared/AppImage'
 import { RowTextContainer } from '../../shared/RowTextContainer'
@@ -61,11 +62,7 @@ const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
           padding: 0;
         `
       }
-      extend={props => css`
-        border-radius: 8px;
-        box-shadow: 0 4px 16px 0 rgba(83, 98, 124, 0.06);
-        border: 1px solid #edf0f5;
-      `}
+      extend={() => borders.modal}
     >
       <ModalContent>
         <ModalHeader>Delete {name} Persona</ModalHeader>

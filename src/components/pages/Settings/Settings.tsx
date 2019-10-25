@@ -1,6 +1,6 @@
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import { Download } from 'grommet-icons'
+import { Logout } from 'grommet-icons'
 import React, { useContext } from 'react'
 
 import * as routes from '../../../consts/routes'
@@ -13,8 +13,8 @@ import {
   MenuList,
   MenuRow,
   PageContainer,
+  SignOutBlock,
   SignOutButton,
-  Version,
 } from './StyledSettings'
 
 export interface SideMenuProps {
@@ -38,13 +38,13 @@ const SideMenu: React.FC<SideMenuProps> = ({ onSignOut }) => {
               </MenuLink>
             </MenuRow>
             <MenuRow>
-              <MenuLink to={routes.account}>
+              <MenuLink to={routes.faq}>
                 <span>FAQs</span>
                 <Icon type="forward" width="20px" height="20px" color={theme.colors.dark} />
               </MenuLink>
             </MenuRow>
             <MenuRow>
-              <MenuLink to={routes.account}>
+              <MenuLink to={routes.supportedApps}>
                 <span>Supported Apps</span>
                 <Icon type="forward" width="20px" height="20px" color={theme.colors.dark} />
               </MenuLink>
@@ -57,16 +57,17 @@ const SideMenu: React.FC<SideMenuProps> = ({ onSignOut }) => {
             </MenuRow>
           </MenuList>
 
-          <div>
+          <SignOutBlock>
             <SignOutButton onClick={onSignOut}>
-              <Download color="dark-3" size="20px" />
               <span>Sign out</span>
+              <Logout color="#132540" size="20px" />
             </SignOutButton>
 
-            <Version>Version 1.01 2019</Version>
-
-            <Credits>AKASHA Foundation</Credits>
-          </div>
+            <Credits>
+              <div>Version 1.01 2019</div>
+              <div>AKASHA Foundation</div>
+            </Credits>
+          </SignOutBlock>
         </PageContainer>
       </Column>
     </SidebarContainer>

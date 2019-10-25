@@ -5,7 +5,7 @@ const textHeader = css`
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
-  font-family: 'HK Grotesk Medium';
+  font-family: 'HK Grotesk Semibold';
 `
 
 export default textHeader

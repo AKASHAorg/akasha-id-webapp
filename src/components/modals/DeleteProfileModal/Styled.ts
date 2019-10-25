@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { fonts } from '../../../styles'
 
 const ModalContent = styled.div`
-  padding: 24px 25px 16px 23px;
+  box-sizing: border-box;
+  padding: 24px 24px 16px 24px;
+  width: calc(100vw - 32px);
   max-width: 343px;
 `
 
@@ -44,7 +46,8 @@ const ModalAppsRow = styled.li`
 `
 
 const ModalButtonContainer = styled.div`
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 
   > button:last-child {
     margin-left: 13px;

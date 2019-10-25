@@ -4,7 +4,7 @@ import Icon from '@akashaproject/design-system/dist/components/Icon'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { DocumentText } from 'grommet-icons'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { css } from 'styled-components'
 
 import { AddAppFormData, AddAppModalStep } from '../../../types/apps'
@@ -68,14 +68,27 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 }) => {
   const initialState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
   const [state, changeState] = useState(initialState)
+  const [opened, setOpened] = useState(window.innerWidth > 1444)
   const theme = useContext(AkashaThemeContext)
+
+  useEffect(() => {
+    const listener = () => {
+      setOpened(window.innerWidth > 1444)
+    }
+
+    window.addEventListener('resize', listener)
+
+    return () => {
+      window.removeEventListener('resize', listener)
+    }
+  })
 
   return (
     <Modal
-      isOpen={true}
+      isOpen={opened}
       headerContent={`The following application requests access to your profile`}
-      onOk={() => onOk(state as AddAppFormData)}
-      onClose={onClose}
+      onOk={() => {}}
+      onClose={() => {}}
       closeTimeoutMS={0}
       cancelButtonContent="Cancel"
       ariaHideApp={false}

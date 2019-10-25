@@ -25,7 +25,7 @@ const IconLabel = styled.div`
   margin-top: 12px;
   font-family: 'SF UI Display Regular';
   font-size: 16px;
-  line-height: 18px;
+  line-height: 20px;
   color: ${props => props.theme.colors.dark};
   text-transform: uppercase;
 `
@@ -108,22 +108,19 @@ const DividerBorder = styled.div`
 `
 
 const SignInButtonContainer = styled.div`
+  width: 100%;
   margin-top: 32px;
 `
 
 const SignInLink = styled(NavLink)<NavLinkProps>`
+  ${fonts.blueText}
+
   margin-top: 20px;
   margin-bottom: 8px;
-  font-size: 15px;
-  line-height: 22px;
-  font-family: 'HK Grotesk Medium';
-  color: ${props => props.theme.colors.blue};
-  text-decoration: none;
+`
 
-  :visited,
-  :hover {
-    color: ${props => props.theme.colors.blue};
-  }
+const ColoredUserName = styled.span`
+  ${fonts.blueText}
 `
 
 export {
@@ -142,4 +139,5 @@ export {
   IconLabel,
   IconLabelGrey,
   SignInLink,
+  ColoredUserName,
 }

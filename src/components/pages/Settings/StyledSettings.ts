@@ -1,39 +1,46 @@
 import { Link, LinkProps } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const PageContainer = styled.div`
-  min-height: calc(100vh - 56px);
+import { fonts, screen } from '../../../styles'
+import { MobilePageContainer } from '../../shared/MobilePageContainer'
+
+const PageContainer = styled(MobilePageContainer)`
+  min-height: 100vh;
+  padding: 68px 16px 16px 16px;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 68px 16px 16px 16px;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  ${screen.onMobile(css`
+    padding-top: 52px;
+    padding-bottom: 16px;
+  `)}
 `
 
 const MenuList = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0;
   width: 100%;
 `
 
 const MenuRow = styled.li`
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.border};
+  padding: 0;
 `
 
 const MenuLink = styled(Link)<LinkProps>`
+  ${fonts.text}
+
   display: flex;
-  color: ${props => props.theme.colors.dark};
   text-decoration: none;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 0 25px 0;
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.25px;
-  font-family: 'HK Grotesk Medium';
-  font-weight: 500;
+  padding: 16px 0 16px 0;
 
   :hover,
   :visited {
@@ -41,48 +48,33 @@ const MenuLink = styled(Link)<LinkProps>`
   }
 `
 
+const SignOutBlock = styled.div`
+  margin-top: 16px;
+`
+
 const SignOutButton = styled.button`
+  ${fonts.text}
+
   border: none;
   background: transparent;
-  color: ${props => props.theme.colors.dark};
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: -0.25px;
-  font-family: 'HK Grotesk Medium';
-  font-weight: 500;
   padding: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 
   > svg {
     position: relative;
-    top: -2px;
+    margin-left: 8px;
   }
-
-  > span {
-    margin-left: 11.5px;
-  }
-`
-
-const Version = styled.div`
-  margin-top: 32px;
-  letter-spacing: -0.2px;
-  font-family: 'HK Grotesk Medium';
-  color: #a0a7b3;
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 500;
 `
 
 const Credits = styled.div`
-  margin-top: 4px;
-  letter-spacing: -0.2px;
-  font-family: 'HK Grotesk Medium';
-  color: #a0a7b3;
-  font-size: 13px;
-  line-height: 18px;
+  margin-top: 32px;
+  color: #949eb3;
   font-weight: 500;
-  margin-bottom: 20px;
+  letter-spacing: 0.07px;
+  font-family: 'HK Grotesk Regular';
+  font-size: 12px;
+  line-height: 16px;
 `
 
-export { PageContainer, MenuList, MenuRow, MenuLink, SignOutButton, Version, Credits }
+export { PageContainer, MenuList, MenuRow, MenuLink, SignOutBlock, SignOutButton, Credits }

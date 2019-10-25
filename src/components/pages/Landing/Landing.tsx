@@ -9,6 +9,7 @@ import { LeftPart } from '../shared/SignPage'
 import { SignInButton } from './components/SignInButton'
 import { SignUpButton } from './components/SignUpButton'
 import {
+  ColoredUserName,
   DividerBorder,
   DividerContainer,
   DividerText,
@@ -54,7 +55,7 @@ const Landing: React.FC<LandingProps> = ({ users }) => {
                 <SignInButtonContainer>
                   {users.map(user => (
                     <SignInButton key={user.id} userId={user.id}>
-                      Sign in with {user.name}
+                      Sign in with <ColoredUserName>{user.name}</ColoredUserName>
                     </SignInButton>
                   ))}
 

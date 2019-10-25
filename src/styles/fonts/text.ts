@@ -5,7 +5,7 @@ const text = css`
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
-  font-family: 'HK Grotesk Medium';
+  font-family: 'HK Grotesk Regular';
 `
 
 export default text

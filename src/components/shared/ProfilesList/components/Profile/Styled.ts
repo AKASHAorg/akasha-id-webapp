@@ -4,12 +4,9 @@ import styled from 'styled-components'
 import { borders, fonts } from '../../../../../styles'
 
 const ProfileRow = styled.li`
-  background: ${props => props.theme.colors.white};
+  ${borders.whiteBlock('0', true)}
+
   width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #edf0f5;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px 0 rgba(83, 98, 124, 0.06);
 
   :not(:last-child) {
     margin-bottom: 8px;
@@ -81,7 +78,7 @@ const ProfileDivider = styled.div`
 `
 
 const ProfileAppLabel = styled.div`
-  ${fonts.textSmall}
+  ${fonts.textLabel}
 `
 
 const ProfileAppContainer = styled.div`

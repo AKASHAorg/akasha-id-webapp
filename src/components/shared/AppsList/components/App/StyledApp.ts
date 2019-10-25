@@ -1,17 +1,14 @@
 import { NavLink, NavLinkProps } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-import { fonts, screen } from '../../../../../styles'
+import { borders, fonts, screen } from '../../../../../styles'
 
 const StyledRow = styled.li`
-  background: ${props => props.theme.colors.white};
+  ${borders.whiteBlock('0', false)}
+
   width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #edf0f5;
 
   ${screen.onMobile(css`
-    border-radius: 8px;
-
     :not(:last-child) {
       margin-bottom: 8px;
     }

@@ -7,11 +7,16 @@ import { Action, Dispatch } from 'redux'
 import fetchPublicProfilesActionCreator from './actions/landing/fetch-public-profiles'
 import { ExportProfileModal } from './components/modals/ExportProfileModal'
 import { Account } from './components/pages/Account'
+import { AppCreated } from './components/pages/AppCreated'
 import { AppDetails } from './components/pages/AppDetails'
 import { Apps } from './components/pages/Apps'
+import { CreateProfile } from './components/pages/CreateProfile'
 import { DeleteProfile } from './components/pages/DeleteProfile'
+import { DiscardChanges } from './components/pages/DiscardChanges'
 import { EditProfile } from './components/pages/EditProfile'
+import { Faq } from './components/pages/Faq'
 import { Landing } from './components/pages/Landing'
+import { ProfileCreated } from './components/pages/ProfileCreated'
 import { ProfileDetails } from './components/pages/ProfileDetails'
 import { Profiles } from './components/pages/Profiles'
 import { RegisterApp } from './components/pages/RegisterApp'
@@ -19,6 +24,8 @@ import { Search } from './components/pages/Search'
 import { Settings } from './components/pages/Settings'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
+import { SupportedApps } from './components/pages/SupportedApps'
+import { UnlinkProfile } from './components/pages/UnlinkProfile'
 import { WithRedirect } from './components/shared/WithRedirect'
 import * as routes from './consts/routes'
 import { State } from './states'
@@ -86,6 +93,26 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       <Route
         strict={true}
         exact={true}
+        path={routes.createProfile}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <CreateProfile />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.profileCreated}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <ProfileCreated />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
         path={routes.editProfile}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
@@ -100,6 +127,26 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
             <DeleteProfile />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.unlinkProfile}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <UnlinkProfile />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.discardChanges}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <DiscardChanges />
           </WithRedirect>
         )}
       />
@@ -135,6 +182,16 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       <Route
         strict={true}
         exact={true}
+        path={routes.appCreated}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <AppCreated />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
         path={routes.search}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
@@ -149,6 +206,26 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
             <Settings />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.supportedApps}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <SupportedApps />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.faq}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <Faq />
           </WithRedirect>
         )}
       />

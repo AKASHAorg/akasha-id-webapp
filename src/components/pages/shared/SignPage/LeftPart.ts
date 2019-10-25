@@ -3,14 +3,14 @@ import styled, { css } from 'styled-components'
 import { screen } from '../../../../styles'
 
 const LeftPart = styled.div`
-  background: #ffffff;
+  background: ${props => props.theme.colors.white};
   display: flex;
   box-sizing: border-box;
   min-height: 100vh;
 
   ${screen.onMobile(css`
     width: 100%;
-    padding: 24px;
+    padding: 32px 24px 24px 24px;
   `)}
 
   ${screen.onDesktop(css`

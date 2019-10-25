@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
 
-import { apps } from '../../../consts/routes'
+import { appCreated } from '../../../consts/routes'
 import { AddAppModalStep } from '../../../types/apps'
 import { AddAppModal } from '../../modals/AddAppModal'
+import { RegisterAppMobileView } from './components/RegisterAppMobileView'
 
 export interface RegisterAppMatch {
   apprequestlink: string
@@ -31,8 +32,9 @@ const RegisterApp: React.FC<RegisterAppProps> = ({
 
   return (
     <>
-      {addAppModalStep === 'finish' && <Redirect to={apps} />}
+      {addAppModalStep === 'finish' && <Redirect to={appCreated} />}
       <AddAppModal />
+      <RegisterAppMobileView />
     </>
   )
 }

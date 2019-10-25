@@ -44,7 +44,7 @@ const MobileProfileForm: React.FC<
           </FormField>
           <FormField>
             <Field
-              name="photo"
+              name="picture"
               label="Cover image"
               component={ImageField}
               container={PictureContainer}

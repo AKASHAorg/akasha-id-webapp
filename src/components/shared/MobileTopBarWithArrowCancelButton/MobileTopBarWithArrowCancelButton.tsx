@@ -18,7 +18,7 @@ const MobileTopBarWithArrowCancelButton: React.FC<MobileTitledTopContainerProps>
   return (
     <MobileTopBarContainer>
       <BackButton onClick={history.goBack}>
-        <Icon type="back" width="20px" height="20px" color={theme.colors.dark} />
+        <Icon type="arrowLeft" width="20px" height="20px" color={theme.colors.dark} />
       </BackButton>
       <Label>{children}</Label>
     </MobileTopBarContainer>

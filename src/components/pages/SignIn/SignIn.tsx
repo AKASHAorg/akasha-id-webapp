@@ -85,7 +85,7 @@ const SignIn: React.FC<SignInProps & InjectedFormProps<SignInFormData, SignInPro
 
             <BottomContainer>
               <div>Don't have an account?</div>
-              <Link to={routes.signUp}>Sign up</Link>
+              <Link to={routes.signUp}>Create Account</Link>
             </BottomContainer>
           </FormContainer>
         </Column>
