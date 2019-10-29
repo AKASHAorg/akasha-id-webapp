@@ -21,14 +21,15 @@ function* acceptApp(action: AcceptAppAction, appRequest: AppRequest) {
     .filter(([attribute, value]) => value)
     .map(([attribute, value]) => attribute)
 
-  yield call([wallet, wallet.addApp], appRequest.token, appRequest.appInfo)
-  yield call([wallet, wallet.sendClaim], appRequest, attributes, true)
+  // yield call([wallet, wallet.addApp], appRequest.token, appRequest.appInfo)
+  // yield call([wallet, wallet.sendClaim], appRequest, attributes, true)
 }
 
 function* declineApp(action: DeclineAppAction, appRequest: AppRequest) {
-  yield put(setAddAppModalStep('decline-app'))
+  yield 1
+  // yield put(setAddAppModalStep('decline-app'))
 
-  yield call([wallet, wallet.sendClaim], appRequest, null, false)
+  // yield call([wallet, wallet.sendClaim], appRequest, null, false)
 }
 
 function* addAppImplementation(action: ShowAddAppModalAction) {

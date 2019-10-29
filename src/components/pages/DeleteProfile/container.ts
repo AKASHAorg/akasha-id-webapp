@@ -3,15 +3,15 @@ import { Action, Dispatch } from 'redux'
 
 import fetchProfile from '../../../actions/profile/fetch-profile'
 import { State } from '../../../states'
-import EditProfile from './EditProfile'
+import DeleteProfile from './DeleteProfile'
 
 const enchance = connect(
   (state: State) => ({
-    userId: state.account.userId,
+    redirect: state.profile.redirect,
   }),
   (dispatch: Dispatch<Action>) => ({
-    loadProfile: () => dispatch(fetchProfile()),
+    loadProfile: (profileId: string) => dispatch(fetchProfile(profileId)),
   }),
 )
 
-export default enchance(EditProfile)
+export default enchance(DeleteProfile)

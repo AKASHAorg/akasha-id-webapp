@@ -8,9 +8,10 @@ import { Apps } from '../../types/apps'
 
 function* fetchApps() {
   try {
-    const apps: Apps = yield call([wallet, wallet.apps])
+    yield null
+    // const apps: Apps = yield call([wallet, wallet.apps])
 
-    yield put(setApps(apps))
+    // yield put(setApps(apps))
   } catch (e) {
     notify(`An error occurred: ${e}`)
     console.error(e)

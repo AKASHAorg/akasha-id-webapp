@@ -2,20 +2,20 @@ import { connect } from 'react-redux'
 import { Action, Dispatch } from 'redux'
 
 import fetchApps from '../../../actions/apps/fetch-apps'
-import fetchProfile from '../../../actions/profile/fetch-profile'
+import setRedirect from '../../../actions/profile/set-redirect'
+import fetchProfiles from '../../../actions/profiles/fetch-profiles'
 import { State } from '../../../states'
 import Profiles from './Profiles'
 
 const enchance = connect(
   (state: State) => ({
-    name: state.account.name,
-    photo: state.profile.photo,
-    about: state.profile.about,
+    profiles: state.profiles.profiles,
     apps: state.apps.apps,
   }),
   (dispatch: Dispatch<Action>) => ({
-    loadProfile: () => dispatch(fetchProfile()),
+    loadProfiles: () => dispatch(fetchProfiles()),
     loadApps: () => dispatch(fetchApps()),
+    unsetRedirect: () => dispatch(setRedirect(false)),
   }),
 )
 

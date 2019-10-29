@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Route, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Action, Dispatch } from 'redux'
 
-import fetchPublicProfilesActionCreator from './actions/landing/fetch-public-profiles'
+import fetchPublicAccountsActionCreator from './actions/landing/fetch-public-accounts'
 import { ExportProfileModal } from './components/modals/ExportProfileModal'
 import { Account } from './components/pages/Account'
 import { AppCreated } from './components/pages/AppCreated'
@@ -31,23 +31,20 @@ import * as routes from './consts/routes'
 import { State } from './states'
 
 export interface AppProps extends RouteComponentProps {
-  signedIn: boolean
-  fetchPublicProfiles: () => void
+  fetchPublicAccounts: () => void
 }
 
 const enchance = connect(
-  (state: State): Pick<AppProps, 'signedIn'> => ({
-    signedIn: state.account.signedIn,
-  }),
+  (state: State) => ({}),
   (dispatch: Dispatch<Action>) => ({
-    fetchPublicProfiles: () => dispatch(fetchPublicProfilesActionCreator()),
+    fetchPublicAccounts: () => dispatch(fetchPublicAccountsActionCreator()),
   }),
 )
 
-const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) => {
+const App: React.FC<AppProps> = ({ fetchPublicAccounts }: AppProps) => {
   useEffect(() => {
-    fetchPublicProfiles()
-  }, [fetchPublicProfiles])
+    fetchPublicAccounts()
+  }, [fetchPublicAccounts])
 
   return (
     <>
@@ -82,7 +79,6 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       />
       <Route
         strict={true}
-        exact={true}
         path={routes.profileDetails}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
@@ -112,7 +108,6 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       />
       <Route
         strict={true}
-        exact={true}
         path={routes.editProfile}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
@@ -122,7 +117,6 @@ const App: React.FC<AppProps> = ({ signedIn, fetchPublicProfiles }: AppProps) =>
       />
       <Route
         strict={true}
-        exact={true}
         path={routes.deleteProfile}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>

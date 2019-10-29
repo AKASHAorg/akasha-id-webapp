@@ -7,11 +7,13 @@ import appDetails from './app-details'
 import apps from './apps'
 import landing from './landing'
 import profile from './profile'
+import profiles from './profiles'
 import search from './search'
 
 const reducer = (state: State = defaultState, action: Action<string>) => ({
   form: formReducer(state.form, action),
   landing: landing(state.landing, action, state),
+  profiles: profiles(state.profiles, action, state),
   profile: profile(state.profile, action, state),
   apps: apps(state.apps, action, state),
   account: account(state.account, action, state),

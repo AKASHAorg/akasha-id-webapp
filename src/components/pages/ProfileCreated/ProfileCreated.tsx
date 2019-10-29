@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { ProfileCreatedModal } from '../../modals/ProfileCreatedModal'
 
-const ProfileCreated: React.FC<{}> = () => <ProfileCreatedModal />
+export interface ProfileCreatedProps {
+  unsetRedirect: () => void
+}
+
+const ProfileCreated: React.FC<ProfileCreatedProps> = ({ unsetRedirect }) => {
+  useEffect(() => {
+    unsetRedirect()
+  }, [unsetRedirect])
+
+  return <ProfileCreatedModal />
+}
 
 export default ProfileCreated

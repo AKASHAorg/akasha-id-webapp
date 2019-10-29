@@ -154,8 +154,8 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
                   <Checkbox
                     label={attributeLabelMap[attribute]}
                     checked={state[attribute]}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      changeState({ ...state, [attribute]: e.target.checked })
+                    onChange={(e: React.ChangeEvent<Element>) =>
+                      changeState({ ...state, [attribute]: (e.target as HTMLInputElement).checked })
                     }
                   />
                 </Attribute>

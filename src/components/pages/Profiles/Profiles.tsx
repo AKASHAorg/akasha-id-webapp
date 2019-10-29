@@ -6,6 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import * as routes from '../../../consts/routes'
 import { Apps } from '../../../types/apps'
+import { Profile } from '../../../types/users'
 import { MobileBottomBar } from '../../shared/MobileBottomBar'
 import { MobileTopBar } from '../../shared/MobileTopBar'
 import { Column } from '../shared/Container'
@@ -24,31 +25,33 @@ import {
 
 export interface ProfilesProps extends RouteComponentProps {
   apps: Apps
-  name: string
-  photo: string
-  about: string
-  loadProfile: () => void
+  profiles: Profile[]
+  loadProfiles: () => void
   loadApps: () => void
+  unsetRedirect: () => void
 }
 
 const Profiles: React.FC<ProfilesProps> = ({
   apps,
-  name,
-  photo,
-  about,
-  loadProfile,
+  profiles,
+  loadProfiles,
   loadApps,
+  unsetRedirect,
   history,
 }) => {
   const theme = useContext(AkashaThemeContext)
-  const profiles = [`${name}1`, `${name}2`, `${name}3`]
 
   useEffect(() => {
-    loadProfile()
-    loadApps()
-  }, [loadProfile, loadApps])
+    loadProfiles()
+  }, [loadProfiles])
 
-  // const profiles: string[] = []
+  useEffect(() => {
+    loadApps()
+  }, [loadApps])
+
+  useEffect(() => {
+    unsetRedirect()
+  }, [unsetRedirect])
 
   return (
     <SidebarContainer>
@@ -81,13 +84,7 @@ const Profiles: React.FC<ProfilesProps> = ({
           )}
 
           {profiles.length > 0 && (
-            <StyledProfilesList
-              apps={apps}
-              about={about}
-              photo={photo}
-              profiles={profiles}
-              showApps={true}
-            />
+            <StyledProfilesList apps={apps} profiles={profiles} showApps={true} />
           )}
         </PageContainer>
       </Column>

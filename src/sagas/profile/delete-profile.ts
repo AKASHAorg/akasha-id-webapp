@@ -1,16 +1,16 @@
 import { notify } from '@akashaproject/design-system/dist/components/Notification'
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
-import deleteProfileActionCreator from '../../actions/profile/delete-profile'
+import setRedirect from '../../actions/profile/set-redirect'
+import { StartDeleteProfileAction } from '../../actions/profile/start-delete-profile'
 import { START_DELETE_PROFILE } from '../../consts/actions/profile'
 import { wallet } from '../../did'
-import { State } from '../../states'
 
-function* deleteProfileImplementation() {
+function* deleteProfileImplementation(action: StartDeleteProfileAction) {
   try {
-    const state: State = yield select()
-    yield call([wallet, wallet.removeProfile], state.account.userId)
-    yield put(deleteProfileActionCreator())
+    yield call([wallet, wallet.removeProfile], action.id)
+
+    yield put(setRedirect(true))
 
     notify('Profile has been deleted')
   } catch (e) {

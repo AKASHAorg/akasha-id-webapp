@@ -16,6 +16,7 @@ import {
 
 export interface MobileProfileFormProps {
   edit: boolean
+  onSubmit: (formData: ProfileData) => void
 }
 
 const MobileProfileForm: React.FC<
@@ -27,7 +28,7 @@ const MobileProfileForm: React.FC<
         <FormContainer>
           <FormField>
             <Field
-              name="familyName"
+              name="profileName"
               label="Persona name"
               placeholder="Type Persona name"
               component={Input}

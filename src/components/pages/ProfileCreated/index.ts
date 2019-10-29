@@ -1,1 +1,1 @@
-export { default as ProfileCreated } from './ProfileCreated'
+export { default as ProfileCreated } from './container'

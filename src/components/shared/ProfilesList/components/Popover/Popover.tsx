@@ -10,19 +10,23 @@ import {
   PopoverMenuRow,
 } from './Styled'
 
-const Popover: React.FC<{}> = () => {
+export interface PopoverProps {
+  id: string
+}
+
+const Popover: React.FC<PopoverProps> = ({ id }) => {
   return (
     <PopoverContent>
       <PopoverMenuList>
         <PopoverMenuRow>
-          <PopoverLink to={routes.editProfile}>
+          <PopoverLink to={routes.editProfile.replace(routes.profileIdParam, id)}>
             <Icon type="edit" width="16px" height="16px" color="#132540" />
             <PopoverLabel>Edit persona</PopoverLabel>
           </PopoverLink>
         </PopoverMenuRow>
 
         <PopoverMenuRow>
-          <PopoverLink to={routes.deleteProfile}>
+          <PopoverLink to={routes.deleteProfile.replace(routes.profileIdParam, id)}>
             <Icon type="trash" width="16px" height="16px" color="#132540" />
             <PopoverLabel>Delete persona</PopoverLabel>
           </PopoverLink>

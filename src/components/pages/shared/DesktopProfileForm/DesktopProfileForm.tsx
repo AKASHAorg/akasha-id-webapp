@@ -28,6 +28,7 @@ import {
 
 export interface DesktopProfileFormProps {
   name: string
+  onSubmit: (formData: ProfileData) => void
   onDeleteProfile: () => void
 }
 

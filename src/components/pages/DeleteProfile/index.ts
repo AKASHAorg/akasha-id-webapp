@@ -1,1 +1,1 @@
-export { default as DeleteProfile } from './DeleteProfile'
+export { default as DeleteProfile } from './container'

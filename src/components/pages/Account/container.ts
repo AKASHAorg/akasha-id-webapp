@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
 import { Action, Dispatch } from 'redux'
 
-import startDeleteProfile from '../../../actions/profile/start-delete-profile'
+import startDeleteAccount from '../../../actions/account/start-delete-account'
 import { State } from '../../../states'
 import Account from './Account'
 
 const enchance = connect(
   (state: State) => ({}),
   (dispatch: Dispatch<Action>) => ({
-    onDeleteProfile: () => dispatch(startDeleteProfile()),
+    onDeleteAccount: () => dispatch(startDeleteAccount()),
   }),
 )
 

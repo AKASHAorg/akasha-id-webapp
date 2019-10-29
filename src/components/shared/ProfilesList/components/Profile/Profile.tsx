@@ -29,6 +29,7 @@ export interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({
+  id,
   name,
   about,
   picture,
@@ -38,7 +39,7 @@ const Profile: React.FC<ProfileProps> = ({
 }) => {
   return (
     <ProfileRow>
-      <ProfileLink to={routes.profileDetails}>
+      <ProfileLink to={routes.profileDetails.replace(routes.profileIdParam, id)}>
         <ProfileTopContainer>
           <ProfileImageContainer>
             <img src={picture} alt={name} />

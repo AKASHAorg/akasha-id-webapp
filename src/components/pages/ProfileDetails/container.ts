@@ -3,12 +3,13 @@ import { Action, Dispatch } from 'redux'
 
 import fetchApps from '../../../actions/apps/fetch-apps'
 import fetchProfile from '../../../actions/profile/fetch-profile'
+import setRedirect from '../../../actions/profile/set-redirect'
 import { State } from '../../../states'
 import ProfileDetails from './ProfileDetails'
 
 const enchance = connect(
   (state: State) => ({
-    name: state.account.name,
+    profileName: state.profile.profileName,
     givenName: state.profile.givenName,
     about: state.profile.about,
     email: state.profile.email,
@@ -19,8 +20,9 @@ const enchance = connect(
     picture: state.profile.picture,
   }),
   (dispatch: Dispatch<Action>) => ({
-    loadProfile: () => dispatch(fetchProfile()),
+    loadProfile: (profileId: string) => dispatch(fetchProfile(profileId)),
     loadApps: () => dispatch(fetchApps()),
+    unsetRedirect: () => dispatch(setRedirect(false)),
   }),
 )
 

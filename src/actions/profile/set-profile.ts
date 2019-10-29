@@ -1,14 +1,14 @@
 import { Action } from 'redux'
 
 import { SET_PROFILE } from '../../consts/actions/profile'
-import { ProfileData } from '../../types/users'
+import { Profile } from '../../types/users'
 
 export interface SetProfileAction extends Action<string> {
-  profileData?: ProfileData
+  profile?: Profile
 }
 
-const setProfile = (profileData?: ProfileData): SetProfileAction => ({
-  profileData,
+const setProfile = (profile?: Profile): SetProfileAction => ({
+  profile,
   type: SET_PROFILE,
 })
 

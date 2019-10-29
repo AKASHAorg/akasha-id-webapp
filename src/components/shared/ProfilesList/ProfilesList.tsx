@@ -3,36 +3,30 @@ import '@trendmicro/react-popover/dist/react-popover.css'
 import React, { useState } from 'react'
 
 import { Apps as AppsType } from '../../../types/apps'
+import { Profile as ProfileType } from '../../../types/users'
 import { Popover } from './components/Popover'
 import { Profile } from './components/Profile'
 import { StyledProfilesList } from './Styled'
 
 export interface ProfilesListProps {
   apps: AppsType
-  profiles: string[]
-  photo: string
-  about: string
+  profiles: ProfileType[]
   showApps: boolean
 }
 
-const ProfilesList: React.FC<ProfilesListProps> = ({
-  apps,
-  profiles,
-  photo,
-  about,
-  showApps,
-  ...props
-}) => {
+const ProfilesList: React.FC<ProfilesListProps> = ({ apps, profiles, showApps, ...props }) => {
   const [showPopover, setPopoverVisibility] = useState(false)
   const [popoverTarget, setPopoverTarget] = useState<Element | null>(null)
+  const [popoverId, setPopoverId] = useState('')
 
-  const togglePopover = (e: Element | null) => {
+  const togglePopover = (id: string) => (e: Element | null) => {
     if (showPopover) {
       setPopoverVisibility(false)
       setPopoverTarget(null)
     } else {
       setPopoverVisibility(true)
       setPopoverTarget(e)
+      setPopoverId(id)
     }
   }
 
@@ -41,20 +35,20 @@ const ProfilesList: React.FC<ProfilesListProps> = ({
       <StyledProfilesList {...props}>
         {profiles.map(profile => (
           <Profile
-            key={profile}
-            id={profile}
-            name={profile}
-            about={about}
-            picture={photo}
+            key={profile.id}
+            id={profile.id}
+            name={profile.profileName}
+            about={profile.about}
+            picture={profile.photo}
             apps={apps}
-            togglePopover={togglePopover}
+            togglePopover={togglePopover(profile.id)}
             showApps={showApps}
           />
         ))}
       </StyledProfilesList>
 
       <BasePopover target={popoverTarget} placement="top-left" show={showPopover}>
-        <Popover />
+        <Popover id={popoverId} />
       </BasePopover>
     </>
   )

@@ -1,14 +1,14 @@
 import { Action } from 'redux'
 
 import { SIGN_IN } from '../../consts/actions/landing'
-import { Profile } from '../../types/users'
+import { Account } from '../../types/users'
 
 export interface SignInAction extends Action<string> {
-  profile: Profile
+  account: Account
 }
 
-const signIn = (profile: Profile): SignInAction => ({
-  profile,
+const signIn = (account: Account): SignInAction => ({
+  account,
   type: SIGN_IN,
 })
 

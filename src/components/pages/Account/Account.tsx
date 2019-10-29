@@ -13,10 +13,10 @@ import {
 } from './StyledAccount'
 
 export interface AccountProps {
-  onDeleteProfile: () => void
+  onDeleteAccount: () => void
 }
 
-const Account: React.FC<AccountProps> = ({ onDeleteProfile }) => {
+const Account: React.FC<AccountProps> = ({ onDeleteAccount }) => {
   return (
     <SidebarContainer>
       <Column size={3}>
@@ -28,7 +28,7 @@ const Account: React.FC<AccountProps> = ({ onDeleteProfile }) => {
           <DeleteContainer>
             <DeleteHeader>Delete akasha id account</DeleteHeader>
             <DeleteText>You’ll also lose access to all your third party apps.</DeleteText>
-            <Button buttonType="alert" onClick={onDeleteProfile}>
+            <Button buttonType="alert" onClick={onDeleteAccount}>
               Delete Profile
             </Button>
           </DeleteContainer>

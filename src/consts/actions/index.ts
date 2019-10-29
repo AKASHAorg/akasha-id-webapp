@@ -3,6 +3,7 @@ import * as appDetails from './app-details'
 import * as apps from './apps'
 import * as landing from './landing'
 import * as profile from './profile'
+import * as profiles from './profiles'
 import * as search from './search'
 
-export { landing, profile, apps, account, appDetails, search }
+export { landing, profile, apps, account, appDetails, search, profiles }

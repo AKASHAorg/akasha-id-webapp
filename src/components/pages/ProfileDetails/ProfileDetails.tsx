@@ -35,8 +35,12 @@ import {
   TopContainerLabel,
 } from './Styled'
 
-export interface ProfileDetailsProps extends RouteComponentProps<any> {
-  name: string
+export interface EditProfileMatch {
+  profileid: string
+}
+
+export interface ProfileDetailsProps extends RouteComponentProps<EditProfileMatch> {
+  profileName: string
   givenName: string
   about: string
   email: string
@@ -45,12 +49,13 @@ export interface ProfileDetailsProps extends RouteComponentProps<any> {
   apps: Apps
   photo: string
   picture: string
-  loadProfile: () => void
+  loadProfile: (profileId: string) => void
   loadApps: () => void
+  unsetRedirect: () => void
 }
 
 const ProfileDetails: React.FC<ProfileDetailsProps> = ({
-  name,
+  profileName,
   givenName,
   about,
   email,
@@ -61,12 +66,22 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
   picture,
   loadProfile,
   loadApps,
+  unsetRedirect,
   history,
+  match,
 }) => {
   useEffect(() => {
-    loadProfile()
+    loadProfile(match.params.profileid)
+  }, [loadProfile, match.params.profileid])
+
+  useEffect(() => {
     loadApps()
-  }, [loadProfile, loadApps])
+  }, [loadApps])
+
+  useEffect(() => {
+    unsetRedirect()
+  }, [unsetRedirect])
+
   const theme = useContext(AkashaThemeContext)
 
   const appsCount = Object.keys(apps).length
@@ -78,8 +93,8 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
           <BackButton onClick={history.goBack}>
             <Icon type="arrowLeft" width="20px" height="20px" color={theme.colors.dark} />
           </BackButton>
-          <TopContainerLabel>{name}</TopContainerLabel>
-          <NavLink to={routes.editProfile}>
+          <TopContainerLabel>{profileName}</TopContainerLabel>
+          <NavLink to={routes.editProfile.replace(routes.profileIdParam, match.params.profileid)}>
             <Icon type="edit" width="20px" height="20px" color={theme.colors.dark} />
           </NavLink>
         </MobileTopBarContainer>
@@ -102,7 +117,7 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
         </ImagesContainer>
 
         <FormContainer>
-          <NameHeader>{name}</NameHeader>
+          <NameHeader>{profileName}</NameHeader>
           <About>{about}</About>
           <HeaderDivider />
           <FormData>
@@ -145,7 +160,14 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({
           <DeleteHeader>Delete persona</DeleteHeader>
           <DeleteText>This will revoke access to the third-party app</DeleteText>
 
-          <Button buttonType="alert" onClick={() => history.push(routes.deleteProfile)}>
+          <Button
+            buttonType="alert"
+            onClick={() =>
+              history.push(
+                routes.deleteProfile.replace(routes.profileIdParam, match.params.profileid),
+              )
+            }
+          >
             Delete Persona
           </Button>
         </FormContainer>

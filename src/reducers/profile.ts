@@ -3,8 +3,8 @@ import { Action } from 'redux'
 import { HideExportProfileModalAction } from '../actions/profile/hide-export-profile-modal'
 import { SetExportProfileTextAction } from '../actions/profile/set-export-profile-text'
 import { SetProfileAction } from '../actions/profile/set-profile'
+import { SetRedirectAction } from '../actions/profile/set-redirect'
 import { ShowExportProfileModalAction } from '../actions/profile/show-export-profile-modal'
-import { UpdateProfileAction } from '../actions/profile/update-profile'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultProfileState, ProfileState } from '../states/profile'
@@ -14,9 +14,11 @@ const setProfile = (
   action: SetProfileAction,
   fullState: State,
 ): ProfileState => {
-  if (!action.profileData) {
+  if (!action.profile) {
     return {
       ...state,
+      id: '',
+      profileName: '',
       address: {
         addressLocality: '',
         addressRegion: '',
@@ -32,32 +34,14 @@ const setProfile = (
       birthDate: '',
       telephone: '',
       url: '',
+      about: '',
+      location: '',
     }
   }
 
   return {
     ...state,
-    ...action.profileData,
-  }
-}
-
-const updateProfile = (
-  state: ProfileState,
-  action: UpdateProfileAction,
-  fullState: State,
-): ProfileState => {
-  return {
-    ...state,
-    address: { ...action.address },
-    email: action.email,
-    photo: action.photo,
-    picture: action.picture,
-    jobTitle: action.jobTitle,
-    givenName: action.givenName,
-    familyName: action.familyName,
-    birthDate: action.birthDate,
-    telephone: action.telephone,
-    url: action.url,
+    ...action.profile,
   }
 }
 
@@ -95,6 +79,17 @@ const setExportProfileText = (
   }
 }
 
+const setRedirect = (
+  state: ProfileState,
+  action: SetRedirectAction,
+  fullState: State,
+): ProfileState => {
+  return {
+    ...state,
+    redirect: action.redirect,
+  }
+}
+
 const reducer = (
   state: ProfileState = defaultProfileState,
   action: Action<string>,
@@ -104,9 +99,6 @@ const reducer = (
     case actions.profile.SET_PROFILE:
       return setProfile(state, action as SetProfileAction, fullState)
 
-    case actions.profile.UPDATE_PROFILE:
-      return updateProfile(state, action as UpdateProfileAction, fullState)
-
     case actions.profile.SHOW_EXPORT_PROFILE_MODAL:
       return showExportProfileModal(state, action as ShowExportProfileModalAction, fullState)
 
@@ -115,6 +107,9 @@ const reducer = (
 
     case actions.profile.SET_EXPORT_PROFILE_TEXT:
       return setExportProfileText(state, action as SetExportProfileTextAction, fullState)
+
+    case actions.profile.SET_REDIRECT:
+      return setRedirect(state, action as SetRedirectAction, fullState)
 
     default:
       return state

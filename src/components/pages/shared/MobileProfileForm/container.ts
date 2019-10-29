@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
-import startUpdateProfile from '../../../../actions/profile/start-update-profile'
 import { State } from '../../../../states'
 import { ProfileData } from '../../../../types/users'
 import MobileProfileForm, { MobileProfileFormProps } from './MobileProfileForm'
@@ -16,8 +15,8 @@ const enchance = connect((state: State) => ({
 const withForm = reduxForm<ProfileData, MobileProfileFormProps, string>({
   form: 'profile',
   enableReinitialize: true,
-  onSubmit: (formData, dispatch) => {
-    dispatch(startUpdateProfile(formData))
+  onSubmit: (formData, dispatch, props) => {
+    props.onSubmit(formData)
   },
 })
 

@@ -8,12 +8,13 @@ import DeleteProfileModal from './DeleteProfileModal'
 
 const enchance = connect(
   (state: State) => ({
-    name: state.account.name,
+    id: state.profile.id,
+    name: state.profile.profileName,
     apps: state.apps.apps,
   }),
   (dispatch: Dispatch<Action>) => ({
     loadApps: () => dispatch(fetchApps()),
-    onDeleteProfile: () => dispatch(startDeleteProfile()),
+    onDeleteProfile: (id: string) => dispatch(startDeleteProfile(id)),
   }),
 )
 

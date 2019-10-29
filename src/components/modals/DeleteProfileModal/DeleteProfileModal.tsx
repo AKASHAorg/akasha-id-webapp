@@ -18,13 +18,15 @@ import {
 } from './Styled'
 
 export interface DeleteProfileModalProps extends RouteComponentProps<any> {
+  id: string
   name: string
   apps: Apps
-  onDeleteProfile: () => void
+  onDeleteProfile: (id: string) => void
   loadApps: () => void
 }
 
 const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
+  id,
   name,
   apps,
   onDeleteProfile,
@@ -67,7 +69,7 @@ const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
       <ModalContent>
         <ModalHeader>Delete {name} Persona</ModalHeader>
         <ModalText>
-          You are about to delete your Social persona. When deleted the following applications will
+          You are about to delete your {name} persona. When deleted the following applications will
           no longer be accessible.
         </ModalText>
         <ModalAppsList>
@@ -88,7 +90,7 @@ const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
           >
             Cancel
           </Button>
-          <Button buttonType="primary" onClick={onDeleteProfile}>
+          <Button buttonType="primary" onClick={() => onDeleteProfile(id)}>
             Delete Persona
           </Button>
         </ModalButtonContainer>

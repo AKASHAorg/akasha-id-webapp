@@ -8,7 +8,7 @@ import { Apps } from '../../types/apps'
 
 function* searchImplementation(searchAction: SearchAction) {
   try {
-    const apps: Apps = yield call([wallet, wallet.apps])
+    const apps: Apps = yield call([wallet, wallet.apps('1')])
 
     const filteredApps: Apps = Object.fromEntries(
       Object.entries(apps).filter(([token, app]) => app.name.match(searchAction.searchText)),

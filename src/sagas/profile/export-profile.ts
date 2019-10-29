@@ -7,7 +7,7 @@ import { wallet } from '../../did'
 
 function* exportProfileImplementation() {
   try {
-    const exportProfileText = JSON.stringify(yield call([wallet, wallet.exportProfile]))
+    const exportProfileText = JSON.stringify(yield call([wallet, wallet.exportAccount]))
 
     yield put(setExportProfileText(exportProfileText))
   } catch (e) {

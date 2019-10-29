@@ -3,7 +3,7 @@ import AkashaThemeContext from '@akashaproject/design-system/dist/providers/Them
 import React, { useContext } from 'react'
 
 import * as routes from '../../../consts/routes'
-import { Profile } from '../../../types/users'
+import { Account } from '../../../types/users'
 import { Column, Container } from '../shared/Container'
 import { LeftPart } from '../shared/SignPage'
 import { SignInButton } from './components/SignInButton'
@@ -28,7 +28,7 @@ import {
 } from './Styled'
 
 export interface LandingProps {
-  users: Profile[]
+  users: Account[]
 }
 
 const Landing: React.FC<LandingProps> = ({ users }) => {

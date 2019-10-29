@@ -17,14 +17,14 @@ import {
   ModalText,
 } from './Styled'
 
-export interface DeleteProfileModalProps extends RouteComponentProps<any> {
+export interface UnlinkProfileModalProps extends RouteComponentProps<any> {
   name: string
   app?: App
   redirect: boolean
   onRemoveApp: () => void
 }
 
-const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
+const UnlinkProfileModal: React.FC<UnlinkProfileModalProps> = ({
   name,
   app,
   redirect,
@@ -95,4 +95,4 @@ const DeleteProfileModal: React.FC<DeleteProfileModalProps> = ({
   )
 }
 
-export default withRouter(DeleteProfileModal)
+export default withRouter(UnlinkProfileModal)

@@ -1,11 +1,13 @@
-import { ProfileData } from '../types/users'
+import { Profile } from '../types/users'
 
-export interface ProfileState extends ProfileData {
+export interface ProfileState extends Profile {
   showExportProfileModal: boolean
   exportProfileText: string
+  redirect: boolean
 }
 
 const defaultProfileState: ProfileState = {
+  id: '',
   address: {
     addressLocality: '',
     addressRegion: '',
@@ -25,6 +27,8 @@ const defaultProfileState: ProfileState = {
   exportProfileText: '',
   about: '',
   location: '',
+  profileName: '',
+  redirect: false,
 }
 
 export { defaultProfileState }

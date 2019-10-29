@@ -11,6 +11,7 @@ import RegisterAppMobileView from './RegisterAppMobileView'
 const enchance = connect(
   (state: State) => ({
     step: state.apps.addAppModalStep,
+    profiles: state.profiles.profiles,
     profile: state.profile,
     name:
       state.apps.appRequest && state.apps.appRequest.appInfo
@@ -35,7 +36,7 @@ const enchance = connect(
         : [],
   }),
   (dispatch: Dispatch<Action>) => ({
-    loadProfile: () => dispatch(fetchProfile()),
+    loadProfile: () => dispatch(fetchProfile('123')),
     onClose: () => dispatch(declineApp()),
     onOk: (formData: AddAppFormData) => dispatch(acceptApp(formData)),
   }),

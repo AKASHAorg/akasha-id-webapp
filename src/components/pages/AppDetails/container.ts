@@ -18,7 +18,7 @@ const enchance = connect(
   }),
   (dispatch: Dispatch<Action>) => ({
     fetchClaim: (token: string) => dispatch(fetchClaim(token)),
-    fetchProfile: () => dispatch(fetchProfile()),
+    fetchProfile: () => dispatch(fetchProfile('123')),
     startRemoveApp: () => dispatch(startRemoveApp()),
   }),
 )

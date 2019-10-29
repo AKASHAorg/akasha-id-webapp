@@ -11,7 +11,7 @@ function* setClaim(action: FetchClaimAction) {
   try {
     const state: State = yield select()
     const app = state.apps.apps[action.token]
-    const profile = yield call([wallet, wallet.profile])
+    const profile = yield call([wallet, wallet.account])
     const claim = yield call([wallet, wallet.getClaim], action.token)
 
     if (profile && claim && claim.attributes) {

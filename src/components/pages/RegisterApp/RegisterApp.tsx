@@ -14,12 +14,14 @@ export interface RegisterAppProps extends RouteComponentProps<RegisterAppMatch> 
   addAppModalStep: AddAppModalStep
   showAddAppModal: () => void
   finishSendClaim: () => void
+  fetchProfiles: () => void
 }
 
 const RegisterApp: React.FC<RegisterAppProps> = ({
   addAppModalStep,
   showAddAppModal,
   finishSendClaim,
+  fetchProfiles,
   match,
 }) => {
   // eslint-disable react-hooks/exhaustive-deps
@@ -29,6 +31,10 @@ const RegisterApp: React.FC<RegisterAppProps> = ({
     return finishSendClaim
   }, [match.params.apprequestlink, showAddAppModal, finishSendClaim])
   // eslint-enable react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    fetchProfiles()
+  }, [fetchProfiles])
 
   return (
     <>
