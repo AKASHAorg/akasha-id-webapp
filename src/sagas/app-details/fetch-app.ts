@@ -1,18 +1,16 @@
 import { notify } from '@akashaproject/design-system/dist/components/Notification'
-import { put, select, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 
 import { FetchAppAction } from '../../actions/app-details/fetch-app'
 import setAppActionCreator from '../../actions/app-details/set-app'
 import { FETCH_APP } from '../../consts/actions/app-details'
-import { State } from '../../states'
+import { wallet } from '../../did'
 
 function* setApp(action: FetchAppAction) {
   try {
-    const state: State = yield select()
+    const app = yield call([wallet, wallet.appInfo], action.id)
 
-    const foundApp = state.apps.apps.find(app => app.id === action.id)!
-
-    yield put(setAppActionCreator(foundApp))
+    yield put(setAppActionCreator(app))
   } catch (e) {
     notify(`An error occurred: ${e}`)
     console.error(e)

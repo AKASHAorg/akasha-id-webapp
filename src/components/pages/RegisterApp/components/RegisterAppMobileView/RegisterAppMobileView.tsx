@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import * as routes from '../../../../../consts/routes'
 import { AddAppFormData, AddAppModalStep } from '../../../../../types/apps'
-import { Persona as PersonaType, PersonaData } from '../../../../../types/users'
+import { Persona as PersonaType } from '../../../../../types/users'
 import { AppImage } from '../../../../shared/AppImage'
 import { MobileTopBarWithLabelCancelButton } from '../../../../shared/MobileTopBarWithLabelCancelButton'
 import { RowTextContainer } from '../../../../shared/RowTextContainer'
@@ -34,8 +34,7 @@ export interface RegisterAppMobileViewProps {
   nonce: number
   attributes: string[]
   personas: PersonaType[]
-  persona: PersonaData
-  loadPersona: () => void
+  loadPersonas: () => void
   onClose: () => void
   onOk: (personaId: string, formData: AddAppFormData) => void
 }
@@ -47,14 +46,14 @@ const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
   nonce,
   attributes,
   personas,
-  loadPersona,
+  loadPersonas,
   onOk,
 }) => {
   const theme = useContext(AkashaThemeContext)
 
   useEffect(() => {
-    loadPersona()
-  }, [loadPersona])
+    loadPersonas()
+  }, [loadPersonas])
 
   const [selectedPersona, togglePersona] = useState<null | string>(null)
 
