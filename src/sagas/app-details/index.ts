@@ -1,10 +1,10 @@
 import { spawn } from 'redux-saga/effects'
 
-import fetchClaimSaga from './fetch-claim'
+import fetchAppSaga from './fetch-app'
 import removeAppSaga from './remove-app'
 
 function* appsSaga() {
-  yield spawn(fetchClaimSaga)
+  yield spawn(fetchAppSaga)
   yield spawn(removeAppSaga)
 }
 

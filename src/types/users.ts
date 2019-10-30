@@ -1,7 +1,7 @@
-export interface Profile {
+export interface Account {
   id: string
   name: string
-  picture: string
+  picture?: string
 }
 
 export interface SignUpFormData {
@@ -13,7 +13,7 @@ export interface SignInFormData {
   password: string
 }
 
-export interface ProfileData {
+export interface PersonaData {
   address: {
     addressLocality: string
     addressRegion: string
@@ -30,6 +30,12 @@ export interface ProfileData {
   telephone: string
   url: string
   about: string
+  location: string
+  personaName: string
+}
+
+export interface Persona extends PersonaData {
+  id: string
 }
 
 export interface PasswordFormData {

@@ -5,65 +5,62 @@ import { Field, InjectedFormProps } from 'redux-form'
 import { AccountFormData } from '../../../../../types/account'
 import isRequired from '../../../../../validators/is-required'
 import { Input } from '../../../../shared/WithLabel'
-import { AccountHeader, ButtonContainer, FieldContainer } from './StyledAccountForm'
+import {
+  AccountHeader,
+  ButtonContainer,
+  FieldContainer,
+  PasswordContainer,
+  PasswordHeader,
+} from './StyledAccountForm'
 
 const nameIsRequired = isRequired('Username cannot be empty')
 const passwordIsRequired = isRequired('Password cannot be empty')
-const passwordConfirmationIsRequired = (value: string, values: { newPassword: string }) =>
-  value && values.newPassword === value ? undefined : 'Password confirmation is incorrect'
 
 const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <AccountHeader>Account Settings</AccountHeader>
+      <AccountHeader>Account Information</AccountHeader>
       <FieldContainer>
         <Field
           name="name"
-          label="Username"
+          label="Account name"
           placeholder=""
           component={Input}
           validate={nameIsRequired}
         />
       </FieldContainer>
 
-      <FieldContainer>
-        <Field
-          name="oldPassword"
-          label="Old password"
-          placeholder=""
-          component={Input}
-          type="password"
-          validate={passwordIsRequired}
-        />
-      </FieldContainer>
+      <PasswordContainer>
+        <PasswordHeader>Change Password</PasswordHeader>
 
-      <FieldContainer>
-        <Field
-          name="newPassword"
-          label="New password"
-          placeholder=""
-          component={Input}
-          type="password"
-          validate={passwordIsRequired}
-        />
-      </FieldContainer>
+        <FieldContainer>
+          <Field
+            name="oldPassword"
+            label="Old password"
+            placeholder="Type old password"
+            component={Input}
+            type="password"
+            validate={passwordIsRequired}
+          />
+        </FieldContainer>
 
-      <FieldContainer>
-        <Field
-          name="confirmPassword"
-          label="Confirm new password"
-          placeholder=""
-          component={Input}
-          type="password"
-          validate={passwordConfirmationIsRequired}
-        />
-      </FieldContainer>
+        <FieldContainer>
+          <Field
+            name="newPassword"
+            label="New password"
+            placeholder="Type new password"
+            component={Input}
+            type="password"
+            validate={passwordIsRequired}
+          />
+        </FieldContainer>
 
-      <ButtonContainer>
-        <Button buttonType="primary" onClick={handleSubmit}>
-          Update Settings
-        </Button>
-      </ButtonContainer>
+        <ButtonContainer>
+          <Button buttonType="primary" onClick={handleSubmit}>
+            Reset Password
+          </Button>
+        </ButtonContainer>
+      </PasswordContainer>
     </form>
   )
 }

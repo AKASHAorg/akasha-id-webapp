@@ -1,12 +1,12 @@
+import Button from '@akashaproject/design-system/dist/components/Button'
 import Checkbox from '@akashaproject/design-system/dist/components/Checkbox'
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { DocumentText } from 'grommet-icons'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { css } from 'styled-components'
 
-import Button from '@akashaproject/design-system/dist/components/Button'
 import { AddAppFormData, AddAppModalStep } from '../../../types/apps'
 import { Column } from '../../pages/shared/Container'
 import {
@@ -39,7 +39,7 @@ export interface AddAppModalProps {
   nonce: number
   attributes: string[]
   onClose: () => void
-  onOk: (formData: AddAppFormData) => void
+  onOk: (personaId: string, formData: AddAppFormData) => void
 }
 
 const attributeLabelMap: { [key: string]: string } = {
@@ -68,14 +68,27 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 }) => {
   const initialState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
   const [state, changeState] = useState(initialState)
+  const [opened, setOpened] = useState(window.innerWidth > 1444)
   const theme = useContext(AkashaThemeContext)
+
+  useEffect(() => {
+    const listener = () => {
+      setOpened(window.innerWidth > 1444)
+    }
+
+    window.addEventListener('resize', listener)
+
+    return () => {
+      window.removeEventListener('resize', listener)
+    }
+  })
 
   return (
     <Modal
-      isOpen={true}
-      headerContent={`The following application requests access to your profile`}
-      onOk={() => onOk(state as AddAppFormData)}
-      onClose={onClose}
+      isOpen={opened}
+      headerContent={`The following application requests access to your persona`}
+      onOk={() => {}}
+      onClose={() => {}}
       closeTimeoutMS={0}
       cancelButtonContent="Cancel"
       ariaHideApp={false}
@@ -104,7 +117,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
     >
       <Column size={6}>
         <HeaderContainer>
-          <Header>{name} requests access to your profile information</Header>
+          <Header>{name} requests access to your persona information</Header>
           <Subheader>Please confirm the information below</Subheader>
         </HeaderContainer>
         <Divider />
@@ -134,15 +147,15 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
             <Description>{description}</Description>
           </Column>
           <Column size={3}>
-            <AttributesHeader>Select profile attributes to share:</AttributesHeader>
+            <AttributesHeader>Select persona attributes to share:</AttributesHeader>
             <AttributesList>
               {attributes.map(attribute => (
                 <Attribute key={attribute}>
                   <Checkbox
                     label={attributeLabelMap[attribute]}
                     checked={state[attribute]}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      changeState({ ...state, [attribute]: e.target.checked })
+                    onChange={(e: React.ChangeEvent<Element>) =>
+                      changeState({ ...state, [attribute]: (e.target as HTMLInputElement).checked })
                     }
                   />
                 </Attribute>
@@ -161,7 +174,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
             <Button buttonType="primary" ghost={true} onClick={onClose}>
               Cancel
             </Button>
-            <Button buttonType="primary" onClick={() => onOk(state as AddAppFormData)}>
+            <Button buttonType="primary" onClick={() => onOk('123', state as AddAppFormData)}>
               Authorize
             </Button>
           </ButtonContainer>

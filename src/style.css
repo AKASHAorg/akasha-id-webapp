@@ -37,3 +37,17 @@ html, body {
   font-weight: normal;
   src: url(./fonts/HKGrotesk-Medium.woff) format('woff');
 }
+
+@font-face {
+  font-family: 'HK Grotesk Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./fonts/HKGrotesk-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'HK Grotesk Semibold';
+  font-style: normal;
+  font-weight: normal;
+  src: url(./fonts/HKGrotesk-SemiBold.woff) format('woff');
+}

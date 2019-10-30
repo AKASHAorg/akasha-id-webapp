@@ -1,16 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-const StyledAppsList = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  list-style: none;
-`
+import { fonts, screen } from '../../../styles'
+import { MobilePageContainer } from '../../shared/MobilePageContainer'
 
 const AppsHeader = styled.h3`
+  ${screen.onlyDesktop}
+
   line-height: 21px;
   font-size: 16px;
   letter-spacing: 0.15px;
@@ -18,4 +13,66 @@ const AppsHeader = styled.h3`
   font-family: 'SF UI Display Regular';
 `
 
-export { StyledAppsList, AppsHeader }
+const StyledMobilePageContainer = styled(MobilePageContainer)`
+  ${screen.onMobile(css`
+    padding-bottom: 76px;
+  `)}
+`
+
+const MobileAppsHeaderContainer = styled.div`
+  ${screen.onlyMobile}
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+`
+
+const MobileAppsHeader = styled.h3`
+  ${fonts.textHeader}
+
+  margin: 0;
+`
+
+const NoAppsContainer = styled.div`
+  ${screen.onlyMobile}
+
+  margin-top: 88px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const NoAppsLogo = styled.div`
+  width: 290px;
+  height: 270px;
+  background: #d8d8d8;
+  opacity: 0.99;
+`
+
+const NoAppsHeader = styled.h3`
+  ${fonts.textBold}
+
+  margin-top: 24px;
+  margin-bottom: 2px;
+`
+
+const NoAppsSubheader = styled.div`
+  ${fonts.greyText}
+
+  width: 284px;
+  text-align: center;
+`
+
+export {
+  AppsHeader,
+  StyledMobilePageContainer as PageContainer,
+  MobileAppsHeaderContainer,
+  MobileAppsHeader,
+  NoAppsContainer,
+  NoAppsLogo,
+  NoAppsHeader,
+  NoAppsSubheader,
+}

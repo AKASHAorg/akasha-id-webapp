@@ -1,11 +1,11 @@
 import { spawn } from 'redux-saga/effects'
 
-import loadPublicProfilesSaga from './load-public-profiles'
+import loadPublicAccountsSaga from './load-public-accounts'
 import signInSaga from './sign-in'
 import signUpSaga from './sign-up'
 
 function* landingSaga() {
-  yield spawn(loadPublicProfilesSaga)
+  yield spawn(loadPublicAccountsSaga)
   yield spawn(signInSaga)
   yield spawn(signUpSaga)
 }

@@ -1,7 +1,7 @@
+import removeApp from '../../actions/app-details/remove-app'
 import hideRemoveAppModal from '../../actions/apps/hide-remove-app-modal'
-import removeApp from '../../actions/apps/remove-app'
 import setAddAppModalStep from '../../actions/apps/set-add-app-modal-step'
-import setApps from '../../actions/apps/set-apps'
+import setAllApps from '../../actions/apps/set-all-apps'
 import setRemoveAppModalClaim from '../../actions/apps/set-remove-app-modal-claim'
 import { defaultState } from '../../states'
 import { AppsState } from '../../states/apps'
@@ -18,7 +18,7 @@ describe('AppsReducer', () => {
         description: 'Tets app',
       },
     }
-    const action = setApps(apps)
+    const action = setAllApps(apps)
     const newState = appsReducer(defaultState.apps, action, defaultState)
 
     const expectedState: AppsState = {
@@ -121,7 +121,7 @@ describe('AppsReducer', () => {
   })
 
   it('can set add app modal step', () => {
-    const step: AddAppModalStep = 'request-profile'
+    const step: AddAppModalStep = 'request-persona'
     const action = setAddAppModalStep(step)
     const state: AppsState = {
       ...defaultState.apps,

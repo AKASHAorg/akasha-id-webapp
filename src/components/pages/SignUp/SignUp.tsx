@@ -1,13 +1,27 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
-import React from 'react'
+import Icon from '@akashaproject/design-system/dist/components/Icon'
+import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
+import React, { useContext } from 'react'
 import { Field, InjectedFormProps } from 'redux-form'
 
+import * as routes from '../../../consts/routes'
 import { SignUpFormData } from '../../../types/users'
 import isRequired from '../../../validators/is-required'
-import { H1 } from '../../shared/styled'
 import { Input } from '../../shared/WithLabel'
 import { Column, Container } from '../shared/Container'
-import { FieldContainer, FormContainer, PaleText } from './components/styled'
+import {
+  BottomContainer,
+  FieldContainer,
+  FormContainer,
+  Header,
+  IconContainer,
+  IconLabel,
+  IconLabelGrey,
+  LeftPart,
+  Link,
+  PaleText,
+  TopContainer,
+} from '../shared/SignPage'
 
 const nameIsRequired = isRequired('Name cannot be empty')
 const passwordIsRequired = isRequired('Password cannot be empty')
@@ -15,53 +29,68 @@ const passwordConfirmationIsRequired = (value: string, values: { password: strin
   value && values.password === value ? undefined : 'Password confirmation is incorrect'
 
 const SignUp: React.FC<InjectedFormProps<SignUpFormData, {}, string>> = ({ handleSubmit }) => {
+  const theme = useContext(AkashaThemeContext)
+
   return (
     <Container>
-      <FormContainer>
-        <Column size={1} />
+      <LeftPart>
+        <Column size={1} hideMobile={true} />
         <Column size={4}>
-          <form onSubmit={handleSubmit}>
-            <H1>Welcome to AKASHA ID</H1>
-            <PaleText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium purus et
-              porta molestie. Pellentesque et felis sit amet.
-            </PaleText>
+          <FormContainer>
+            <TopContainer>
+              <IconContainer>
+                <Icon type="akasha" width="26px" height="24px" color={theme.colors.dark} />
+                <IconLabel>
+                  Akasha <IconLabelGrey>Id</IconLabelGrey>
+                </IconLabel>
+              </IconContainer>
 
-            <FieldContainer>
-              <Field
-                name="name"
-                label="Username"
-                placeholder="Pick a username"
-                type="text"
-                component={Input}
-                validate={nameIsRequired}
-              />
+              <form onSubmit={handleSubmit}>
+                <Header>Welcome!</Header>
+                <PaleText>Here will say something wicked</PaleText>
 
-              <Field
-                name="password"
-                label="Password"
-                placeholder="Type a password"
-                type="password"
-                component={Input}
-                validate={passwordIsRequired}
-              />
+                <FieldContainer>
+                  <Field
+                    name="name"
+                    label="Username"
+                    placeholder="Type a username"
+                    type="text"
+                    component={Input}
+                    validate={nameIsRequired}
+                  />
 
-              <Field
-                name="confirm"
-                label="Confirm password"
-                placeholder="Type a password"
-                type="password"
-                component={Input}
-                validate={passwordConfirmationIsRequired}
-              />
+                  <Field
+                    name="password"
+                    label="Password"
+                    placeholder="Type password"
+                    type="password"
+                    component={Input}
+                    validate={passwordIsRequired}
+                  />
 
-              <Button buttonType="primary" onClick={handleSubmit}>
-                Create Account
-              </Button>
-            </FieldContainer>
-          </form>
+                  <Field
+                    name="confirm"
+                    label="Confirm password"
+                    placeholder="Retype password"
+                    type="password"
+                    component={Input}
+                    validate={passwordConfirmationIsRequired}
+                  />
+                </FieldContainer>
+
+                <Button buttonType="primary" onClick={handleSubmit}>
+                  Create Account
+                </Button>
+              </form>
+            </TopContainer>
+
+            <BottomContainer>
+              <div>Have an account?</div>
+              <Link to={routes.signIn}>Sign in</Link>
+            </BottomContainer>
+          </FormContainer>
         </Column>
-      </FormContainer>
+      </LeftPart>
     </Container>
   )
 }

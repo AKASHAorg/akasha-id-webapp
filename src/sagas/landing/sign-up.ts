@@ -5,7 +5,7 @@ import signUpActionCreator from '../../actions/landing/sign-up'
 import { StartSignUpAction } from '../../actions/landing/start-sign-up'
 import { START_SIGN_UP } from '../../consts/actions/landing'
 import { wallet } from '../../did'
-import { Profile, ProfileData } from '../../types/users'
+import { Account } from '../../types/users'
 
 function* signUpImplementation(action: StartSignUpAction) {
   try {
@@ -14,31 +14,11 @@ function* signUpImplementation(action: StartSignUpAction) {
       action.formData.name,
       action.formData.password,
     )
-    const publicProfiles: Profile[] = yield wallet.publicProfiles()
-    const profile: Profile | undefined = publicProfiles.find(u => u.id === userId)
+    const publicAccounts: Account[] = yield call([wallet, wallet.publicAccounts])
+    const account: Account | undefined = publicAccounts.find(u => u.id === userId)
 
-    if (profile !== undefined) {
-      const data: ProfileData = {
-        address: {
-          addressLocality: '',
-          addressRegion: '',
-          postalCode: '',
-          streetAddress: '',
-        },
-        birthDate: '',
-        email: '',
-        familyName: '',
-        givenName: '',
-        picture: '',
-        jobTitle: '',
-        photo: '',
-        telephone: '',
-        url: '',
-        about: '',
-      }
-      yield call([wallet, wallet.updateProfile], data)
-
-      yield put(signUpActionCreator(profile))
+    if (account !== undefined) {
+      yield put(signUpActionCreator(account))
     }
   } catch (e) {
     notify(`An error occurred: ${e}`)

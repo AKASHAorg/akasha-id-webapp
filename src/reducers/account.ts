@@ -1,10 +1,10 @@
 import { Action } from 'redux'
 
+import { DeleteAccountAction } from '../actions/account/delete-account'
 import { SignOutAction } from '../actions/account/sign-out'
 import { UpdateAccountAction } from '../actions/account/update-account'
 import { SignInAction } from '../actions/landing/sign-in'
 import { SignUpAction } from '../actions/landing/sign-up'
-import { DeleteProfileAction } from '../actions/profile/delete-profile'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AccountState, defaultAccountState } from '../states/account'
@@ -12,8 +12,8 @@ import { AccountState, defaultAccountState } from '../states/account'
 const signUp = (state: AccountState, action: SignUpAction, fullState: State): AccountState => {
   return {
     ...state,
-    userId: action.profile.id,
-    name: action.profile.name,
+    userId: action.account.id,
+    name: action.account.name,
     signedIn: true,
   }
 }
@@ -21,8 +21,8 @@ const signUp = (state: AccountState, action: SignUpAction, fullState: State): Ac
 const signIn = (state: AccountState, action: SignInAction, fullState: State): AccountState => {
   return {
     ...state,
-    userId: action.profile.id,
-    name: action.profile.name,
+    userId: action.account.id,
+    name: action.account.name,
     signedIn: true,
   }
 }
@@ -47,9 +47,9 @@ const updateAccount = (
   }
 }
 
-const deleteProfile = (
+const deleteAccount = (
   state: AccountState,
-  action: DeleteProfileAction,
+  action: DeleteAccountAction,
   fullState: State,
 ): AccountState => {
   return {
@@ -75,8 +75,8 @@ const reducer = (
     case actions.account.SIGN_OUT:
       return signOut(state, action as SignOutAction, fullState)
 
-    case actions.profile.DELETE_PROFILE:
-      return deleteProfile(state, action as DeleteProfileAction, fullState)
+    case actions.account.DELETE_ACCOUNT:
+      return deleteAccount(state, action as DeleteAccountAction, fullState)
 
     case actions.account.UPDATE_ACCOUNT:
       return updateAccount(state, action as UpdateAccountAction, fullState)

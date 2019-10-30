@@ -3,21 +3,20 @@ import { Action } from 'redux'
 import { RemoveAppAction } from '../actions/app-details/remove-app'
 import { SetAddAppModalAppRequestAction } from '../actions/apps/set-add-app-modal-app-request'
 import { SetAddAppModalStepAction } from '../actions/apps/set-add-app-modal-step'
-import { SetAppsAction } from '../actions/apps/set-apps'
+import { SetAllAppsAction } from '../actions/apps/set-all-apps'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AppsState, defaultAppsState } from '../states/apps'
 
-const setApps = (state: AppsState, action: SetAppsAction, fullState: State): AppsState => {
+const setAllApps = (state: AppsState, action: SetAllAppsAction, fullState: State): AppsState => {
   return {
     ...state,
-    apps: { ...action.apps },
+    apps: [...action.apps],
   }
 }
 
 const removeApp = (state: AppsState, action: RemoveAppAction, fullState: State): AppsState => {
-  const apps = { ...state.apps }
-  delete apps[state.selectedAppToken]
+  const apps = state.apps.filter(app => app.id !== state.selectedAppToken)
 
   return {
     ...state,
@@ -54,8 +53,8 @@ const reducer = (
   fullState: State,
 ): AppsState => {
   switch (action.type) {
-    case actions.apps.SET_APPS:
-      return setApps(state, action as SetAppsAction, fullState)
+    case actions.apps.SET_ALL_APPS:
+      return setAllApps(state, action as SetAllAppsAction, fullState)
 
     case actions.apps.REMOVE_APP:
       return removeApp(state, action as RemoveAppAction, fullState)
