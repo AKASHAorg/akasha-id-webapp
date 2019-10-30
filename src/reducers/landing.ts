@@ -27,7 +27,7 @@ const signUp = (state: LandingState, action: SignUpAction, fullState: State): La
   }
 }
 
-const deleteProfile = (
+const deletePersona = (
   state: LandingState,
   action: DeleteAccountAction,
   fullState: State,
@@ -83,7 +83,7 @@ const reducer = (
       return updateAccount(state, action as UpdateAccountAction, fullState)
 
     case actions.account.DELETE_ACCOUNT:
-      return deleteProfile(state, action as DeleteAccountAction, fullState)
+      return deletePersona(state, action as DeleteAccountAction, fullState)
 
     case actions.landing.SET_REGISTER_APP_LINK:
       return setRegisterAppLink(state, action as SetRegisterAppLinkAction, fullState)

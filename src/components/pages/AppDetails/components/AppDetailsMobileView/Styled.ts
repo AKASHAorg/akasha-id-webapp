@@ -111,7 +111,7 @@ const AttributesContainer = styled.div`
   width: 100%;
 `
 
-const ProfileContainer = styled.div`
+const PersonaContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -120,11 +120,11 @@ const ProfileContainer = styled.div`
   box-sizing: border-box;
 `
 
-const ProfileName = styled.strong`
+const PersonaName = styled.strong`
   ${fonts.textBold}
 `
 
-const ProfileLink = styled(Link)<LinkProps>`
+const PersonaLink = styled(Link)<LinkProps>`
   ${fonts.textSmall}
 
   letter-spacing: 0.07px;
@@ -250,10 +250,10 @@ export {
   SiteLabel,
   SiteText,
   AttributesContainer,
-  ProfileContainer,
-  ProfileName,
+  PersonaContainer,
+  PersonaName,
   AttributesDivider,
-  ProfileLink,
+  PersonaLink,
   AttributesText,
   AttributesList,
   AttributesRow,

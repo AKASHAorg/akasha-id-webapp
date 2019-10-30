@@ -5,27 +5,27 @@ import { Route, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Action, Dispatch } from 'redux'
 
 import fetchPublicAccountsActionCreator from './actions/landing/fetch-public-accounts'
-import { ExportProfileModal } from './components/modals/ExportProfileModal'
+import { ExportPersonaModal } from './components/modals/ExportPersonaModal'
 import { Account } from './components/pages/Account'
 import { AppCreated } from './components/pages/AppCreated'
 import { AppDetails } from './components/pages/AppDetails'
 import { Apps } from './components/pages/Apps'
-import { CreateProfile } from './components/pages/CreateProfile'
-import { DeleteProfile } from './components/pages/DeleteProfile'
+import { CreatePersona } from './components/pages/CreatePersona'
+import { DeletePersona } from './components/pages/DeletePersona'
 import { DiscardChanges } from './components/pages/DiscardChanges'
-import { EditProfile } from './components/pages/EditProfile'
+import { EditPersona } from './components/pages/EditPersona'
 import { Faq } from './components/pages/Faq'
 import { Landing } from './components/pages/Landing'
-import { ProfileCreated } from './components/pages/ProfileCreated'
-import { ProfileDetails } from './components/pages/ProfileDetails'
-import { Profiles } from './components/pages/Profiles'
+import { PersonaCreated } from './components/pages/PersonaCreated'
+import { PersonaDetails } from './components/pages/PersonaDetails'
+import { Personas } from './components/pages/Personas'
 import { RegisterApp } from './components/pages/RegisterApp'
 import { Search } from './components/pages/Search'
 import { Settings } from './components/pages/Settings'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
 import { SupportedApps } from './components/pages/SupportedApps'
-import { UnlinkProfile } from './components/pages/UnlinkProfile'
+import { UnlinkPersona } from './components/pages/UnlinkPersona'
 import { WithRedirect } from './components/shared/WithRedirect'
 import * as routes from './consts/routes'
 import { State } from './states'
@@ -70,67 +70,66 @@ const App: React.FC<AppProps> = ({ fetchPublicAccounts }: AppProps) => {
       <Route
         strict={true}
         exact={true}
-        path={routes.profiles}
+        path={routes.personas}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
-            <Profiles />
+            <Personas />
           </WithRedirect>
         )}
       />
       <Route
         strict={true}
-        path={routes.profileDetails}
+        path={routes.personaDetails}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
-            <ProfileDetails />
-          </WithRedirect>
-        )}
-      />
-      <Route
-        strict={true}
-        exact={true}
-        path={routes.createProfile}
-        render={() => (
-          <WithRedirect shouldBeSignedIn={true}>
-            <CreateProfile />
+            <PersonaDetails />
           </WithRedirect>
         )}
       />
       <Route
         strict={true}
         exact={true}
-        path={routes.profileCreated}
+        path={routes.createPersona}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
-            <ProfileCreated />
-          </WithRedirect>
-        )}
-      />
-      <Route
-        strict={true}
-        path={routes.editProfile}
-        render={() => (
-          <WithRedirect shouldBeSignedIn={true}>
-            <EditProfile />
-          </WithRedirect>
-        )}
-      />
-      <Route
-        strict={true}
-        path={routes.deleteProfile}
-        render={() => (
-          <WithRedirect shouldBeSignedIn={true}>
-            <DeleteProfile />
+            <CreatePersona />
           </WithRedirect>
         )}
       />
       <Route
         strict={true}
         exact={true}
-        path={routes.unlinkProfile}
+        path={routes.personaCreated}
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
-            <UnlinkProfile />
+            <PersonaCreated />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        path={routes.editPersona}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <EditPersona />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        path={routes.deletePersona}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <DeletePersona />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        path={routes.unlinkPersona}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <UnlinkPersona />
           </WithRedirect>
         )}
       />
@@ -245,7 +244,7 @@ const App: React.FC<AppProps> = ({ fetchPublicAccounts }: AppProps) => {
         draggable={false}
         pauseOnHover={false}
       />
-      <ExportProfileModal />
+      <ExportPersonaModal />
     </>
   )
 }

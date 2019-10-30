@@ -6,22 +6,20 @@ import { AppImage } from '../../../AppImage'
 import { RowTextContainer } from '../../../RowTextContainer'
 import { StyledDate, StyledDescription, StyledLink, StyledRow, StyledStatus } from './StyledApp'
 
-export interface AppProps extends React.Props<any>, AppType {
-  token: string
-}
+export interface AppProps extends React.Props<any>, AppType {}
 
-const App: React.FC<AppProps> = ({ token, name, description, icon }: AppProps) => {
+const App: React.FC<AppProps> = ({ id, appInfo }) => {
   return (
     <StyledRow>
-      <StyledLink to={routes.appDetails.replace(routes.tokenParam, token)}>
-        <AppImage icon={icon} name={name} />
+      <StyledLink to={routes.appDetails.replace(routes.tokenParam, id)}>
+        <AppImage icon={appInfo.icon} name={appInfo.name} />
         <RowTextContainer
-          header={name}
+          header={appInfo.name}
           subheader={
             <>
               <StyledStatus>Active</StyledStatus>
-              <StyledDate>Profile requested on 20 July 2019</StyledDate>
-              <StyledDescription>{description}</StyledDescription>
+              <StyledDate>Persona requested on 20 July 2019</StyledDate>
+              <StyledDescription>{appInfo.description}</StyledDescription>
             </>
           }
         />

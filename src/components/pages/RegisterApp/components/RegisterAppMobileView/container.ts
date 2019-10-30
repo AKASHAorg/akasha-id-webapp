@@ -3,7 +3,7 @@ import { Action, Dispatch } from 'redux'
 
 import acceptApp from '../../../../../actions/apps/accept-app'
 import declineApp from '../../../../../actions/apps/decline-app'
-import fetchProfile from '../../../../../actions/profile/fetch-profile'
+import fetchPersona from '../../../../../actions/persona/fetch-persona'
 import { State } from '../../../../../states'
 import { AddAppFormData } from '../../../../../types/apps'
 import RegisterAppMobileView from './RegisterAppMobileView'
@@ -11,8 +11,8 @@ import RegisterAppMobileView from './RegisterAppMobileView'
 const enchance = connect(
   (state: State) => ({
     step: state.apps.addAppModalStep,
-    profiles: state.profiles.profiles,
-    profile: state.profile,
+    personas: state.personas.personas,
+    persona: state.persona,
     name:
       state.apps.appRequest && state.apps.appRequest.appInfo
         ? state.apps.appRequest.appInfo.name
@@ -36,9 +36,9 @@ const enchance = connect(
         : [],
   }),
   (dispatch: Dispatch<Action>) => ({
-    loadProfile: () => dispatch(fetchProfile('123')),
+    loadPersona: () => dispatch(fetchPersona('123')),
     onClose: () => dispatch(declineApp()),
-    onOk: (formData: AddAppFormData) => dispatch(acceptApp(formData)),
+    onOk: (personaId: string, formData: AddAppFormData) => dispatch(acceptApp(personaId, formData)),
   }),
 )
 

@@ -8,13 +8,13 @@ import * as routes from '../../../consts/routes'
 import { borders } from '../../../styles/index'
 import { Header, Logo, ModalContent, PaleText } from './Styled'
 
-export interface ProfileCreatedModalProps extends RouteComponentProps<any> {}
+export interface PersonaCreatedModalProps extends RouteComponentProps<any> {}
 
-const ProfileCreatedModal: React.FC<ProfileCreatedModalProps> = ({ history }) => {
+const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = ({ history }) => {
   return (
     <Modal
       isOpen={true}
-      headerContent={`The following application requests access to your profile`}
+      headerContent={`The following application requests access to your persona`}
       onOk={() => {}}
       onClose={() => {}}
       closeTimeoutMS={0}
@@ -57,4 +57,4 @@ const ProfileCreatedModal: React.FC<ProfileCreatedModalProps> = ({ history }) =>
   )
 }
 
-export default withRouter(ProfileCreatedModal)
+export default withRouter(PersonaCreatedModal)

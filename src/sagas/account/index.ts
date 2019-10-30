@@ -4,10 +4,10 @@ import deleteAccountSaga from './delete-account'
 import signOutSaga from './sign-out'
 import updateAccountSaga from './update-account'
 
-function* profileSaga() {
+function* personaSaga() {
   yield spawn(signOutSaga)
   yield spawn(updateAccountSaga)
   yield spawn(deleteAccountSaga)
 }
 
-export default profileSaga
+export default personaSaga

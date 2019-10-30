@@ -29,7 +29,7 @@ const Account: React.FC<AccountProps> = ({ onDeleteAccount }) => {
             <DeleteHeader>Delete akasha id account</DeleteHeader>
             <DeleteText>You’ll also lose access to all your third party apps.</DeleteText>
             <Button buttonType="alert" onClick={onDeleteAccount}>
-              Delete Profile
+              Delete Persona
             </Button>
           </DeleteContainer>
         </StyledMobilePageContainer>

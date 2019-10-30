@@ -11,7 +11,7 @@ export interface AppsState {
 }
 
 const defaultAppsState: AppsState = {
-  apps: {},
+  apps: [],
   addAppModalStep: 'wait-request',
   appRequest: null,
   selectedApp: undefined,

@@ -5,7 +5,7 @@ import { DocumentText } from 'grommet-icons'
 import React, { useContext } from 'react'
 
 import attributeNamesMap from '../../../../../consts/attribute-names-map'
-import { App, Claim } from '../../../../../types/apps'
+import { App } from '../../../../../types/apps'
 import { Column } from '../../../shared/Container'
 import {
   AttributesHeader,
@@ -33,28 +33,23 @@ import {
 
 export interface AppDetailsDesktopViewProps {
   app: App
-  claim: Claim
   startRemoveApp: () => void
 }
 
-const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({
-  app,
-  claim,
-  startRemoveApp,
-}) => {
+const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, startRemoveApp }) => {
   const theme = useContext(AkashaThemeContext)
 
   return (
     <DesktopContainer>
       <HeaderContainer>
         <ImageContainer>
-          <img src={app.icon} alt={app.name} />
+          <img src={app.appInfo.icon} alt={app.appInfo.name} />
         </ImageContainer>
         <NameContainer>
-          <Name>{app.name}</Name>
+          <Name>{app.appInfo.name}</Name>
           <SubheaderContainer>
             <Status>Active</Status>
-            <DateContainer>Profile requested on 20 July 2019</DateContainer>
+            <DateContainer>Persona requested on 20 July 2019</DateContainer>
           </SubheaderContainer>
         </NameContainer>
       </HeaderContainer>
@@ -65,7 +60,7 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({
             <DocumentText color="dark-1" size="20px" />
             <div>About</div>
           </DescriptionHeader>
-          <Description>{app.description}</Description>
+          <Description>{app.appInfo.description}</Description>
         </Column>
 
         <Column size={2}>
@@ -73,7 +68,7 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({
             <Icon type="linkEntry" color={theme.colors.dark} width="16px" height="16px" />
             <div>Link</div>
           </DescriptionHeader>
-          <Link href={app.url}>{app.url}</Link>
+          <Link href={app.appInfo.url}>{app.appInfo.url}</Link>
         </Column>
       </DescriptionContainer>
 
@@ -81,16 +76,13 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({
 
       <Column size={4}>
         <AttributesHeader>
-          You are currently sharing the following profile atributes:
+          You are currently sharing the following persona atributes:
         </AttributesHeader>
 
         <AttributesList>
-          {claim!.attributes.map((attribute: string) => (
+          {Object.entries(app.attributes).map(([attribute, checked]) => (
             <AttributesRow key={attribute}>
-              <Checkbox
-                checked={attribute in (claim! as any)}
-                label={attributeNamesMap.get(attribute)}
-              />
+              <Checkbox checked={checked} label={attributeNamesMap.get(attribute)} />
             </AttributesRow>
           ))}
         </AttributesList>
@@ -102,7 +94,7 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({
         <RemoveHeaderContainer>
           <RemoveHeader>Remove Access</RemoveHeader>
           <RemoveSubheader>
-            Once you delete your profile, there is no going back. Please be certain.
+            Once you delete your persona, there is no going back. Please be certain.
           </RemoveSubheader>
         </RemoveHeaderContainer>
         <RemoveButton buttonType="primary" onClick={startRemoveApp}>

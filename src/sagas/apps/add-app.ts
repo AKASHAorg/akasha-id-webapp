@@ -17,19 +17,14 @@ function* finishAddApp() {
 function* acceptApp(action: AcceptAppAction, appRequest: AppRequest) {
   yield put(setAddAppModalStep('accept-app'))
 
-  const attributes: string[] = Object.entries(action.addAppFormData)
-    .filter(([attribute, value]) => value)
-    .map(([attribute, value]) => attribute)
-
-  // yield call([wallet, wallet.addApp], appRequest.token, appRequest.appInfo)
-  // yield call([wallet, wallet.sendClaim], appRequest, attributes, true)
+  yield call([wallet, wallet.addApp], appRequest, action.personaId, action.addAppFormData)
+  yield call([wallet, wallet.sendClaim], appRequest, true)
 }
 
 function* declineApp(action: DeclineAppAction, appRequest: AppRequest) {
-  yield 1
-  // yield put(setAddAppModalStep('decline-app'))
+  yield put(setAddAppModalStep('decline-app'))
 
-  // yield call([wallet, wallet.sendClaim], appRequest, null, false)
+  yield call([wallet, wallet.sendClaim], appRequest, false)
 }
 
 function* addAppImplementation(action: ShowAddAppModalAction) {

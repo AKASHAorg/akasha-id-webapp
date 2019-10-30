@@ -18,18 +18,19 @@ declare module 'akasha-id-wallet' {
     public async updateAccount(data: any)
     public async removeAccount()
     public async exportAccount(): { id: string; publicAccount: any; store: any }
-    public async importProfile(data: any, passphrase: string, name: string)
-    public async profile(id: string): any
-    public async profiles(): any[]
-    public async addProfile(profile: any)
-    public async updateProfile(data: any)
-    public async removeProfile(id: string)
+    public async importPersona(data: any, passphrase: string, name: string)
+    public async persona(id: string): any
+    public async personas(): any[]
+    public async addPersona(persona: any)
+    public async updatePersona(data: any)
+    public async removePersona(id: string)
     public async handleRefresh(data: any)
     public async listen(refreshHandler: () => void)
     public parseRegisterLink(str: atrign): string
-    public async addApp(req: any, profileId: string, attributes: { [attribute: string]: boolean })
+    public async addApp(req: any, personaId: string, attributes: { [attribute: string]: boolean })
     public async removeApp(token: string)
-    public async apps(profileId: string)
+    public async apps(personaId: string)
+    public async appInfo(token: string)
     public async registerApp(data: any)
     public async sendClaim(req: any, allowed: boolean)
     public async prepareClaim(token: string): any

@@ -34,7 +34,7 @@ const enchance = connect(
   }),
   (dispatch: Dispatch<Action>) => ({
     onClose: () => dispatch(declineApp()),
-    onOk: (formData: AddAppFormData) => dispatch(acceptApp(formData)),
+    onOk: (personaId: string, formData: AddAppFormData) => dispatch(acceptApp(personaId, formData)),
   }),
 )
 

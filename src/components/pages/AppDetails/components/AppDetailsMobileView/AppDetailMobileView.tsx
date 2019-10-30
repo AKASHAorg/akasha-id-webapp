@@ -4,8 +4,8 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import Button from '@akashaproject/design-system/dist/components/Button'
 import * as routes from '../../../../../consts/routes'
-import { App, Claim } from '../../../../../types/apps'
-import { ProfileData } from '../../../../../types/users'
+import { App } from '../../../../../types/apps'
+import { PersonaData } from '../../../../../types/users'
 import { MobileTopBarWithArrowCancelButton } from '../../../../shared/MobileTopBarWithArrowCancelButton'
 import {
   About,
@@ -27,11 +27,11 @@ import {
   ImagesContainer,
   MobileContainer,
   NameHeader,
+  PersonaContainer,
+  PersonaLink,
+  PersonaName,
   PhotoContainer,
   PictureContainer,
-  ProfileContainer,
-  ProfileLink,
-  ProfileName,
   SiteButton,
   SiteContainer,
   SiteLabel,
@@ -41,113 +41,107 @@ import {
 
 export interface AppDetailsMobileViewProps extends RouteComponentProps<any> {
   app: App
-  claim: Claim
-  userName: string
-  profile: ProfileData
+  persona: PersonaData
 }
 
-const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({
-  app,
-  claim,
-  userName,
-  profile,
-  history,
-}) => {
+const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, persona, history }) => {
   return (
     <MobileContainer>
-      <MobileTopBarWithArrowCancelButton>{app.name}</MobileTopBarWithArrowCancelButton>
+      <MobileTopBarWithArrowCancelButton>{app.appInfo.name}</MobileTopBarWithArrowCancelButton>
 
       <ImagesContainer>
         <PictureContainer>
-          <img src={app.icon} alt={app.icon} />
+          <img src={app.appInfo.icon} alt={app.appInfo.icon} />
         </PictureContainer>
 
         <PhotoContainer>
-          <img src={app.icon} alt={app.icon} />
+          <img src={app.appInfo.icon} alt={app.appInfo.icon} />
         </PhotoContainer>
       </ImagesContainer>
 
       <FormContainer>
-        <NameHeader>{app.name}</NameHeader>
-        <About>{app.description}</About>
+        <NameHeader>{app.appInfo.name}</NameHeader>
+        <About>{app.appInfo.description}</About>
 
         <SiteContainer>
           <SiteTitleContainer>
             <SiteLabel>Website</SiteLabel>
-            <SiteText>{app.url}</SiteText>
+            <SiteText>{app.appInfo.url}</SiteText>
           </SiteTitleContainer>
-          <SiteButton href={app.url}>Visit Website</SiteButton>
+          <SiteButton href={app.appInfo.url}>Visit Website</SiteButton>
         </SiteContainer>
 
         <AttributesContainer>
-          <ProfileContainer>
-            <ProfileName>{userName}</ProfileName>
-            <ProfileLink to={routes.profileDetails}>View Persona</ProfileLink>
-          </ProfileContainer>
+          <PersonaContainer>
+            <PersonaName>{persona.personaName}</PersonaName>
+            <PersonaLink to={routes.personaDetails}>View Persona</PersonaLink>
+          </PersonaContainer>
 
           <AttributesDivider />
 
-          <AttributesText>{app.name} has access to the following attributes:</AttributesText>
+          <AttributesText>
+            {app.appInfo.name} has access to the following attributes:
+          </AttributesText>
 
           <AttributesList>
             <AttributesRow>
               <AttributesLabelContainer>
                 <AttributesHeader>Name</AttributesHeader>
-                <AttributesValue>{profile.givenName}</AttributesValue>
+                <AttributesValue>{persona.givenName}</AttributesValue>
               </AttributesLabelContainer>
 
-              <Checkbox checked={!!claim.givenName} />
+              <Checkbox checked={!!app.attributes.givenName} />
             </AttributesRow>
 
             <AttributesRow>
               <AttributesLabelContainer>
                 <AttributesHeader>Email</AttributesHeader>
-                <AttributesValue>{profile.email}</AttributesValue>
+                <AttributesValue>{persona.email}</AttributesValue>
               </AttributesLabelContainer>
 
-              <Checkbox checked={!!claim.email} />
+              <Checkbox checked={!!app.attributes.email} />
             </AttributesRow>
 
             <AttributesRow>
               <AttributesLabelContainer>
                 <AttributesHeader>Phone number</AttributesHeader>
-                <AttributesValue>{profile.telephone}</AttributesValue>
+                <AttributesValue>{persona.telephone}</AttributesValue>
               </AttributesLabelContainer>
 
-              <Checkbox checked={!!claim.telephone} />
+              <Checkbox checked={!!app.attributes.telephone} />
             </AttributesRow>
 
             <AttributesRow>
               <AttributesLabelContainer>
                 <AttributesHeader>City</AttributesHeader>
-                <AttributesValue>{profile.location}</AttributesValue>
+                <AttributesValue>{persona.location}</AttributesValue>
               </AttributesLabelContainer>
 
-              <Checkbox checked={!!claim.location} />
+              <Checkbox checked={!!app.attributes.location} />
             </AttributesRow>
 
             <AttributesRow>
               <AttributesImageContainer>
-                <img src={profile.photo} alt="Profile" />
+                <img src={persona.photo} alt="Persona" />
               </AttributesImageContainer>
               <AttributesLabelContainer>
-                <AttributesHeader>Profile picture</AttributesHeader>
+                <AttributesHeader>Persona picture</AttributesHeader>
                 <AttributesValue>cover.jpg</AttributesValue>
               </AttributesLabelContainer>
 
-              <Checkbox checked={!!claim.photo} />
+              <Checkbox checked={!!app.attributes.photo} />
             </AttributesRow>
 
             <AttributesRow>
               <AttributesImageContainer>
-                <img src={profile.picture} alt="Cover" />
+                <img src={persona.picture} alt="Cover" />
               </AttributesImageContainer>
               <AttributesLabelContainer>
                 <AttributesHeader>Cover image</AttributesHeader>
                 <AttributesValue>cover.jpg</AttributesValue>
               </AttributesLabelContainer>
 
-              <Checkbox checked={!!claim.picture} />
+              <Checkbox checked={!!app.attributes.picture} />
             </AttributesRow>
           </AttributesList>
         </AttributesContainer>
@@ -162,7 +156,7 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({
           <Button
             buttonType="alert"
             onClick={() => {
-              history.push(routes.unlinkProfile)
+              history.push(routes.unlinkPersona.replace(routes.tokenParam, app.id))
             }}
           >
             Unlink Persona

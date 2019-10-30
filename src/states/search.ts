@@ -7,7 +7,7 @@ export interface SearchState {
 
 const defaultSearchState: SearchState = {
   searchText: '',
-  apps: {},
+  apps: [],
 }
 
 export { defaultSearchState }

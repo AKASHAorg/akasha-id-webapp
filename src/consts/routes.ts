@@ -1,18 +1,18 @@
 const userIdParam = ':userid'
-const profileIdParam = ':profileid'
+const personaIdParam = ':personaid'
 const appRequestLinkParam = ':apprequestlink'
 const tokenParam = ':token'
 
 const landing = '/'
 const signUp = '/sign-up/'
 const signIn = `/sign-in/${userIdParam}`
-const profiles = '/profiles/'
-const profileDetails = `/profile-details/${profileIdParam}`
-const createProfile = '/create-profile/'
-const profileCreated = '/profile-created/'
-const editProfile = `/edit-profile/${profileIdParam}`
-const deleteProfile = `/delete-profile/${profileIdParam}`
-const unlinkProfile = '/unlink-profile/'
+const personas = '/personas/'
+const personaDetails = `/persona-details/${personaIdParam}`
+const createPersona = '/create-persona/'
+const personaCreated = '/persona-created/'
+const editPersona = `/edit-persona/${personaIdParam}`
+const deletePersona = `/delete-persona/${personaIdParam}`
+const unlinkPersona = `/unlink-persona/${tokenParam}`
 const apps = '/apps/'
 const account = '/account/'
 const registerApp = `/register-app/${appRequestLinkParam}`
@@ -27,19 +27,19 @@ const walletUrl = 'http://localhost:3000/#/register-app/'
 
 export {
   userIdParam,
-  profileIdParam,
+  personaIdParam,
   appRequestLinkParam,
   tokenParam,
   landing,
   signUp,
   signIn,
-  profiles,
-  profileDetails,
-  createProfile,
-  profileCreated,
-  editProfile,
-  deleteProfile,
-  unlinkProfile,
+  personas,
+  personaDetails,
+  createPersona,
+  personaCreated,
+  editPersona,
+  deletePersona,
+  unlinkPersona,
   apps,
   account,
   registerApp,

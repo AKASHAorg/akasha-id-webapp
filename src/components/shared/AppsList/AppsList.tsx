@@ -11,8 +11,8 @@ export interface AppsListProps {
 const AppsList: React.FC<AppsListProps> = ({ apps, ...props }) => {
   return (
     <StyledAppsList {...props}>
-      {Object.entries(apps).map(([token, app]) => (
-        <App key={token} token={token} {...app} />
+      {apps.map(app => (
+        <App key={app.id} {...app} />
       ))}
     </StyledAppsList>
   )

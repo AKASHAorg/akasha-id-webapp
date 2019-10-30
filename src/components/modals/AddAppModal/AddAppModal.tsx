@@ -39,7 +39,7 @@ export interface AddAppModalProps {
   nonce: number
   attributes: string[]
   onClose: () => void
-  onOk: (formData: AddAppFormData) => void
+  onOk: (personaId: string, formData: AddAppFormData) => void
 }
 
 const attributeLabelMap: { [key: string]: string } = {
@@ -86,7 +86,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
   return (
     <Modal
       isOpen={opened}
-      headerContent={`The following application requests access to your profile`}
+      headerContent={`The following application requests access to your persona`}
       onOk={() => {}}
       onClose={() => {}}
       closeTimeoutMS={0}
@@ -117,7 +117,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
     >
       <Column size={6}>
         <HeaderContainer>
-          <Header>{name} requests access to your profile information</Header>
+          <Header>{name} requests access to your persona information</Header>
           <Subheader>Please confirm the information below</Subheader>
         </HeaderContainer>
         <Divider />
@@ -147,7 +147,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
             <Description>{description}</Description>
           </Column>
           <Column size={3}>
-            <AttributesHeader>Select profile attributes to share:</AttributesHeader>
+            <AttributesHeader>Select persona attributes to share:</AttributesHeader>
             <AttributesList>
               {attributes.map(attribute => (
                 <Attribute key={attribute}>
@@ -174,7 +174,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
             <Button buttonType="primary" ghost={true} onClick={onClose}>
               Cancel
             </Button>
-            <Button buttonType="primary" onClick={() => onOk(state as AddAppFormData)}>
+            <Button buttonType="primary" onClick={() => onOk('123', state as AddAppFormData)}>
               Authorize
             </Button>
           </ButtonContainer>

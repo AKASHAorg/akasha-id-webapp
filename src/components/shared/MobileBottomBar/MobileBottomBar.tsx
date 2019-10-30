@@ -6,7 +6,7 @@ import { BottomHeader, PageLink } from './Styled'
 const MobileBottomBar: React.FC<{}> = () => {
   return (
     <BottomHeader>
-      <PageLink to={routes.profiles}>
+      <PageLink to={routes.personas}>
         <div />
         <h4>My Personas</h4>
       </PageLink>

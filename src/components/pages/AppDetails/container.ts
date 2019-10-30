@@ -2,23 +2,22 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Action, Dispatch } from 'redux'
 
-import fetchClaim from '../../../actions/app-details/fetch-claim'
+import fetchApp from '../../../actions/app-details/fetch-app'
 import startRemoveApp from '../../../actions/app-details/start-remove-app'
-import fetchProfile from '../../../actions/profile/fetch-profile'
+import fetchPersona from '../../../actions/persona/fetch-persona'
 import { State } from '../../../states'
 import AppDetails from './AppDetails'
 
 const enchance = connect(
   (state: State) => ({
     app: state.appDetails.app,
-    userName: state.account.name,
-    profile: state.profile,
+    persona: state.persona,
     claim: state.appDetails.claim,
     redirect: state.appDetails.redirectToApps,
   }),
   (dispatch: Dispatch<Action>) => ({
-    fetchClaim: (token: string) => dispatch(fetchClaim(token)),
-    fetchProfile: () => dispatch(fetchProfile('123')),
+    fetchApp: (token: string) => dispatch(fetchApp(token)),
+    fetchPersona: (personaId: string) => dispatch(fetchPersona(personaId)),
     startRemoveApp: () => dispatch(startRemoveApp()),
   }),
 )

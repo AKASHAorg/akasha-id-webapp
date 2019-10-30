@@ -5,7 +5,7 @@ import { Action, Dispatch } from 'redux'
 import setAddAppModalStep from '../../../actions/apps/set-add-app-modal-step'
 import showAddAppModal from '../../../actions/apps/show-add-app-modal'
 import setRegisterAppLink from '../../../actions/landing/set-register-app-link'
-import fetchProfiles from '../../../actions/profiles/fetch-profiles'
+import fetchPersonas from '../../../actions/personas/fetch-personas'
 import { State } from '../../../states'
 import { RegisterAppMatch } from './RegisterApp'
 import RegisterAppWrapper from './RegisterAppWrapper'
@@ -21,7 +21,7 @@ const enchance = connect(
     setRegisterAppLink: (link: string) => dispatch(setRegisterAppLink(link)),
     showAddAppModal: () => dispatch(showAddAppModal(props.match.params.apprequestlink)),
     finishSendClaim: () => dispatch(setAddAppModalStep('wait-request')),
-    fetchProfiles: () => dispatch(fetchProfiles()),
+    fetchPersonas: () => dispatch(fetchPersonas()),
   }),
 )
 

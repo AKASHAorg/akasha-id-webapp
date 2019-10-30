@@ -5,22 +5,22 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import * as routes from '../../../../../consts/routes'
 import { AddAppFormData, AddAppModalStep } from '../../../../../types/apps'
-import { Profile as ProfileType, ProfileData } from '../../../../../types/users'
+import { Persona as PersonaType, PersonaData } from '../../../../../types/users'
 import { AppImage } from '../../../../shared/AppImage'
 import { MobileTopBarWithLabelCancelButton } from '../../../../shared/MobileTopBarWithLabelCancelButton'
 import { RowTextContainer } from '../../../../shared/RowTextContainer'
-import { Profile } from './components/Profile'
+import { Persona } from './components/Persona'
 import {
-  AddProfileLink,
+  AddPersonaLink,
   AppContainer,
   AppDivider,
   AppHeader,
   AppNonce,
   AppWarning,
   MobileBottomContainer,
-  ProfilesContainer,
-  ProfilesHeader,
-  ProfilesList,
+  PersonasContainer,
+  PersonasHeader,
+  PersonasList,
   StyledPageContainer,
   TopText,
 } from './Styled'
@@ -33,11 +33,11 @@ export interface RegisterAppMobileViewProps {
   url: string
   nonce: number
   attributes: string[]
-  profiles: ProfileType[]
-  profile: ProfileData
-  loadProfile: () => void
+  personas: PersonaType[]
+  persona: PersonaData
+  loadPersona: () => void
   onClose: () => void
-  onOk: (formData: AddAppFormData) => void
+  onOk: (personaId: string, formData: AddAppFormData) => void
 }
 
 const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
@@ -46,17 +46,17 @@ const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
   description,
   nonce,
   attributes,
-  profiles,
-  loadProfile,
+  personas,
+  loadPersona,
   onOk,
 }) => {
   const theme = useContext(AkashaThemeContext)
 
   useEffect(() => {
-    loadProfile()
-  }, [loadProfile])
+    loadPersona()
+  }, [loadPersona])
 
-  const [selectedProfile, toggleProfile] = useState<null | string>(null)
+  const [selectedPersona, togglePersona] = useState<null | string>(null)
 
   const initialAttributesState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
   const [attributesState, changeAttributesState] = useState(initialAttributesState)
@@ -85,31 +85,37 @@ const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
         </AppWarning>
       </AppContainer>
 
-      <ProfilesContainer>
-        <ProfilesHeader>Select persona</ProfilesHeader>
-        <ProfilesList>
-          {profiles.map(profile => (
-            <Profile
+      <PersonasContainer>
+        <PersonasHeader>Select persona</PersonasHeader>
+        <PersonasList>
+          {personas.map(persona => (
+            <Persona
               appName={name}
               appAttributes={attributes}
-              selected={selectedProfile === profile.id}
-              key={profile.id}
+              selected={selectedPersona === persona.id}
+              key={persona.id}
               attributesState={attributesState}
               toggleAttribute={toggleAttribute}
-              toggleProfile={toggleProfile}
-              {...profile}
+              togglePersona={togglePersona}
+              {...persona}
             />
           ))}
-        </ProfilesList>
+        </PersonasList>
 
-        <AddProfileLink to={routes.createProfile}>
+        <AddPersonaLink to={routes.createPersona}>
           <Icon type="plus" color={theme.colors.blue} width="13px" height="13px" />
           New Persona
-        </AddProfileLink>
-      </ProfilesContainer>
+        </AddPersonaLink>
+      </PersonasContainer>
 
       <MobileBottomContainer>
-        <Button fullWidth={true} buttonType="primary" onClick={() => {}}>
+        <Button
+          fullWidth={true}
+          buttonType="primary"
+          onClick={() => {
+            onOk(selectedPersona!, attributesState as AddAppFormData)
+          }}
+        >
           Authorize
         </Button>
       </MobileBottomContainer>

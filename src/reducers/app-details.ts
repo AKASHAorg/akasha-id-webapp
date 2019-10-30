@@ -1,32 +1,31 @@
 import { Action } from 'redux'
 
-import { FetchClaimAction } from '../actions/app-details/fetch-claim'
-import { SetClaimAction } from '../actions/app-details/set-claim'
+import { FetchAppAction } from '../actions/app-details/fetch-app'
+import { SetAppAction } from '../actions/app-details/set-app'
 import { SetRedirectToAppsAction } from '../actions/app-details/set-redirect-to-apps'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { AppDetailsState, defaultAppDetailsState } from '../states/app-details'
 
-const fetchClaim = (
+const fetchApp = (
   state: AppDetailsState,
-  action: FetchClaimAction,
+  action: FetchAppAction,
   fullState: State,
 ): AppDetailsState => {
   return {
     ...state,
-    token: action.token,
+    token: action.id,
   }
 }
 
-const setClaim = (
+const setApp = (
   state: AppDetailsState,
-  action: SetClaimAction,
+  action: SetAppAction,
   fullState: State,
 ): AppDetailsState => {
   return {
     ...state,
     app: action.app,
-    claim: action.claim,
   }
 }
 
@@ -45,11 +44,11 @@ const reducer = (
   fullState: State,
 ): AppDetailsState => {
   switch (action.type) {
-    case actions.appDetails.FETCH_CLAIM:
-      return fetchClaim(state, action as FetchClaimAction, fullState)
+    case actions.appDetails.FETCH_APP:
+      return fetchApp(state, action as FetchAppAction, fullState)
 
-    case actions.appDetails.SET_CLAIM:
-      return setClaim(state, action as SetClaimAction, fullState)
+    case actions.appDetails.SET_APP:
+      return setApp(state, action as SetAppAction, fullState)
 
     case actions.appDetails.SET_REDIRECT_TO_APPS:
       return setRedirectToApps(state, action as SetRedirectToAppsAction, fullState)

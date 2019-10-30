@@ -13,7 +13,7 @@ export interface SignInFormData {
   password: string
 }
 
-export interface ProfileData {
+export interface PersonaData {
   address: {
     addressLocality: string
     addressRegion: string
@@ -31,10 +31,10 @@ export interface ProfileData {
   url: string
   about: string
   location: string
-  profileName: string
+  personaName: string
 }
 
-export interface Profile extends ProfileData {
+export interface Persona extends PersonaData {
   id: string
 }
 

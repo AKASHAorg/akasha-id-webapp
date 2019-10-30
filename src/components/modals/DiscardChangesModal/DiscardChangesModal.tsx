@@ -11,7 +11,7 @@ const DiscardChangesModal: React.FC<RouteComponentProps<any>> = ({ history }) =>
   return (
     <Modal
       isOpen={true}
-      headerContent={`The following application requests access to your profile`}
+      headerContent={`The following application requests access to your persona`}
       onOk={() => {}}
       onClose={() => {}}
       closeTimeoutMS={0}

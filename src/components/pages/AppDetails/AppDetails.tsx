@@ -3,7 +3,7 @@ import { Redirect, RouteComponentProps } from 'react-router-dom'
 
 import * as routes from '../../../consts/routes'
 import { App, Claim } from '../../../types/apps'
-import { ProfileData } from '../../../types/users'
+import { Persona } from '../../../types/users'
 import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import { AppDetailsDesktopView } from './components/AppDetailsDesktopView'
@@ -15,33 +15,32 @@ export interface AppDetailsMatch {
 
 export interface AppDetailsProps extends RouteComponentProps<AppDetailsMatch> {
   app?: App
-  userName: string
-  profile?: ProfileData
+  persona?: Persona
   claim?: Claim
   redirect: boolean
-  fetchClaim: (token: string) => void
-  fetchProfile: () => void
+  fetchPersona: (personaId: string) => void
+  fetchApp: (token: string) => void
   startRemoveApp: () => void
 }
 
 const AppDetails: React.FC<AppDetailsProps> = ({
   app,
-  userName,
-  profile,
-  claim,
+  persona,
   redirect,
-  fetchProfile,
-  fetchClaim,
+  fetchPersona,
+  fetchApp,
   startRemoveApp,
   match,
 }) => {
   useEffect(() => {
-    fetchProfile()
-  }, [fetchProfile])
+    fetchApp(match.params.token)
+  }, [fetchApp, match.params.token])
 
   useEffect(() => {
-    fetchClaim(match.params.token)
-  }, [fetchClaim, match.params.token])
+    if (app) {
+      fetchPersona(app.persona)
+    }
+  }, [fetchPersona, app])
 
   return (
     <SidebarContainer>
@@ -50,8 +49,8 @@ const AppDetails: React.FC<AppDetailsProps> = ({
       <Column size={6}>
         {app && (
           <>
-            <AppDetailsDesktopView app={app!} claim={claim!} startRemoveApp={startRemoveApp} />
-            <AppDetailMobileView app={app!} userName={userName} profile={profile!} claim={claim!} />
+            <AppDetailsDesktopView app={app!} startRemoveApp={startRemoveApp} />
+            <AppDetailMobileView app={app!} persona={persona!} />
           </>
         )}
       </Column>

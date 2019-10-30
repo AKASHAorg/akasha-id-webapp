@@ -43,26 +43,26 @@ const AppNonce = styled.span`
   color: #4e71ff;
 `
 
-const ProfilesContainer = styled.div`
+const PersonasContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
   margin-top: 32px;
 `
 
-const ProfilesHeader = styled.h4`
+const PersonasHeader = styled.h4`
   ${fonts.textLabel}
 
   margin: 0 0 15px 0;
 `
 
-const ProfilesList = styled.ul`
+const PersonasList = styled.ul`
   width: 100%;
   box-sizing: border-box;
   padding: 0;
   list-style: none;
 `
 
-const AddProfileLink = styled(Link)<LinkProps>`
+const AddPersonaLink = styled(Link)<LinkProps>`
   margin-top: 16px;
   display: flex;
   align-items: center;
@@ -107,9 +107,9 @@ export {
   AppDivider,
   AppWarning,
   AppNonce,
-  ProfilesContainer,
-  ProfilesHeader,
-  ProfilesList,
-  AddProfileLink,
+  PersonasContainer,
+  PersonasHeader,
+  PersonasList,
+  AddPersonaLink,
   MobileBottomContainer,
 }

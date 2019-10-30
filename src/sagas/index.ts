@@ -4,15 +4,15 @@ import accountSaga from './account'
 import appDetailsSaga from './app-details'
 import appsSaga from './apps'
 import landingSaga from './landing'
-import profileSaga from './profile'
-import profilesSaga from './profiles'
+import personaSaga from './persona'
+import personasSaga from './personas'
 import searchSaga from './search'
 
 function* rootSaga() {
   yield all([
     landingSaga(),
-    profilesSaga(),
-    profileSaga(),
+    personasSaga(),
+    personaSaga(),
     appsSaga(),
     accountSaga(),
     appDetailsSaga(),
