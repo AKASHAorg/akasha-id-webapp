@@ -11,7 +11,7 @@ html, body {
   letter-spacing: -0.08px;
   line-height: 18px;
   font-weight: normal;
-  src: url(./fonts/SFUIText-Regular.woff) format('woff');
+  src: url(./assets/fonts/SFUIText-Regular.woff) format('woff');
 }
 
 @font-face {
@@ -21,33 +21,33 @@ html, body {
   letter-spacing: -0.08px;
   line-height: 18px;
   font-weight: 600;
-  src: url(./fonts/SFUIText-Semibold.woff) format('woff');
+  src: url(./assets/fonts/SFUIText-Semibold.woff) format('woff');
 }
 
 @font-face {
   font-family: 'SF UI Display Regular';
   font-style: normal;
   font-weight: normal;
-  src: url(./fonts/SFUIDisplay-Regular.woff) format('woff');
+  src: url(./assets/fonts/SFUIDisplay-Regular.woff) format('woff');
 }
 
 @font-face {
   font-family: 'HK Grotesk Medium';
   font-style: normal;
   font-weight: normal;
-  src: url(./fonts/HKGrotesk-Medium.woff) format('woff');
+  src: url(./assets/fonts/HKGrotesk-Medium.woff) format('woff');
 }
 
 @font-face {
   font-family: 'HK Grotesk Regular';
   font-style: normal;
   font-weight: normal;
-  src: url(./fonts/HKGrotesk-Regular.woff) format('woff');
+  src: url(./assets/fonts/HKGrotesk-Regular.woff) format('woff');
 }
 
 @font-face {
   font-family: 'HK Grotesk Semibold';
   font-style: normal;
   font-weight: normal;
-  src: url(./fonts/HKGrotesk-SemiBold.woff) format('woff');
+  src: url(./assets/fonts/HKGrotesk-SemiBold.woff) format('woff');
 }

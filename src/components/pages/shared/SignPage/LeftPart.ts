@@ -15,7 +15,7 @@ const LeftPart = styled.div`
 
   ${screen.onDesktop(css`
     padding-top: 157px;
-    width: calc(6 * 91px + 5 * 32px + 16px);
+    width: 100%;
     margin-right: 16px;
   `)}
 `

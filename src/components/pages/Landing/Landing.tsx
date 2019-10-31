@@ -2,7 +2,6 @@ import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import React, { useContext } from 'react'
 
-import * as routes from '../../../consts/routes'
 import { Account } from '../../../types/users'
 import { Column, Container } from '../shared/Container'
 import { LeftPart } from '../shared/SignPage'
@@ -24,7 +23,6 @@ import {
   PageContainer,
   PaleText,
   SignInButtonContainer,
-  SignInLink,
 } from './Styled'
 
 export interface LandingProps {
@@ -37,7 +35,7 @@ const Landing: React.FC<LandingProps> = ({ users }) => {
   return (
     <Container>
       <LeftPart>
-        <Column size={1} hideMobile={true} />
+        <Column size={4} hideMobile={true} />
         <Column size={4}>
           <PageContainer>
             <IconContainer>
@@ -58,8 +56,6 @@ const Landing: React.FC<LandingProps> = ({ users }) => {
                       Sign in with <ColoredUserName>{user.name}</ColoredUserName>
                     </SignInButton>
                   ))}
-
-                  <SignInButton userId="">Sign in with other account</SignInButton>
                 </SignInButtonContainer>
 
                 <DividerContainer>
@@ -86,8 +82,6 @@ const Landing: React.FC<LandingProps> = ({ users }) => {
                 </DotContainer>
 
                 <SignUpButton />
-
-                <SignInLink to={routes.signIn.replace(routes.userIdParam, '')}>Sign in</SignInLink>
               </>
             )}
           </PageContainer>

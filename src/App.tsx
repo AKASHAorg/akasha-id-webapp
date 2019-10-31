@@ -19,6 +19,7 @@ import { Landing } from './components/pages/Landing'
 import { PersonaCreated } from './components/pages/PersonaCreated'
 import { PersonaDetails } from './components/pages/PersonaDetails'
 import { Personas } from './components/pages/Personas'
+import { QRCode } from './components/pages/QRCode'
 import { RegisterApp } from './components/pages/RegisterApp'
 import { Search } from './components/pages/Search'
 import { Settings } from './components/pages/Settings'
@@ -219,6 +220,16 @@ const App: React.FC<AppProps> = ({ fetchPublicAccounts }: AppProps) => {
         render={() => (
           <WithRedirect shouldBeSignedIn={true}>
             <Faq />
+          </WithRedirect>
+        )}
+      />
+      <Route
+        strict={true}
+        exact={true}
+        path={routes.qrCode}
+        render={() => (
+          <WithRedirect shouldBeSignedIn={true}>
+            <QRCode />
           </WithRedirect>
         )}
       />

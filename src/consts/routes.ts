@@ -23,6 +23,7 @@ const settings = '/settings/'
 const discardChanges = '/discard-changes/'
 const supportedApps = '/supported-apps/'
 const faq = '/faq/'
+const qrCode = '/qr-code/'
 const walletUrl = 'http://localhost:3000/#/register-app/'
 
 export {
@@ -51,4 +52,5 @@ export {
   discardChanges,
   supportedApps,
   faq,
+  qrCode,
 }

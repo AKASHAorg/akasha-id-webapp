@@ -34,7 +34,7 @@ const SignUp: React.FC<InjectedFormProps<SignUpFormData, {}, string>> = ({ handl
   return (
     <Container>
       <LeftPart>
-        <Column size={1} hideMobile={true} />
+        <Column size={4} hideMobile={true} />
         <Column size={4}>
           <FormContainer>
             <TopContainer>
@@ -86,7 +86,7 @@ const SignUp: React.FC<InjectedFormProps<SignUpFormData, {}, string>> = ({ handl
 
             <BottomContainer>
               <div>Have an account?</div>
-              <Link to={routes.signIn}>Sign in</Link>
+              <Link to={routes.landing}>Sign in</Link>
             </BottomContainer>
           </FormContainer>
         </Column>

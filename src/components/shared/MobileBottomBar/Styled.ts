@@ -34,12 +34,11 @@ const PageLink = styled(NavLink)<NavLinkProps>`
     color: #b6bfd1;
   }
 
-  > div {
+  > svg {
     box-sizing: border-box;
-    height: 20px;
-    width: 36px;
-    border: 1px solid #a0a7b3;
-    border-radius: 0;
+    height: 26px;
+    width: 26px;
+    stroke: ${props => props.theme.colors.dark};
   }
 
   > h4 {

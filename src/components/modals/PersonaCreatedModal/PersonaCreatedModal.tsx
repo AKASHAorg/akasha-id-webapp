@@ -10,7 +10,7 @@ import { Header, Logo, ModalContent, PaleText, PersonasLink } from './Styled'
 
 export interface PersonaCreatedModalProps extends RouteComponentProps<any> {}
 
-const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = () => {
+const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = ({ history }) => {
   return (
     <Modal
       isOpen={true}
@@ -44,7 +44,12 @@ const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = () => {
         <Logo />
         <Header>New Persona Created</Header>
         <PaleText>You can now connect it to a third party App by scanning the QR Code</PaleText>
-        <Button buttonType="primary" onClick={() => {}}>
+        <Button
+          buttonType="primary"
+          onClick={() => {
+            history.push(routes.qrCode)
+          }}
+        >
           Scan QR code
         </Button>
         <PersonasLink to={routes.personas}>Maybe Later</PersonasLink>

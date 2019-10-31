@@ -47,7 +47,7 @@ const SignIn: React.FC<SignInProps & InjectedFormProps<SignInFormData, SignInPro
   return (
     <Container>
       <LeftPart>
-        <Column size={1} hideMobile={true} />
+        <Column size={4} hideMobile={true} />
         <Column size={4}>
           <FormContainer>
             <TopContainer>

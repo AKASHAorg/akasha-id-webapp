@@ -101,7 +101,7 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
 
         <ImagesContainer>
           <PictureContainer>
-            <img src={picture} alt={givenName} />
+            <img src={picture} alt={personaName} />
           </PictureContainer>
 
           <PhotoContainer>
@@ -121,6 +121,10 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
           <About>{about}</About>
           <HeaderDivider />
           <FormData>
+            <FormDataRow>
+              <FormDataRowHeader>Name</FormDataRowHeader>
+              <span>{givenName}</span>
+            </FormDataRow>
             <FormDataRow>
               <FormDataRowHeader>Email</FormDataRowHeader>
               <span>{email}</span>
@@ -150,7 +154,13 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
             )}
 
             <AppsAddAppText>Add a new third party application</AppsAddAppText>
-            <Button fullWidth={true} buttonType="primary" onClick={() => {}}>
+            <Button
+              fullWidth={true}
+              buttonType="primary"
+              onClick={() => {
+                history.push(routes.qrCode)
+              }}
+            >
               Scan QR code
             </Button>
           </AppsContainer>
@@ -162,11 +172,11 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
 
           <Button
             buttonType="alert"
-            onClick={() =>
+            onClick={() => {
               history.push(
                 routes.deletePersona.replace(routes.personaIdParam, match.params.personaid),
               )
-            }
+            }}
           >
             Delete Persona
           </Button>

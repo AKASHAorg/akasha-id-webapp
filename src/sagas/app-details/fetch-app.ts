@@ -9,6 +9,9 @@ import { wallet } from '../../did'
 function* setApp(action: FetchAppAction) {
   try {
     const app = yield call([wallet, wallet.appInfo], action.id)
+    if (app) {
+      app.id = action.id
+    }
 
     yield put(setAppActionCreator(app))
   } catch (e) {
