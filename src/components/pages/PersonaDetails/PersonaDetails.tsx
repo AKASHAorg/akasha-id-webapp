@@ -147,8 +147,8 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
 
             {appsCount > 0 && (
               <AppsList>
-                {Object.entries(apps).map(([appId, app]) => (
-                  <App key={appId} id={appId} {...app} />
+                {apps.map(app => (
+                  <App key={app.id} id={app.id} {...app} />
                 ))}
               </AppsList>
             )}

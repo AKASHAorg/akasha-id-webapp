@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Redirect } from 'react-router'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import * as routes from '../../../consts/routes'
 import { PersonaData } from '../../../types/users'
@@ -9,21 +9,30 @@ import { DesktopPersonaForm } from '../shared/DesktopPersonaForm'
 import { MobilePersonaForm } from '../shared/MobilePersonaForm'
 import { SidebarContainer } from '../shared/SidebarContainer'
 
-export interface CreatePersonaProps {
+export interface CreatePersonaProps extends RouteComponentProps<any> {
   redirect: boolean
   resetPersona: () => void
   onSubmit: (formData: PersonaData) => void
 }
 
-const CreatePersona: React.FC<CreatePersonaProps> = ({ redirect, resetPersona, onSubmit }) => {
+const CreatePersona: React.FC<CreatePersonaProps> = ({
+  redirect,
+  resetPersona,
+  onSubmit,
+  history,
+}) => {
   useEffect(() => {
     resetPersona()
   }, [resetPersona])
 
+  useEffect(() => {
+    if (redirect) {
+      history.replace(routes.personaCreated)
+    }
+  }, [redirect, history])
+
   return (
     <SidebarContainer>
-      {redirect && <Redirect to={routes.personaCreated} />}
-
       <Column size={6}>
         <MobileTopBarWithLabelCancelButton>New Persona</MobileTopBarWithLabelCancelButton>
 
@@ -34,4 +43,4 @@ const CreatePersona: React.FC<CreatePersonaProps> = ({ redirect, resetPersona, o
   )
 }
 
-export default CreatePersona
+export default withRouter(CreatePersona)

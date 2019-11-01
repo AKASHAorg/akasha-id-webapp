@@ -47,7 +47,7 @@ const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = ({ history }) =>
         <Button
           buttonType="primary"
           onClick={() => {
-            history.push(routes.apps)
+            history.replace(routes.apps)
           }}
         >
           Ok, got it!

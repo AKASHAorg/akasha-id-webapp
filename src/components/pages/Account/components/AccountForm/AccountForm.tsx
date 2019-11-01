@@ -15,6 +15,8 @@ import {
 
 const nameIsRequired = isRequired('Username cannot be empty')
 const passwordIsRequired = isRequired('Password cannot be empty')
+const passwordConfirmationIsRequired = (confirmPassword: string, formValues: AccountFormData) =>
+  confirmPassword === formValues.newPassword ? undefined : 'Password confirmation is incorrect'
 
 const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ handleSubmit }) => {
   return (
@@ -52,6 +54,17 @@ const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ han
             component={Input}
             type="password"
             validate={passwordIsRequired}
+          />
+        </FieldContainer>
+
+        <FieldContainer>
+          <Field
+            name="confirmPassword"
+            label="Confirm password"
+            placeholder="Confirm new password"
+            component={Input}
+            type="password"
+            validate={passwordConfirmationIsRequired}
           />
         </FieldContainer>
 

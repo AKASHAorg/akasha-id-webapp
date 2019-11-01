@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Redirect, RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import * as routes from '../../../consts/routes'
 import { App, Claim } from '../../../types/apps'
@@ -31,6 +31,7 @@ const AppDetails: React.FC<AppDetailsProps> = ({
   fetchApp,
   startRemoveApp,
   match,
+  history,
 }) => {
   useEffect(() => {
     fetchApp(match.params.token)
@@ -42,10 +43,15 @@ const AppDetails: React.FC<AppDetailsProps> = ({
     }
   }, [fetchPersona, app])
 
+  useEffect(() => {
+    if (redirect) {
+      history.goBack()
+      history.replace(routes.apps)
+    }
+  }, [redirect, history])
+
   return (
     <SidebarContainer>
-      {redirect && <Redirect to={routes.apps} />}
-
       <Column size={6}>
         {app && (
           <>
@@ -58,4 +64,4 @@ const AppDetails: React.FC<AppDetailsProps> = ({
   )
 }
 
-export default AppDetails
+export default withRouter(AppDetails)

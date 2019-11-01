@@ -1,5 +1,6 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
+import { History } from 'history'
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { css } from 'styled-components'
@@ -7,7 +8,13 @@ import { css } from 'styled-components'
 import { borders } from '../../../styles/index'
 import { ButtonContainer, ModalContent, ModalHeader } from './Styled'
 
-const DiscardChangesModal: React.FC<RouteComponentProps<any>> = ({ history }) => {
+export interface DiscardChangesModalProps extends RouteComponentProps<any> {
+  isOpen: boolean
+  onDiscard: (history: History<any>) => void
+  onSave: (history: History<any>) => void
+}
+
+const DiscardChangesModal: React.FC<DiscardChangesModalProps> = ({ history }) => {
   return (
     <Modal
       isOpen={true}

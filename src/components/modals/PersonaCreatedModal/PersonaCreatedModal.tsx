@@ -47,12 +47,18 @@ const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = ({ history }) =>
         <Button
           buttonType="primary"
           onClick={() => {
-            history.push(routes.qrCode)
+            history.replace(routes.qrCode)
           }}
         >
           Scan QR code
         </Button>
-        <PersonasLink to={routes.personas}>Maybe Later</PersonasLink>
+        <PersonasLink
+          onClick={() => {
+            history.replace(routes.personas)
+          }}
+        >
+          Maybe Later
+        </PersonasLink>
       </ModalContent>
     </Modal>
   )

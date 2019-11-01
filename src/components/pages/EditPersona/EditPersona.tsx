@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { Redirect, RouteComponentProps, withRouter } from 'react-router'
+import { RouteComponentProps, withRouter } from 'react-router'
 
-import * as routes from '../../../consts/routes'
 import { PersonaData } from '../../../types/users'
 import { MobileTopBarWithArrowCancelButton } from '../../shared/MobileTopBarWithArrowCancelButton'
 import { Column } from '../shared/Container'
@@ -19,19 +18,25 @@ export interface EditPersonaProps extends RouteComponentProps<EditPersonaMatch> 
   onSubmit: (formData: PersonaData) => void
 }
 
-const EditPersona: React.FC<EditPersonaProps> = ({ redirect, loadPersona, onSubmit, match }) => {
+const EditPersona: React.FC<EditPersonaProps> = ({
+  redirect,
+  loadPersona,
+  onSubmit,
+  match,
+  history,
+}) => {
   useEffect(() => {
     loadPersona(match.params.personaid)
   }, [loadPersona, match.params.personaid])
 
+  useEffect(() => {
+    if (redirect) {
+      history.goBack()
+    }
+  }, [redirect, history, match.params.personaid])
+
   return (
     <SidebarContainer>
-      {redirect && (
-        <Redirect
-          to={routes.personaDetails.replace(routes.personaIdParam, match.params.personaid)}
-        />
-      )}
-
       <Column size={6}>
         <MobileTopBarWithArrowCancelButton>Edit Persona</MobileTopBarWithArrowCancelButton>
 

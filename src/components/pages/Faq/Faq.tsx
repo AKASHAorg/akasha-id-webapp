@@ -7,6 +7,58 @@ import { SidebarContainer } from '../shared/SidebarContainer'
 import { Question } from './components/Question'
 import { PageContainer, QuestionsList } from './Styled'
 
+interface QuestionType {
+  question: React.ReactNode
+  answer: React.ReactNode
+}
+
+const questions: QuestionType[] = [
+  {
+    question: 'What is AKASHA.id?',
+    answer:
+      'It is a privacy-respectful way to enhance your experience when using decentralized, blockchain-based applications that have no standard way to manage personal profile data, such as your name, photo, and many more attributes.',
+  },
+  {
+    question: 'Where is my data stored?',
+    answer:
+      'Your data is stored in an encrypted form locally in the browser, on your device, using modern browser storage mechanisms.',
+  },
+  {
+    question: 'Is the data stored safely?',
+    answer:
+      'Your data is never at risk! We use a password-based key derivation method to generate an encryption key for each local account. All data stored locally is encrypted with this key, and you can always change your password without having to re-encrypt everything.',
+  },
+  {
+    question: 'What about my privacy? Are you GDPR compliant?',
+    answer:
+      'Absolutely! There is nothing better in terms of privacy than having absolute control over your own data. Because the data is stored locally, we at AKASHA have no way to access it, even in its encrypted form. We are fully [GDPR] compliant.',
+  },
+  {
+    question: 'Can I export all my data?',
+    answer:
+      'Of course. We offer the possibility of exporting all your data, in a machine readable format that can be imported by other applications, or even a different instance of our AKASHA.id application that runs on another device or in a different browser.',
+  },
+  {
+    question: 'What happens if I delete my account?',
+    answer:
+      'Being in control of your data also means that it is under your responsibility. For example, you currently have the option to create backups by exporting individual account data. We are exploring the possibility of automating this process by adding third party integrations with Dropbox, Google Drive, iCloud, etc.',
+  },
+  {
+    question: 'How do applications access my data?',
+    answer:
+      'In order for an application to request access to your personal information, we are offering a free "discovery" service, which helps third party applications (dapps) communicate with the AKASHA.id application. Exchanges take place using short-lived sessions that use random identifiers, to avoid tracking. Also, all the data that transits through this service is end-to-end encrypted using Perfect Forward Secrecy (PFS), a mechanism by which we cannot see what goes through and each individual session uses a different encryption key. [link to a technical document]',
+  },
+  {
+    question: 'What applications can I use with my AKASHA.id?',
+    answer: 'Ethereum.world (coming soon!)',
+  },
+  {
+    question: 'Can any developer integrate their dapp with AKASHA.id?',
+    answer:
+      'AKASHA.id is open for all developers to integrate with their own dapp. Please visit our developer resources to learn more. (needs a dedicated dev space, but we can link to Github for now)',
+  },
+]
+
 const Faq: React.FC<{}> = () => {
   return (
     <SidebarContainer>
@@ -17,31 +69,9 @@ const Faq: React.FC<{}> = () => {
           <MobileTopBarWithArrowCancelButton>FAQs</MobileTopBarWithArrowCancelButton>
 
           <QuestionsList>
-            <Question text="What is AKASHA.ID" answer="" opened={false} />
-
-            <Question text="How does it work?" answer="" opened={false} />
-
-            <Question
-              text="What apps does it support?"
-              answer="The list of apps it supports is quite vast and can be found at the Supported Apps page"
-              opened={true}
-            />
-
-            <Question text="Is it free?" answer="" opened={false} />
-
-            <Question text="Is any data stored?" answer="" opened={false} />
-
-            <Question text="What is the meaning of life?" answer="" opened={false} />
-
-            <Question
-              text="What colour is the grey hourse of Napoleon in the 16th century?"
-              answer=""
-              opened={false}
-            />
-
-            <Question text="What’s the first rule of Fight Club?" answer="" opened={false} />
-
-            <Question text="Knock, Knock. Who’s there?" answer="" opened={false} />
+            {questions.map(question => (
+              <Question key={question.question} {...question} />
+            ))}
           </QuestionsList>
         </PageContainer>
       </Column>

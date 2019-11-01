@@ -1,4 +1,3 @@
-import { Link, LinkProps } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { fonts } from '../../../styles'
@@ -40,15 +39,14 @@ const PaleText = styled.p`
   width: 270px;
 `
 
-const PersonasLink = styled(Link)<LinkProps>`
+const PersonasLink = styled.button`
   ${fonts.blueText};
 
-  margin-top: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
 
-  :visited,
-  :hover {
-    color: #4e71ff;
-  }
+  margin-top: 24px;
 `
 
 export { ModalContent, Logo, Header, PaleText, PersonasLink }

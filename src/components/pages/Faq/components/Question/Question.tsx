@@ -1,23 +1,27 @@
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { Subtract } from 'grommet-icons'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Answer, QuestionButton, QuestionText, Row } from './Styled'
 
 export interface QuestionProps {
-  text: React.ReactNode
+  question: React.ReactNode
   answer: React.ReactNode
-  opened: boolean
 }
 
-const Question: React.FC<QuestionProps> = ({ text, answer, opened }) => {
+const Question: React.FC<QuestionProps> = ({ question, answer }) => {
+  const [opened, setOpened] = useState(false)
   const theme = useContext(AkashaThemeContext)
 
   return (
     <Row opened={opened}>
-      <QuestionButton>
-        <QuestionText>{text}</QuestionText>
+      <QuestionButton
+        onClick={() => {
+          setOpened(!opened)
+        }}
+      >
+        <QuestionText>{question}</QuestionText>
 
         {opened ? (
           <Subtract size="13px" color="dark-1" />

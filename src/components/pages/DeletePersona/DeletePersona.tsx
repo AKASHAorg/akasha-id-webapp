@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Redirect, RouteComponentProps, withRouter } from 'react-router'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import * as routes from '../../../consts/routes'
 import { DeletePersonaModal } from '../../modals/DeletePersonaModal'
@@ -19,6 +19,7 @@ const DeletePersona: React.FC<DeletePersonaProps> = ({
   loadPersona,
   loadApps,
   match,
+  history,
 }) => {
   useEffect(() => {
     loadPersona(match.params.personaid)
@@ -28,13 +29,14 @@ const DeletePersona: React.FC<DeletePersonaProps> = ({
     loadApps(match.params.personaid)
   }, [loadApps, match.params.personaid])
 
-  return (
-    <>
-      {redirect && <Redirect to={routes.personas} />}
+  useEffect(() => {
+    if (redirect) {
+      history.goBack()
+      history.replace(routes.personas)
+    }
+  }, [redirect, history])
 
-      <DeletePersonaModal />
-    </>
-  )
+  return <DeletePersonaModal />
 }
 
 export default withRouter(DeletePersona)
