@@ -57,22 +57,31 @@ const Persona: React.FC<PersonaProps> = ({
           </PersonaAttributesHeader>
 
           <PersonaAttributesList>
-            {appAttributes.map(attribute => (
-              <PersonaAttributesRow key={attribute}>
-                <div>
-                  <PersonaAttributesLabel>
-                    {attributeNamesMap.get(attribute)}
-                  </PersonaAttributesLabel>
-                  <PersonaAttributesText>{(props as any)[attribute]}</PersonaAttributesText>
-                </div>
+            {appAttributes.map(attribute => {
+              const attributeText = (props as any)[attribute]
+              return (
+                <PersonaAttributesRow key={attribute}>
+                  <div>
+                    <PersonaAttributesLabel>
+                      {attributeNamesMap.get(attribute)}
+                    </PersonaAttributesLabel>
+                    <PersonaAttributesText>
+                      {attributeText && attributeText.includes('data:image/') ? (
+                        <img src={attributeText} alt={attributeNamesMap.get(attribute)} />
+                      ) : (
+                        attributeText
+                      )}
+                    </PersonaAttributesText>
+                  </div>
 
-                <Checkbox
-                  name={attribute}
-                  checked={attributesState[attribute]}
-                  onChange={() => toggleAttribute(attribute)}
-                />
-              </PersonaAttributesRow>
-            ))}
+                  <Checkbox
+                    name={attribute}
+                    checked={attributesState[attribute]}
+                    onChange={() => toggleAttribute(attribute)}
+                  />
+                </PersonaAttributesRow>
+              )
+            })}
           </PersonaAttributesList>
         </>
       )}
