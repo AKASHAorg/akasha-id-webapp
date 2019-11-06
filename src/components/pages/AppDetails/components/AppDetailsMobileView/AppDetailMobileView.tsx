@@ -71,7 +71,9 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
         <AttributesContainer>
           <PersonaContainer>
             <PersonaName>{persona.personaName}</PersonaName>
-            <PersonaLink to={routes.personaDetails}>View Persona</PersonaLink>
+            <PersonaLink to={routes.personaDetails.replace(routes.personaIdParam, app.persona)}>
+              View Persona
+            </PersonaLink>
           </PersonaContainer>
 
           <AttributesDivider />
@@ -83,7 +85,7 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
           <AttributesList>
             {Object.entries(app.attributes).map(([attribute, checked]) => (
               <AttributesRow key={attribute}>
-                {(attribute === 'photo ' || attribute === 'picture') && (
+                {(attribute === 'photo' || attribute === 'picture') && (
                   <>
                     <AttributesImageContainer
                       src={(persona as any)[attribute]}
@@ -95,7 +97,7 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
                     </AttributesLabelContainer>
                   </>
                 )}
-                {attribute !== 'photo ' && attribute !== 'picture' && (
+                {attribute !== 'photo' && attribute !== 'picture' && (
                   <AttributesLabelContainer>
                     <AttributesHeader>{attributeNamesMap.get(attribute)}</AttributesHeader>
                     <AttributesValue>{(persona as any)[attribute]}</AttributesValue>

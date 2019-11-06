@@ -41,6 +41,7 @@ export type AddAppModalStep =
   | 'decline-app'
   | 'finish'
 
-export type AddAppFormData = {
-  [K in keyof PersonaData]: boolean
+export interface AddAppFormData {
+  personaId?: string
+  attributes: { [K in keyof PersonaData]: boolean }
 }

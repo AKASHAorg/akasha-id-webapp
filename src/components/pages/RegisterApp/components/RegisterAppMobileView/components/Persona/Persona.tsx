@@ -1,15 +1,12 @@
-import { RadioButton } from 'grommet'
 import React from 'react'
+import { Field } from 'redux-form'
 
-import attributeNamesMap from '../../../../../../../consts/attribute-names-map'
 import { Persona as PersonaType } from '../../../../../../../types/users'
-import { Toggle } from '../../../../../../shared/Toggle'
+import { AttributeField } from '../AttributeField'
+import { PersonaField } from '../PersonaField'
 import {
   PersonaAttributesHeader,
-  PersonaAttributesLabel,
   PersonaAttributesList,
-  PersonaAttributesRow,
-  PersonaAttributesText,
   PersonaDivider,
   PersonaName,
   PersonaNameContainer,
@@ -19,10 +16,7 @@ import {
 export interface PersonaProps extends PersonaType {
   appName: string
   appAttributes: string[]
-  attributesState: { [x: string]: boolean }
   selected: boolean
-  toggleAttribute: (attribute: string) => void
-  togglePersona: (personaId: string) => void
 }
 
 const Persona: React.FC<PersonaProps> = ({
@@ -31,21 +25,13 @@ const Persona: React.FC<PersonaProps> = ({
   id,
   appName,
   appAttributes,
-  attributesState,
-  toggleAttribute,
-  togglePersona,
   ...props
 }) => {
   return (
     <PersonaRow selected={selected}>
       <PersonaNameContainer>
         <PersonaName>{personaName}</PersonaName>
-        <RadioButton
-          name="persona"
-          value={id}
-          checked={selected}
-          onChange={() => togglePersona(id)}
-        />
+        <Field name="personaId" value={id} component={PersonaField} type="radio" />
       </PersonaNameContainer>
 
       {selected && (
@@ -59,28 +45,16 @@ const Persona: React.FC<PersonaProps> = ({
           <PersonaAttributesList>
             {appAttributes.map(attribute => {
               const attributeText = (props as any)[attribute]
-              return (
-                <PersonaAttributesRow key={attribute}>
-                  <div>
-                    <PersonaAttributesLabel>
-                      {attributeNamesMap.get(attribute)}
-                    </PersonaAttributesLabel>
-                    <PersonaAttributesText>
-                      {attributeText && attributeText.includes('data:image/') ? (
-                        <img src={attributeText} alt={attributeNamesMap.get(attribute)} />
-                      ) : (
-                        attributeText
-                      )}
-                    </PersonaAttributesText>
-                  </div>
 
-                  <Toggle
-                    checked={attributesState[attribute]}
-                    onChange={() => toggleAttribute(attribute)}
-                    onFocus={() => {}}
-                    onBlur={() => {}}
-                  />
-                </PersonaAttributesRow>
+              return (
+                <Field
+                  key={attribute}
+                  name={`attributes.${attribute}`}
+                  attribute={attribute}
+                  attributeText={attributeText}
+                  component={AttributeField}
+                  type="checkbox"
+                />
               )
             })}
           </PersonaAttributesList>

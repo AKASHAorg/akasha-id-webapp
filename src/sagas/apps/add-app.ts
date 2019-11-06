@@ -17,7 +17,12 @@ function* finishAddApp() {
 function* acceptApp(action: AcceptAppAction, appRequest: AppRequest) {
   yield put(setAddAppModalStep('accept-app'))
 
-  yield call([wallet, wallet.addApp], appRequest, action.personaId, action.addAppFormData)
+  yield call(
+    [wallet, wallet.addApp],
+    appRequest,
+    action.addAppFormData.personaId!,
+    action.addAppFormData.attributes,
+  )
   yield call([wallet, wallet.sendClaim], appRequest, true)
 }
 

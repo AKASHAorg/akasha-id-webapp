@@ -39,7 +39,7 @@ export interface AddAppModalProps {
   nonce: number
   attributes: string[]
   onClose: () => void
-  onOk: (personaId: string, formData: AddAppFormData) => void
+  onOk: (formData: AddAppFormData) => void
 }
 
 const attributeLabelMap: { [key: string]: string } = {
@@ -172,7 +172,15 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
             <Button buttonType="primary" ghost={true} onClick={onClose}>
               Cancel
             </Button>
-            <Button buttonType="primary" onClick={() => onOk('123', state as AddAppFormData)}>
+            <Button
+              buttonType="primary"
+              onClick={() =>
+                onOk({
+                  attributes: state as any,
+                  personaId: '123',
+                })
+              }
+            >
               Authorize
             </Button>
           </ButtonContainer>

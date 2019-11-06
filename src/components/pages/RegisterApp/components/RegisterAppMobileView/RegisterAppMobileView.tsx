@@ -1,7 +1,8 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { InjectedFormProps } from 'redux-form'
 
 import * as routes from '../../../../../consts/routes'
 import { AddAppFormData, AddAppModalStep } from '../../../../../types/apps'
@@ -33,21 +34,24 @@ export interface RegisterAppMobileViewProps {
   url: string
   nonce: number
   attributes: string[]
+  selectedPersona: string | null
   personas: PersonaType[]
   loadPersonas: () => void
   onClose: () => void
-  onOk: (personaId: string, formData: AddAppFormData) => void
 }
 
-const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
+const RegisterAppMobileView: React.FC<
+  RegisterAppMobileViewProps & InjectedFormProps<AddAppFormData, RegisterAppMobileViewProps, string>
+> = ({
   name,
   icon,
   description,
   nonce,
   attributes,
+  selectedPersona,
   personas,
   loadPersonas,
-  onOk,
+  handleSubmit,
 }) => {
   const theme = useContext(AkashaThemeContext)
 
@@ -55,72 +59,50 @@ const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
     loadPersonas()
   }, [loadPersonas])
 
-  const [selectedPersona, togglePersona] = useState<null | string>(null)
-
-  const initialAttributesState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
-
-  console.log(initialAttributesState)
-  const [attributesState, changeAttributesState] = useState(initialAttributesState)
-
-  const toggleAttribute = (attribute: string) => {
-    changeAttributesState({
-      ...attributesState,
-      [attribute]: !attributesState[attribute],
-    })
-    console.log(attributesState)
-  }
-
   return (
     <StyledPageContainer>
-      <MobileTopBarWithLabelCancelButton>New Application</MobileTopBarWithLabelCancelButton>
+      <form onSubmit={handleSubmit}>
+        <MobileTopBarWithLabelCancelButton>New Application</MobileTopBarWithLabelCancelButton>
 
-      <TopText>{name} requested access to your persona information:</TopText>
+        <TopText>{name} requested access to your persona information:</TopText>
 
-      <AppContainer>
-        <AppHeader>
-          <AppImage icon={icon} name={name} />
-          <RowTextContainer header={name} subheader={description} />
-        </AppHeader>
-        <AppDivider />
-        <AppWarning>
-          Please ensure {name} displays the same security code: <AppNonce>{nonce}</AppNonce>
-        </AppWarning>
-      </AppContainer>
+        <AppContainer>
+          <AppHeader>
+            <AppImage icon={icon} name={name} />
+            <RowTextContainer header={name} subheader={description} />
+          </AppHeader>
+          <AppDivider />
+          <AppWarning>
+            Please ensure {name} displays the same security code: <AppNonce>{nonce}</AppNonce>
+          </AppWarning>
+        </AppContainer>
 
-      <PersonasContainer>
-        <PersonasHeader>Select persona</PersonasHeader>
-        <PersonasList>
-          {personas.map(persona => (
-            <Persona
-              appName={name}
-              appAttributes={attributes}
-              selected={selectedPersona === persona.id}
-              key={persona.id}
-              attributesState={attributesState}
-              toggleAttribute={toggleAttribute}
-              togglePersona={togglePersona}
-              {...persona}
-            />
-          ))}
-        </PersonasList>
+        <PersonasContainer>
+          <PersonasHeader>Select persona</PersonasHeader>
+          <PersonasList>
+            {personas.map(persona => (
+              <Persona
+                appName={name}
+                appAttributes={attributes}
+                selected={selectedPersona === persona.id}
+                key={persona.id}
+                {...persona}
+              />
+            ))}
+          </PersonasList>
 
-        <AddPersonaLink to={routes.createPersona}>
-          <Icon type="plus" color={theme.colors.blue} width="13px" height="13px" />
-          New Persona
-        </AddPersonaLink>
-      </PersonasContainer>
+          <AddPersonaLink to={routes.createPersona}>
+            <Icon type="plus" color={theme.colors.blue} width="13px" height="13px" />
+            New Persona
+          </AddPersonaLink>
+        </PersonasContainer>
 
-      <MobileBottomContainer>
-        <Button
-          fullWidth={true}
-          buttonType="primary"
-          onClick={() => {
-            onOk(selectedPersona!, attributesState as AddAppFormData)
-          }}
-        >
-          Authorize
-        </Button>
-      </MobileBottomContainer>
+        <MobileBottomContainer>
+          <Button fullWidth={true} buttonType="primary" onClick={handleSubmit}>
+            Authorize
+          </Button>
+        </MobileBottomContainer>
+      </form>
     </StyledPageContainer>
   )
 }
