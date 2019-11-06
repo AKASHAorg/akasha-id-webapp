@@ -100,13 +100,8 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
         </MobileTopBarContainer>
 
         <ImagesContainer>
-          <PictureContainer>
-            <img src={picture} alt={personaName} />
-          </PictureContainer>
-
-          <PhotoContainer>
-            <img src={photo} alt={givenName} />
-          </PhotoContainer>
+          <PictureContainer src={picture} alt={personaName} />
+          <PhotoContainer src={photo} alt={personaName} />
 
           <PictureButton>
             <Camera size="16px" color={theme.colors.white} /> Change Cover

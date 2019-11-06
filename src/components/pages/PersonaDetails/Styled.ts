@@ -26,19 +26,12 @@ const ImagesContainer = styled.div`
   height: 220px;
 `
 
-const PictureContainer = styled.div`
-  position: absolute;
+const PictureContainer = styled.img`
+  position: relative;
   width: 100%;
-  height: 160px;
+  max-height: 160px;
   overflow: hidden;
-  top: 0;
-  left: 0;
   opacity: 0.99;
-
-  > img {
-    width: 100%;
-    height: 160px;
-  }
 `
 
 const PictureButton = styled.button`
@@ -64,7 +57,7 @@ const PictureButton = styled.button`
   }
 `
 
-const PhotoContainer = styled.div`
+const PhotoContainer = styled.img`
   position: absolute;
   width: 120px;
   height: 120px;
@@ -74,11 +67,6 @@ const PhotoContainer = styled.div`
   bottom: 0;
   left: 16px;
   box-sizing: border-box;
-
-  > img {
-    width: 120px;
-    height: 120px;
-  }
 `
 
 const PhotoButton = styled.button`

@@ -15,23 +15,18 @@ const ImagesContainer = styled.div`
   height: 220px;
 `
 
-const PictureContainer = styled.div`
+const PictureContainer = styled.img`
   background: ${props => props.theme.colors.grey};
   position: absolute;
   width: 100%;
-  height: 160px;
+  max-height: 160px;
   overflow: hidden;
   top: 0;
   left: 0;
   opacity: 0.99;
-
-  > img {
-    width: 100%;
-    height: 160px;
-  }
 `
 
-const PhotoContainer = styled.div`
+const PhotoContainer = styled.img`
   position: absolute;
   width: 120px;
   height: 120px;
@@ -41,11 +36,6 @@ const PhotoContainer = styled.div`
   bottom: 0;
   left: 16px;
   box-sizing: border-box;
-
-  > img {
-    width: 120px;
-    height: 120px;
-  }
 `
 
 const FormContainer = styled(MobilePageContainer)`
@@ -192,7 +182,7 @@ const AttributesValue = styled.div`
   ${fonts.text}
 `
 
-const AttributesImageContainer = styled.div`
+const AttributesImageContainer = styled.img`
   width: 32px;
   height: 32px;
   overflow: hidden;
@@ -201,11 +191,6 @@ const AttributesImageContainer = styled.div`
   margin-top: 2px;
   margin-bottom: 3px;
   margin-right: 12px;
-
-  > img {
-    width: 32px;
-    height: 32px;
-  }
 `
 
 const ButtonsDivider = styled.div`

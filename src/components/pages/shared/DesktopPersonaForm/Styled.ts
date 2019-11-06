@@ -50,7 +50,7 @@ const PhotoContainer = styled.div`
   height: 124px;
   overflow: hidden;
 
-  img {
+  > img {
     width: 124px;
     height: 124px;
   }
@@ -60,13 +60,13 @@ const PictureContainer = styled.div`
   background: ${props => props.theme.colors.white};
   border: 1px solid #f2f2f2;
   width: 100%;
-  height: 124px;
   overflow: hidden;
   margin-bottom: 32px;
 
-  img {
+  > img {
     width: 100%;
-    height: 124px;
+    min-height: 120px;
+    max-height: 160px;
   }
 `
 

@@ -79,6 +79,10 @@ const PersonaAttributesText = styled.div`
   ${fonts.text}
 
   word-break: break-all;
+
+  > img {
+    max-width: 100%;
+  }
 `
 
 export {

@@ -124,9 +124,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
         <ContentContainer>
           <Column size={3}>
             <NameContainer>
-              <ImageContainer>
-                <img src={icon} alt={name} />
-              </ImageContainer>
+              <ImageContainer src={icon} alt={name} />
               <Name>{name}</Name>
             </NameContainer>
 

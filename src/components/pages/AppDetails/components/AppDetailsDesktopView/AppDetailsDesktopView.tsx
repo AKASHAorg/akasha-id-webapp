@@ -42,9 +42,8 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, star
   return (
     <DesktopContainer>
       <HeaderContainer>
-        <ImageContainer>
-          <img src={app.appInfo.icon} alt={app.appInfo.name} />
-        </ImageContainer>
+        <ImageContainer src={app.appInfo.icon} alt={app.appInfo.name} />
+
         <NameContainer>
           <Name>{app.appInfo.name}</Name>
           <SubheaderContainer>

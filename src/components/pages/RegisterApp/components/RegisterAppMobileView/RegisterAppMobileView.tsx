@@ -58,6 +58,8 @@ const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
   const [selectedPersona, togglePersona] = useState<null | string>(null)
 
   const initialAttributesState = Object.fromEntries(attributes.map(attribute => [attribute, false]))
+
+  console.log(initialAttributesState)
   const [attributesState, changeAttributesState] = useState(initialAttributesState)
 
   const toggleAttribute = (attribute: string) => {
@@ -65,6 +67,7 @@ const RegisterAppMobileView: React.FC<RegisterAppMobileViewProps> = ({
       ...attributesState,
       [attribute]: !attributesState[attribute],
     })
+    console.log(attributesState)
   }
 
   return (

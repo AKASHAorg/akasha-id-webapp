@@ -41,9 +41,7 @@ const Persona: React.FC<PersonaProps> = ({
     <PersonaRow>
       <PersonaLink to={routes.personaDetails.replace(routes.personaIdParam, id)}>
         <PersonaTopContainer>
-          <PersonaImageContainer>
-            <img src={picture} alt={name} />
-          </PersonaImageContainer>
+          <PersonaImageContainer src={picture} alt={name} />
 
           <PersonaTextContainer>
             <PersonaHeader>{name}</PersonaHeader>
@@ -68,9 +66,11 @@ const Persona: React.FC<PersonaProps> = ({
             <PersonaAppContainer>
               {apps &&
                 apps.map(app => (
-                  <PersonaAppImageContainer key={app.id}>
-                    <img src={app.appInfo.icon} alt={app.appInfo.name} />
-                  </PersonaAppImageContainer>
+                  <PersonaAppImageContainer
+                    key={app.id}
+                    src={app.appInfo.icon}
+                    alt={app.appInfo.name}
+                  />
                 ))}
             </PersonaAppContainer>
           </>

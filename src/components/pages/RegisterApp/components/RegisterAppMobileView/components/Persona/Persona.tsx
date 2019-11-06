@@ -1,9 +1,9 @@
-import Checkbox from '@akashaproject/design-system/dist/components/Checkbox'
 import { RadioButton } from 'grommet'
 import React from 'react'
 
 import attributeNamesMap from '../../../../../../../consts/attribute-names-map'
 import { Persona as PersonaType } from '../../../../../../../types/users'
+import { Toggle } from '../../../../../../shared/Toggle'
 import {
   PersonaAttributesHeader,
   PersonaAttributesLabel,
@@ -74,10 +74,11 @@ const Persona: React.FC<PersonaProps> = ({
                     </PersonaAttributesText>
                   </div>
 
-                  <Checkbox
-                    name={attribute}
+                  <Toggle
                     checked={attributesState[attribute]}
                     onChange={() => toggleAttribute(attribute)}
+                    onFocus={() => {}}
+                    onBlur={() => {}}
                   />
                 </PersonaAttributesRow>
               )

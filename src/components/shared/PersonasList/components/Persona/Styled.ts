@@ -31,17 +31,12 @@ const PersonaTopContainer = styled.div`
   justify-content: flex-start;
 `
 
-const PersonaImageContainer = styled.div`
+const PersonaImageContainer = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 20px;
   border: 1px solid #edf0f5;
   box-sizing: border-box;
-
-  > img {
-    width: 40px;
-    height: 40px;
-  }
 `
 
 const PersonaTextContainer = styled.div`
@@ -88,16 +83,11 @@ const PersonaAppContainer = styled.div`
   flex-wrap: wrap;
 `
 
-const PersonaAppImageContainer = styled.div`
+const PersonaAppImageContainer = styled.img`
   width: 28px;
   height: 28px;
   border-radius: 3.5px;
   margin-right: 12px;
-
-  > img {
-    width: 28px;
-    height: 28px;
-  }
 `
 
 export {

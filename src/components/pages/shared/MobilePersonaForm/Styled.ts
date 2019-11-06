@@ -18,7 +18,7 @@ const PhotoContainer = styled.div`
   height: 120px;
   overflow: hidden;
 
-  img {
+  > img {
     width: 120px;
     height: 120px;
   }
@@ -27,13 +27,13 @@ const PhotoContainer = styled.div`
 const PictureContainer = styled.div`
   border: 1px solid #edf0f5;
   width: 100%;
-  height: 120px;
   overflow: hidden;
   opacity: 0.99;
 
-  img {
+  > img {
     width: 100%;
-    height: 120px;
+    min-height: 120px;
+    max-height: 160px;
   }
 `
 

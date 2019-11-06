@@ -1,12 +1,13 @@
-import Checkbox from '@akashaproject/design-system/dist/components/Checkbox'
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import Button from '@akashaproject/design-system/dist/components/Button'
+import attributeNamesMap from '../../../../../consts/attribute-names-map'
 import * as routes from '../../../../../consts/routes'
 import { App } from '../../../../../types/apps'
 import { PersonaData } from '../../../../../types/users'
 import { MobileTopBarWithArrowCancelButton } from '../../../../shared/MobileTopBarWithArrowCancelButton'
+import { Toggle } from '../../../../shared/Toggle'
 import {
   About,
   AttributesContainer,
@@ -50,13 +51,9 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
       <MobileTopBarWithArrowCancelButton>{app.appInfo.name}</MobileTopBarWithArrowCancelButton>
 
       <ImagesContainer>
-        <PictureContainer>
-          <img src={app.appInfo.icon} alt={app.appInfo.icon} />
-        </PictureContainer>
+        <PictureContainer src={app.appInfo.icon} alt={app.appInfo.icon} />
 
-        <PhotoContainer>
-          <img src={app.appInfo.icon} alt={app.appInfo.icon} />
-        </PhotoContainer>
+        <PhotoContainer src={app.appInfo.icon} alt={app.appInfo.icon} />
       </ImagesContainer>
 
       <FormContainer>
@@ -84,65 +81,35 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
           </AttributesText>
 
           <AttributesList>
-            <AttributesRow>
-              <AttributesLabelContainer>
-                <AttributesHeader>Name</AttributesHeader>
-                <AttributesValue>{persona.givenName}</AttributesValue>
-              </AttributesLabelContainer>
+            {Object.entries(app.attributes).map(([attribute, checked]) => (
+              <AttributesRow key={attribute}>
+                {(attribute === 'photo ' || attribute === 'picture') && (
+                  <>
+                    <AttributesImageContainer
+                      src={(persona as any)[attribute]}
+                      alt={attributeNamesMap.get(attribute)}
+                    />
+                    <AttributesLabelContainer>
+                      <AttributesHeader>{attributeNamesMap.get(attribute)}</AttributesHeader>
+                      <AttributesValue>cover.jpg</AttributesValue>
+                    </AttributesLabelContainer>
+                  </>
+                )}
+                {attribute !== 'photo ' && attribute !== 'picture' && (
+                  <AttributesLabelContainer>
+                    <AttributesHeader>{attributeNamesMap.get(attribute)}</AttributesHeader>
+                    <AttributesValue>{(persona as any)[attribute]}</AttributesValue>
+                  </AttributesLabelContainer>
+                )}
 
-              <Checkbox checked={!!app.attributes.givenName} />
-            </AttributesRow>
-
-            <AttributesRow>
-              <AttributesLabelContainer>
-                <AttributesHeader>Email</AttributesHeader>
-                <AttributesValue>{persona.email}</AttributesValue>
-              </AttributesLabelContainer>
-
-              <Checkbox checked={!!app.attributes.email} />
-            </AttributesRow>
-
-            <AttributesRow>
-              <AttributesLabelContainer>
-                <AttributesHeader>Phone number</AttributesHeader>
-                <AttributesValue>{persona.telephone}</AttributesValue>
-              </AttributesLabelContainer>
-
-              <Checkbox checked={!!app.attributes.telephone} />
-            </AttributesRow>
-
-            <AttributesRow>
-              <AttributesLabelContainer>
-                <AttributesHeader>City</AttributesHeader>
-                <AttributesValue>{persona.location}</AttributesValue>
-              </AttributesLabelContainer>
-
-              <Checkbox checked={!!app.attributes.location} />
-            </AttributesRow>
-
-            <AttributesRow>
-              <AttributesImageContainer>
-                <img src={persona.photo} alt="Persona" />
-              </AttributesImageContainer>
-              <AttributesLabelContainer>
-                <AttributesHeader>Persona picture</AttributesHeader>
-                <AttributesValue>cover.jpg</AttributesValue>
-              </AttributesLabelContainer>
-
-              <Checkbox checked={!!app.attributes.photo} />
-            </AttributesRow>
-
-            <AttributesRow>
-              <AttributesImageContainer>
-                <img src={persona.picture} alt="Cover" />
-              </AttributesImageContainer>
-              <AttributesLabelContainer>
-                <AttributesHeader>Cover image</AttributesHeader>
-                <AttributesValue>cover.jpg</AttributesValue>
-              </AttributesLabelContainer>
-
-              <Checkbox checked={!!app.attributes.picture} />
-            </AttributesRow>
+                <Toggle
+                  checked={checked}
+                  onChange={() => {}}
+                  onFocus={() => {}}
+                  onBlur={() => {}}
+                />
+              </AttributesRow>
+            ))}
           </AttributesList>
         </AttributesContainer>
 

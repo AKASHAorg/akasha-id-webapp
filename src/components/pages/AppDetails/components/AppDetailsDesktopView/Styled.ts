@@ -13,17 +13,12 @@ const HeaderContainer = styled.div`
   justify-content: flex-start;
 `
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 24px;
   background: #f0f0f0;
   overflow: hidden;
-
-  > img {
-    width: 48px;
-    height: 48px;
-  }
 `
 
 const NameContainer = styled.div`
