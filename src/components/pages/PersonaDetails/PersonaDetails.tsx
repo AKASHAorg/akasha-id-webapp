@@ -12,15 +12,17 @@ import { Column } from '../shared/Container'
 import { SidebarContainer } from '../shared/SidebarContainer'
 import { App } from './components/App'
 import {
-  About,
   AppsAddAppText,
   AppsContainer,
   AppsHeader,
   AppsList,
+  AvatarContainer,
   BackButton,
+  CoverImageContainer,
   DeleteDivider,
   DeleteHeader,
   DeleteText,
+  Description,
   FormContainer,
   FormData,
   FormDataRow,
@@ -29,9 +31,7 @@ import {
   ImagesContainer,
   NameHeader,
   PhotoButton,
-  PhotoContainer,
   PictureButton,
-  PictureContainer,
   TopContainerLabel,
 } from './Styled'
 
@@ -41,14 +41,15 @@ export interface EditPersonaMatch {
 
 export interface PersonaDetailsProps extends RouteComponentProps<EditPersonaMatch> {
   personaName: string
-  givenName: string
-  about: string
+  avatar: string
+  name: string
+  description: string
+  coverImage: string
   email: string
-  telephone: string
+  url: string
   address: string
+  ethAddress: string
   apps: Apps
-  photo: string
-  picture: string
   loadPersona: (personaId: string) => void
   loadApps: (personaId: string) => void
   unsetRedirect: () => void
@@ -56,14 +57,15 @@ export interface PersonaDetailsProps extends RouteComponentProps<EditPersonaMatc
 
 const PersonaDetails: React.FC<PersonaDetailsProps> = ({
   personaName,
-  givenName,
-  about,
+  avatar,
+  name,
+  description,
+  coverImage,
   email,
-  telephone,
+  url,
   address,
+  ethAddress,
   apps,
-  photo,
-  picture,
   loadPersona,
   loadApps,
   unsetRedirect,
@@ -85,6 +87,7 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
   const theme = useContext(AkashaThemeContext)
 
   const appsCount = Object.keys(apps).length
+  const editPersonaRoute = routes.editPersona.replace(routes.personaIdParam, match.params.personaid)
 
   return (
     <SidebarContainer>
@@ -94,31 +97,35 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
             <Icon type="arrowLeft" width="20px" height="20px" color={theme.colors.dark} />
           </BackButton>
           <TopContainerLabel>{personaName}</TopContainerLabel>
-          <NavLink to={routes.editPersona.replace(routes.personaIdParam, match.params.personaid)}>
+          <NavLink to={editPersonaRoute.replace(routes.promptParam, '')}>
             <Icon type="edit" width="20px" height="20px" color={theme.colors.dark} />
           </NavLink>
         </MobileTopBarContainer>
 
         <ImagesContainer>
-          <PictureContainer src={picture} alt={personaName} />
-          <PhotoContainer src={photo} alt={personaName} />
+          <CoverImageContainer src={coverImage} alt={personaName} />
+          <AvatarContainer src={avatar} alt={personaName} />
 
-          <PictureButton>
+          <PictureButton
+            onClick={() => history.push(editPersonaRoute.replace(routes.promptParam, 'coverImage'))}
+          >
             <Camera size="16px" color={theme.colors.white} /> Change Cover
           </PictureButton>
-          <PhotoButton>
+          <PhotoButton
+            onClick={() => history.push(editPersonaRoute.replace(routes.promptParam, 'avatar'))}
+          >
             <Camera size="16px" color={theme.colors.white} />
           </PhotoButton>
         </ImagesContainer>
 
         <FormContainer>
           <NameHeader>{personaName}</NameHeader>
-          <About>{about}</About>
+          <Description>{description}</Description>
           <HeaderDivider />
           <FormData>
             <FormDataRow>
               <FormDataRowHeader>Name</FormDataRowHeader>
-              <span>{givenName}</span>
+              <span>{name}</span>
             </FormDataRow>
             <FormDataRow>
               <FormDataRowHeader>Email</FormDataRowHeader>
@@ -126,7 +133,7 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
             </FormDataRow>
             <FormDataRow>
               <FormDataRowHeader>Phone number</FormDataRowHeader>
-              <span>{telephone}</span>
+              <span>{ethAddress}</span>
             </FormDataRow>
             <FormDataRow>
               <FormDataRowHeader>Location</FormDataRowHeader>
@@ -136,7 +143,7 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
 
           <AppsContainer>
             <AppsHeader withApps={appsCount > 0}>
-              {appsCount === 0 && 'Use your persona'}
+              {appsCount === 0 && 'Not used by any app yet'}
               {appsCount > 0 && `Persona used in ${appsCount} applications`}
             </AppsHeader>
 

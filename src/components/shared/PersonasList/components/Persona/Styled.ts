@@ -31,7 +31,7 @@ const PersonaTopContainer = styled.div`
   justify-content: flex-start;
 `
 
-const PersonaImageContainer = styled.img`
+const PersonaAvatarContainer = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -94,7 +94,7 @@ export {
   PersonaRow,
   PersonaLink,
   PersonaTopContainer,
-  PersonaImageContainer,
+  PersonaAvatarContainer,
   PersonaTextContainer,
   PersonaHeader,
   PersonaSubheader,

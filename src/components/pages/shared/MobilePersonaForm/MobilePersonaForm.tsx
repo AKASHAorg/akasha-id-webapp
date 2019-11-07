@@ -3,25 +3,29 @@ import React from 'react'
 import { Field, InjectedFormProps } from 'redux-form'
 
 import { PersonaData } from '../../../../types/users'
+import isRequired from '../../../../validators/is-required'
 import { ImageField } from '../../../shared/ImageField'
 import { Input } from '../../../shared/WithLabel'
 import {
+  AvatarContainer,
   BottomContainer,
+  CoverImageContainer,
   FormContainer,
   FormField,
-  PhotoContainer,
-  PictureContainer,
   StyledPageContainer,
 } from './Styled'
 
 export interface MobilePersonaFormProps {
   edit: boolean
+  showPrompt?: 'avatar' | 'coverImage'
   onSubmit: (formData: PersonaData) => void
 }
 
+const profileNameIsRequired = isRequired('Profile name is required')
+
 const MobilePersonaForm: React.FC<
   MobilePersonaFormProps & InjectedFormProps<PersonaData, MobilePersonaFormProps, string>
-> = ({ handleSubmit, reset, edit }) => {
+> = ({ handleSubmit, reset, edit, showPrompt }) => {
   return (
     <>
       <StyledPageContainer>
@@ -32,41 +36,46 @@ const MobilePersonaForm: React.FC<
               label="Persona name"
               placeholder="Type Persona name"
               component={Input}
-              validate={() => undefined}
+              validate={profileNameIsRequired}
+              maxLength={256}
             />
           </FormField>
           <FormField>
             <Field
-              name="photo"
+              name="avatar"
               label="Persona photo"
               component={ImageField}
-              container={PhotoContainer}
+              openDialog={showPrompt === 'avatar'}
+              container={AvatarContainer}
             />
           </FormField>
           <FormField>
             <Field
-              name="picture"
+              name="coverImage"
               label="Cover image"
               component={ImageField}
-              container={PictureContainer}
+              openDialog={showPrompt === 'coverImage'}
+              container={CoverImageContainer}
             />
           </FormField>
           <FormField>
             <Field
-              name="givenName"
+              name="name"
               label="Name"
               placeholder="Type name"
               component={Input}
               validate={() => undefined}
+              maxLength={256}
             />
           </FormField>
           <FormField>
             <Field
-              name="about"
+              name="description"
               label="About"
               placeholder="Something about you"
               component={Input}
               validate={() => undefined}
+              maxLength={256}
             />
           </FormField>
           <FormField>
@@ -80,7 +89,7 @@ const MobilePersonaForm: React.FC<
           </FormField>
           <FormField>
             <Field
-              name="telephone"
+              name="ethAddress"
               label="Phone Number"
               placeholder="Type phone number"
               component={Input}
@@ -89,7 +98,7 @@ const MobilePersonaForm: React.FC<
           </FormField>
           <FormField>
             <Field
-              name="location"
+              name="address"
               label="Location"
               placeholder="Your location"
               component={Input}

@@ -43,16 +43,14 @@ export interface AddAppModalProps {
 }
 
 const attributeLabelMap: { [key: string]: string } = {
-  address: 'Address',
-  email: 'E-mail',
-  photo: 'Photo',
-  picture: 'Picture',
-  jobTitle: 'Job title',
-  givenName: 'Given name',
-  familyName: 'Family name',
-  birthDate: 'Birth date',
-  telephone: 'Telephone',
+  avatar: 'Avatar',
+  name: 'Name',
+  description: 'Description',
+  coverImage: 'Cover image',
+  email: 'Email',
   url: 'URL',
+  address: 'Address',
+  ethAddress: 'EthAddress',
 }
 
 const AddAppModal: React.FC<AddAppModalProps> = ({

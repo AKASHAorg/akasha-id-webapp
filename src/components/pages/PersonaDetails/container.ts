@@ -10,14 +10,15 @@ import PersonaDetails from './PersonaDetails'
 const enchance = connect(
   (state: State) => ({
     personaName: state.persona.personaName,
-    givenName: state.persona.givenName,
-    about: state.persona.about,
+    avatar: state.persona.avatar,
+    name: state.persona.name,
+    description: state.persona.description,
+    coverImage: state.persona.coverImage,
     email: state.persona.email,
-    telephone: state.persona.telephone,
-    address: state.persona.location,
+    url: state.persona.url,
+    address: state.persona.address,
+    ethAddress: state.persona.ethAddress,
     apps: state.persona.apps,
-    photo: state.persona.photo,
-    picture: state.persona.picture,
   }),
   (dispatch: Dispatch<Action>) => ({
     loadPersona: (personaId: string) => dispatch(fetchPersona(personaId)),

@@ -6,12 +6,14 @@ import { ImageInput } from './StyledImageField'
 
 export interface ImageFieldProps extends WrappedFieldProps {
   label: string
+  openDialog?: boolean
   container: React.FC<PropsWithChildren<any>>
 }
 
 const ImageField: React.FC<ImageFieldProps> = ({
   container: Container,
   label,
+  openDialog,
   input,
   meta: { touched, error },
   ...props
@@ -22,7 +24,9 @@ const ImageField: React.FC<ImageFieldProps> = ({
     <WithLabel label={label} error={touched ? error : ''}>
       <Container
         onClick={() => {
-          inputRef!.click()
+          if (inputRef) {
+            inputRef.click()
+          }
         }}
       >
         {input.value && <img alt={label} src={input.value} />}
@@ -30,6 +34,10 @@ const ImageField: React.FC<ImageFieldProps> = ({
         <ImageInput
           ref={ref => {
             inputRef = ref
+
+            if (openDialog && inputRef) {
+              inputRef.click()
+            }
           }}
           type="file"
           onChange={event => {

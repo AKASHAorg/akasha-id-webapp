@@ -11,7 +11,7 @@ const StyledPageContainer = styled(MobilePageContainer)`
   `)}
 `
 
-const PhotoContainer = styled.div`
+const AvatarContainer = styled.div`
   border: 2px solid #edf0f5;
   border-radius: 4px;
   width: 120px;
@@ -24,9 +24,11 @@ const PhotoContainer = styled.div`
   }
 `
 
-const PictureContainer = styled.div`
+const CoverImageContainer = styled.div`
   border: 1px solid #edf0f5;
   width: 100%;
+  min-height: 120px;
+  max-height: 160px;
   overflow: hidden;
   opacity: 0.99;
 
@@ -72,8 +74,8 @@ const BottomContainer = styled.div`
 
 export {
   StyledPageContainer,
-  PhotoContainer,
-  PictureContainer,
+  AvatarContainer,
+  CoverImageContainer,
   FormContainer,
   FormField,
   BottomContainer,

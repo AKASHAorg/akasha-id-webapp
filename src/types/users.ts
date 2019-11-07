@@ -14,24 +14,15 @@ export interface SignInFormData {
 }
 
 export interface PersonaData {
-  address: {
-    addressLocality: string
-    addressRegion: string
-    postalCode: string
-    streetAddress: string
-  }
-  email: string
-  photo: string
-  picture: string
-  jobTitle: string
-  givenName: string
-  familyName: string
-  birthDate: string
-  telephone: string
-  url: string
-  about: string
-  location: string
   personaName: string
+  avatar: string
+  name: string
+  description: string
+  coverImage: string
+  email: string
+  url: string
+  address: string
+  ethAddress: string
 }
 
 export interface Persona extends PersonaData {

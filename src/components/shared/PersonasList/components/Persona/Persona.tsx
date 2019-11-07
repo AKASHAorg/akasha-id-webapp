@@ -7,9 +7,9 @@ import {
   PersonaAppContainer,
   PersonaAppImageContainer,
   PersonaAppLabel,
+  PersonaAvatarContainer,
   PersonaDivider,
   PersonaHeader,
-  PersonaImageContainer,
   PersonaLink,
   PersonaMenuButton,
   PersonaRow,
@@ -21,8 +21,8 @@ import {
 export interface PersonaProps {
   id: string
   name: string
-  about: string
-  picture: string
+  description: string
+  avatar: string
   apps: Apps
   showApps: boolean
   togglePopover: (e: Element | null) => void
@@ -31,8 +31,8 @@ export interface PersonaProps {
 const Persona: React.FC<PersonaProps> = ({
   id,
   name,
-  about,
-  picture,
+  description,
+  avatar,
   apps,
   togglePopover,
   showApps,
@@ -41,11 +41,11 @@ const Persona: React.FC<PersonaProps> = ({
     <PersonaRow>
       <PersonaLink to={routes.personaDetails.replace(routes.personaIdParam, id)}>
         <PersonaTopContainer>
-          <PersonaImageContainer src={picture} alt={name} />
+          <PersonaAvatarContainer src={avatar} alt={name} />
 
           <PersonaTextContainer>
             <PersonaHeader>{name}</PersonaHeader>
-            <PersonaSubheader>{about}</PersonaSubheader>
+            <PersonaSubheader>{description}</PersonaSubheader>
           </PersonaTextContainer>
 
           <PersonaMenuButton

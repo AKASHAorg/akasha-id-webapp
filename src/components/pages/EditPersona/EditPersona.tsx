@@ -10,6 +10,7 @@ import { SidebarContainer } from '../shared/SidebarContainer'
 
 export interface EditPersonaMatch {
   personaid: string
+  showprompt: string
 }
 
 export interface EditPersonaProps extends RouteComponentProps<EditPersonaMatch> {
@@ -35,13 +36,23 @@ const EditPersona: React.FC<EditPersonaProps> = ({
     }
   }, [redirect, history, match.params.personaid])
 
+  console.log(match.params)
+
   return (
     <SidebarContainer>
       <Column size={6}>
         <MobileTopBarWithArrowCancelButton>Edit Persona</MobileTopBarWithArrowCancelButton>
 
         <DesktopPersonaForm onSubmit={onSubmit} />
-        <MobilePersonaForm edit={true} onSubmit={onSubmit} />
+        <MobilePersonaForm
+          showPrompt={
+            match.params.showprompt === 'coverImage' || match.params.showprompt === 'avatar'
+              ? match.params.showprompt
+              : undefined
+          }
+          edit={true}
+          onSubmit={onSubmit}
+        />
       </Column>
     </SidebarContainer>
   )

@@ -46,10 +46,10 @@ const DesktopPersonaForm: React.FC<
         </DateContainer>
 
         <ImageContainer>
-          <Field name="photo" label="Avatar" component={ImageField} container={PhotoContainer} />
+          <Field name="avatar" label="Avatar" component={ImageField} container={PhotoContainer} />
           <RowDivider />
           <Field
-            name="picture"
+            name="coverImage"
             label="Cover image"
             component={ImageField}
             container={PictureContainer}
@@ -58,11 +58,12 @@ const DesktopPersonaForm: React.FC<
 
         <NameContainer>
           <Field
-            name="givenName"
+            name="name"
             label="Name"
             placeholder="Type your name"
             component={Input}
             validate={() => undefined}
+            maxLength={256}
           />
           <RowDivider />
           <Field
@@ -76,14 +77,14 @@ const DesktopPersonaForm: React.FC<
 
         <AboutContainer>
           <Field
-            name="about"
+            name="description"
             label="About me"
             component={Textarea}
             validate={() => undefined}
             resize="none"
-            maxLength={120}
+            maxLength={256}
           />
-          <AboutFootnote>The About section could have max. 120 characters.</AboutFootnote>
+          <AboutFootnote>The About section could have max. 256 characters.</AboutFootnote>
         </AboutContainer>
 
         <ButtonContainer>

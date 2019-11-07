@@ -2,6 +2,7 @@ const userIdParam = ':userid'
 const personaIdParam = ':personaid'
 const appRequestLinkParam = ':apprequestlink'
 const tokenParam = ':token'
+const promptParam = ':showprompt'
 
 const landing = '/'
 const signUp = '/sign-up/'
@@ -10,7 +11,7 @@ const personas = '/personas/'
 const personaDetails = `/persona-details/${personaIdParam}`
 const createPersona = '/create-persona/'
 const personaCreated = '/persona-created/'
-const editPersona = `/edit-persona/${personaIdParam}`
+const editPersona = `/edit-persona/${personaIdParam}/${promptParam}?`
 const deletePersona = `/delete-persona/${personaIdParam}`
 const unlinkPersona = `/unlink-persona/${tokenParam}`
 const apps = '/apps/'
@@ -31,6 +32,7 @@ export {
   personaIdParam,
   appRequestLinkParam,
   tokenParam,
+  promptParam,
   landing,
   signUp,
   signIn,

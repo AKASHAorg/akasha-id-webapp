@@ -18,8 +18,9 @@ function* search(searchText: string) {
     )
     allApps.forEach(appsPerPersona => appsList.push(...appsPerPersona))
 
-    const filteredApps: Apps = appsList.filter(app => app.appInfo.name.match(searchText))
-    const filteredPersonas = personas.filter(persona => persona.personaName.match(searchText))
+    const searchRegexp: RegExp = new RegExp(searchText, 'gi')
+    const filteredApps: Apps = appsList.filter(app => app.appInfo.name.match(searchRegexp))
+    const filteredPersonas = personas.filter(persona => persona.personaName.match(searchRegexp))
 
     yield put(setSearchResult(filteredPersonas, filteredApps))
   } catch (e) {

@@ -26,7 +26,7 @@ const ImagesContainer = styled.div`
   height: 220px;
 `
 
-const PictureContainer = styled.img`
+const CoverImageContainer = styled.img`
   position: relative;
   width: 100%;
   max-height: 160px;
@@ -57,7 +57,7 @@ const PictureButton = styled.button`
   }
 `
 
-const PhotoContainer = styled.img`
+const AvatarContainer = styled.img`
   position: absolute;
   width: 120px;
   height: 120px;
@@ -102,7 +102,7 @@ const NameHeader = styled.h3`
   margin: 0;
 `
 
-const About = styled.div`
+const Description = styled.div`
   ${fonts.greyTextBig}
 `
 
@@ -181,13 +181,13 @@ export {
   BackButton,
   TopContainerLabel,
   ImagesContainer,
-  PictureContainer,
+  CoverImageContainer,
   PictureButton,
-  PhotoContainer,
+  AvatarContainer,
   PhotoButton,
   FormContainer,
   NameHeader,
-  About,
+  Description,
   HeaderDivider,
   FormData,
   FormDataRow,
