@@ -1,0 +1,23 @@
+{
+  "requestDate": "Persona requested on {{date}}",
+  "about": "About",
+  "link": "Link",
+  "website": {
+    "label": "Website",
+    "button": "Visit Website"
+  },
+  "viewPersona": "View Persona",
+  "attributesHeader": "{{appName}} has access to the following attributes:",
+  "sharingAttributes": "You are currently sharing the following persona atributes:",
+  "removeAccess": {
+    "header": "Remove Access",
+    "subheader": "Once you delete your persona, there is no going back. Please be certain.",
+    "button": "Remove"
+  },
+  "unlinkPersona": {
+    "header": "Unlink persona",
+    "text": "Something about how unlinking this persona’s impact",
+    "button": "Unlink Persona"
+  },
+  "saveChanges": "Save Changes"
+}

@@ -34,10 +34,10 @@ const PageLink = styled(NavLink)<NavLinkProps>`
     color: #b6bfd1;
   }
 
-  > svg {
+  > img {
     box-sizing: border-box;
-    height: 26px;
-    width: 26px;
+    width: 40px;
+    height: 20px;
     stroke: ${props => props.theme.colors.dark};
   }
 
@@ -54,6 +54,10 @@ const PageLink = styled(NavLink)<NavLinkProps>`
 
     > div {
       border-color: ${props => props.theme.colors.blue};
+    }
+
+    > img {
+      stroke: ${props => props.theme.colors.blue};
     }
   }
 `

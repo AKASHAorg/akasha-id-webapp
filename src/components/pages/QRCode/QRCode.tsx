@@ -1,8 +1,10 @@
 import { notify } from '@akashaproject/design-system/dist/components/Notification'
 import jsQR from 'jsqr'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
+import { translation } from '../../../consts/i18n'
 import * as routes from '../../../consts/routes'
 import { MobileTopBarWithArrowCancelButton } from '../../shared/MobileTopBarWithArrowCancelButton'
 import { Column } from '../shared/Container'
@@ -68,13 +70,17 @@ const QRCode: React.FC<RouteComponentProps<any>> = ({ history }) => {
     )
   }
 
+  const { t } = useTranslation()
+
   return (
     <SidebarContainer>
       <Column size={6}>
-        <MobileTopBarWithArrowCancelButton>Scan QR Code</MobileTopBarWithArrowCancelButton>
+        <MobileTopBarWithArrowCancelButton>
+          {t(translation.mobilePageTitles.QRCode)}
+        </MobileTopBarWithArrowCancelButton>
 
         <StyledMobilePageContainer>
-          <StyledVideo ref={setVideoRef}>Video tag is not supported</StyledVideo>
+          <StyledVideo ref={setVideoRef}>{t(translation.videoIsNotSupported)}</StyledVideo>
         </StyledMobilePageContainer>
       </Column>
     </SidebarContainer>

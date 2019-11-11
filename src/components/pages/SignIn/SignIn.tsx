@@ -3,9 +3,12 @@ import Icon from '@akashaproject/design-system/dist/components/Icon'
 import InputComponent from '@akashaproject/design-system/dist/components/Input'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps } from 'react-router-dom'
 import { Field, InjectedFormProps } from 'redux-form'
 
+import { signIn } from '../../../consts/i18n'
+import { SIGN_IN } from '../../../consts/i18n-ns'
 import * as routes from '../../../consts/routes'
 import { SignInFormData } from '../../../types/users'
 import isRequired from '../../../validators/is-required'
@@ -34,15 +37,16 @@ export interface SignInProps extends RouteComponentProps<SignInMatch> {
   username: string
 }
 
-const passwordIsRequired = isRequired('Password cannot be empty')
-
 const noop = () => {}
+
+const passwordIsRequired = isRequired(signIn.password.errorIsRequired)
 
 const SignIn: React.FC<SignInProps & InjectedFormProps<SignInFormData, SignInProps, string>> = ({
   username,
   handleSubmit,
 }) => {
   const theme = useContext(AkashaThemeContext)
+  const { t } = useTranslation(SIGN_IN)
 
   return (
     <Container>
@@ -59,18 +63,18 @@ const SignIn: React.FC<SignInProps & InjectedFormProps<SignInFormData, SignInPro
               </IconContainer>
 
               <form onSubmit={handleSubmit}>
-                <Header>Welcome back!</Header>
-                <PaleText>Here will say something wicked</PaleText>
+                <Header>{t(signIn.header)}</Header>
+                <PaleText>{t(signIn.subheader)}</PaleText>
 
                 <FieldContainer>
-                  <WithLabel error="" label="Username">
+                  <WithLabel error="" label={t(signIn.username.label)}>
                     <InputComponent value={username} placeholder="" onChange={noop} />
                   </WithLabel>
 
                   <Field
                     name="password"
-                    label="Password"
-                    placeholder="Enter the password"
+                    label={t(signIn.password.label)}
+                    placeholder={t(signIn.password.placeholder)}
                     type="password"
                     component={Input}
                     validate={passwordIsRequired}
@@ -78,14 +82,14 @@ const SignIn: React.FC<SignInProps & InjectedFormProps<SignInFormData, SignInPro
                 </FieldContainer>
 
                 <Button buttonType="primary" onClick={handleSubmit}>
-                  Sign in
+                  {t(signIn.signIn)}
                 </Button>
               </form>
             </TopContainer>
 
             <BottomContainer>
-              <div>Don't have an account?</div>
-              <Link to={routes.signUp}>Create Account</Link>
+              <div>{t(signIn.createAccount.text)}</div>
+              <Link to={routes.signUp}>{t(signIn.createAccount.link)}</Link>
             </BottomContainer>
           </FormContainer>
         </Column>

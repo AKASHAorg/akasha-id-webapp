@@ -1,0 +1,11 @@
+{
+  "changeCover": "Change Cover",
+  "notUsed": "Not used by any app yet",
+  "usedIn": "Persona used in {{appsCount}} applications",
+  "addApp": "Add a new third party application",
+  "deletePersona": {
+    "header": "Delete persona",
+    "text": "This will revoke access to the third-party app",
+    "button": "Delete Persona"
+  }
+}

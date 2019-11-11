@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Field } from 'redux-form'
 
+import { registerApp } from '../../../../../../../consts/i18n'
+import { REGISTER_APP } from '../../../../../../../consts/i18n-ns'
 import { Persona as PersonaType } from '../../../../../../../types/users'
 import { AttributeField } from '../AttributeField'
 import { PersonaField } from '../PersonaField'
@@ -27,6 +30,8 @@ const Persona: React.FC<PersonaProps> = ({
   appAttributes,
   ...props
 }) => {
+  const { t } = useTranslation(REGISTER_APP)
+
   return (
     <PersonaRow selected={selected}>
       <PersonaNameContainer>
@@ -39,7 +44,7 @@ const Persona: React.FC<PersonaProps> = ({
           <PersonaDivider />
 
           <PersonaAttributesHeader>
-            {appName} requests access to the following attributes:
+            {t(registerApp.appRequests, { appName })}
           </PersonaAttributesHeader>
 
           <PersonaAttributesList>

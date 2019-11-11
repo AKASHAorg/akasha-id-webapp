@@ -1,0 +1,9 @@
+{
+  "pageTitle": "New Application",
+  "text": "{{appName}} requested access to your persona information:",
+  "warning": "Please ensure {{appName}} displays the same security code: <3>{{nonce}}</3>",
+  "selectPersona": "Select persona",
+  "newPersona": "New Persona",
+  "authorize": "Authorize",
+  "appRequests": "{{appName}} requests access to the following attributes:"
+}

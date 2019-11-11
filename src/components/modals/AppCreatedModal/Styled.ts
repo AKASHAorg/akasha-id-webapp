@@ -19,8 +19,12 @@ const ModalContent = styled.div`
 const Logo = styled.div`
   width: 244px;
   height: 244px;
-  background: ${props => props.theme.colors.grey};
   margin-bottom: 32px;
+
+  > img {
+    width: 244px;
+    height: 244px;
+  }
 `
 
 const Header = styled.h1`

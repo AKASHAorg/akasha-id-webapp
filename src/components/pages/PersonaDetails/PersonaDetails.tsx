@@ -1,10 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
-import Icon from '@akashaproject/design-system/dist/components/Icon'
-import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import { Camera } from 'grommet-icons'
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink, RouteComponentProps, withRouter } from 'react-router-dom'
 
+import { personaDetails, translation } from '../../../consts/i18n'
+import { PERSONA_DETAILS } from '../../../consts/i18n-ns'
 import * as routes from '../../../consts/routes'
 import { Apps } from '../../../types/apps'
 import { MobileTopBarContainer } from '../../shared/MobileTopBarContainer'
@@ -34,6 +34,11 @@ import {
   PictureButton,
   TopContainerLabel,
 } from './Styled'
+
+import arrowIcon from './arrow.svg'
+import cameraIcon from './camera.svg'
+import editIcon from './edit.svg'
+import scanQrIcon from './scan-qr.svg'
 
 export interface EditPersonaMatch {
   personaid: string
@@ -84,21 +89,21 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
     unsetRedirect()
   }, [unsetRedirect])
 
-  const theme = useContext(AkashaThemeContext)
-
   const appsCount = Object.keys(apps).length
   const editPersonaRoute = routes.editPersona.replace(routes.personaIdParam, match.params.personaid)
+
+  const { t } = useTranslation(PERSONA_DETAILS)
 
   return (
     <SidebarContainer>
       <Column size={6}>
         <MobileTopBarContainer>
           <BackButton onClick={history.goBack}>
-            <Icon type="arrowLeft" width="20px" height="20px" color={theme.colors.dark} />
+            <img src={arrowIcon} alt="Back" />
           </BackButton>
           <TopContainerLabel>{personaName}</TopContainerLabel>
-          <NavLink to={editPersonaRoute.replace(routes.promptParam, '')}>
-            <Icon type="edit" width="20px" height="20px" color={theme.colors.dark} />
+          <NavLink to={editPersonaRoute}>
+            <img src={editIcon} alt="Edit" />
           </NavLink>
         </MobileTopBarContainer>
 
@@ -106,15 +111,12 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
           <CoverImageContainer src={coverImage} alt={personaName} />
           <AvatarContainer src={avatar} alt={personaName} />
 
-          <PictureButton
-            onClick={() => history.push(editPersonaRoute.replace(routes.promptParam, 'coverImage'))}
-          >
-            <Camera size="16px" color={theme.colors.white} /> Change Cover
+          <PictureButton onClick={() => history.push(editPersonaRoute)}>
+            <img src={cameraIcon} alt="Edit" />
+            {t(personaDetails.changeCover)}
           </PictureButton>
-          <PhotoButton
-            onClick={() => history.push(editPersonaRoute.replace(routes.promptParam, 'avatar'))}
-          >
-            <Camera size="16px" color={theme.colors.white} />
+          <PhotoButton onClick={() => history.push(editPersonaRoute)}>
+            <img src={cameraIcon} alt="Edit" />
           </PhotoButton>
         </ImagesContainer>
 
@@ -124,27 +126,27 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
           <HeaderDivider />
           <FormData>
             <FormDataRow>
-              <FormDataRowHeader>Name</FormDataRowHeader>
+              <FormDataRowHeader>{t(translation.attributes.name)}</FormDataRowHeader>
               <span>{name}</span>
             </FormDataRow>
             <FormDataRow>
-              <FormDataRowHeader>Email</FormDataRowHeader>
+              <FormDataRowHeader>{t(translation.attributes.email)}</FormDataRowHeader>
               <span>{email}</span>
             </FormDataRow>
             <FormDataRow>
-              <FormDataRowHeader>Phone number</FormDataRowHeader>
+              <FormDataRowHeader>{t(translation.attributes.ethAddress)}</FormDataRowHeader>
               <span>{ethAddress}</span>
             </FormDataRow>
             <FormDataRow>
-              <FormDataRowHeader>Location</FormDataRowHeader>
+              <FormDataRowHeader>{t(translation.attributes.address)}</FormDataRowHeader>
               <span>{address}</span>
             </FormDataRow>
           </FormData>
 
           <AppsContainer>
             <AppsHeader withApps={appsCount > 0}>
-              {appsCount === 0 && 'Not used by any app yet'}
-              {appsCount > 0 && `Persona used in ${appsCount} applications`}
+              {appsCount === 0 && t(personaDetails.notUsed)}
+              {appsCount > 0 && t(personaDetails.usedIn, { appsCount })}
             </AppsHeader>
 
             {appsCount > 0 && (
@@ -155,7 +157,7 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
               </AppsList>
             )}
 
-            <AppsAddAppText>Add a new third party application</AppsAddAppText>
+            <AppsAddAppText>{t(personaDetails.addApp)}</AppsAddAppText>
             <Button
               fullWidth={true}
               buttonType="primary"
@@ -163,14 +165,15 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
                 history.push(routes.qrCode)
               }}
             >
-              Scan QR code
+              <img src={scanQrIcon} alt="Scan QR codde" />
+              {t(translation.scanQRCode)}
             </Button>
           </AppsContainer>
 
           <DeleteDivider />
 
-          <DeleteHeader>Delete persona</DeleteHeader>
-          <DeleteText>This will revoke access to the third-party app</DeleteText>
+          <DeleteHeader>{t(personaDetails.deletePersona.header)}</DeleteHeader>
+          <DeleteText>{t(personaDetails.deletePersona.text)}</DeleteText>
 
           <Button
             buttonType="alert"
@@ -180,7 +183,7 @@ const PersonaDetails: React.FC<PersonaDetailsProps> = ({
               )
             }}
           >
-            Delete Persona
+            {t(personaDetails.deletePersona.button)}
           </Button>
         </FormContainer>
       </Column>

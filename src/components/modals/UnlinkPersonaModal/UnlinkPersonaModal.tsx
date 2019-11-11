@@ -1,9 +1,11 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { css } from 'styled-components'
 
+import { translation } from '../../../consts/i18n'
 import { borders } from '../../../styles/index'
 import { App } from '../../../types/apps'
 import { Persona } from '../../../types/users'
@@ -29,6 +31,8 @@ const UnlinkPersonaModal: React.FC<UnlinkPersonaModalProps> = ({
   onRemoveApp,
   history,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <Modal
       isOpen={true}
@@ -60,12 +64,12 @@ const UnlinkPersonaModal: React.FC<UnlinkPersonaModalProps> = ({
     >
       <ModalContent>
         <ModalHeader>
-          Revoke the {persona.personaName} persona from the {app.appInfo.name} app?
+          {t(translation.modals.unlinkPersona.header, {
+            personaName: persona.personaName,
+            appName: app.appInfo.name,
+          })}
         </ModalHeader>
-        <ModalText>
-          This means the app will no longer receive updates until it’s linked back on. To fully
-          delete your third party account, please do it directly on there.
-        </ModalText>
+        <ModalText>{t(translation.modals.unlinkPersona.text)}</ModalText>
 
         <ModalAppContainer>
           <AppImage icon={app.appInfo.icon} name={app.appInfo.name} />
@@ -80,10 +84,10 @@ const UnlinkPersonaModal: React.FC<UnlinkPersonaModalProps> = ({
               history.goBack()
             }}
           >
-            Cancel
+            {t(translation.modals.unlinkPersona.cancel)}
           </Button>
           <Button buttonType="primary" onClick={onRemoveApp}>
-            Unlink Persona
+            {t(translation.modals.unlinkPersona.unlink)}
           </Button>
         </ModalButtonContainer>
       </ModalContent>

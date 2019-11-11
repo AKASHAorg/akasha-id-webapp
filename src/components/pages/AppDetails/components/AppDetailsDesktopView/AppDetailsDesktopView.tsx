@@ -3,8 +3,10 @@ import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { DocumentText } from 'grommet-icons'
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import attributeNamesMap from '../../../../../consts/attribute-names-map'
+import { appDetails, translation } from '../../../../../consts/i18n'
+import { APP_DETAILS } from '../../../../../consts/i18n-ns'
 import { App } from '../../../../../types/apps'
 import { Column } from '../../../shared/Container'
 import {
@@ -39,6 +41,8 @@ export interface AppDetailsDesktopViewProps {
 const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, startRemoveApp }) => {
   const theme = useContext(AkashaThemeContext)
 
+  const { t } = useTranslation(APP_DETAILS)
+
   return (
     <DesktopContainer>
       <HeaderContainer>
@@ -47,8 +51,8 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, star
         <NameContainer>
           <Name>{app.appInfo.name}</Name>
           <SubheaderContainer>
-            <Status>Active</Status>
-            <DateContainer>Persona requested on 20 July 2019</DateContainer>
+            <Status>{t(translation.appStatus.active)}</Status>
+            <DateContainer>{t(appDetails.requestDate, { date: '20 July 2019' })}</DateContainer>
           </SubheaderContainer>
         </NameContainer>
       </HeaderContainer>
@@ -57,7 +61,7 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, star
         <Column size={4}>
           <DescriptionHeader>
             <DocumentText color="dark-1" size="20px" />
-            <div>About</div>
+            <div>{t(appDetails.about)}</div>
           </DescriptionHeader>
           <Description>{app.appInfo.description}</Description>
         </Column>
@@ -65,7 +69,7 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, star
         <Column size={2}>
           <DescriptionHeader>
             <Icon type="linkEntry" color={theme.colors.dark} width="16px" height="16px" />
-            <div>Link</div>
+            <div>{t(appDetails.link)}</div>
           </DescriptionHeader>
           <Link href={app.appInfo.url}>{app.appInfo.url}</Link>
         </Column>
@@ -74,14 +78,12 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, star
       <Divider />
 
       <Column size={4}>
-        <AttributesHeader>
-          You are currently sharing the following persona atributes:
-        </AttributesHeader>
+        <AttributesHeader>{t(appDetails.sharingAttributes)}</AttributesHeader>
 
         <AttributesList>
           {Object.entries(app.attributes).map(([attribute, checked]) => (
             <AttributesRow key={attribute}>
-              <Checkbox checked={checked} label={attributeNamesMap.get(attribute)} />
+              <Checkbox checked={checked} label={t((translation.attributes as any)[attribute])} />
             </AttributesRow>
           ))}
         </AttributesList>
@@ -91,13 +93,11 @@ const AppDetailsDesktopView: React.FC<AppDetailsDesktopViewProps> = ({ app, star
 
       <RemoveContainer>
         <RemoveHeaderContainer>
-          <RemoveHeader>Remove Access</RemoveHeader>
-          <RemoveSubheader>
-            Once you delete your persona, there is no going back. Please be certain.
-          </RemoveSubheader>
+          <RemoveHeader>{t(appDetails.removeAccess.header)}</RemoveHeader>
+          <RemoveSubheader>{t(appDetails.removeAccess.subheader)}</RemoveSubheader>
         </RemoveHeaderContainer>
         <RemoveButton buttonType="primary" onClick={startRemoveApp}>
-          Remove
+          {t(appDetails.removeAccess.button)}
         </RemoveButton>
       </RemoveContainer>
     </DesktopContainer>

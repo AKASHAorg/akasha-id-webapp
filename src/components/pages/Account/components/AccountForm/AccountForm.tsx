@@ -1,7 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Field, InjectedFormProps } from 'redux-form'
 
+import { account } from '../../../../../consts/i18n'
+import { ACCOUNT } from '../../../../../consts/i18n-ns'
 import { AccountFormData } from '../../../../../types/account'
 import isRequired from '../../../../../validators/is-required'
 import { Input } from '../../../../shared/WithLabel'
@@ -13,55 +16,63 @@ import {
   PasswordHeader,
 } from './StyledAccountForm'
 
-const nameIsRequired = isRequired('Username cannot be empty')
-const passwordIsRequired = isRequired('Password cannot be empty')
-const passwordConfirmationIsRequired = (confirmPassword: string, formValues: AccountFormData) =>
-  confirmPassword === formValues.newPassword ? undefined : 'Password confirmation is incorrect'
+const nameIsRequired = isRequired(account.accountForm.name.errorIsRequired)
+const oldPasswordIsRequired = isRequired(account.accountForm.oldPassword.errorIsRequired)
+const newPasswordIsRequired = isRequired(account.accountForm.newPassword.errorIsRequired)
+const passwordConfirmationIsRequired = (
+  confirmPassword: string,
+  formValues: AccountFormData,
+): string | undefined =>
+  confirmPassword === formValues.newPassword
+    ? undefined
+    : account.accountForm.confirmPassword.errorIsRequired
 
 const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ handleSubmit }) => {
+  const { t } = useTranslation(ACCOUNT)
+
   return (
     <form onSubmit={handleSubmit}>
-      <AccountHeader>Account Information</AccountHeader>
+      <AccountHeader>{t(account.accountForm.header)}</AccountHeader>
       <FieldContainer>
         <Field
           name="name"
-          label="Account name"
-          placeholder=""
+          label={t(account.accountForm.name.label)}
+          placeholder={t(account.accountForm.name.placeholder)}
           component={Input}
           validate={nameIsRequired}
         />
       </FieldContainer>
 
       <PasswordContainer>
-        <PasswordHeader>Change Password</PasswordHeader>
+        <PasswordHeader>{t(account.accountForm.passwordHeader)}</PasswordHeader>
 
         <FieldContainer>
           <Field
             name="oldPassword"
-            label="Old password"
-            placeholder="Type old password"
+            label={t(account.accountForm.oldPassword.label)}
+            placeholder={t(account.accountForm.oldPassword.placeholder)}
             component={Input}
             type="password"
-            validate={passwordIsRequired}
+            validate={oldPasswordIsRequired}
           />
         </FieldContainer>
 
         <FieldContainer>
           <Field
             name="newPassword"
-            label="New password"
-            placeholder="Type new password"
+            label={t(account.accountForm.newPassword.label)}
+            placeholder={t(account.accountForm.newPassword.placeholder)}
             component={Input}
             type="password"
-            validate={passwordIsRequired}
+            validate={newPasswordIsRequired}
           />
         </FieldContainer>
 
         <FieldContainer>
           <Field
             name="confirmPassword"
-            label="Confirm password"
-            placeholder="Confirm new password"
+            label={t(account.accountForm.confirmPassword.label)}
+            placeholder={t(account.accountForm.confirmPassword.placeholder)}
             component={Input}
             type="password"
             validate={passwordConfirmationIsRequired}
@@ -70,7 +81,7 @@ const Account: React.FC<InjectedFormProps<AccountFormData, {}, string>> = ({ han
 
         <ButtonContainer>
           <Button buttonType="primary" onClick={handleSubmit}>
-            Reset Password
+            {t(account.accountForm.resetPassword)}
           </Button>
         </ButtonContainer>
       </PasswordContainer>

@@ -1,7 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Field, InjectedFormProps } from 'redux-form'
 
+import { personaForm, translation } from '../../../../consts/i18n'
+import { PERSONA_FORM } from '../../../../consts/i18n-ns'
 import { PersonaData } from '../../../../types/users'
 import isRequired from '../../../../validators/is-required'
 import { ImageField } from '../../../shared/ImageField'
@@ -17,15 +20,16 @@ import {
 
 export interface MobilePersonaFormProps {
   edit: boolean
-  showPrompt?: 'avatar' | 'coverImage'
   onSubmit: (formData: PersonaData) => void
 }
 
-const profileNameIsRequired = isRequired('Profile name is required')
+const profileNameIsRequired = isRequired(personaForm.personaName.errorIsRequired)
 
 const MobilePersonaForm: React.FC<
   MobilePersonaFormProps & InjectedFormProps<PersonaData, MobilePersonaFormProps, string>
-> = ({ handleSubmit, reset, edit, showPrompt }) => {
+> = ({ handleSubmit, reset, edit }) => {
+  const { t } = useTranslation(PERSONA_FORM)
+
   return (
     <>
       <StyledPageContainer>
@@ -33,8 +37,8 @@ const MobilePersonaForm: React.FC<
           <FormField>
             <Field
               name="personaName"
-              label="Persona name"
-              placeholder="Type Persona name"
+              label={t(personaForm.personaName.label)}
+              placeholder={t(personaForm.personaName.placeholder)}
               component={Input}
               validate={profileNameIsRequired}
               maxLength={256}
@@ -43,26 +47,24 @@ const MobilePersonaForm: React.FC<
           <FormField>
             <Field
               name="avatar"
-              label="Persona photo"
+              label={t(translation.attributes.avatar)}
               component={ImageField}
-              openDialog={showPrompt === 'avatar'}
               container={AvatarContainer}
             />
           </FormField>
           <FormField>
             <Field
               name="coverImage"
-              label="Cover image"
+              label={t(translation.attributes.coverImage)}
               component={ImageField}
-              openDialog={showPrompt === 'coverImage'}
               container={CoverImageContainer}
             />
           </FormField>
           <FormField>
             <Field
               name="name"
-              label="Name"
-              placeholder="Type name"
+              label={t(translation.attributes.name)}
+              placeholder={t(personaForm.name.placeholder)}
               component={Input}
               validate={() => undefined}
               maxLength={256}
@@ -71,8 +73,8 @@ const MobilePersonaForm: React.FC<
           <FormField>
             <Field
               name="description"
-              label="About"
-              placeholder="Something about you"
+              label={t(translation.attributes.description)}
+              placeholder={t(personaForm.description.placeholder)}
               component={Input}
               validate={() => undefined}
               maxLength={256}
@@ -81,8 +83,8 @@ const MobilePersonaForm: React.FC<
           <FormField>
             <Field
               name="email"
-              label="Email Address"
-              placeholder="Type your email"
+              label={t(translation.attributes.email)}
+              placeholder={t(personaForm.email.placeholder)}
               component={Input}
               validate={() => undefined}
             />
@@ -90,8 +92,8 @@ const MobilePersonaForm: React.FC<
           <FormField>
             <Field
               name="ethAddress"
-              label="Phone Number"
-              placeholder="Type phone number"
+              label={t(translation.attributes.ethAddress)}
+              placeholder={t(personaForm.ethAddress.placeholder)}
               component={Input}
               validate={() => undefined}
             />
@@ -99,8 +101,8 @@ const MobilePersonaForm: React.FC<
           <FormField>
             <Field
               name="address"
-              label="Location"
-              placeholder="Your location"
+              label={t(translation.attributes.address)}
+              placeholder={t(personaForm.address.placeholder)}
               component={Input}
               validate={() => undefined}
             />
@@ -110,8 +112,8 @@ const MobilePersonaForm: React.FC<
 
       <BottomContainer>
         <Button fullWidth={true} buttonType="primary" onClick={handleSubmit}>
-          {!edit && 'Create Persona'}
-          {edit && 'Save Changes'}
+          {!edit && t(personaForm.createPersona)}
+          {edit && t(personaForm.saveChanges)}
         </Button>
       </BottomContainer>
     </>

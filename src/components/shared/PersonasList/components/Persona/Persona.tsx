@@ -1,6 +1,7 @@
-import Icon from '@akashaproject/design-system/dist/components/Icon'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { translation } from '../../../../../consts/i18n'
 import * as routes from '../../../../../consts/routes'
 import { Apps } from '../../../../../types/apps'
 import {
@@ -17,6 +18,8 @@ import {
   PersonaTextContainer,
   PersonaTopContainer,
 } from './Styled'
+
+import menuIcon from './options.svg'
 
 export interface PersonaProps {
   id: string
@@ -37,6 +40,8 @@ const Persona: React.FC<PersonaProps> = ({
   togglePopover,
   showApps,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <PersonaRow>
       <PersonaLink to={routes.personaDetails.replace(routes.personaIdParam, id)}>
@@ -54,7 +59,7 @@ const Persona: React.FC<PersonaProps> = ({
               e.preventDefault()
             }}
           >
-            <Icon type="more" width="20px" height="20px" color="#132540" />
+            <img src={menuIcon} alt="Menu" />
           </PersonaMenuButton>
         </PersonaTopContainer>
 
@@ -62,17 +67,25 @@ const Persona: React.FC<PersonaProps> = ({
           <>
             <PersonaDivider />
 
-            <PersonaAppLabel>Used in</PersonaAppLabel>
-            <PersonaAppContainer>
-              {apps &&
-                apps.map(app => (
-                  <PersonaAppImageContainer
-                    key={app.id}
-                    src={app.appInfo.icon}
-                    alt={app.appInfo.name}
-                  />
-                ))}
-            </PersonaAppContainer>
+            {(!apps || apps.length === 0) && (
+              <PersonaAppLabel>{t(translation.personasList.notUsed)}</PersonaAppLabel>
+            )}
+
+            {apps && apps.length > 0 && (
+              <>
+                <PersonaAppLabel>{t(translation.personasList.usedIn)}</PersonaAppLabel>
+                <PersonaAppContainer>
+                  {apps &&
+                    apps.map(app => (
+                      <PersonaAppImageContainer
+                        key={app.id}
+                        src={app.appInfo.icon}
+                        alt={app.appInfo.name}
+                      />
+                    ))}
+                </PersonaAppContainer>
+              </>
+            )}
           </>
         )}
       </PersonaLink>

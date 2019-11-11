@@ -1,7 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Field, InjectedFormProps } from 'redux-form'
 
+import { personaForm, translation } from '../../../../consts/i18n'
+import { PERSONA_FORM } from '../../../../consts/i18n-ns'
 import { PersonaData } from '../../../../types/users'
 import { ImageField } from '../../../shared/ImageField'
 import { Input, Textarea } from '../../../shared/WithLabel'
@@ -35,22 +38,29 @@ export interface DesktopPersonaFormProps {
 const DesktopPersonaForm: React.FC<
   DesktopPersonaFormProps & InjectedFormProps<PersonaData, DesktopPersonaFormProps, string>
 > = ({ name, handleSubmit, onDeletePersona, reset }) => {
+  const { t } = useTranslation(PERSONA_FORM)
+
   return (
     <PageContainer>
       <form onSubmit={handleSubmit}>
         <UserNameHeader>{name}</UserNameHeader>
         <DateContainer>
-          Created on 22 July 2019
+          {t(personaForm.createdDate, { createdDate: '22 July 2019' })}
           <DateDivider>&bull;</DateDivider>
-          Last update 8 September 2019
+          {t(personaForm.updatedDate, { updatedDate: '8 September 2019' })}
         </DateContainer>
 
         <ImageContainer>
-          <Field name="avatar" label="Avatar" component={ImageField} container={PhotoContainer} />
+          <Field
+            name="avatar"
+            label={t(translation.attributes.avatar)}
+            component={ImageField}
+            container={PhotoContainer}
+          />
           <RowDivider />
           <Field
             name="coverImage"
-            label="Cover image"
+            label={t(translation.attributes.coverImage)}
             component={ImageField}
             container={PictureContainer}
           />
@@ -59,8 +69,8 @@ const DesktopPersonaForm: React.FC<
         <NameContainer>
           <Field
             name="name"
-            label="Name"
-            placeholder="Type your name"
+            label={t(translation.attributes.avatar)}
+            placeholder={t(personaForm.name.placeholder)}
             component={Input}
             validate={() => undefined}
             maxLength={256}
@@ -68,8 +78,8 @@ const DesktopPersonaForm: React.FC<
           <RowDivider />
           <Field
             name="email"
-            label="Email"
-            placeholder="email@email.com"
+            label={t(translation.attributes.email)}
+            placeholder={t(personaForm.email.placeholder)}
             component={Input}
             validate={() => undefined}
           />
@@ -78,18 +88,18 @@ const DesktopPersonaForm: React.FC<
         <AboutContainer>
           <Field
             name="description"
-            label="About me"
+            label={t(translation.attributes.description)}
             component={Textarea}
             validate={() => undefined}
             resize="none"
             maxLength={256}
           />
-          <AboutFootnote>The About section could have max. 256 characters.</AboutFootnote>
+          <AboutFootnote>{t(personaForm.aboutFootnote)}</AboutFootnote>
         </AboutContainer>
 
         <ButtonContainer>
           <StyledButton buttonType="primary" onClick={handleSubmit}>
-            Create ID
+            {t(personaForm.createId)}
           </StyledButton>
         </ButtonContainer>
       </form>
@@ -98,12 +108,12 @@ const DesktopPersonaForm: React.FC<
 
       <DeleteContainer>
         <DeleteTextContainer>
-          <DeleteHeader>Delete Persona</DeleteHeader>
-          <DeleteText>Once you delete your persona, there is no going back.</DeleteText>
-          <DeleteText>Please be certain.</DeleteText>
+          <DeleteHeader>{t(personaForm.deletePersona.header)}</DeleteHeader>
+          <DeleteText>{t(personaForm.deletePersona.text[0])}</DeleteText>
+          <DeleteText>{t(personaForm.deletePersona.text[1])}</DeleteText>
         </DeleteTextContainer>
         <Button buttonType="primary" onClick={onDeletePersona}>
-          Delete Persona
+          {t(personaForm.deletePersona.button)}
         </Button>
       </DeleteContainer>
     </PageContainer>

@@ -1,9 +1,11 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { css } from 'styled-components'
 
+import { translation } from '../../../consts/i18n'
 import { borders } from '../../../styles/index'
 import { Apps } from '../../../types/apps'
 import { AppImage } from '../../shared/AppImage'
@@ -31,6 +33,8 @@ const DeletePersonaModal: React.FC<DeletePersonaModalProps> = ({
   onDeletePersona,
   history,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <Modal
       isOpen={true}
@@ -61,11 +65,10 @@ const DeletePersonaModal: React.FC<DeletePersonaModalProps> = ({
       extend={() => borders.modal}
     >
       <ModalContent>
-        <ModalHeader>Delete {name} Persona</ModalHeader>
-        <ModalText>
-          You are about to delete your {name} persona. When deleted the following applications will
-          no longer be accessible.
-        </ModalText>
+        <ModalHeader>
+          {t(translation.modals.deletePersona.header, { personaName: name })}
+        </ModalHeader>
+        <ModalText>{t(translation.modals.deletePersona.text, { personaName: name })}</ModalText>
         <ModalAppsList>
           {Object.entries(apps).map(([appId, app]) => (
             <ModalAppsRow key={appId}>
@@ -82,10 +85,10 @@ const DeletePersonaModal: React.FC<DeletePersonaModalProps> = ({
               history.goBack()
             }}
           >
-            Cancel
+            {t(translation.modals.deletePersona.cancel)}
           </Button>
           <Button buttonType="primary" onClick={() => onDeletePersona(id)}>
-            Delete Persona
+            {t(translation.modals.deletePersona.delete)}
           </Button>
         </ModalButtonContainer>
       </ModalContent>

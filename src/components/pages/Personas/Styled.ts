@@ -46,8 +46,12 @@ const NoPersonasContainer = styled.div`
 const NoPersonasLogo = styled.div`
   width: 224px;
   height: 198px;
-  background: #d8d8d8;
   opacity: 0.99;
+
+  > img {
+    width: 224px;
+    height: 198px;
+  }
 `
 
 const NoPersonasHeader = styled.h3`

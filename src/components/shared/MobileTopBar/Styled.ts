@@ -20,11 +20,23 @@ const TopSpace = styled.div`
 
 const SearchLink = styled(NavLink)<NavLinkProps>`
   height: 20px;
+
+  > img {
+    width: 20px;
+    height: 20px;
+    stroke: ${props => props.theme.colors.dark};
+  }
 `
 
 const MenuLink = styled(NavLink)<NavLinkProps>`
   margin-left: 16px;
   height: 20px;
+
+  > img {
+    width: 20px;
+    height: 20px;
+    stroke: ${props => props.theme.colors.dark};
+  }
 `
 
 export { TopHeader, TopHeaderGrey, TopSpace, SearchLink, MenuLink }

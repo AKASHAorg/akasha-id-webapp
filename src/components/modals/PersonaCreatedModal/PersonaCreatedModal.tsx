@@ -1,16 +1,23 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
 import Modal from '@akashaproject/design-system/dist/components/Modal'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { css } from 'styled-components'
 
+import { translation } from '../../../consts/i18n'
 import * as routes from '../../../consts/routes'
 import { borders } from '../../../styles/index'
 import { Header, Logo, ModalContent, PaleText, PersonasLink } from './Styled'
 
+import personaCreated from './persona-created.png'
+import scanQrIcon from './scan-qr.svg'
+
 export interface PersonaCreatedModalProps extends RouteComponentProps<any> {}
 
 const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = ({ history }) => {
+  const { t } = useTranslation()
+
   return (
     <Modal
       isOpen={true}
@@ -41,23 +48,26 @@ const PersonaCreatedModal: React.FC<PersonaCreatedModalProps> = ({ history }) =>
       extend={() => borders.modal}
     >
       <ModalContent>
-        <Logo />
-        <Header>New Persona Created</Header>
-        <PaleText>You can now connect it to a third party App by scanning the QR Code</PaleText>
+        <Logo>
+          <img src={personaCreated} alt="Persona created" />
+        </Logo>
+        <Header>{t(translation.modals.personaCreated.header)}</Header>
+        <PaleText>{t(translation.modals.personaCreated.text)}</PaleText>
         <Button
           buttonType="primary"
           onClick={() => {
             history.replace(routes.qrCode)
           }}
         >
-          Scan QR code
+          <img src={scanQrIcon} alt="Scan QR code" />
+          {t(translation.modals.personaCreated.scan)}
         </Button>
         <PersonasLink
           onClick={() => {
             history.replace(routes.personas)
           }}
         >
-          Maybe Later
+          {t(translation.modals.personaCreated.later)}
         </PersonasLink>
       </ModalContent>
     </Modal>

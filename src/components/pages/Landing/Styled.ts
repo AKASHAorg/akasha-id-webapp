@@ -37,15 +37,23 @@ const IconLabelGrey = styled.span`
 const LogoWithoutUsers = styled.div`
   width: 227px;
   height: 227px;
-  background: #d8d8d8;
   opacity: 0.9;
+
+  > img {
+    width: 227px;
+    height: 227px;
+  }
 `
 
 const LogoWithUsers = styled.div`
   width: 269px;
   height: 269px;
-  background: #d8d8d8;
   opacity: 0.9;
+
+  > img {
+    width: 269px;
+    height: 269px;
+  }
 `
 
 const Header = styled.h1`

@@ -5,8 +5,10 @@ import Modal from '@akashaproject/design-system/dist/components/Modal'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { DocumentText } from 'grommet-icons'
 import React, { useContext, useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { css } from 'styled-components'
 
+import { translation } from '../../../consts/i18n'
 import { AddAppFormData, AddAppModalStep } from '../../../types/apps'
 import { Column } from '../../pages/shared/Container'
 import {
@@ -81,6 +83,8 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
     }
   })
 
+  const { t } = useTranslation()
+
   return (
     <Modal
       isOpen={opened}
@@ -115,8 +119,8 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
     >
       <Column size={6}>
         <HeaderContainer>
-          <Header>{name} requests access to your persona information</Header>
-          <Subheader>Please confirm the information below</Subheader>
+          <Header>{t(translation.modals.addApp.header, { appName: name })}</Header>
+          <Subheader>{t(translation.modals.addApp.subheader)}</Subheader>
         </HeaderContainer>
         <Divider />
         <ContentContainer>
@@ -128,7 +132,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 
             <ContentHeader>
               <Icon type="linkEntry" color={theme.colors.dark} width="16px" height="16px" />
-              <div>Link</div>
+              <div>{t(translation.modals.addApp.link)}</div>
             </ContentHeader>
 
             <Link>
@@ -137,13 +141,13 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
 
             <ContentHeader>
               <DocumentText color="dark-1" size="16px" />
-              <div>About</div>
+              <div>{t(translation.modals.addApp.about)}</div>
             </ContentHeader>
 
             <Description>{description}</Description>
           </Column>
           <Column size={3}>
-            <AttributesHeader>Select persona attributes to share:</AttributesHeader>
+            <AttributesHeader>{t(translation.modals.addApp.selectAttributes)}</AttributesHeader>
             <AttributesList>
               {attributes.map(attribute => (
                 <Attribute key={attribute}>
@@ -163,12 +167,17 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
         <FooterContainer>
           <Column size={3}>
             <Notification>
-              Please make sure that {name} displays the same security code: <Nonce>{nonce}</Nonce>
+              <Trans
+                i18nKey={translation.modals.addApp.notification}
+                values={{ nonce, appName: name }}
+              >
+                Please make sure that {name} displays the same security code: <Nonce>{nonce}</Nonce>
+              </Trans>
             </Notification>
           </Column>
           <ButtonContainer>
             <Button buttonType="primary" ghost={true} onClick={onClose}>
-              Cancel
+              {t(translation.modals.addApp.cancel)}
             </Button>
             <Button
               buttonType="primary"
@@ -179,7 +188,7 @@ const AddAppModal: React.FC<AddAppModalProps> = ({
                 })
               }
             >
-              Authorize
+              {t(translation.modals.addApp.authorize)}
             </Button>
           </ButtonContainer>
         </FooterContainer>

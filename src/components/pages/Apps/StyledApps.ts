@@ -46,10 +46,14 @@ const NoAppsContainer = styled.div`
 `
 
 const NoAppsLogo = styled.div`
-  width: 290px;
-  height: 270px;
-  background: #d8d8d8;
+  width: 190px;
+  height: 203px;
   opacity: 0.99;
+
+  > img {
+    width: 190px;
+    height: 203px;
+  }
 `
 
 const NoAppsHeader = styled.h3`

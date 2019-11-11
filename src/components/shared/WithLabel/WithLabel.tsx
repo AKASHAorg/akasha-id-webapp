@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { fonts } from '../../../styles'
@@ -31,11 +32,13 @@ const WithLabel: React.FC<React.PropsWithChildren<WithLabelProps>> = ({
   error,
   children,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <div>
       <Label>
         <LabelText>{label}</LabelText>
-        <ErrorText>{error}</ErrorText>
+        <ErrorText>{error && t(error)}</ErrorText>
       </Label>
       <div>{children}</div>
     </div>

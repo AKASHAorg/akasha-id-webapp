@@ -1,8 +1,8 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
-import Icon from '@akashaproject/design-system/dist/components/Icon'
-import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { translation } from '../../../consts/i18n'
 import { Apps as AppsType } from '../../../types/apps'
 import { AppsList } from '../../shared/AppsList'
 import { MobileBottomBar } from '../../shared/MobileBottomBar'
@@ -20,16 +20,20 @@ import {
   PageContainer,
 } from './StyledApps'
 
+import noApps from './no-apps.png'
+import scanQrIcon from './scan-qr.svg'
+
 export interface AppsProps {
   apps: AppsType
   loadApps: () => void
 }
 
 const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
-  const theme = useContext(AkashaThemeContext)
   useEffect(() => {
     loadApps()
   }, [loadApps])
+
+  const { t } = useTranslation()
 
   return (
     <SidebarContainer>
@@ -37,23 +41,23 @@ const Apps: React.FC<AppsProps> = ({ apps, loadApps }) => {
 
       <Column size={6}>
         <PageContainer>
-          <AppsHeader>My applications</AppsHeader>
+          <AppsHeader>{t(translation.desktopPageTitles.apps)}</AppsHeader>
 
           <MobileAppsHeaderContainer>
-            <MobileAppsHeader>Applications</MobileAppsHeader>
+            <MobileAppsHeader>{t(translation.mobilePageTitles.apps)}</MobileAppsHeader>
             <Button buttonType="primary" small={true} onClick={() => {}}>
-              <Icon type="plus" color={theme.colors.white} width="13px" height="13px" />
-              Scan QR code
+              <img src={scanQrIcon} alt="Scan QR code" />
+              {t(translation.scanQRCode)}
             </Button>
           </MobileAppsHeaderContainer>
 
           {Object.entries(apps).length === 0 && (
             <NoAppsContainer>
-              <NoAppsLogo />
-              <NoAppsHeader>Add your first application</NoAppsHeader>
-              <NoAppsSubheader>
-                Here will say somethin relevant about AKASHA ID and how it works.
-              </NoAppsSubheader>
+              <NoAppsLogo>
+                <img src={noApps} alt="No apps" />
+              </NoAppsLogo>
+              <NoAppsHeader>{t(translation.noApps.header)}</NoAppsHeader>
+              <NoAppsSubheader>{t(translation.noApps.subheader)}</NoAppsSubheader>
             </NoAppsContainer>
           )}
 

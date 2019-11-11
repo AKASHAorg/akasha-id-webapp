@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { translation } from '../../../consts/i18n'
 import { Apps as AppsType } from '../../../types/apps'
 import { AppsList } from '../../shared/AppsList'
 import { MobileTopBar } from '../../shared/MobileTopBar'
@@ -18,13 +20,17 @@ const SupportedApps: React.FC<SupportedAppsProps> = ({ apps, loadApps }) => {
     loadApps()
   }, [loadApps])
 
+  const { t } = useTranslation()
+
   return (
     <SidebarContainer>
       <MobileTopBar />
 
       <Column size={6}>
         <PageContainer>
-          <MobileTopBarWithArrowCancelButton>Supported Apps</MobileTopBarWithArrowCancelButton>
+          <MobileTopBarWithArrowCancelButton>
+            {t(translation.mobilePageTitles.supportedApps)}
+          </MobileTopBarWithArrowCancelButton>
 
           {Object.entries(apps).length > 0 && <AppsList apps={apps} />}
         </PageContainer>

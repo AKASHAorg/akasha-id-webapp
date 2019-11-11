@@ -1,8 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
 import Button from '@akashaproject/design-system/dist/components/Button'
-import attributeNamesMap from '../../../../../consts/attribute-names-map'
+import { appDetails, translation } from '../../../../../consts/i18n'
+import { APP_DETAILS } from '../../../../../consts/i18n-ns'
 import * as routes from '../../../../../consts/routes'
 import { App } from '../../../../../types/apps'
 import { PersonaData } from '../../../../../types/users'
@@ -40,12 +42,16 @@ import {
   SiteTitleContainer,
 } from './Styled'
 
+import leaveIcon from './leave.svg'
+
 export interface AppDetailsMobileViewProps extends RouteComponentProps<any> {
   app: App
   persona: PersonaData
 }
 
 const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, persona, history }) => {
+  const { t } = useTranslation(APP_DETAILS)
+
   return (
     <MobileContainer>
       <MobileTopBarWithArrowCancelButton>{app.appInfo.name}</MobileTopBarWithArrowCancelButton>
@@ -62,24 +68,27 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
 
         <SiteContainer>
           <SiteTitleContainer>
-            <SiteLabel>Website</SiteLabel>
+            <SiteLabel>{t(appDetails.website.label)}</SiteLabel>
             <SiteText>{app.appInfo.url}</SiteText>
           </SiteTitleContainer>
-          <SiteButton href={app.appInfo.url}>Visit Website</SiteButton>
+          <SiteButton href={app.appInfo.url}>
+            {t(appDetails.website.button)}
+            <img src={leaveIcon} alt="Visit website" />
+          </SiteButton>
         </SiteContainer>
 
         <AttributesContainer>
           <PersonaContainer>
             <PersonaName>{persona.personaName}</PersonaName>
             <PersonaLink to={routes.personaDetails.replace(routes.personaIdParam, app.persona)}>
-              View Persona
+              {t(appDetails.viewPersona)}
             </PersonaLink>
           </PersonaContainer>
 
           <AttributesDivider />
 
           <AttributesText>
-            {app.appInfo.name} has access to the following attributes:
+            {t(appDetails.attributesHeader, { appName: app.appInfo.name })}
           </AttributesText>
 
           <AttributesList>
@@ -89,17 +98,20 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
                   <>
                     <AttributesImageContainer
                       src={(persona as any)[attribute]}
-                      alt={attributeNamesMap.get(attribute)}
+                      alt={t((translation.attributes as any)[attribute])}
                     />
                     <AttributesLabelContainer>
-                      <AttributesHeader>{attributeNamesMap.get(attribute)}</AttributesHeader>
-                      <AttributesValue>cover.jpg</AttributesValue>
+                      <AttributesHeader>
+                        {t((translation.attributes as any)[attribute])}
+                      </AttributesHeader>
                     </AttributesLabelContainer>
                   </>
                 )}
                 {attribute !== 'photo' && attribute !== 'picture' && (
                   <AttributesLabelContainer>
-                    <AttributesHeader>{attributeNamesMap.get(attribute)}</AttributesHeader>
+                    <AttributesHeader>
+                      {t((translation.attributes as any)[attribute])}
+                    </AttributesHeader>
                     <AttributesValue>{(persona as any)[attribute]}</AttributesValue>
                   </AttributesLabelContainer>
                 )}
@@ -118,9 +130,9 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
         <ButtonsDivider />
 
         <ButtonsContainer>
-          <ButtonsHeader>Unlink persona</ButtonsHeader>
+          <ButtonsHeader>{t(appDetails.unlinkPersona.header)}</ButtonsHeader>
 
-          <ButtonsText>Something about how unlinking this persona’s impact</ButtonsText>
+          <ButtonsText>{t(appDetails.unlinkPersona.text)}</ButtonsText>
 
           <Button
             buttonType="alert"
@@ -128,7 +140,7 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
               history.push(routes.unlinkPersona.replace(routes.tokenParam, app.id))
             }}
           >
-            Unlink Persona
+            {t(appDetails.unlinkPersona.button)}
           </Button>
         </ButtonsContainer>
       </FormContainer>
@@ -141,7 +153,7 @@ const AppDetailsMobileView: React.FC<AppDetailsMobileViewProps> = ({ app, person
             history.push(routes.discardChanges)
           }}
         >
-          Save Changes
+          {t(appDetails.saveChanges)}
         </Button>
       </ChangesContainer>
     </MobileContainer>

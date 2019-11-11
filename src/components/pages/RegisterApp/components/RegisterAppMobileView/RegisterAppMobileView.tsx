@@ -1,9 +1,10 @@
 import Button from '@akashaproject/design-system/dist/components/Button'
-import Icon from '@akashaproject/design-system/dist/components/Icon'
-import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { InjectedFormProps } from 'redux-form'
 
+import { registerApp } from '../../../../../consts/i18n'
+import { REGISTER_APP } from '../../../../../consts/i18n-ns'
 import * as routes from '../../../../../consts/routes'
 import { AddAppFormData, AddAppModalStep } from '../../../../../types/apps'
 import { Persona as PersonaType } from '../../../../../types/users'
@@ -25,6 +26,8 @@ import {
   StyledPageContainer,
   TopText,
 } from './Styled'
+
+import addIcon from './add__active.png'
 
 export interface RegisterAppMobileViewProps {
   step: AddAppModalStep
@@ -53,18 +56,20 @@ const RegisterAppMobileView: React.FC<
   loadPersonas,
   handleSubmit,
 }) => {
-  const theme = useContext(AkashaThemeContext)
-
   useEffect(() => {
     loadPersonas()
   }, [loadPersonas])
 
+  const { t } = useTranslation(REGISTER_APP)
+
   return (
     <StyledPageContainer>
       <form onSubmit={handleSubmit}>
-        <MobileTopBarWithLabelCancelButton>New Application</MobileTopBarWithLabelCancelButton>
+        <MobileTopBarWithLabelCancelButton>
+          {t(registerApp.pageTitle)}
+        </MobileTopBarWithLabelCancelButton>
 
-        <TopText>{name} requested access to your persona information:</TopText>
+        <TopText>{t(registerApp.text, { appName: name })}</TopText>
 
         <AppContainer>
           <AppHeader>
@@ -73,12 +78,14 @@ const RegisterAppMobileView: React.FC<
           </AppHeader>
           <AppDivider />
           <AppWarning>
-            Please ensure {name} displays the same security code: <AppNonce>{nonce}</AppNonce>
+            <Trans i18nKey={registerApp.warning} values={{ nonce, appName: name }}>
+              Please ensure {name} displays the same security code: <AppNonce>{nonce}</AppNonce>
+            </Trans>
           </AppWarning>
         </AppContainer>
 
         <PersonasContainer>
-          <PersonasHeader>Select persona</PersonasHeader>
+          <PersonasHeader>{t(registerApp.selectPersona)}</PersonasHeader>
           <PersonasList>
             {personas.map(persona => (
               <Persona
@@ -92,14 +99,14 @@ const RegisterAppMobileView: React.FC<
           </PersonasList>
 
           <AddPersonaLink to={routes.createPersona}>
-            <Icon type="plus" color={theme.colors.blue} width="13px" height="13px" />
-            New Persona
+            <img src={addIcon} alt="New Persona" />
+            {t(registerApp.newPersona)}
           </AddPersonaLink>
         </PersonasContainer>
 
         <MobileBottomContainer>
           <Button fullWidth={true} buttonType="primary" onClick={handleSubmit}>
-            Authorize
+            {t(registerApp.authorize)}
           </Button>
         </MobileBottomContainer>
       </form>

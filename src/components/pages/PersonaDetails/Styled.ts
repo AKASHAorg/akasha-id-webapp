@@ -50,9 +50,9 @@ const PictureButton = styled.button`
   border: none;
   outline: none;
 
-  > svg {
+  > img {
     position: relative;
-    top: 3px;
+    top: 4px;
     left: -2px;
   }
 `
@@ -83,10 +83,10 @@ const PhotoButton = styled.button`
   left: 108px;
   outline: none;
 
-  > svg {
+  > img {
     position: relative;
-    top: -2px;
-    left: -0.5px;
+    top: -3px;
+    left: -3px;
   }
 `
 

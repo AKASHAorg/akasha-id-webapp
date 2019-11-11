@@ -6,6 +6,9 @@ import * as routes from '../../../consts/routes'
 import { MobileTopBarContainer } from '../MobileTopBarContainer'
 import { MenuLink, SearchLink, TopHeader, TopHeaderGrey, TopSpace } from './Styled'
 
+import menuIcon from './menu.svg'
+import searchIcon from './search.svg'
+
 const MobileTopBar: React.FC<{}> = () => {
   const theme = useContext(AkashaThemeContext)
 
@@ -19,29 +22,11 @@ const MobileTopBar: React.FC<{}> = () => {
       <TopSpace />
 
       <SearchLink to={routes.search}>
-        <Icon type="search" width="20px" height="20px" color={theme.colors.dark} />
+        <img src={searchIcon} alt="Search" />
       </SearchLink>
 
       <MenuLink to={routes.settings}>
-        <svg
-          role="img"
-          aria-label="[title + description]"
-          width="20px"
-          height="20px"
-          stroke={theme.colors.dark}
-          x="0px"
-          y="0px"
-          viewBox="0 0 96 96"
-          enableBackground="new 0 0 96 96"
-        >
-          <title>align</title>
-          <desc>align by fahmionline from the Noun Project</desc>
-          <g>
-            <rect x="7" y="17.973" width="82" height="3" />
-            <rect x="7" y="46.5" width="82" height="3" />
-            <rect x="7" y="75.027" width="82" height="3" />
-          </g>
-        </svg>
+        <img src={menuIcon} alt="Search" />
       </MenuLink>
     </MobileTopBarContainer>
   )

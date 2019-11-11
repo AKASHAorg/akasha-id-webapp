@@ -1,5 +1,5 @@
 import { Notification } from '@akashaproject/design-system/dist/components/Notification'
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Action, Dispatch } from 'redux'
@@ -48,7 +48,7 @@ const App: React.FC<AppProps> = ({ fetchPublicAccounts }: AppProps) => {
   }, [fetchPublicAccounts])
 
   return (
-    <>
+    <Suspense fallback="Translation loading...">
       <Route
         strict={true}
         exact={true}
@@ -256,7 +256,7 @@ const App: React.FC<AppProps> = ({ fetchPublicAccounts }: AppProps) => {
         pauseOnHover={false}
       />
       <ExportPersonaModal />
-    </>
+    </Suspense>
   )
 }
 

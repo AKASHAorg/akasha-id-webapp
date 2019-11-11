@@ -47,6 +47,7 @@ const QuestionButton = styled.button`
 const QuestionText = styled.h4`
   ${fonts.text}
 
+  text-align: left;
   margin: 0;
 `
 

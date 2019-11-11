@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router'
 
+import { translation } from '../../../consts/i18n'
 import * as routes from '../../../consts/routes'
 import { PersonaData } from '../../../types/users'
 import { MobileTopBarWithLabelCancelButton } from '../../shared/MobileTopBarWithLabelCancelButton'
@@ -31,10 +33,14 @@ const CreatePersona: React.FC<CreatePersonaProps> = ({
     }
   }, [redirect, history])
 
+  const { t } = useTranslation()
+
   return (
     <SidebarContainer>
       <Column size={6}>
-        <MobileTopBarWithLabelCancelButton>New Persona</MobileTopBarWithLabelCancelButton>
+        <MobileTopBarWithLabelCancelButton>
+          {t(translation.mobilePageTitles.createPersona)}
+        </MobileTopBarWithLabelCancelButton>
 
         <DesktopPersonaForm onSubmit={onSubmit} />
         <MobilePersonaForm edit={false} onSubmit={onSubmit} />

@@ -1,0 +1,8 @@
+{
+  "signInWith": "Sign in with <1>{{userName}}</1>",
+  "noUsers": {
+    "header": "Something Amazing",
+    "text": "Here will say something relevant about what the app does and it works."
+  },
+  "createAccount": "Create account"
+}

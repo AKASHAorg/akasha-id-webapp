@@ -2,7 +2,10 @@ import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import { Logout } from 'grommet-icons'
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { settings } from '../../../consts/i18n'
+import { SETTINGS } from '../../../consts/i18n-ns'
 import * as routes from '../../../consts/routes'
 import { MobileTopBarWithArrowCancelButton } from '../../shared/MobileTopBarWithArrowCancelButton'
 import { Column } from '../shared/Container'
@@ -23,6 +26,7 @@ export interface SideMenuProps {
 
 const SideMenu: React.FC<SideMenuProps> = ({ onSignOut }) => {
   const theme = useContext(AkashaThemeContext)
+  const { t } = useTranslation(SETTINGS)
 
   return (
     <SidebarContainer>
@@ -33,25 +37,25 @@ const SideMenu: React.FC<SideMenuProps> = ({ onSignOut }) => {
           <MenuList>
             <MenuRow>
               <MenuLink to={routes.account}>
-                <span>Account</span>
+                <span>{t(settings.account)}</span>
                 <Icon type="forward" width="20px" height="20px" color={theme.colors.dark} />
               </MenuLink>
             </MenuRow>
             <MenuRow>
               <MenuLink to={routes.faq}>
-                <span>FAQs</span>
+                <span>{t(settings.faqs)}</span>
                 <Icon type="forward" width="20px" height="20px" color={theme.colors.dark} />
               </MenuLink>
             </MenuRow>
             <MenuRow>
               <MenuLink to={routes.supportedApps}>
-                <span>Supported Apps</span>
+                <span>{t(settings.supportedApps)}</span>
                 <Icon type="forward" width="20px" height="20px" color={theme.colors.dark} />
               </MenuLink>
             </MenuRow>
             <MenuRow>
               <MenuLink to={routes.account}>
-                <span>Privacy Policy</span>
+                <span>{t(settings.privacyPolicy)}</span>
                 <Icon type="forward" width="20px" height="20px" color={theme.colors.dark} />
               </MenuLink>
             </MenuRow>
@@ -59,13 +63,13 @@ const SideMenu: React.FC<SideMenuProps> = ({ onSignOut }) => {
 
           <SignOutBlock>
             <SignOutButton onClick={onSignOut}>
-              <span>Sign out</span>
+              <span>{t(settings.signOut)}</span>
               <Logout color="#132540" size="20px" />
             </SignOutButton>
 
             <Credits>
-              <div>Version 1.01 2019</div>
-              <div>AKASHA Foundation</div>
+              <div>{t(settings.version, { versionNumber: '1.01 2019' })}</div>
+              <div>{t(settings.credits)}</div>
             </Credits>
           </SignOutBlock>
         </PageContainer>

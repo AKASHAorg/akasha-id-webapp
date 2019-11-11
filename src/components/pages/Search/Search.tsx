@@ -1,8 +1,10 @@
 import Icon from '@akashaproject/design-system/dist/components/Icon'
 import AkashaThemeContext from '@akashaproject/design-system/dist/providers/ThemeProvider'
 import React, { ChangeEvent, useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 
+import { translation } from '../../../consts/i18n'
 import { Apps } from '../../../types/apps'
 import { Persona } from '../../../types/users'
 import { AppsList } from '../../shared/AppsList'
@@ -17,6 +19,8 @@ import {
   PageContainer,
   SearchHeader,
 } from './StyledSearch'
+
+import searchIcon from './search.svg'
 
 export interface SearchProps extends RouteComponentProps<any> {
   personas: Persona[]
@@ -40,12 +44,14 @@ const Search: React.FC<SearchProps> = ({
 
   const theme = useContext(AkashaThemeContext)
 
+  const { t } = useTranslation()
+
   return (
     <SidebarContainer>
       <Column size={6}>
         <MobileTopBarContainer>
           <MobileSearchLabel>
-            <Icon type="search" width="20px" height="20px" color={theme.colors.dark} />
+            <img src={searchIcon} alt="Search" />
             <MobileSearchInput
               value={searchText}
               placeholder=""
@@ -58,10 +64,10 @@ const Search: React.FC<SearchProps> = ({
         </MobileTopBarContainer>
 
         <PageContainer>
-          <SearchHeader>{personas.length} personas</SearchHeader>
+          <SearchHeader>{t(translation.search.personas, { count: personas.length })}</SearchHeader>
           <PersonasList personas={personas} apps={{}} showApps={false} />
 
-          <SearchHeader>{apps.length} applications</SearchHeader>
+          <SearchHeader>{t(translation.search.apps, { count: apps.length })}</SearchHeader>
           <AppsList apps={apps} />
         </PageContainer>
       </Column>

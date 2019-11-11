@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="20px" viewBox="0 0 40 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icon/40x20/personas</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon/40x20/personas" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <rect id="container" fill="#D8D8D8" opacity="0" x="0" y="0" width="40" height="20"></rect>
+            <g id="personas" transform="translate(2.000000, 0.000000)">
+                <g id="happy">
+                    <path d="M0.5,4.30325274 L0.5,10.0651874 C0.5,12.7901932 1.81900392,15.34665 4.03976189,16.9258557 C6.11139376,18.3990161 8.88860624,18.3990161 10.9602381,16.9258557 C13.1809961,15.34665 14.5,12.7901932 14.5,10.0651874 L14.5,4.30325274 C10.1022134,2.06557995 4.89778657,2.06557995 0.5,4.30326016 Z" id="Rectangle" stroke="#B6BFD1"></path>
+                    <circle id="Oval" fill="#B6BFD1" cx="10" cy="7.5" r="1"></circle>
+                    <circle id="Oval" fill="#B6BFD1" cx="5" cy="7.5" r="1"></circle>
+                    <path d="M10.5,12 L10.0606602,12.4393398 C9.38153087,13.1184691 8.46043387,13.5 7.5,13.5 C6.53956613,13.5 5.61846913,13.1184691 4.93933983,12.4393398 L4.5,12 L4.5,12" id="Path" stroke="#B6BFD1" stroke-linecap="round"></path>
+                </g>
+                <g id="happy" transform="translate(21.000000, 0.000000)">
+                    <path d="M0.5,4.30325274 L0.5,10.0651874 C0.5,12.7901932 1.81900392,15.34665 4.03976189,16.9258557 C6.11139376,18.3990161 8.88860624,18.3990161 10.9602381,16.9258557 C13.1809961,15.34665 14.5,12.7901932 14.5,10.0651874 L14.5,4.30325274 C10.1022134,2.06557995 4.89778657,2.06557995 0.5,4.30326016 Z" id="Rectangle" stroke="#B6BFD1"></path>
+                    <circle id="Oval" fill="#B6BFD1" cx="10" cy="7.5" r="1"></circle>
+                    <circle id="Oval" fill="#B6BFD1" cx="5" cy="7.5" r="1"></circle>
+                    <path d="M10.5,12 L10.0606602,12.4393398 C9.38153087,13.1184691 8.46043387,13.5 7.5,13.5 C6.53956613,13.5 5.61846913,13.1184691 4.93933983,12.4393398 L4.5,12 L4.5,12" id="Path" stroke="#B6BFD1" stroke-linecap="round" transform="translate(7.500000, 12.750000) scale(1, -1) translate(-7.500000, -12.750000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "header": "Welcome back!",
+  "subheader": "Here will say something wicked",
+  "username": {
+    "label": "Username"
+  },
+  "password": {
+    "label": "Password",
+    "placeholder": "Enter the password",
+    "errorIsRequired": "Password cannot be empty"
+  },
+  "signIn": "Sign in",
+  "createAccount": {
+    "text": "Don't have an account?",
+    "link": "Create Account"
+  }
+}
