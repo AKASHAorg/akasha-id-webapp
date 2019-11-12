@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
 
-import { apps } from '../../../consts/routes'
+import { appCreated } from '../../../consts/routes'
 import { AddAppModalStep } from '../../../types/apps'
 import { AddAppModal } from '../../modals/AddAppModal'
+import { RegisterAppMobileView } from './components/RegisterAppMobileView'
 
 export interface RegisterAppMatch {
   apprequestlink: string
@@ -11,28 +12,35 @@ export interface RegisterAppMatch {
 
 export interface RegisterAppProps extends RouteComponentProps<RegisterAppMatch> {
   addAppModalStep: AddAppModalStep
-  handleShowAddAppModal: () => void
-  handleFinishSendClaim: () => void
+  showAddAppModal: () => void
+  finishSendClaim: () => void
+  fetchPersonas: () => void
 }
 
 const RegisterApp: React.FC<RegisterAppProps> = ({
   addAppModalStep,
-  handleShowAddAppModal,
-  handleFinishSendClaim,
+  showAddAppModal,
+  finishSendClaim,
+  fetchPersonas,
   match,
 }) => {
   // eslint-disable react-hooks/exhaustive-deps
   useEffect(() => {
-    handleShowAddAppModal()
+    showAddAppModal()
 
-    return handleFinishSendClaim
-  }, [match.params.apprequestlink, handleShowAddAppModal, handleFinishSendClaim])
+    return finishSendClaim
+  }, [match.params.apprequestlink, showAddAppModal, finishSendClaim])
   // eslint-enable react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    fetchPersonas()
+  }, [fetchPersonas])
 
   return (
     <>
-      {addAppModalStep === 'finish' && <Redirect to={apps} />}
+      {addAppModalStep === 'finish' && <Redirect to={appCreated} />}
       <AddAppModal />
+      <RegisterAppMobileView />
     </>
   )
 }

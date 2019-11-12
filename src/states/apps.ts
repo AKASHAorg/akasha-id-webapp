@@ -1,7 +1,7 @@
-import { AddAppModalStep, App, AppRequest, Claim } from '../types/apps'
+import { AddAppModalStep, App, AppRequest, Apps, Claim } from '../types/apps'
 
 export interface AppsState {
-  apps: { [token: string]: App }
+  apps: Apps
   addAppModalStep: AddAppModalStep
   appRequest: AppRequest | null
   selectedApp?: App
@@ -11,7 +11,7 @@ export interface AppsState {
 }
 
 const defaultAppsState: AppsState = {
-  apps: {},
+  apps: [],
   addAppModalStep: 'wait-request',
   appRequest: null,
   selectedApp: undefined,

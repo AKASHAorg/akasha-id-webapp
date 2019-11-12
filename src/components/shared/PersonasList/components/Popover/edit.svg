@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icon/20x20/edit</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon/20x20/edit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons/16x16/Bookmark/Dark" stroke="#132540">
+            <g>
+                <g id="Icons/16x16/Edit/Dark">
+                    <g id="16x16/edit-entry--dark">
+                        <g>
+                            <g id="icon" transform="translate(3.750000, 1.250000)">
+                                <polyline id="Path" stroke-linecap="round" stroke-linejoin="round" points="12.5 8.75 12.5 15 3.55618313e-14 15 0 2.5 5 2.5"></polyline>
+                                <g id="pencil" transform="translate(8.255014, 6.619815) rotate(45.000000) translate(-8.255014, -6.619815) translate(5.755014, 1.119815)">
+                                    <path d="M1.82905845,0.173097039 L3.07905845,0.173097039 C3.76941439,0.173097039 4.32905845,0.732741102 4.32905845,1.42309704 L4.32905845,7.57690296 L4.32905845,7.57690296 L2.45405845,10.576903 L0.579058454,7.57690296 L0.579058454,1.42309704 C0.579058454,0.732741102 1.13870252,0.173097039 1.82905845,0.173097039 Z" id="Rectangle"></path>
+                                    <line x1="0.954058454" y1="3.62576208" x2="3.95405845" y2="3.62576208" id="Line" stroke-linecap="square"></line>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

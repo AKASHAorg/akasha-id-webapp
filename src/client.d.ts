@@ -10,8 +10,8 @@ declare module 'akasha-id-client' {
 
     public async registrationLink()
     public genNonce(min: number, max: number)
-    public async requestProfile(attributes: string[])
-    public async refreshProfile(claim)
+    public async requestPersona(attributes: string[])
+    public async refreshPersona(claim)
     public getChannelFromDID(did)
     public cleanUp(hub)
   }

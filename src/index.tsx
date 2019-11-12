@@ -14,6 +14,7 @@ import rootSaga from './sagas'
 import * as serviceWorker from './serviceWorker'
 import theme from './theme'
 
+import './i18n.ts'
 import './style.css'
 
 init().then(() => {

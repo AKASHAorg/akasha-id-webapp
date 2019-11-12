@@ -1,7 +1,7 @@
-import { Profile } from '../types/users'
+import { Account } from '../types/users'
 
 export interface LandingState {
-  users: Profile[]
+  users: Account[]
   showSignInModal: boolean
   showSignUpModal: boolean
   registerAppLink?: string

@@ -1,0 +1,36 @@
+{
+  "createPersona": "Create Persona",
+  "saveChanges": "Save Changes",
+  "personaName": {
+    "label": "Persona name",
+    "placeholder": "Type Persona name",
+    "errorIsRequired": "Persona name is required"
+  },
+  "name": {
+    "placeholder": "Type name"
+  },
+  "description": {
+    "placeholder": "Something about you"
+  },
+  "email": {
+    "placeholder": "Type your email"
+  },
+  "ethAddress": {
+    "placeholder": "Type phone number"
+  },
+  "address": {
+    "placeholder": "Your location"
+  },
+  "createdDate": "Created on {{createdDate}}",
+  "updatedDate": "Last update {{updatedDate}}",
+  "aboutFootnote": "The About section could have max. 256 characters.",
+  "createId": "Create ID",
+  "deletePersona": {
+    "header": "Delete Persona",
+    "text": [
+      "Once you delete your persona, there is no going back.",
+      "Please be certain."
+    ],
+    "button": "Delete Persona"
+  }
+}

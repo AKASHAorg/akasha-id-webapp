@@ -1,0 +1,9 @@
+{
+  "account": "Account",
+  "faqs": "FAQs",
+  "supportedApps": "Supported Apps",
+  "privacyPolicy": "Privacy Policy",
+  "signOut": "Sign out",
+  "version": "Version {{versionNumber}}",
+  "credits": "AKASHA Foundation"
+}

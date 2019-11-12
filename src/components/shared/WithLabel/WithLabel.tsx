@@ -1,5 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { fonts } from '../../../styles'
 
 interface WithLabelProps {
   label: string
@@ -14,11 +17,7 @@ const Label = styled.div`
 `
 
 const LabelText = styled.span`
-  text-transform: uppercase;
-  color: ${props => props.theme.colors.darkGrey};
-  font-size: 10px;
-  line-height: 12px;
-  letter-spacing: 0.12px;
+  ${fonts.textLabel}
 `
 
 const ErrorText = styled.span`
@@ -33,11 +32,13 @@ const WithLabel: React.FC<React.PropsWithChildren<WithLabelProps>> = ({
   error,
   children,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <div>
       <Label>
         <LabelText>{label}</LabelText>
-        <ErrorText>{error}</ErrorText>
+        <ErrorText>{error && t(error)}</ErrorText>
       </Label>
       <div>{children}</div>
     </div>

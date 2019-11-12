@@ -9,17 +9,11 @@ import { State } from '../../states'
 
 function* updateAccountImplementation(action: StartUpdateAccountAction) {
   try {
-    if (action.newPassword !== action.confirmPassword) {
-      throw new Error('Password confirmation is incorrect')
-    }
-
     yield call([wallet, wallet.updatePassphrase], action.oldPassword, action.newPassword)
 
     const state: State = yield select()
 
-    yield call([wallet, wallet.updateProfileList], state.account.userId, {
-      name: action.name,
-    })
+    yield call([wallet, wallet.updateAccountsList], { id: state.account.userId, name: action.name })
 
     const accountData = { ...action }
     delete accountData.type

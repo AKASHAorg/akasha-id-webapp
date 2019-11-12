@@ -1,7 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+import { screen } from '../../../../styles'
 
 const StyledSidebarContainer = styled.div`
-  background: #ffffff;
+  ${screen.onlyDesktop}
+
+  background: ${props => props.theme.colors.white};
   width: calc(2 * 91px + 2 * 32px);
   height: 100vh;
   position: fixed;
@@ -9,15 +13,25 @@ const StyledSidebarContainer = styled.div`
 `
 
 const StyledContentContainer = styled.div`
-  margin-left: calc(2 * 91px + 2 * 32px);
-  width: calc(1444px - 2 * 91px - 2 * 32px);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+
+  ${screen.onMobile(css`
+    width: 100%;
+    margin-left: 0;
+  `)}
+
+  ${screen.onDesktop(css`
+    margin-left: calc(2 * 91px + 2 * 32px);
+    width: calc(1444px - 2 * 91px - 2 * 32px);
+  `)}
 `
 
 const StyledTopBar = styled.div`
+  ${screen.onlyDesktop}
+
   width: 100%;
   text-align: right;
   padding: 16px 25px 16px 0;
@@ -38,11 +52,19 @@ const StyledTopBar = styled.div`
 `
 
 const StyledContentWrapper = styled.div`
-  margin-top: 48px;
-  margin-left: calc(2 * 91px + 2 * 32px);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+
+  ${screen.onMobile(css`
+    margin: 0;
+    width: 100%;
+  `)}
+
+  ${screen.onDesktop(css`
+    margin-top: 48px;
+    margin-left: calc(2 * 91px + 2 * 32px);
+  `)}
 `
 
 export { StyledSidebarContainer, StyledContentContainer, StyledTopBar, StyledContentWrapper }

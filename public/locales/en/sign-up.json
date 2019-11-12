@@ -1,0 +1,24 @@
+{
+  "header": "Welcome!",
+  "subheader": "Here will say something wicked",
+  "username": {
+    "label": "Username",
+    "placeholder": "Type a username",
+    "errorIsRequired": "Name cannot be empty"
+  },
+  "password": {
+    "label": "Password",
+    "placeholder": "Enter the password",
+    "errorIsRequired": "Password cannot be empty"
+  },
+  "confirm": {
+    "label": "Confirm password",
+    "placeholder": "Retype password",
+    "errorIsRequired": "Password confirmation is incorrect"
+  },
+  "createAccount": "Create Account",
+  "signIn": {
+    "text": "Have an account?",
+    "link": "Sign in"
+  }
+}

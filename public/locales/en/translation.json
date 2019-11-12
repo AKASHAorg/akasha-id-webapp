@@ -1,0 +1,92 @@
+{
+  "desktopPageTitles": {
+    "apps": "My applications",
+    "personas": "My Personas' List"
+  },
+  "mobilePageTitles": {
+    "apps": "Applications",
+    "personas": "My Personas",
+    "createPersona": "New Persona",
+    "editPersona": "Edit Persona",
+    "QRCode": "Scan QR Code",
+    "supportedApps": "Supported Apps"
+  },
+  "scanQRCode": "Scan QR code",
+  "videoIsNotSupported": "Video tag is not supported",
+  "newPersona": "New Persona",
+  "noApps": {
+    "header": "Add your first application",
+    "subheader": "Here will say somethin relevant about AKASHA ID and how it works."
+  },
+  "noPersonas": {
+    "header": "You have no personas",
+    "subheader": "Here must say something relevant about AKASHA ID and how it will work"
+  },
+  "appStatus": {
+    "active": "Active"
+  },
+  "attributes": {
+    "avatar": "Avatar",
+    "name": "Name",
+    "description": "Description",
+    "coverImage": "Cover image",
+    "email": "Email",
+    "url": "URL",
+    "address": "Address",
+    "ethAddress": "EthAddress"
+  },
+  "search": {
+    "personas": "{{count}} personas",
+    "apps": "{{count}} applications"
+  },
+  "modals": {
+    "unlinkPersona": {
+      "header": "Revoke the {{personaName}} persona from the {{appName}} app?",
+      "text": "This means the app will no longer receive updates until it’s linked back on. To fully delete your third party account, please do it directly on there.",
+      "cancel": "Cancel",
+      "unlink": "Unlink Persona"
+    },
+    "personaCreated": {
+      "header": "New Persona Created",
+      "text": "You can now connect it to a third party App by scanning the QR Code",
+      "scan": "Scan QR code",
+      "later": "Maybe Later"
+    },
+    "discardChanges": {
+      "header": "You have some unsaved changes",
+      "discard": "Discard",
+      "save": "Save Changes"
+    },
+    "deletePersona": {
+      "header": "Delete {{personaName}} Persona",
+      "text": "You are about to delete your {{personaName}} persona. When deleted the following applications will no longer be accessible.",
+      "cancel": "Cancel",
+      "delete": "Delete Persona"
+    },
+    "appCreated": {
+      "header": "Application Added!",
+      "text": "You can now access it through the Applications tab",
+      "ok": "Ok, got it!"
+    },
+    "addApp": {
+      "header": "{{appName}} requests access to your persona information",
+      "subheader": "Please confirm the information below",
+      "link": "Link",
+      "about": "About",
+      "selectAttributes": "Select persona attributes to share:",
+      "notification": "Please make sure that {{appName}} displays the same security code: <3>{{nonce}}</3>",
+      "cancel": "Cancel",
+      "authorize": "Authorize"
+    }
+  },
+  "appsList": {
+    "requested": "Persona requested on {{requestDate}}"
+  },
+  "personasList": {
+    "edit": "Edit persona",
+    "delete": "Delete persona",
+    "usedIn": "Used in",
+    "notUsed": "Not used by any app yet"
+  },
+  "cancel": "Cancel"
+}

@@ -1,15 +1,23 @@
-import { ProfileData } from './users'
+import { PersonaData } from './users'
 
-export interface Claim extends Partial<ProfileData> {
+export interface Claim extends Partial<PersonaData> {
   attributes: string[]
 }
 
+export type Apps = App[]
+
 export interface App {
-  // token: string
-  name: string
-  description: string
-  icon: string
-  url: string
+  id: string
+  persona: string
+  appInfo: {
+    name: string
+    description: string
+    icon: string
+    url: string
+  }
+  attributes: {
+    [attribute: string]: boolean
+  }
 }
 
 export interface AppRequest {
@@ -33,6 +41,7 @@ export type AddAppModalStep =
   | 'decline-app'
   | 'finish'
 
-export type AddAppFormData = {
-  [K in keyof ProfileData]: boolean
+export interface AddAppFormData {
+  personaId?: string
+  attributes: { [K in keyof PersonaData]: boolean }
 }

@@ -1,7 +1,7 @@
 import { defaultState, State } from '../'
 import { defaultAppsState } from '../apps'
 import { defaultLandingState } from '../landing'
-import { defaultProfileState } from '../profile'
+import { defaultPersonaState } from '../persona'
 
 describe('State', () => {
   it('can be created', () => {
@@ -9,7 +9,7 @@ describe('State', () => {
     expect(defaultState).toEqual({
       apps: defaultAppsState,
       landing: defaultLandingState,
-      profile: defaultProfileState,
+      persona: defaultPersonaState,
       form: undefined,
     })
   })

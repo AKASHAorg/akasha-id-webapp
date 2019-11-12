@@ -4,7 +4,7 @@ import { walletUrl } from './consts/routes'
 
 const config = {
   walletUrl,
-  hubUrls: ['http://localhost:8888'],
+  hubUrls: ['http://localhost:8888/', 'https://hub.akasha.id/'],
 }
 
 const wallet = new Wallet(config)

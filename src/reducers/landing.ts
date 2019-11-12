@@ -1,17 +1,17 @@
 import { Action } from 'redux'
 
+import { DeleteAccountAction } from '../actions/account/delete-account'
 import { UpdateAccountAction } from '../actions/account/update-account'
-import { SetPublicProfilesAction } from '../actions/landing/set-public-profiles'
+import { SetPublicAccountsAction } from '../actions/landing/set-public-accounts'
 import { SetRegisterAppLinkAction } from '../actions/landing/set-register-app-link'
 import { SignUpAction } from '../actions/landing/sign-up'
-import { DeleteProfileAction } from '../actions/profile/delete-profile'
 import * as actions from '../consts/actions'
 import { State } from '../states'
 import { defaultLandingState, LandingState } from '../states/landing'
 
-const setPublicProfiles = (
+const setPublicAccounts = (
   state: LandingState,
-  action: SetPublicProfilesAction,
+  action: SetPublicAccountsAction,
   fullState: State,
 ): LandingState => {
   return {
@@ -23,13 +23,13 @@ const setPublicProfiles = (
 const signUp = (state: LandingState, action: SignUpAction, fullState: State): LandingState => {
   return {
     ...state,
-    users: [...state.users, { ...action.profile }],
+    users: [...state.users, { ...action.account }],
   }
 }
 
-const deleteProfile = (
+const deletePersona = (
   state: LandingState,
-  action: DeleteProfileAction,
+  action: DeleteAccountAction,
   fullState: State,
 ): LandingState => {
   return {
@@ -73,8 +73,8 @@ const reducer = (
   fullState: State,
 ): LandingState => {
   switch (action.type) {
-    case actions.landing.SET_PUBLIC_PROFILES:
-      return setPublicProfiles(state, action as SetPublicProfilesAction, fullState)
+    case actions.landing.SET_PUBLIC_ACCOUNTS:
+      return setPublicAccounts(state, action as SetPublicAccountsAction, fullState)
 
     case actions.landing.SIGN_UP:
       return signUp(state, action as SignUpAction, fullState)
@@ -82,8 +82,8 @@ const reducer = (
     case actions.account.UPDATE_ACCOUNT:
       return updateAccount(state, action as UpdateAccountAction, fullState)
 
-    case actions.profile.DELETE_PROFILE:
-      return deleteProfile(state, action as DeleteProfileAction, fullState)
+    case actions.account.DELETE_ACCOUNT:
+      return deletePersona(state, action as DeleteAccountAction, fullState)
 
     case actions.landing.SET_REGISTER_APP_LINK:
       return setRegisterAppLink(state, action as SetRegisterAppLinkAction, fullState)

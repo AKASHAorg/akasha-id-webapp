@@ -53,18 +53,13 @@ const NameContainer = styled.div`
   margin-bottom: 16px;
 `
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 16px;
   overflow: hidden;
   margin-right: 8px;
   background: #f0f0f0;
-
-  > img {
-    width: 32px;
-    height: 32px;
-  }
 `
 
 const Name = styled.h4`

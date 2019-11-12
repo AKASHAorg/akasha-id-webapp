@@ -1,0 +1,33 @@
+{
+  "header": "Account",
+  "deleteForm": {
+    "header": "Delete akasha id account",
+    "text": "You’ll also lose access to all your third party apps.",
+    "button": "Delete Persona"
+  },
+  "accountForm": {
+    "header": "Account Information",
+    "name": {
+      "label": "Account name",
+      "placeholder": "",
+      "errorIsRequired": "Username cannot be empty"
+    },
+    "oldPassword": {
+      "label": "Old password",
+      "placeholder": "Type old password",
+      "errorIsRequired": "Password cannot be empty"
+    },
+    "newPassword": {
+      "label": "New password",
+      "placeholder": "Type new password",
+      "errorIsRequired": "Password cannot be empty"
+    },
+    "confirmPassword": {
+      "label": "Confirm password",
+      "placeholder": "Confirm new password",
+      "errorIsRequired": "Password confirmation is incorrect"
+    },
+    "passwordHeader": "Change Password",
+    "resetPassword": "Reset Password"
+  }
+}
